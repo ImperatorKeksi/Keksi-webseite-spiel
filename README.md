@@ -1,8 +1,8 @@
 ﻿<div align="center">
 
-#  Jeopardy Quiz - Interaktives Lernspiel
+#  Lehrer Tools - Oberlinhaus
 
-### *Spielerisch lernen, digital lehren*
+### *Digitale Werkzeuge für modernen Unterricht*
 
 [![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -10,11 +10,13 @@
 [![Made with](https://img.shields.io/badge/Made%20with-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-ready-orange.svg)](https://web.dev/progressive-web-apps/)
 
-**Ein modernes, webbasiertes Lernspiel für Lehrer und Auszubildende**
+**Eine wachsende Sammlung digitaler Tools für Lehrer und Ausbilder**
 
-[ Demo starten](#installation)  [ Dokumentation](#inhaltsverzeichnis)  [ Kontakt](#-kontakt--soziale-medien)
+[ Demo starten](#-installation--start)  [ Dokumentation](#-inhaltsverzeichnis)  [ Kontakt](#-kontakt--soziale-medien)
 
-![Jeopardy Quiz Banner](https://via.placeholder.com/800x200/667eea/ffffff?text=Jeopardy+Quiz+-+Interaktives+Lernen)
+---
+
+![Lehrer Tools Banner](https://via.placeholder.com/800x200/667eea/ffffff?text=Lehrer+Tools+-+Digitale+Bildung)
 
 </div>
 
@@ -23,9 +25,8 @@
 ##  Inhaltsverzeichnis
 
 - [ Über das Projekt](#-über-das-projekt)
+- [ Verfügbare Tools](#-verfügbare-tools)
 - [ Motivation & Entstehung](#-motivation--entstehung)
-- [ Features & Funktionen](#-features--funktionen)
-- [ Spielmodi](#-spielmodi)
 - [ Technologien](#-technologien)
 - [ Installation & Start](#-installation--start)
 - [ Projektstruktur](#-projektstruktur)
@@ -38,25 +39,132 @@
 
 ##  Über das Projekt
 
-**Jeopardy Quiz** ist eine vollständig selbst entwickelte, webbasierte Progressive Web App (PWA), die das klassische Jeopardy-Spielprinzip in die digitale Welt bringt. Das Projekt entstand als persönliches Lernprojekt während meiner Ausbildung zum Fachinformatiker und hat sich zu einem vollwertigen Bildungstool entwickelt.
+**Lehrer Tools** ist eine vollständig selbst entwickelte, webbasierte Plattform mit digitalen Werkzeugen für Lehrer und Ausbilder. Das Projekt entstand als persönliches Lernprojekt während meiner Ausbildung zum Fachinformatiker und wird kontinuierlich erweitert.
 
 ###  Was macht dieses Projekt besonders?
 
-- ** 100% Eigenentwicklung** - Von Grund auf selbst programmiert, keine Frameworks
-- ** Bildungsfokus** - Speziell für Ausbildungsberufe entwickelt
-- ** Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline
-- ** Durchdacht gestaltet** - Professionelles UI/UX Design
-- ** Erweiterbar** - Lehrer können eigene Fragen erstellen
-- ** PWA-Ready** - Installierbar wie eine native App
+-  **100% Eigenentwicklung** - Von Grund auf selbst programmiert, keine Frameworks
+-  **Bildungsfokus** - Speziell für Lehrer und Ausbilder entwickelt
+-  **Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline
+-  **Durchdacht gestaltet** - Professionelles UI/UX Design
+-  **Erweiterbar** - Neue Tools werden kontinuierlich hinzugefügt
+-  **PWA-Ready** - Installierbar wie eine native App
 
-###  Wie funktioniert es?
+###  Vision
 
-Das Spiel folgt dem klassischen Jeopardy-Format:
-1. **Wähle eine Kategorie** aus 5 verschiedenen Themenbereichen
-2. **Wähle einen Punktwert** (100-500 Punkte, steigender Schwierigkeitsgrad)
-3. **Beantworte die Frage** - Richtig = Punkte gewinnen, Falsch = Punkte verlieren
-4. **Daily Doubles** bringen zusätzliche Spannung mit Einsatz-Möglichkeiten
-5. **Multiplayer-Modus** ermöglicht Wettbewerb mit bis zu 6 Spielern
+Eine zentrale Plattform für digitale Lehrwerkzeuge, die:
+- Lehrer bei ihrer täglichen Arbeit unterstützt
+- Schüler und Auszubildende motiviert
+- Moderne Webtechnologien sinnvoll einsetzt
+- Für alle kostenlos und offen verfügbar ist
+
+---
+
+##  Verfügbare Tools
+
+###  Jeopardy Quiz (v1.2.0) - Verfügbar
+
+Ein interaktives Quiz-Spiel nach dem Jeopardy-Prinzip
+
+**Features:**
+-  4 Spielmodi (IT, Lagerlogistik, Kaufmännisch, Standard)
+-  125+ Fragen über 25 Kategorien
+-  Multiplayer (1-6 Spieler)
+-  Daily Double Bonus-Fragen
+-  Timer-Funktion
+-  Fragen-Editor für Lehrer
+-  Statistiken & Fortschritt
+
+**Spielmodi im Detail:**
+
+<table>
+<tr>
+<td width="50%">
+
+####  IT-Modus
+Für Fachinformatiker & IT-Azubis
+
+**Kategorien:**
+- Hardware-Basics
+- Software & Betriebssysteme
+- Netzwerk-Grundlagen
+- Programmierung
+- IT-Sicherheit
+
+**25 Fragen** von Grundlagen bis Expertenwissen
+
+</td>
+<td width="50%">
+
+####  Lagerlogistik-Modus
+Für Fachlageristen & Logistik-Azubis
+
+**Kategorien:**
+- Lagertechnik
+- Arbeitssicherheit
+- Transport & Versand
+- Warenwirtschaft
+- Lagerorganisation
+
+**25 Fragen** praxisnah und berufsrelevant
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+####  Kaufmännischer Modus
+Für Bürokaufleute & kaufmännische Azubis
+
+**Kategorien:**
+- Büroorganisation
+- Rechnungswesen
+- Kommunikation & Korrespondenz
+- Geschäftsprozesse
+- Recht & Verträge
+
+**25 Fragen** von Basics bis Spezialwissen
+
+</td>
+<td width="50%">
+
+####  Standard-Modus
+Für alle - Allgemeinwissen
+
+**Kategorien:**
+- Allgemeinwissen
+- Mathematik & Logik
+- Deutsch & Sprache
+- Kultur & Geschichte
+- Wissenschaft & Natur
+
+**25 Fragen** für jeden geeignet
+
+</td>
+</tr>
+</table>
+
+**Wie funktioniert das Jeopardy Quiz?**
+
+1. Wähle eine Kategorie aus 5 verschiedenen Themenbereichen
+2. Wähle einen Punktwert (100-500 Punkte, steigender Schwierigkeitsgrad)
+3. Beantworte die Frage - Richtig = Punkte gewinnen, Falsch = Punkte verlieren
+4. Daily Doubles bringen zusätzliche Spannung mit Einsatz-Möglichkeiten
+5. Multiplayer-Modus ermöglicht Wettbewerb mit bis zu 6 Spielern
+
+---
+
+###  In Entwicklung
+
+Weitere Tools, die aktuell entwickelt werden:
+
+-  **Notenverwaltung** - Noten erfassen und auswerten (geplant v1.3.0)
+-  **Stundenplan-Generator** - Interaktive Stundenpläne erstellen (geplant v1.3.0)
+-  **Zufalls-Generator** - Schüler auswählen, Gruppen bilden (geplant v1.4.0)
+-  **Umfrage-Tool** - Schnelle Umfragen im Unterricht (geplant v1.4.0)
+-  **Timer & Countdown** - Visualisierte Zeitvorgaben (geplant v1.5.0)
+
+Hast du Ideen für weitere Tools? [Schreib mir!](#-kontakt--soziale-medien)
 
 ---
 
@@ -65,6 +173,7 @@ Das Spiel folgt dem klassischen Jeopardy-Format:
 ###  Warum dieses Projekt?
 
 Als Auszubildender zum Fachinformatiker für IT-Systemelektroniker habe ich gemerkt, dass:
+
 -  **Lernen oft trocken ist** - Traditionelle Methoden sind nicht immer motivierend
 -  **Gamification funktioniert** - Spielerisches Lernen macht mehr Spaß
 -  **Lehrer Tools brauchen** - Digitale Werkzeuge fehlen oft
@@ -72,11 +181,26 @@ Als Auszubildender zum Fachinformatiker für IT-Systemelektroniker habe ich geme
 
 ###  Die Entstehungsgeschichte
 
-**Start:** Einfaches Quiz-Spiel für IT-Grundlagen  
-**Evolution:** Hinzufügen von Multiplayer, Themes, Sound-Effekten  
-**Expansion:** Mehrere Spielmodi für verschiedene Berufe  
-**Professionalisierung:** Auth-System, Editor, PWA-Features  
-**Heute:** Vollwertiges Bildungstool mit 125+ Fragen
+**Phase 1: Start (Nov 2024)**
+- Einfaches Quiz-Spiel für IT-Grundlagen
+
+**Phase 2: Evolution (Dez 2024)**
+- Hinzufügen von Multiplayer, Themes, Sound-Effekten
+
+**Phase 3: Expansion (Jan 2025)**
+- Mehrere Spielmodi für verschiedene Berufe
+
+**Phase 4: Professionalisierung (Feb-März 2025)**
+- Auth-System, Editor, PWA-Features
+
+**Phase 5: Plattform (Apr 2025 - Heute)**
+- Umwandlung in Lehrer-Tools Plattform
+- Planung weiterer Tools
+
+**Zukunft:**
+- Kontinuierliche Erweiterung mit neuen Tools
+- Community-Feedback einarbeiten
+- Optimierung bestehender Features
 
 ###  Was ich dabei gelernt habe
 
@@ -86,148 +210,6 @@ Als Auszubildender zum Fachinformatiker für IT-Systemelektroniker habe ich geme
 -  **State Management** - Spiellogik, Event-Handling, Datenverwaltung
 -  **Audio-Programmierung** - Web Audio API für synthetische Sounds
 -  **Projekt-Management** - Git, Dokumentation, Best Practices
-
----
-
-##  Features & Funktionen
-
-<table>
-<tr>
-<td width="50%">
-
-###  Spiel-Features
-
--  **4 Spielmodi** (IT, Lagerlogistik, Kaufmännisch, Standard)
--  **125+ Fragen** (25 pro Modus)
--  **5 Kategorien** pro Modus
--  **Punktesystem** 100-500 je Schwierigkeit
--  **Daily Double** Bonus-Fragen
--  **Timer-Funktion** (optional)
--  **1-6 Spieler** Multiplayer
--  **Statistiken** & Achievements
--  **Sound-Effekte** Akustisches Feedback
-
-</td>
-<td width="50%">
-
-###  Design & UX
-
--  **5 Theme-Designs** Farbschemata
--  **Smooth Animationen** Flüssige Übergänge
--  **Responsive Design** Mobile-First
--  **Touch-optimiert** Tablet-freundlich
--  **Accessibility** Tastatur & Screen-Reader
--  **Dark Mode** Augenschonend
--  **Glassmorphism** Modernes Design
--  **Gradient Backgrounds** Attraktiv
--  **Emoji-Icons** Intuitiv
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-###  Lehrer-Tools
-
--  **Fragen-Editor** Eigene Fragen erstellen
--  **Kategorie-Management** Neue Themen
--  **Import/Export** JSON-Format
--  **Rollen-System** Gast/Lehrer/Admin
--  **Login-System** Sicher & einfach
--  **Berechtigungen** Zugriffskontrolle
-
-</td>
-<td width="50%">
-
-###  PWA-Features
-
--  **Offline-Modus** Ohne Internet spielbar
--  **Installierbar** Homescreen-Icon
--  **Service Worker** Schnelles Laden
--  **Local Storage** Daten bleiben erhalten
--  **App-like** Fühlt sich nativ an
--  **Auto-Update** Immer aktuell
-
-</td>
-</tr>
-</table>
-
----
-
-##  Spielmodi
-
-Das Spiel bietet **4 spezialisierte Modi** für verschiedene Ausbildungsberufe:
-
-<table>
-<tr>
-<td width="50%">
-
-###  IT-Modus
-**Für Fachinformatiker & IT-Azubis**
-
- **Kategorien:**
-- Hardware-Basics
-- Software & Betriebssysteme  
-- Netzwerk-Grundlagen
-- Programmierung
-- IT-Sicherheit
-
- **25 Fragen** von Grundlagen bis Expertenwissen  
- **Beispiel:** "Was bedeutet RAM?" (100 Punkte)
-
-</td>
-<td width="50%">
-
-###  Lagerlogistik-Modus
-**Für Fachlageristen & Logistik-Azubis**
-
- **Kategorien:**
-- Lagertechnik
-- Arbeitssicherheit
-- Transport & Versand
-- Warenwirtschaft
-- Lagerorganisation
-
- **25 Fragen** praxisnah und berufsrelevant  
- **Beispiel:** "Was ist FIFO?" (100 Punkte)
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-###  Kaufmännischer Modus
-**Für Bürokaufleute & kaufmännische Azubis**
-
- **Kategorien:**
-- Büroorganisation
-- Rechnungswesen
-- Kommunikation & Korrespondenz
-- Geschäftsprozesse
-- Recht & Verträge
-
- **25 Fragen** von Basics bis Spezialwissen  
- **Beispiel:** "Was bedeutet i.V.?" (100 Punkte)
-
-</td>
-<td width="50%">
-
-###  Standard-Modus
-**Für alle - Allgemeinwissen**
-
- **Kategorien:**
-- Allgemeinwissen
-- Mathematik & Logik
-- Deutsch & Sprache
-- Kultur & Geschichte
-- Wissenschaft & Natur
-
- **25 Fragen** für jeden geeignet  
- **Beispiel:** "Wie viele Bundesländer hat Deutschland?" (100 Punkte)
-
-</td>
-</tr>
-</table>
 
 ---
 
@@ -321,7 +303,7 @@ npx http-server
 2. Klicke auf das  Icon in der Adressleiste
 3. Wähle "Installieren"
 4. App wird zum Homescreen hinzugefügt
-5. Jetzt auch offline spielbar! 
+5. Jetzt auch offline nutzbar! 
 
 ---
 
@@ -330,8 +312,8 @@ npx http-server
 \\\
 Keksi-webseite-spiel/
 
-  index.html              # Landing Page mit Navigation
-  game.html               # Hauptspiel mit Modus-Auswahl
+  index.html              # Landing Page mit Tool-Übersicht
+  game.html               # Jeopardy Quiz Spieloberfläche
 
   Styles
     styles.css             # Spiel-Styles (3445 Zeilen)
@@ -356,9 +338,9 @@ Keksi-webseite-spiel/
   Fragen-Datenbanken
     questions.js           # Allgemeinwissen (184 Zeilen)
     questions_it.js        # IT-Fragen (407 Zeilen)
-    questions_lagerlogistik.js  # Logistik (78 Zeilen)
+    questions_lagerlogistik.js    # Logistik (78 Zeilen)
     questions_standard.js  # Standard (78 Zeilen)
-    questions_kaufmaennisch.js  # Kaufmännisch (78 Zeilen)
+    questions_kaufmaennisch.js    # Kaufmännisch (78 Zeilen)
 
   Konfiguration
     manifest.json          # PWA Manifest
@@ -375,8 +357,8 @@ Keksi-webseite-spiel/
 - **JavaScript:** ~6.500 Zeilen
 - **CSS:** ~3.500 Zeilen
 - **Fragen:** 125+
-- **Entwicklungszeit:** 3 Monate
-- **Commits:** 100+
+- **Entwicklungszeit:** 6 Monate
+- **Commits:** 150+
 
 ---
 
@@ -427,7 +409,7 @@ In \styles.css\:
 
 <div align="center">
 
-### **Nico Kaschube**
+### Nico Kaschube
 *Auszubildender Fachinformatiker für IT-Systemelektroniker*
 
 ![Developer](https://img.shields.io/badge/Developer-Nico%20Kaschube-blue?style=for-the-badge)
@@ -437,11 +419,11 @@ In \styles.css\:
 
 ####  Persönliche Informationen
 
-- ** Ausbildung:** Fachinformatiker für IT-Systemelektroniker
-- ** Ausbildungsstätte:** Oberlinhaus Oberhausen
-- ** Ausbildungszeitraum:** 2024 - 2027 (laufend)
-- ** Standort:** Oberhausen, Deutschland
-- ** Fachrichtung:** IT-Systemelektroniker
+-  **Ausbildung:** Fachinformatiker für IT-Systemelektroniker
+-  **Ausbildungsstätte:** Oberlinhaus Oberhausen
+-  **Ausbildungszeitraum:** 01.09.2025 - 31.08.2028 (3 Jahre, laufend)
+-  **Standort:** Oberhausen, Deutschland
+-  **Fachrichtung:** IT-Systemelektroniker
 
 ####  Motivation hinter diesem Projekt
 
@@ -486,16 +468,20 @@ Als IT-Azubi erlebe ich täglich, wie wichtig praktische und interaktive Lernmet
 </tr>
 </table>
 
-####  Persönliche Ziele
+#### 🎯 Ziele & Vision
 
--  **Abschluss:** Erfolgreiche IHK-Prüfung
--  **Karriere:** Junior Developer  Senior Developer
--  **Lernen:** Ständige Weiterbildung in neuen Technologien
--  **Beitrag:** Open Source Community unterstützen
+**Projekt-Ziele:**
+- 👨‍🏫 **Lehrern helfen** - Berufsschulen und Ausbildern praktische digitale Tools zur Verfügung stellen
+- 🎓 **Unterricht vereinfachen** - Alltägliche Aufgaben für Lehrer einfacher und effizienter machen
+- 📊 **Feedback sammeln** - Basierend auf Rückmeldungen neue Tools entwickeln und bestehende verbessern
+- 🚀 **Kontinuierliche Entwicklung** - Die Plattform Schritt für Schritt mit neuen Funktionen erweitern
+
+**Persönliches Ziel:**
+- ✅ **Ausbildung erfolgreich abschließen** - Fachinformatiker für IT-Systemelektroniker (2025-2028)
 
 ---
 
-##  Kontakt & Soziale Medien
+## 📞 Kontakt & Soziale Medien
 
 <div align="center">
 
@@ -534,12 +520,12 @@ Hast du Fragen, Anregungen oder Verbesserungsvorschläge?
 
 Ich freue mich über jeden Beitrag! Hier sind einige Möglichkeiten:
 
-1. ** Star das Projekt** auf GitHub
-2. ** Bug Reports** über GitHub Issues melden
-3. ** Feature Vorschläge** einreichen
-4. ** Fragen hinzufügen** für weitere Modi
-5. ** Designs teilen** für neue Themes
-6. ** Dokumentation verbessern**
+1.  **Star das Projekt** auf GitHub
+2.  **Bug Reports** über GitHub Issues melden
+3.  **Feature Vorschläge** einreichen
+4.  **Fragen hinzufügen** für weitere Modi
+5.  **Designs teilen** für neue Themes
+6.  **Dokumentation verbessern**
 
 ###  Pull Requests
 
@@ -571,30 +557,36 @@ Copyright  2025 Nico Kaschube
 
 Ein großes Dankeschön an:
 
-- ** Oberlinhaus Oberhausen** - Für die Ausbildung und Unterstützung
-- ** Meine Ausbilder** - Für die Förderung meiner Entwicklung
-- ** Kollegen & Azubis** - Für Feedback und Ideen
-- ** Open Source Community** - Für Inspiration und Best Practices
-- ** MDN Web Docs** - Beste Dokumentation ever!
-- ** Design Community** - Für UI/UX Inspiration
+-  **Oberlinhaus Oberhausen** - Für die Ausbildung und Unterstützung
+-  **Meine Ausbilder** - Für die Förderung meiner Entwicklung
+-  **Kollegen & Azubis** - Für Feedback und Ideen
+-  **Open Source Community** - Für Inspiration und Best Practices
+-  **MDN Web Docs** - Beste Dokumentation ever!
+-  **Design Community** - Für UI/UX Inspiration
 
 ---
 
 ##  Projekt-Roadmap
 
 ###  Version 1.2.0 (Aktuell)
--  4 vollständige Spielmodi
+-  Jeopardy Quiz mit 4 Spielmodi
 -  125+ Fragen verfügbar
 -  Auth-System mit Rollen
 -  Lehrer-Editor funktionsfähig
 -  PWA-Features vollständig
 -  Umfassende Dokumentation
 
-###  Version 1.3.0 (Geplant)
+###  Version 1.3.0 (Q2 2025)
 - [ ]  Mehrsprachigkeit (EN, DE)
+- [ ]  Notenverwaltung-Tool
+- [ ]  Stundenplan-Generator
 - [ ]  Erweiterte Statistiken
-- [ ]  Neue Spielmodi (Medizin, Recht)
 - [ ]  Cloud-Sync für Fortschritt
+
+###  Version 1.4.0 (Q3 2025)
+- [ ]  Zufalls-Generator Tool
+- [ ]  Umfrage-Tool
+- [ ]  Neue Spielmodi (Medizin, Recht)
 - [ ]  Achievement-System
 - [ ]  Native Mobile Apps
 
@@ -605,28 +597,6 @@ Ein großes Dankeschön an:
 - [ ]  Lernpfade & Kurse
 - [ ]  Lehrer-Dashboard
 - [ ]  Analytics für Lehrer
-
----
-
-##  Zusätzliche Ressourcen
-
-###  Für Lehrer
-
-- **[Lehrer-Handbuch](docs/teacher-guide.md)** (coming soon)
-- **[Fragen-Vorlagen](docs/question-templates.md)** (coming soon)
-- **[Best Practices](docs/best-practices.md)** (coming soon)
-
-###  Für Entwickler
-
-- **[API Dokumentation](docs/api.md)** (coming soon)
-- **[Contributing Guide](CONTRIBUTING.md)** (coming soon)
-- **[Code Style Guide](docs/style-guide.md)** (coming soon)
-
-###  Für Spieler
-
-- **[Spielanleitung](docs/how-to-play.md)** (coming soon)
-- **[FAQ](docs/faq.md)** (coming soon)
-- **[Tipps & Tricks](docs/tips.md)** (coming soon)
 
 ---
 
