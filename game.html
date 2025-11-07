@@ -52,7 +52,8 @@
     <!-- ========================================= -->
     <script>
         // 🚀 Service Worker für PWA-Funktionalität registrieren
-        if ('serviceWorker' in navigator) {
+        // Nur wenn die Seite über HTTP(S) geladen wird, nicht file://
+        if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
             window.addEventListener('load', async () => {
                 try {
                     const registration = await navigator.serviceWorker.register('./sw.js');
@@ -61,6 +62,8 @@
                     console.error('❌ Service Worker Fehler:', error);
                 }
             });
+        } else if (window.location.protocol === 'file:') {
+            console.log('ℹ️ Service Worker deaktiviert (file:// Protokoll)');
         }
     </script>
 </head>

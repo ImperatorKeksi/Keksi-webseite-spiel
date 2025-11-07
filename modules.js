@@ -277,7 +277,7 @@ window.performanceMonitor = new PerformanceMonitor();
 window.lazyLoader = new LazyLoadManager();
 
 // 🔧 Debug-Hilfsfunktionen
-if (DEBUG_CONFIG.enabled) {
+if (typeof DEBUG_CONFIG !== 'undefined' && DEBUG_CONFIG.enabled) {
     window.startPerformanceMonitoring = () => performanceMonitor.startMonitoring();
     window.stopPerformanceMonitoring = () => performanceMonitor.stopMonitoring();
     window.getGameState = () => gameState.getState();

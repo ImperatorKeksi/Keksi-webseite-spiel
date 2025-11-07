@@ -25,8 +25,10 @@ class SoundManager {
 
     initializeSounds() {
         // Create audio context for better sound control
+        // AudioContext wird erst nach User-Interaktion erstellt (Browser-Policy)
         try {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            // Lazy initialization - wird beim ersten play() erstellt
+            this.audioContext = null;
         } catch (e) {
             console.log('Web Audio API not supported');
         }
@@ -217,6 +219,17 @@ class SoundManager {
         if (!this.enabled || !this.sounds[soundName]) return;
         
         try {
+            // Erstelle AudioContext beim ersten Aufruf (nach User-Interaktion)
+            if (!this.audioContext) {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    console.log('🎵 AudioContext initialisiert');
+                } catch (e) {
+                    console.warn('AudioContext konnte nicht erstellt werden:', e);
+                    return;
+                }
+            }
+            
             // Resume audio context if suspended (required by some browsers)
             if (this.audioContext && this.audioContext.state === 'suspended') {
                 this.audioContext.resume();
