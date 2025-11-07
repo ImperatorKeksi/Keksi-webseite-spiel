@@ -10,13 +10,25 @@ const DEBUG_MODE = false; // Für Debug-Nachrichten
 // DATEIEN DIE GECACHT WERDEN SOLLEN       
 // ========================================= 
 const CACHE_FILES = [
-  './',
-  './index.html',
-  './styles.css',
-  './script.js',
-  './questions_it.js', 
-  './sounds.js',
-  './manifest.json'
+  '../',
+  '../seiten/index.html',
+  '../seiten/game.html',
+  '../stylesheets/styles.css',
+  '../stylesheets/main.css',
+  '../javascript/script.js',
+  '../javascript/modules.js',
+  '../javascript/sounds.js',
+  '../javascript/auth.js',
+  '../javascript/auth-ui.js',
+  '../javascript/main.js',
+  '../javascript/editor.js',
+  '../javascript/stats.js',
+  '../javascript/feedback.js',
+  '../fragenkataloge/questions_it.js',
+  '../fragenkataloge/questions_lagerlogistik.js',
+  '../fragenkataloge/questions_standard.js',
+  '../fragenkataloge/questions_kaufmaennisch.js',
+  '../pwa/manifest.json'
 ];
 
 // =========================================

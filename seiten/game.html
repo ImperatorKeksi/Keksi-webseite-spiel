@@ -30,7 +30,7 @@
     <!-- ========================================= -->
     <!-- PWA MANIFEST (ohne Icons)                -->
     <!-- ========================================= -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../pwa/manifest.json">
     <meta name="theme-color" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -45,7 +45,7 @@
     <!-- ========================================= -->
     <!-- STYLES                                    -->
     <!-- ========================================= -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../stylesheets/styles.css">
     
     <!-- ========================================= -->
     <!-- PWA SERVICE WORKER REGISTRATION          -->
@@ -56,7 +56,7 @@
         if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
             window.addEventListener('load', async () => {
                 try {
-                    const registration = await navigator.serviceWorker.register('./sw.js');
+                    const registration = await navigator.serviceWorker.register('../pwa/sw.js');
                     console.log('✅ Service Worker registriert:', registration.scope);
                 } catch (error) {
                     console.error('❌ Service Worker Fehler:', error);
@@ -843,28 +843,28 @@
     <!-- ========================================= -->
     
     <!-- 🧱 Core Module zuerst laden -->
-    <script src="modules.js"></script>
+    <script src="../javascript/modules.js"></script>
     
     <!-- 🎵 Sound System -->
-    <script src="sounds.js"></script>
+    <script src="../javascript/sounds.js"></script>
     
     <!-- ❓ Fragen-Datenbank werden dynamisch geladen basierend auf Modus -->
     
     <!-- 🔐 Authentication System -->
-    <script src="auth.js"></script>
-    <script src="auth-ui.js"></script>
+    <script src="../javascript/auth.js"></script>
+    <script src="../javascript/auth-ui.js"></script>
     
-    <!-- � Fragen-Editor -->
-    <script src="editor.js"></script>
+    <!-- ✏️ Fragen-Editor -->
+    <script src="../javascript/editor.js"></script>
     
     <!-- 📊 Question Stats -->
-    <script src="stats.js"></script>
+    <script src="../javascript/stats.js"></script>
     
     <!-- 💬 Feedback System -->
-    <script src="feedback.js"></script>
+    <script src="../javascript/feedback.js"></script>
     
     <!-- 🎮 Hauptspiel-Logik (muss zuletzt geladen werden) -->
-    <script src="script.js"></script>
+    <script src="../javascript/script.js"></script>
     
     <!-- ========================================= -->
     <!-- MODE SELECTION LOGIC                     -->
@@ -914,16 +914,16 @@
                 
                 switch(mode) {
                     case 'it':
-                        filename = 'questions_it.js';
+                        filename = '../fragenkataloge/questions_it.js';
                         break;
                     case 'lagerlogistik':
-                        filename = 'questions_lagerlogistik.js';
+                        filename = '../fragenkataloge/questions_lagerlogistik.js';
                         break;
                     case 'standard':
-                        filename = 'questions_standard.js';
+                        filename = '../fragenkataloge/questions_standard.js';
                         break;
                     case 'kaufmaennisch':
-                        filename = 'questions_kaufmaennisch.js';
+                        filename = '../fragenkataloge/questions_kaufmaennisch.js';
                         break;
                     default:
                         reject(`Unbekannter Modus: ${mode}`);

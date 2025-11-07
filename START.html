@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Lehrer Tools - Start</title>
+    <link rel="icon" type="image/png" href="icons/icon-192x192.png">
+    <link rel="manifest" href="pwa/manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Animierte Hintergrund-Bubbles */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-duration: 12s;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            left: 30%;
+            animation-duration: 14s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            left: 50%;
+            animation-duration: 16s;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            left: 70%;
+            animation-duration: 13s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            left: 85%;
+            animation-duration: 15s;
+            animation-delay: 3s;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 110vh;
+                transform: translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        /* Logo */
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Titel */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Start Button */
+        .start-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .start-button:active {
+            transform: translateY(-2px);
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .start-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .start-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features */
+        .features {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .developer {
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .start-button {
+                font-size: 1.2rem;
+                padding: 15px 40px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animierter Hintergrund -->
+    <div class="background-animation">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="icons/icon-192x192.png" alt="Lehrer Tools Logo">
+        </div>
+
+        <!-- Haupttitel -->
+        <h1>🎓 Lehrer Tools</h1>
+        <p class="subtitle">Digitale Werkzeuge für modernen Unterricht</p>
+        <p class="description">
+            Eine Sammlung interaktiver Tools für Lehrer und Ausbilder<br>
+            Entwickelt mit ❤️ für bessere Bildung
+        </p>
+
+        <!-- Start Button -->
+        <a href="seiten/index.html" class="start-button">
+            <span>🚀 Jetzt starten!</span>
+        </a>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">🎮</span>
+                <span>Jeopardy Quiz</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📱</span>
+                <span>PWA-fähig</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🌐</span>
+                <span>Offline nutzbar</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✏️</span>
+                <span>Eigene Fragen</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Oberlinhaus Oberhausen</p>
+            <p class="developer">
+                Entwickelt von <strong>Nico Kaschube</strong><br>
+                Auszubildender Fachinformatiker für IT-Systemelektroniker
+            </p>
+        </div>
+    </div>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        // Service Worker für PWA registrieren
+        if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('pwa/sw.js');
+                    console.log('✅ Service Worker registriert:', registration.scope);
+                } catch (error) {
+                    console.error('❌ Service Worker Fehler:', error);
+                }
+            });
+        }
+
+        // Button Animation beim Klick
+        document.querySelector('.start-button').addEventListener('click', function(e) {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
