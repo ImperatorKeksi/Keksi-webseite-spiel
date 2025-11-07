@@ -1,0 +1,213 @@
+﻿<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    🌐 JEOPARDY QUIZ - LANDING PAGE                          ║
+║                      Hauptseite & Spielauswahl                              ║
+║                                                                              ║
+║  📚 Projekt: Jeopardy Quiz für Lehrer                                      ║
+║  👨‍💻 Entwickler: Nico Kaschube                                              ║
+║  📍 Ausbildungsort: Oberlinhaus Oberhausen                                  ║
+║  🎓 Ausbildung: Fachinformatiker für IT-Systemelektroniker                  ║
+║  📅 Erstellt: 2025                                                          ║
+║                                                                              ║
+║  📋 INHALT:                                                                  ║
+║  ├── 🏠 Hero-Section - Willkommensbereich                                   ║
+║  ├── 🎮 Games-Section - Verfügbare Spiele                                   ║
+║  ├── ℹ️ About-Section - Projektinformationen                               ║
+║  ├── 🔐 Login/Logout System Integration                                     ║
+║  └── 📱 Responsive Navigation                                               ║
+║                                                                              ║
+║  🎯 Zweck: Einstiegsseite für das Jeopardy Quiz Lernspiel                 ║
+║  👥 Zielgruppe: Lehrer, Auszubildende, Bildungseinrichtungen               ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lehrer Tools von Oberlinhaus - Gute Tools fuer Lehrer">
+    <meta name="author" content="Nico Kaschube">
+    <title>Lehrer Tools - Oberlinhaus</title>
+    <link rel="icon" type="image/png" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <img src="icons/icon-192x192.png" alt="Logo" class="nav-logo">
+                    <span class="nav-title">Lehrer Tools</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#games" class="nav-link">Spiele</a></li>
+                    <li><a href="#about" class="nav-link">Ueber uns</a></li>
+                </ul>
+                <div class="nav-auth">
+                    <span id="userDisplayNav" class="user-display" style="display: none;">Gast</span>
+                    <button id="loginBtnNav" class="btn-login">Anmelden</button>
+                    <button id="logoutBtnNav" class="btn-logout" style="display: none;">Abmelden</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Willkommen bei den Lehrer Tools von Oberlinhaus!</h1>
+            <p class="hero-subtitle">Gute Tools fuer Lehrer</p>
+            <div class="hero-buttons">
+                <a href="#games" class="btn btn-primary">Zu den Spielen</a>
+                <a href="#about" class="btn btn-secondary">Mehr erfahren</a>
+            </div>
+        </div>
+    </section>
+    <section id="games" class="games-section">
+        <div class="section-container">
+            <h2 class="section-title">Verfuegbare Spiele</h2>
+            <p class="section-subtitle">Waehle ein Spiel und starte deine Lernreise!</p>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-card-header">
+                        <div class="game-icon">&#127919;</div>
+                        <span class="game-badge">Verfuegbar</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">Jeopardy Quiz</h3>
+                        <p class="game-description">Teste dein Wissen in diesem spannenden Quiz-Spiel! Verschiedene Modi verfuegbar: IT, Lagerlogistik und Custom.</p>
+                        <div class="game-features">
+                            <span class="feature-tag">Mehrere Modi</span>
+                            <span class="feature-tag">25 Fragen</span>
+                            <span class="feature-tag">Multiplayer</span>
+                            <span class="feature-tag">Daily Double</span>
+                        </div>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <span class="stat-icon">&#9202;</span>
+                                <span class="stat-text">10-20 Min</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-icon">&#128100;</span>
+                                <span class="stat-text">1-6 Spieler</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card-footer">
+                        <a href="game.html" target="_blank" class="btn-play"><span>Jetzt spielen</span></a>
+                    </div>
+                </div>
+                <div class="game-card coming-soon">
+                    <div class="game-card-header">
+                        <div class="game-icon">&#127922;</div>
+                        <span class="game-badge coming-soon-badge">Bald</span>
+                    </div>
+                    <div class="game-card-body">
+                        <h3 class="game-title">Weitere Spiele</h3>
+                        <p class="game-description">Neue spannende Lernspiele sind bereits in Entwicklung!</p>
+                    </div>
+                    <div class="game-card-footer">
+                        <button class="btn-play" disabled>In Entwicklung</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <h2 class="section-title">Ueber das Projekt</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-icon">&#127979;</div>
+                    <h3>Oberlinhaus</h3>
+                    <p>Bildungseinrichtung mit innovativen digitalen Lernmethoden.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">&#127919;</div>
+                    <h3>Unser Ziel</h3>
+                    <p>Wissen spielerisch vermitteln und das Lernen unterhaltsam gestalten. Fuer Azubis und Studenten.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">&#128640;</div>
+                    <h3>Die Zukunft</h3>
+                    <p>Kontinuierliche Entwicklung neuer Spiele und Features fuer besseres Lernen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Lehrer Tools</h4>
+                <p>Von Oberlinhaus fuer Lehrer</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#games">Spiele</a></li>
+                    <li><a href="#about">Ueber uns</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Oberlinhaus - Lehrer Tools</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #9d4edd;">Entwickelt von Nico Kaschube, Azubi zum Fachinformatiker fuer IT-Systemelektroniker</p>
+        </div>
+    </footer>
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content login-modal-content">
+            <div class="modal-header">
+                <h3>Anmelden</h3>
+                <button class="modal-close-btn" id="closeLoginBtn">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Anmelden</button>
+                    <button class="auth-tab" data-tab="register">Registrieren</button>
+                </div>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginUsername">Benutzername:</label>
+                        <input type="text" id="loginUsername" placeholder="Benutzername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Passwort:</label>
+                        <input type="password" id="loginPassword" placeholder="Passwort" required>
+                    </div>
+                    <div class="auth-info">
+                        <p><strong>Test-Accounts:</strong></p>
+                        <p style="font-size: 0.9rem;">Admin: admin / admin123<br>Lehrer: lehrer / lehrer123</p>
+                    </div>
+                    <div id="loginError" class="auth-error" style="display: none;"></div>
+                    <div id="loginSuccess" class="auth-success" style="display: none;"></div>
+                </form>
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerUsername">Benutzername:</label>
+                        <input type="text" id="registerUsername" placeholder="Min. 3 Zeichen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Passwort:</label>
+                        <input type="password" id="registerPassword" placeholder="Min. 6 Zeichen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPasswordConfirm">Passwort bestaetigen:</label>
+                        <input type="password" id="registerPasswordConfirm" placeholder="Wiederholen" required>
+                    </div>
+                    <div id="registerError" class="auth-error" style="display: none;"></div>
+                    <div id="registerSuccess" class="auth-success" style="display: none;"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitLoginBtn" class="modal-btn btn-primary">Anmelden</button>
+                <button type="button" id="submitRegisterBtn" class="modal-btn btn-primary" style="display: none;">Registrieren</button>
+                <button type="button" id="cancelLoginBtn" class="modal-btn-secondary">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+    <script src="auth-ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
