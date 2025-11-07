@@ -1,339 +1,652 @@
-﻿# Jeopardy Quiz - Interaktives Lernspiel für Lehrer
+﻿<div align="center">
 
-![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-aktiv-success.svg)
+#  Jeopardy Quiz - Interaktives Lernspiel
+
+### *Spielerisch lernen, digital lehren*
+
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-aktiv-success.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![Made with](https://img.shields.io/badge/Made%20with-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![PWA](https://img.shields.io/badge/PWA-ready-orange.svg)](https://web.dev/progressive-web-apps/)
+
+**Ein modernes, webbasiertes Lernspiel für Lehrer und Auszubildende**
+
+[ Demo starten](#installation)  [ Dokumentation](#inhaltsverzeichnis)  [ Kontakt](#-kontakt--soziale-medien)
+
+![Jeopardy Quiz Banner](https://via.placeholder.com/800x200/667eea/ffffff?text=Jeopardy+Quiz+-+Interaktives+Lernen)
+
+</div>
+
+---
 
 ##  Inhaltsverzeichnis
 
-- [Über das Projekt](#über-das-projekt)
-- [Für wen ist das?](#für-wen-ist-das)
-- [Funktionen](#funktionen)
-- [Spielmodi](#spielmodi)
-- [Installation](#installation)
-- [Dateiübersicht](#dateiübersicht)
-- [Technologien](#technologien)
-- [Über den Entwickler](#über-den-entwickler)
-- [Lizenz](#lizenz)
+- [ Über das Projekt](#-über-das-projekt)
+- [ Motivation & Entstehung](#-motivation--entstehung)
+- [ Features & Funktionen](#-features--funktionen)
+- [ Spielmodi](#-spielmodi)
+- [ Technologien](#-technologien)
+- [ Installation & Start](#-installation--start)
+- [ Projektstruktur](#-projektstruktur)
+- [ Entwicklung](#-entwicklung)
+- [ Über den Entwickler](#-über-den-entwickler)
+- [ Kontakt & Soziale Medien](#-kontakt--soziale-medien)
+- [ Lizenz](#-lizenz)
 
 ---
 
 ##  Über das Projekt
 
-**Jeopardy Quiz** ist ein interaktives, webbasiertes Lernspiel, das speziell für Lehrer und Bildungseinrichtungen entwickelt wurde. Es bietet eine unterhaltsame Möglichkeit, Wissen in verschiedenen Bereichen zu testen und zu vertiefen.
+**Jeopardy Quiz** ist eine vollständig selbst entwickelte, webbasierte Progressive Web App (PWA), die das klassische Jeopardy-Spielprinzip in die digitale Welt bringt. Das Projekt entstand als persönliches Lernprojekt während meiner Ausbildung zum Fachinformatiker und hat sich zu einem vollwertigen Bildungstool entwickelt.
 
-Das Spiel funktioniert wie die bekannte TV-Show Jeopardy: Spieler wählen Kategorien und Punktwerte aus und müssen Fragen beantworten. Je schwieriger die Frage, desto mehr Punkte gibt es!
+###  Was macht dieses Projekt besonders?
 
-###  Besonderheiten
+- ** 100% Eigenentwicklung** - Von Grund auf selbst programmiert, keine Frameworks
+- ** Bildungsfokus** - Speziell für Ausbildungsberufe entwickelt
+- ** Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline
+- ** Durchdacht gestaltet** - Professionelles UI/UX Design
+- ** Erweiterbar** - Lehrer können eigene Fragen erstellen
+- ** PWA-Ready** - Installierbar wie eine native App
 
-- **Progressive Web App (PWA)** - Funktioniert auch offline!
-- **Keine Installation nötig** - Läuft direkt im Browser
-- **Responsive Design** - Optimiert für Desktop, Tablet und Smartphone
-- **Multiplayer-Unterstützung** - Bis zu 6 Spieler gleichzeitig
-- **Lehrer-Editor** - Eigene Fragen erstellen und bearbeiten
+###  Wie funktioniert es?
 
----
-
-##  Für wen ist das?
-
-Dieses Tool wurde speziell entwickelt für:
-
-###  Lehrer & Pädagogen
-- Interaktive Unterrichtsgestaltung
-- Wissensüberprüfung auf spielerische Art
-- Eigene Fragen für spezifische Themen erstellen
-- Verschiedene Schwierigkeitsgrade anpassen
-
-###  Auszubildende & Schüler
-- IT-Ausbildung (Fachinformatiker)
-- Lagerlogistik (Fachlagerist)
-- Kaufmännische Berufe (Bürokaufmann)
-- Allgemeinbildung
-
-###  Bildungseinrichtungen
-- Oberlinhaus Berlin
-- Berufsschulen
-- Weiterbildungsinstitute
-- Betriebliche Ausbildung
+Das Spiel folgt dem klassischen Jeopardy-Format:
+1. **Wähle eine Kategorie** aus 5 verschiedenen Themenbereichen
+2. **Wähle einen Punktwert** (100-500 Punkte, steigender Schwierigkeitsgrad)
+3. **Beantworte die Frage** - Richtig = Punkte gewinnen, Falsch = Punkte verlieren
+4. **Daily Doubles** bringen zusätzliche Spannung mit Einsatz-Möglichkeiten
+5. **Multiplayer-Modus** ermöglicht Wettbewerb mit bis zu 6 Spielern
 
 ---
 
-##  Funktionen
+##  Motivation & Entstehung
+
+###  Warum dieses Projekt?
+
+Als Auszubildender zum Fachinformatiker für IT-Systemelektroniker habe ich gemerkt, dass:
+-  **Lernen oft trocken ist** - Traditionelle Methoden sind nicht immer motivierend
+-  **Gamification funktioniert** - Spielerisches Lernen macht mehr Spaß
+-  **Lehrer Tools brauchen** - Digitale Werkzeuge fehlen oft
+-  **Technik helfen kann** - Moderne Webtechnologien bieten tolle Möglichkeiten
+
+###  Die Entstehungsgeschichte
+
+**Start:** Einfaches Quiz-Spiel für IT-Grundlagen  
+**Evolution:** Hinzufügen von Multiplayer, Themes, Sound-Effekten  
+**Expansion:** Mehrere Spielmodi für verschiedene Berufe  
+**Professionalisierung:** Auth-System, Editor, PWA-Features  
+**Heute:** Vollwertiges Bildungstool mit 125+ Fragen
+
+###  Was ich dabei gelernt habe
+
+-  **Frontend-Entwicklung** - HTML5, CSS3, JavaScript ES6+
+-  **Progressive Web Apps** - Service Worker, Offline-Funktionalität
+-  **UI/UX Design** - Responsive Design, Animationen, Accessibility
+-  **State Management** - Spiellogik, Event-Handling, Datenverwaltung
+-  **Audio-Programmierung** - Web Audio API für synthetische Sounds
+-  **Projekt-Management** - Git, Dokumentation, Best Practices
+
+---
+
+##  Features & Funktionen
+
+<table>
+<tr>
+<td width="50%">
 
 ###  Spiel-Features
--  **4 verschiedene Spielmodi** (IT, Lagerlogistik, Standard, Kaufmännisch)
--  **25 Fragen pro Spiel** (5 Kategorien  5 Fragen)
--  **Punktesystem** (100-500 Punkte je nach Schwierigkeit)
--  **Daily Double** - Zufällige Bonus-Fragen mit doppelten Punkten
--  **Timer-Funktion** - Zeitlimit für Antworten (optional)
--  **Multiplayer-Modus** - 1-6 Spieler
--  **Statistiken** - Fortschritt und Erfolge tracken
--  **Sound-Effekte** - Akustisches Feedback
 
-###  Benutzeroberfläche
--  **5 Theme-Designs** (Purple-Blue, Ocean-Blue, Forest-Green, Sunset-Orange, Dark-Mode)
--  **Animationen** - Flüssige Übergänge und visuelle Effekte
--  **Touch-optimiert** - Perfekt für Tablets
--  **Barrierefreiheit** - Tastatursteuerung und Screen-Reader kompatibel
--  **Responsive Design** - Passt sich jedem Bildschirm an
+-  **4 Spielmodi** (IT, Lagerlogistik, Kaufmännisch, Standard)
+-  **125+ Fragen** (25 pro Modus)
+-  **5 Kategorien** pro Modus
+-  **Punktesystem** 100-500 je Schwierigkeit
+-  **Daily Double** Bonus-Fragen
+-  **Timer-Funktion** (optional)
+-  **1-6 Spieler** Multiplayer
+-  **Statistiken** & Achievements
+-  **Sound-Effekte** Akustisches Feedback
+
+</td>
+<td width="50%">
+
+###  Design & UX
+
+-  **5 Theme-Designs** Farbschemata
+-  **Smooth Animationen** Flüssige Übergänge
+-  **Responsive Design** Mobile-First
+-  **Touch-optimiert** Tablet-freundlich
+-  **Accessibility** Tastatur & Screen-Reader
+-  **Dark Mode** Augenschonend
+-  **Glassmorphism** Modernes Design
+-  **Gradient Backgrounds** Attraktiv
+-  **Emoji-Icons** Intuitiv
+
+</td>
+</tr>
+<tr>
+<td width="50%">
 
 ###  Lehrer-Tools
--  **Fragen-Editor** - Eigene Fragen erstellen, bearbeiten, löschen
--  **Kategorie-Management** - Neue Kategorien hinzufügen
--  **Import/Export** - Fragen als JSON speichern und laden
--  **Rollen-System** - Gast, Lehrer, Admin-Zugriff
--  **Login-System** - Sichere Authentifizierung
+
+-  **Fragen-Editor** Eigene Fragen erstellen
+-  **Kategorie-Management** Neue Themen
+-  **Import/Export** JSON-Format
+-  **Rollen-System** Gast/Lehrer/Admin
+-  **Login-System** Sicher & einfach
+-  **Berechtigungen** Zugriffskontrolle
+
+</td>
+<td width="50%">
 
 ###  PWA-Features
--  **Offline-Modus** - Spiel ohne Internet spielbar
--  **Installierbar** - Auf Homescreen hinzufügen
--  **Schnell** - Service Worker für optimale Performance
--  **Zuverlässig** - Daten werden lokal gespeichert
+
+-  **Offline-Modus** Ohne Internet spielbar
+-  **Installierbar** Homescreen-Icon
+-  **Service Worker** Schnelles Laden
+-  **Local Storage** Daten bleiben erhalten
+-  **App-like** Fühlt sich nativ an
+-  **Auto-Update** Immer aktuell
+
+</td>
+</tr>
+</table>
 
 ---
 
 ##  Spielmodi
 
-Das Spiel bietet 4 spezialisierte Modi für verschiedene Ausbildungsberufe:
+Das Spiel bietet **4 spezialisierte Modi** für verschiedene Ausbildungsberufe:
+
+<table>
+<tr>
+<td width="50%">
 
 ###  IT-Modus
-**Für Fachinformatiker & IT-Auszubildende**
-- **Kategorien**: Hardware, Software, Netzwerke, Programmierung, IT-Sicherheit
-- **Schwierigkeit**: Grundlagen bis Expertenwissen
-- **Frageanzahl**: 25 Fragen
-- **Beispiele**: "Was bedeutet RAM?", "Welches Protokoll nutzt das Web?"
+**Für Fachinformatiker & IT-Azubis**
+
+ **Kategorien:**
+- Hardware-Basics
+- Software & Betriebssysteme  
+- Netzwerk-Grundlagen
+- Programmierung
+- IT-Sicherheit
+
+ **25 Fragen** von Grundlagen bis Expertenwissen  
+ **Beispiel:** "Was bedeutet RAM?" (100 Punkte)
+
+</td>
+<td width="50%">
 
 ###  Lagerlogistik-Modus
 **Für Fachlageristen & Logistik-Azubis**
-- **Kategorien**: Lagertechnik, Sicherheit, Transport, Warenwirtschaft, Organisation
-- **Schwierigkeit**: Praxisnah und berufsrelevant
-- **Frageanzahl**: 25 Fragen
-- **Beispiele**: "Was ist FIFO?", "Welche Schutzkleidung im Lager?"
+
+ **Kategorien:**
+- Lagertechnik
+- Arbeitssicherheit
+- Transport & Versand
+- Warenwirtschaft
+- Lagerorganisation
+
+ **25 Fragen** praxisnah und berufsrelevant  
+ **Beispiel:** "Was ist FIFO?" (100 Punkte)
+
+</td>
+</tr>
+<tr>
+<td width="50%">
 
 ###  Kaufmännischer Modus
-**Für Bürokaufleute & kaufmännische Auszubildende**
-- **Kategorien**: Büroorganisation, Rechnungswesen, Kommunikation, Geschäftsprozesse, Recht
-- **Schwierigkeit**: Von Basics bis zu Spezialwissen
-- **Frageanzahl**: 25 Fragen
-- **Beispiele**: "Was bedeutet i.V.?", "Wie hoch ist die Mehrwertsteuer?"
+**Für Bürokaufleute & kaufmännische Azubis**
+
+ **Kategorien:**
+- Büroorganisation
+- Rechnungswesen
+- Kommunikation & Korrespondenz
+- Geschäftsprozesse
+- Recht & Verträge
+
+ **25 Fragen** von Basics bis Spezialwissen  
+ **Beispiel:** "Was bedeutet i.V.?" (100 Punkte)
+
+</td>
+<td width="50%">
 
 ###  Standard-Modus
 **Für alle - Allgemeinwissen**
-- **Kategorien**: Allgemeinwissen, Mathematik, Deutsch, Kultur, Wissenschaft
-- **Schwierigkeit**: Für jeden geeignet
-- **Frageanzahl**: 25 Fragen
-- **Beispiele**: "Wie viele Bundesländer hat Deutschland?", "Wer malte die Mona Lisa?"
 
----
+ **Kategorien:**
+- Allgemeinwissen
+- Mathematik & Logik
+- Deutsch & Sprache
+- Kultur & Geschichte
+- Wissenschaft & Natur
 
-##  Installation
+ **25 Fragen** für jeden geeignet  
+ **Beispiel:** "Wie viele Bundesländer hat Deutschland?" (100 Punkte)
 
-### Option 1: Direkter Start (Empfohlen)
-1. Repository herunterladen oder klonen
-2. \index.html\ im Browser öffnen
-3. Fertig! 
-
-### Option 2: Lokaler Webserver
-\\\ash
-# Mit Python 3
-python -m http.server 8000
-
-# Mit Node.js (http-server)
-npx http-server
-
-# Mit PHP
-php -S localhost:8000
-\\\
-
-Dann Browser öffnen: \http://localhost:8000\
-
-### Option 3: Als PWA installieren
-1. Website im Chrome/Edge öffnen
-2. Auf "Installieren" klicken (Icon in der Adressleiste)
-3. App wird zum Homescreen hinzugefügt
-4. Offline spielbar!
-
----
-
-##  Dateiübersicht
-
-###  HTML-Dateien
-| Datei | Beschreibung |
-|-------|--------------|
-| \index.html\ | Hauptseite - Landing Page mit Navigation, Spielauswahl und Login |
-| \game.html\ | Spieloberfläche - Enthält das komplette Jeopardy-Spiel mit allen Modi |
-
-###  CSS-Dateien
-| Datei | Beschreibung |
-|-------|--------------|
-| \styles.css\ | Hauptstyles für das Spiel - Theme-System, Animationen, Responsive Design (3445 Zeilen) |
-| \main.css\ | Styles für die Landing Page - Navigation, Hero-Section, Game-Cards |
-
-###  JavaScript Kern-Dateien
-| Datei | Beschreibung |
-|-------|--------------|
-| \script.js\ | **Hauptprogramm** - JeopardyGame-Klasse, Spiel-Logik, UI-Management, Debug-System (1804 Zeilen) |
-| \modules.js\ | **Spiel-Module** - GameStateManager, PerformanceMonitor, EventSystem (284 Zeilen) |
-| \sounds.js\ | **Audio-Engine** - SoundManager für alle Sound-Effekte, synthetische Audio-Generierung (246 Zeilen) |
-| \main.js\ | **Landing Page Logik** - Navigation, Smooth-Scrolling, Interaktionen |
-
-###  Authentifizierung
-| Datei | Beschreibung |
-|-------|--------------|
-| \uth.js\ | **Auth-System** - Benutzer-Verwaltung, Rollen (Gast/Lehrer/Admin), LocalStorage |
-| \uth-ui.js\ | **Auth-UI** - Login/Logout-Dialoge, Registrierung, Passwort-Verwaltung |
-
-###  Fragen-Datenbanken
-| Datei | Beschreibung | Kategorien |
-|-------|--------------|------------|
-| \questions.js\ | Allgemeinwissen | Geschichte, Wissenschaft, Geographie, Kunst, Sport |
-| \questions_it.js\ | IT-Fragen | Hardware, Software, Netzwerke, Programmierung, IT-Sicherheit |
-| \questions_lagerlogistik.js\ | Logistik-Fragen | Lagertechnik, Sicherheit, Transport, Warenwirtschaft, Organisation |
-| \questions_standard.js\ | Standard-Fragen | Allgemeinwissen, Mathematik, Deutsch, Kultur, Wissenschaft |
-| \questions_kaufmaennisch.js\ | Kaufmännische Fragen | Büro, Rechnungswesen, Kommunikation, Geschäftsprozesse, Recht |
-
-###  Zusatz-Features
-| Datei | Beschreibung |
-|-------|--------------|
-| \editor.js\ | **Fragen-Editor** - UI für Lehrer zum Erstellen/Bearbeiten von Fragen |
-| \stats.js\ | **Statistik-System** - Spieler-Stats, Fortschritt, Achievements |
-| \eedback.js\ | **Feedback-System** - Rückmeldungen sammeln und anzeigen |
-
-###  PWA & Config
-| Datei | Beschreibung |
-|-------|--------------|
-| \sw.js\ | **Service Worker** - Offline-Funktionalität, Caching-Strategie (162 Zeilen) |
-| \manifest.json\ | **PWA Manifest** - App-Konfiguration, Icons, Theme-Farben |
-
-###  Dokumentation
-| Datei | Beschreibung |
-|-------|--------------|
-| \README.md\ | Diese Datei - Vollständige Projektdokumentation |
+</td>
+</tr>
+</table>
 
 ---
 
 ##  Technologien
 
-### Frontend
-- **HTML5** - Semantisches Markup
-- **CSS3** - Modern mit Flexbox, Grid, Animationen
-- **JavaScript ES6+** - Klassen, Module, Async/Await
+###  Tech Stack
 
-### Architektur
-- **Vanilla JavaScript** - Keine Frameworks, pure Performance
-- **Object-Oriented Programming** - Klassen-basierte Struktur
-- **Event-Driven** - Observer Pattern für Kommunikation
-- **Modular Design** - Wiederverwendbare Komponenten
+<div align="center">
 
-### PWA-Technologien
-- **Service Worker API** - Offline-Caching
-- **Web App Manifest** - Installierbarkeit
-- **LocalStorage API** - Daten-Persistierung
-- **Web Audio API** - Sound-Generierung
+| Kategorie | Technologien |
+|-----------|-------------|
+| **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) |
+| **Architektur** | Vanilla JS, OOP, Event-Driven, Modular |
+| **PWA** | Service Worker, Web App Manifest, Cache API |
+| **Storage** | LocalStorage API, IndexedDB-ready |
+| **Audio** | Web Audio API (synthetisch generiert) |
+| **Design** | CSS Grid, Flexbox, Animations, Glassmorphism |
 
-### Browser-Kompatibilität
--  Chrome 90+
--  Firefox 88+
--  Safari 14+
--  Edge 90+
--  Mobile Browser (iOS Safari, Chrome Mobile)
+</div>
+
+###  Design Prinzipien
+
+- **Mobile-First** - Zuerst für kleine Bildschirme entwickelt
+- **Progressive Enhancement** - Grundfunktion immer gewährleistet
+- **Semantic HTML** - Barrierefreies Markup
+- **BEM Methodology** - Strukturierte CSS-Klassennamen
+- **Modern CSS** - Custom Properties, Grid, Animations
+
+###  Performance
+
+- **No Framework Overhead** - Pure JavaScript = Schnell!
+- **Lazy Loading** - Ressourcen bei Bedarf laden
+- **Code Splitting** - Modulare JavaScript-Dateien
+- **Optimized Assets** - Minimale Ladezeiten
+- **Service Worker Caching** - Instant Loading nach erstem Besuch
+
+###  Browser-Kompatibilität
+
+| Browser | Version | Status |
+|---------|---------|--------|
+| Chrome | 90+ |  Vollständig unterstützt |
+| Firefox | 88+ |  Vollständig unterstützt |
+| Safari | 14+ |  Vollständig unterstützt |
+| Edge | 90+ |  Vollständig unterstützt |
+| Mobile | iOS/Android |  Optimiert |
+
+---
+
+##  Installation & Start
+
+###  Voraussetzungen
+
+- Ein moderner Webbrowser (Chrome, Firefox, Safari, Edge)
+- Optional: Live Server für lokale Entwicklung
+
+###  Installation
+
+\\\ash
+# 1. Repository klonen
+git clone https://github.com/ImperatorKeksi/Keksi-webseite-spiel.git
+
+# 2. In Ordner wechseln
+cd Keksi-webseite-spiel
+
+# 3. index.html im Browser öffnen
+# ODER Live Server starten (empfohlen)
+\\\
+
+###  Lokaler Server (Empfohlen)
+
+**Option A: VS Code Live Server**
+1. Installiere die Extension "Live Server"
+2. Rechtsklick auf \index.html\  "Open with Live Server"
+3. Browser öffnet automatisch \http://localhost:5500\
+
+**Option B: Python**
+\\\ash
+python -m http.server 8000
+# Dann öffne: http://localhost:8000
+\\\
+
+**Option C: Node.js**
+\\\ash
+npx http-server
+# Dann öffne: http://localhost:8080
+\\\
+
+###  Als PWA installieren
+
+1. Öffne die Website im Chrome/Edge Browser
+2. Klicke auf das  Icon in der Adressleiste
+3. Wähle "Installieren"
+4. App wird zum Homescreen hinzugefügt
+5. Jetzt auch offline spielbar! 
+
+---
+
+##  Projektstruktur
+
+\\\
+Keksi-webseite-spiel/
+
+  index.html              # Landing Page mit Navigation
+  game.html               # Hauptspiel mit Modus-Auswahl
+
+  Styles
+    styles.css             # Spiel-Styles (3445 Zeilen)
+    main.css               # Landing Page Styles
+
+  Core JavaScript
+    script.js              # Hauptprogramm (1804 Zeilen)
+    modules.js             # Game State, Events (284 Zeilen)
+    sounds.js              # Audio Engine (248 Zeilen)
+    sw.js                  # Service Worker (162 Zeilen)
+
+  Authentifizierung
+    auth.js                # Auth-System (491 Zeilen)
+    auth-ui.js             # Login/Register UI (278 Zeilen)
+
+  Features
+    editor.js              # Fragen-Editor (770 Zeilen)
+    stats.js               # Statistik-System (538 Zeilen)
+    feedback.js            # Feedback Manager (759 Zeilen)
+    main.js                # Landing Page Logic (222 Zeilen)
+
+  Fragen-Datenbanken
+    questions.js           # Allgemeinwissen (184 Zeilen)
+    questions_it.js        # IT-Fragen (407 Zeilen)
+    questions_lagerlogistik.js  # Logistik (78 Zeilen)
+    questions_standard.js  # Standard (78 Zeilen)
+    questions_kaufmaennisch.js  # Kaufmännisch (78 Zeilen)
+
+  Konfiguration
+    manifest.json          # PWA Manifest
+    icons/                 # App Icons (8 Größen)
+
+  Dokumentation
+     README.md              # Diese Datei
+\\\
+
+###  Code-Statistiken
+
+- **Total Dateien:** 22
+- **Total Code-Zeilen:** ~10.000+
+- **JavaScript:** ~6.500 Zeilen
+- **CSS:** ~3.500 Zeilen
+- **Fragen:** 125+
+- **Entwicklungszeit:** 3 Monate
+- **Commits:** 100+
+
+---
+
+##  Entwicklung
+
+###  Eigene Fragen hinzufügen
+
+1. Öffne eine der \questions_*.js\ Dateien
+2. Finde die passende Kategorie
+3. Füge neue Frage hinzu:
+
+\\\javascript
+{
+    question: "Deine Frage hier?",
+    answer: "Die Antwort",
+    points: 100  // oder 200, 300, 400, 500
+}
+\\\
+
+###  Neues Theme erstellen
+
+In \styles.css\:
+
+\\\css
+.theme-mein-theme {
+    --primary-gradient: linear-gradient(135deg, #farbe1, #farbe2);
+    --text-primary: #farbe3;
+    /* ... weitere Farben */
+}
+\\\
+
+###  Deployment
+
+**GitHub Pages:**
+1. Repository auf GitHub pushen
+2. Settings  Pages  Source: main branch
+3. Fertig! URL: \https://username.github.io/repo-name\
+
+**Netlify/Vercel:**
+1. Repository verbinden
+2. Build Command: keine (statisch)
+3. Publish Directory: \/\
+4. Deploy!
 
 ---
 
 ##  Über den Entwickler
 
-### Nico Kaschube
-**Auszubildender Fachinformatiker für IT-Systemelektroniker**
+<div align="center">
 
- **Standort**: Oberhausen, Deutschland  
- **Ausbildungsort**: Oberlinhaus Berlin  
- **Ausbildungsjahr**: 2024-2027 (laufend)  
- **Fachrichtung**: IT-Systemelektroniker
+### **Nico Kaschube**
+*Auszubildender Fachinformatiker für IT-Systemelektroniker*
 
-####  Motivation
-Dieses Projekt entstand aus der Idee, digitale Lerntools zu entwickeln, die Lehrern und Auszubildenden helfen, Wissen auf unterhaltsame Weise zu vermitteln und zu festigen. Als IT-Azubi selbst weiß ich, wie wichtig praktische und interaktive Lernmethoden sind.
+![Developer](https://img.shields.io/badge/Developer-Nico%20Kaschube-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Ausbildung-green?style=for-the-badge)
 
-####  Ziel des Projekts
-Das Jeopardy Quiz soll Lehrern ein flexibles Tool an die Hand geben, mit dem sie:
-- Unterrichtsinhalte spielerisch vermitteln können
-- Eigene Fragen für spezifische Themen erstellen können
-- Den Lernerfolg ihrer Schüler fördern können
-- Digitale Kompetenzen im Unterricht einsetzen können
+</div>
+
+####  Persönliche Informationen
+
+- ** Ausbildung:** Fachinformatiker für IT-Systemelektroniker
+- ** Ausbildungsstätte:** Oberlinhaus Oberhausen
+- ** Ausbildungszeitraum:** 2024 - 2027 (laufend)
+- ** Standort:** Oberhausen, Deutschland
+- ** Fachrichtung:** IT-Systemelektroniker
+
+####  Motivation hinter diesem Projekt
+
+Als IT-Azubi erlebe ich täglich, wie wichtig praktische und interaktive Lernmethoden sind. Dieses Projekt ist aus dem Wunsch entstanden, digitale Tools zu schaffen, die:
+
+-  **Lernen motivierend machen** - Gamification statt trockene Theorie
+-  **Lehrern helfen** - Moderne Werkzeuge für modernen Unterricht
+-  **Technik sinnvoll nutzen** - Zeigen, was mit Webtechnologien möglich ist
+-  **Wissen teilen** - Open Source für alle zugänglich
 
 ####  Technische Kompetenzen
-- **Frontend-Entwicklung**: HTML5, CSS3, JavaScript ES6+
-- **Web-Technologien**: PWA, Service Worker, Web APIs
-- **UI/UX Design**: Responsive Design, Accessibility, User Experience
-- **Projekt-Management**: Git, Versionskontrolle, Dokumentation
+
+<table>
+<tr>
+<td width="33%">
+
+**Frontend**
+- HTML5 / CSS3
+- JavaScript ES6+
+- Responsive Design
+- PWA Development
+
+</td>
+<td width="33%">
+
+**Tools & Workflow**
+- Git / GitHub
+- VS Code
+- Chrome DevTools
+- Live Server
+
+</td>
+<td width="33%">
+
+**Soft Skills**
+- Selbstständiges Lernen
+- Problemlösung
+- Dokumentation
+- Projekt-Management
+
+</td>
+</tr>
+</table>
+
+####  Persönliche Ziele
+
+-  **Abschluss:** Erfolgreiche IHK-Prüfung
+-  **Karriere:** Junior Developer  Senior Developer
+-  **Lernen:** Ständige Weiterbildung in neuen Technologien
+-  **Beitrag:** Open Source Community unterstützen
 
 ---
 
-##  Entwicklungsstand
+##  Kontakt & Soziale Medien
 
-###  Version 1.2.0 (Aktuell)
-- 4 vollständige Spielmodi
-- Über 100 Fragen verfügbar
-- Vollständiges Auth-System
-- Lehrer-Editor funktionsfähig
-- PWA-Features implementiert
-- Umfassende Dokumentation
+<div align="center">
 
-###  Geplante Features (v1.3.0)
-- [ ] Mehr Fragenkategorien
-- [ ] Mehrspieler über Netzwerk
-- [ ] Fortschritts-Dashboard für Lehrer
-- [ ] Export von Spielstatistiken
-- [ ] Weitere Spiel-Modi
-- [ ] Dark Mode Verbesserungen
+###  Lass uns vernetzen!
+
+[![Soziale Medien](https://img.shields.io/badge/Alle%20Links-guns.lol-ff69b4?style=for-the-badge&logo=linktree&logoColor=white)](https://guns.lol/imperatorkeksi)
+
+** [guns.lol/imperatorkeksi](https://guns.lol/imperatorkeksi) **
+
+*Alle meine Social Media Profile an einem Ort!*
 
 ---
 
-##  Mitwirken
+###  Weitere Kontaktmöglichkeiten
 
-Verbesserungsvorschläge und Bug-Reports sind willkommen!
+[![GitHub](https://img.shields.io/badge/GitHub-ImperatorKeksi-181717?style=for-the-badge&logo=github)](https://github.com/ImperatorKeksi)
+[![Repository](https://img.shields.io/badge/Repo-Keksi--webseite--spiel-blue?style=for-the-badge&logo=github)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 
-### Kontakt
-- **GitHub**: @ImperatorKeksi
-- **Repository**: Keksi-webseite-spiel
+---
+
+###  Feedback & Fragen
+
+Hast du Fragen, Anregungen oder Verbesserungsvorschläge?
+
+-  **Feature Requests:** [GitHub Issues](https://github.com/ImperatorKeksi/Keksi-webseite-spiel/issues)
+-  **Bug Reports:** [GitHub Issues](https://github.com/ImperatorKeksi/Keksi-webseite-spiel/issues)
+-  **Stars:** Wenn dir das Projekt gefällt, gib einen  auf GitHub!
+
+</div>
+
+---
+
+##  Mitwirken & Beitragen
+
+###  Du willst helfen?
+
+Ich freue mich über jeden Beitrag! Hier sind einige Möglichkeiten:
+
+1. ** Star das Projekt** auf GitHub
+2. ** Bug Reports** über GitHub Issues melden
+3. ** Feature Vorschläge** einreichen
+4. ** Fragen hinzufügen** für weitere Modi
+5. ** Designs teilen** für neue Themes
+6. ** Dokumentation verbessern**
+
+###  Pull Requests
+
+1. Fork das Repository
+2. Erstelle einen Feature Branch (\git checkout -b feature/AmazingFeature\)
+3. Commit deine Änderungen (\git commit -m 'Add some AmazingFeature'\)
+4. Push zum Branch (\git push origin feature/AmazingFeature\)
+5. Öffne einen Pull Request
 
 ---
 
 ##  Lizenz
 
-MIT License - Frei verwendbar für Bildungszwecke.
+<div align="center">
+
+**MIT License**
+
+Copyright  2025 Nico Kaschube
+
+*Dieses Projekt ist Open Source und frei verwendbar für Bildungszwecke.*
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ---
 
 ##  Danksagungen
 
-- **Oberlinhaus Berlin** - Für die Ausbildung und Unterstützung
-- **Alle Lehrer und Azubis** - Für Feedback und Ideen
-- **Open Source Community** - Für Inspiration und Best Practices
+Ein großes Dankeschön an:
+
+- ** Oberlinhaus Oberhausen** - Für die Ausbildung und Unterstützung
+- ** Meine Ausbilder** - Für die Förderung meiner Entwicklung
+- ** Kollegen & Azubis** - Für Feedback und Ideen
+- ** Open Source Community** - Für Inspiration und Best Practices
+- ** MDN Web Docs** - Beste Dokumentation ever!
+- ** Design Community** - Für UI/UX Inspiration
 
 ---
 
-##  Support & Hilfe
+##  Projekt-Roadmap
 
-### Häufige Fragen (FAQ)
+###  Version 1.2.0 (Aktuell)
+-  4 vollständige Spielmodi
+-  125+ Fragen verfügbar
+-  Auth-System mit Rollen
+-  Lehrer-Editor funktionsfähig
+-  PWA-Features vollständig
+-  Umfassende Dokumentation
 
-**Q: Benötige ich einen Account zum Spielen?**  
-A: Nein! Als Gast können Sie sofort loslegen. Nur für den Fragen-Editor benötigen Sie einen Lehrer-Account.
+###  Version 1.3.0 (Geplant)
+- [ ]  Mehrsprachigkeit (EN, DE)
+- [ ]  Erweiterte Statistiken
+- [ ]  Neue Spielmodi (Medizin, Recht)
+- [ ]  Cloud-Sync für Fortschritt
+- [ ]  Achievement-System
+- [ ]  Native Mobile Apps
 
-**Q: Funktioniert das Spiel offline?**  
-A: Ja! Nach dem ersten Laden funktioniert alles offline (PWA-Feature).
-
-**Q: Kann ich eigene Fragen hinzufügen?**  
-A: Ja! Mit einem Lehrer-Account haben Sie Zugriff auf den Fragen-Editor.
-
-**Q: Auf welchen Geräten läuft das Spiel?**  
-A: Desktop, Laptop, Tablet, Smartphone - vollständig responsive!
-
-**Q: Ist das Spiel kostenlos?**  
-A: Ja, komplett kostenlos für Bildungszwecke!
+###  Version 2.0.0 (Vision)
+- [ ]  Multiplayer über Netzwerk
+- [ ]  Video-Fragen
+- [ ]  KI-generierte Fragen
+- [ ]  Lernpfade & Kurse
+- [ ]  Lehrer-Dashboard
+- [ ]  Analytics für Lehrer
 
 ---
 
-**Entwickelt mit  für bessere Bildung**
+##  Zusätzliche Ressourcen
+
+###  Für Lehrer
+
+- **[Lehrer-Handbuch](docs/teacher-guide.md)** (coming soon)
+- **[Fragen-Vorlagen](docs/question-templates.md)** (coming soon)
+- **[Best Practices](docs/best-practices.md)** (coming soon)
+
+###  Für Entwickler
+
+- **[API Dokumentation](docs/api.md)** (coming soon)
+- **[Contributing Guide](CONTRIBUTING.md)** (coming soon)
+- **[Code Style Guide](docs/style-guide.md)** (coming soon)
+
+###  Für Spieler
+
+- **[Spielanleitung](docs/how-to-play.md)** (coming soon)
+- **[FAQ](docs/faq.md)** (coming soon)
+- **[Tipps & Tricks](docs/tips.md)** (coming soon)
+
+---
+
+<div align="center">
+
+##  Danke fürs Lesen!
+
+*Wenn dir dieses Projekt gefällt, gib ihm einen  auf GitHub!*
+
+---
+
+**Entwickelt mit  und viel  für bessere Bildung**
 
 *Nico Kaschube - Auszubildender Fachinformatiker für IT-Systemelektroniker*  
 *Oberlinhaus Oberhausen, 2025*
+
+---
+
+[![Made with Love](https://img.shields.io/badge/Made%20with--red?style=for-the-badge)](https://github.com/ImperatorKeksi)
+[![Built with Coffee](https://img.shields.io/badge/Built%20with--brown?style=for-the-badge)](https://github.com/ImperatorKeksi)
+[![Powered by JavaScript](https://img.shields.io/badge/Powered%20by-JavaScript-yellow?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+</div>
