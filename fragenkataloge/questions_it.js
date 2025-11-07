@@ -1,31 +1,7 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                    💻 IT-JEOPARDY FRAGEN-DATENBANK                          ║
-║                      IT-Fragen für Azubis                                    ║
-║                                                                              ║
-║  🎯 Zielgruppe: IT-Azubis                                                   ║
-║  📚 Themen: IT-Grundlagen, Hardware, Software, Netzwerke                   ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  🏗️ KATEGORIEN:                                                             ║
-║  ├── 👔 Rolle im Betrieb                                                   ║
-║  ├── 🖥️ Hardware-Basics                                                    ║
-║  ├── 💾 Software & Betriebssysteme                                         ║
-║  ├── 🌐 Netzwerk-Grundlagen                                                ║
-║  └── 🔒 IT-Sicherheit                                                      ║
-║                                                                              ║
-║  📊 SCHWIERIGKEITSGRADE:                                                     ║
-║  • 100-200 Punkte: Grundwissen                                             ║
-║  • 300 Punkte: Erweitert                                                   ║
-║  • 400-500 Punkte: Vertiefung                                              ║
-║                                                                              ║
-║  📝 HINWEISE:                                                                ║
-║  • Praxisbezogene Fragen                                                    ║
-║  • Verschiedene IT-Bereiche abgedeckt                                       ║
-║  • Angepasst an Ausbildungsinhalte                                          ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    💻 IT-MODUS FRAGEN
+    IT-Grundlagen, Hardware, Software, Netzwerke, Sicherheit
+    Entwickler: Nico Kaschube | Oberlinhaus Oberhausen | 2025
 */
 
 // ============================================================================= 

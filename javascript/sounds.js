@@ -1,11 +1,14 @@
-/* ============================================================================= */
-/* ERWEITERTE SOUND ENGINE - SYNTHETIC AUDIO GENERATION                         */
-/* Generiert alle Sounds programmatisch ohne externe Dateien                    */
-/* ============================================================================= */
+/*
+    ╔══════════════════════════════════════════════════╗
+    ║  🔊 SOUND ENGINE - Synthetische Audio-Gen.      ║
+    ║  Web Audio API für programmatische Sounds       ║
+    ║                                                  ║
+    ║  Entwickler: Nico Kaschube                      ║
+    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ╚══════════════════════════════════════════════════╝
+*/
 
-// ===================================
-// HAUPT SOUND-MANAGER KLASSE        
-// ===================================
+// ==================== SOUND MANAGER ====================
 class SoundManager {
     constructor() {
         this.enabled = true;

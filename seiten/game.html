@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
+<!--
+    ╔═══════════════════════════════════════════════════╗
+    ║  🎮 JEOPARDY QUIZ - SPIELSEITE                   ║
+    ║  Hauptspiel mit 4 Modi & Fragen-Editor           ║
+    ║                                                   ║
+    ║  Entwickler: Nico Kaschube                       ║
+    ║  Oberlinhaus Oberhausen | 2025                   ║
+    ╚═══════════════════════════════════════════════════╝
+-->
 <head>
-    <!-- ========================================= -->
-    <!-- GRUNDLEGENDE META-INFORMATIONEN          -->
-    <!-- ========================================= -->
+    <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeopardy Quiz - Oberlinhaus Lehrer Tools</title>
     
-    <!-- ========================================= -->
-    <!-- SEO & SOCIAL MEDIA META-TAGS             -->
-    <!-- ========================================= -->
+    <!-- SEO -->
     <meta name="description" content="Jeopardy Quiz für Azubis - Verschiedene Modi: IT, Lagerlogistik, Custom. Anpassbar für Lehrer!">
     <meta name="keywords" content="Jeopardy, Quiz, Azubi Lernspiel, IT Ausbildung, Lagerlogistik, Oberlinhaus">
     <meta name="author" content="Nico Kaschube">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Jeopardy Quiz - Oberlinhaus">
     <meta property="og:description" content="Interaktives Lernspiel für Azubis - Mehrere Modi verfügbar">
@@ -27,32 +32,23 @@
     <meta property="twitter:title" content="Jeopardy Quiz - Oberlinhaus">
     <meta property="twitter:description" content="Interaktives Lernspiel für Azubis">
     
-    <!-- ========================================= -->
-    <!-- PWA MANIFEST (ohne Icons)                -->
-    <!-- ========================================= -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="../pwa/manifest.json">
     <meta name="theme-color" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Jeopardy Quiz">
     
-    <!-- ========================================= -->
-    <!-- PERFORMANCE & RESOURCE HINTS             -->
-    <!-- ========================================= -->
+    <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- ========================================= -->
-    <!-- STYLES                                    -->
-    <!-- ========================================= -->
+    <!-- Styles -->
     <link rel="stylesheet" href="../stylesheets/styles.css">
     
-    <!-- ========================================= -->
-    <!-- PWA SERVICE WORKER REGISTRATION          -->
-    <!-- ========================================= -->
+    <!-- Service Worker Registration -->
     <script>
-        // 🚀 Service Worker für PWA-Funktionalität registrieren
-        // Nur wenn die Seite über HTTP(S) geladen wird, nicht file://
+        // PWA: Service Worker registrieren (nur bei HTTP/HTTPS, nicht file://)
         if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
             window.addEventListener('load', async () => {
                 try {
@@ -112,7 +108,7 @@
     </div>
 
     <!-- Setup Screen -->
-    <div id="setupScreen" class="setup-screen hidden">
+    <div id="setupScreen" class="setup-screen hidden" style="display: none;">
         <div class="setup-container">
             <h1 class="setup-title">Jeopardy Spiel</h1>
             <div class="setup-subtitle">
@@ -838,35 +834,32 @@
         </div>
     </footer>
 
-    <!-- ========================================= -->
-    <!-- JAVASCRIPT DATEIEN - MODULARE STRUKTUR  -->
-    <!-- ========================================= -->
     
-    <!-- 🧱 Core Module zuerst laden -->
+    <!-- ==================== JAVASCRIPT ==================== -->
+    
+    <!-- Core Modules -->
     <script src="../javascript/modules.js"></script>
     
-    <!-- 🎵 Sound System -->
+    <!-- Sound System -->
     <script src="../javascript/sounds.js"></script>
     
-    <!-- ❓ Fragen-Datenbank werden dynamisch geladen basierend auf Modus -->
+    <!-- Fragen-Datenbank werden dynamisch geladen basierend auf Modus -->
     
-    <!-- 🔐 Authentication System -->
+    <!-- Authentication System -->
     <script src="../javascript/auth.js"></script>
     <script src="../javascript/auth-ui.js"></script>
     
-    <!-- ✏️ Fragen-Editor -->
+    <!-- Fragen-Editor -->
     <script src="../javascript/editor.js"></script>
     
-    <!-- 📊 Question Stats -->
+    <!-- Question Stats -->
     <script src="../javascript/stats.js"></script>
     
-    <!-- 💬 Feedback System -->
+    <!-- Feedback System -->
     <script src="../javascript/feedback.js"></script>
     
-    <!-- 🎮 Hauptspiel-Logik (muss zuletzt geladen werden) -->
-    <script src="../javascript/script.js"></script>
-    
-    <!-- ========================================= -->
+    <!-- Hauptspiel-Logik (muss zuletzt geladen werden) -->
+    <script src="../javascript/script.js"></script>    <!-- ========================================= -->
     <!-- MODE SELECTION LOGIC                     -->
     <!-- ========================================= -->
     <script>
@@ -895,9 +888,16 @@
             
             // Lade entsprechende Fragen-Datei
             loadQuestionsForMode(mode).then(() => {
-                // Verstecke Modus-Auswahl, zeige Setup
-                document.getElementById('modeSelectionScreen').classList.add('hidden');
-                document.getElementById('setupScreen').classList.remove('hidden');
+                // Verstecke Modus-Auswahl
+                const modeScreen = document.getElementById('modeSelectionScreen');
+                modeScreen.classList.add('hidden');
+                modeScreen.style.display = 'none';
+                
+                // Zeige Setup-Screen
+                const setupScreen = document.getElementById('setupScreen');
+                setupScreen.classList.remove('hidden');
+                setupScreen.style.display = 'flex';
+                
                 questionsLoaded = true;
             }).catch(error => {
                 console.error('❌ Fehler beim Laden der Fragen:', error);

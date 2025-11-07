@@ -1,23 +1,14 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                   💬 FEEDBACK & BUG REPORT SYSTEM                           ║
-║                    Feedback-Formular Manager                                 ║
-║                                                                              ║
-║  🎯 Zweck: Feedback und Bug Reports sammeln und per E-Mail senden          ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  ⚙️ SETUP ERFORDERLICH:                                                     ║
-║  → Zeile 182: Ersetze YOUR_EMAIL@example.com mit deiner echten E-Mail!     ║
-║  → FormSubmit.co wird verwendet (kostenlos, keine Registrierung nötig)     ║
-║  → Beim ersten Submit: E-Mail bestätigen, danach funktioniert es           ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    ╔══════════════════════════════════════════════════╗
+    ║  💬 FEEDBACK & BUG REPORT SYSTEM                ║
+    ║  Feedback-Formular mit E-Mail-Versand           ║
+    ║                                                  ║
+    ║  Entwickler: Nico Kaschube                      ║
+    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ╚══════════════════════════════════════════════════╝
 */
 
-// ============================================================================= 
-// 💬 FEEDBACK-MANAGER KLASSE                                                  
-// ============================================================================= 
+// ==================== FEEDBACK MANAGER ====================
 
 // ============================================================================= 
 // 📦 FEEDBACK QUEUE (OFFLINE-SPEICHERUNG)                                    

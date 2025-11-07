@@ -1,26 +1,10 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                    💼 KAUFMÄNNISCHE FRAGEN-DATENBANK                        ║
-║                   Fragen für Kaufmann/Verwaltung/Büro                       ║
-║                                                                              ║
-║  🎯 Zielgruppe: Kaufmännische Azubis                                        ║
-║  📚 Themen: Büro, Verwaltung, Rechnungswesen, Geschäftsprozesse            ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  🏗️ KATEGORIEN:                                                             ║
-║  ├── 📋 Büroorganisation                                                   ║
-║  ├── 💰 Rechnungswesen                                                     ║
-║  ├── 📞 Kommunikation & Korrespondenz                                      ║
-║  ├── 📊 Geschäftsprozesse                                                  ║
-║  └── 📄 Recht & Verträge                                                   ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    💼 KAUFMÄNNISCHER-MODUS FRAGEN
+    Büro, Verwaltung, Rechnungswesen, Geschäftsprozesse
+    Entwickler: Nico Kaschube | Oberlinhaus Oberhausen | 2025
 */
 
-// ============================================================================= 
-// 💼 KAUFMÄNNISCHE FRAGEN-DATENBANK                                          
-// ============================================================================= 
+// Fragen-Datenbank
 const jeopardyData = {
     categories: [
         {

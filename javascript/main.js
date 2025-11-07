@@ -1,29 +1,14 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                      🎮 LANDING PAGE LOGIK                                   ║
-║                   Haupt-Navigation & Interaktionen                          ║
-║                                                                              ║
-║  📚 Projekt: Jeopardy Quiz - Landing Page                                  ║
-║  👨‍💻 Entwickler: Nico Kaschube                                              ║
-║  📍 Ausbildungsort: Oberlinhaus Oberhausen                                  ║
-║  🎓 Ausbildung: Fachinformatiker für IT-Systemelektroniker                  ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  📋 FUNKTIONEN:                                                              ║
-║  ├── 🧭 Navigation & Smooth Scrolling                                       ║
-║  ├── 📱 Mobile Menu Toggle                                                  ║
-║  ├── 🔐 Auth-System Integration                                             ║
-║  ├── ✨ Scroll-Animationen                                                  ║
-║  └── 🎯 Interactive Elements                                                ║
-║                                                                              ║
-║  🎯 Zweck: Interaktive Landing Page mit Navigation und Login               ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    ╔══════════════════════════════════════════════════╗
+    ║  🏠 LANDING PAGE - Navigation & Interaction     ║
+    ║  Hauptmenü-Logik der Landing Page               ║
+    ║                                                  ║
+    ║  Entwickler: Nico Kaschube                      ║
+    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ╚══════════════════════════════════════════════════╝
 */
 
-// ============================================================================= 
-// 🎯 MAIN PAGE MANAGER                                                        
-// ============================================================================= 
+// ==================== MAIN PAGE MANAGER ====================
 
 class MainPage {
     constructor() {

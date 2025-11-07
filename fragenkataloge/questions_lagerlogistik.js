@@ -1,26 +1,10 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                    📦 LAGERLOGISTIK FRAGEN-DATENBANK                        ║
-║                   Fragen für Fachlagerist/Lagerlogistik                     ║
-║                                                                              ║
-║  🎯 Zielgruppe: Lagerlogistik-Azubis                                        ║
-║  📚 Themen: Lagerwesen, Logistik, Sicherheit, Arbeitsabläufe               ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  🏗️ KATEGORIEN:                                                             ║
-║  ├── 📋 Lagerwirtschaft Grundlagen                                         ║
-║  ├── 🚛 Logistik & Transport                                               ║
-║  ├── ⚠️ Arbeitssicherheit                                                  ║
-║  ├── 📊 Warenwirtschaft                                                    ║
-║  └── 📦 Lagerorganisation                                                  ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    📦 LAGERLOGISTIK-MODUS FRAGEN
+    Lagerwesen, Transport, Sicherheit, Warenwirtschaft
+    Entwickler: Nico Kaschube | Oberlinhaus Oberhausen | 2025
 */
 
-// ============================================================================= 
-// 📦 LAGERLOGISTIK FRAGEN-DATENBANK                                          
-// ============================================================================= 
+// Fragen-Datenbank
 const jeopardyData = {
     categories: [
         {

@@ -203,24 +203,104 @@ Für alle - Allgemeinwissen
 
 ##  Schnellstart
 
+###  ⚠️ WICHTIG: Lokaler Webserver erforderlich!
+
+Das Projekt muss über einen **lokalen Webserver** gestartet werden, nicht per Doppelklick!  
+Grund: Browser blockieren `file://` Protokoll wegen CORS-Sicherheitsrichtlinien.
+
 ###  Installation & Start
 
-\\\ash
+```bash
 # 1. Repository klonen
 git clone https://github.com/ImperatorKeksi/Keksi-webseite-spiel.git
 
 # 2. In Ordner wechseln
 cd Keksi-webseite-spiel
 
-# 3. index.html im Browser öffnen
-start index.html
-\\\
+# 3. Mit VS Code öffnen
+code .
+
+# 4. Live Server starten (VS Code Extension)
+# Rechtsklick auf START.html → "Open with Live Server"
+# Oder F1 → "Live Server: Open"
+```
+
+### 🚀 Alternative: Python Server
+
+```bash
+# Python 3
+python -m http.server 8000
+
+# Dann im Browser öffnen:
+# http://localhost:8000/START.html
+```
 
 ###  Tipps
 
 -  **Für beste Erfahrung:** Nutze Chrome, Firefox oder Edge
 -  **Auf Smartphone:** Als PWA installieren für Offline-Nutzung
 -  **Als Lehrer:** Account erstellen für Zugriff auf Editor
+
+---
+
+##  Projektstruktur
+
+Das Projekt ist übersichtlich in Ordnern organisiert:
+
+```
+📂 Keksi-webseite-spiel/
+│
+├── 📄 START.html                   ← Zentrale Startdatei
+├── 📄 README.md                    ← Diese Dokumentation
+│
+├── 📁 seiten/                      ← HTML-Seiten
+│   ├── index.html                  (Hauptmenü & Spielauswahl)
+│   └── game.html                   (Spielseite mit allen Modi)
+│
+├── 📁 stylesheets/                 ← CSS-Styles
+│   ├── main.css                    (Landing Page Styles)
+│   └── styles.css                  (Spiel-Styles)
+│
+├── 📁 javascript/                  ← JavaScript-Dateien
+│   ├── script.js                   (Hauptspiel-Logik)
+│   ├── modules.js                  (Game State Management)
+│   ├── sounds.js                   (Audio-Engine)
+│   ├── auth.js                     (Authentifizierung)
+│   ├── auth-ui.js                  (Login-UI)
+│   ├── editor.js                   (Fragen-Editor)
+│   ├── stats.js                    (Statistiken)
+│   ├── feedback.js                 (Feedback-System)
+│   └── main.js                     (Landing Page Logik)
+│
+├── 📁 fragenkataloge/              ← Fragen-Datenbanken
+│   ├── questions_it.js             (IT-Modus)
+│   ├── questions_lagerlogistik.js  (Lagerlogistik-Modus)
+│   ├── questions_kaufmaennisch.js  (Kaufmännischer-Modus)
+│   ├── questions_standard.js       (Standard-Modus)
+│   └── questions.js                (Legacy)
+│
+├── 📁 icons/                       ← PWA-Icons
+│   └── icon-*.png                  (8 Größen: 72px bis 512px)
+│
+├── 📁 pwa/                         ← Progressive Web App
+│   ├── manifest.json               (App-Manifest)
+│   └── sw.js                       (Service Worker)
+│
+└── 📁 tools/                       ← Entwickler-Tools
+    └── generate_icons.html         (Icon-Generator)
+```
+
+### 📝 Erklärung der Ordner:
+
+| Ordner | Beschreibung | Wichtige Dateien |
+|--------|--------------|------------------|
+| **seiten/** | Alle HTML-Seiten | `index.html`, `game.html` |
+| **stylesheets/** | CSS-Dateien für Design | `styles.css`, `main.css` |
+| **javascript/** | Gesamte Spiellogik & Features | `script.js`, `modules.js`, `editor.js` |
+| **fragenkataloge/** | Fragen für alle 4 Modi | `questions_*.js` |
+| **icons/** | Icons für PWA-Installation | `icon-192x192.png` etc. |
+| **pwa/** | PWA-Konfiguration & Cache | `manifest.json`, `sw.js` |
+| **tools/** | Hilfswerkzeuge | `generate_icons.html` |
 
 ---
 

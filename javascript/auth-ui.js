@@ -1,30 +1,14 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                      🎨 AUTHENTICATION UI LOGIK                              ║
-║                    Login/Register Modal Verwaltung                          ║
-║                                                                              ║
-║  📚 Projekt: Jeopardy Quiz - Auth UI                                       ║
-║  👨‍💻 Entwickler: Nico Kaschube                                              ║
-║  📍 Ausbildungsort: Oberlinhaus Oberhausen                                  ║
-║  🎓 Ausbildung: Fachinformatiker für IT-Systemelektroniker                  ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  📋 FUNKTIONEN:                                                              ║
-║  ├── 🔓 Login-Dialog anzeigen/schließen                                    ║
-║  ├── 📝 Registrierungs-Formular                                            ║
-║  ├── 🔄 Tab-Wechsel zwischen Login & Register                              ║
-║  ├── ✅ Formular-Validierung                                                ║
-║  ├── 💾 Integration mit AuthManager                                         ║
-║  └── 🎨 Modal Animationen                                                   ║
-║                                                                              ║
-║  🎯 Zweck: Benutzeroberfläche für Authentifizierung                        ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    ╔══════════════════════════════════════════════════╗
+    ║  🎨 AUTH UI - Login/Register Modal              ║
+    ║  Benutzeroberfläche für Authentifizierung       ║
+    ║                                                  ║
+    ║  Entwickler: Nico Kaschube                      ║
+    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ╚══════════════════════════════════════════════════╝
 */
 
-// ============================================================================= 
-// LOGIN/REGISTER UI MANAGER                                                   
-// ============================================================================= 
+// ==================== AUTH UI MANAGER ====================
 
 class AuthUI {
     constructor() {

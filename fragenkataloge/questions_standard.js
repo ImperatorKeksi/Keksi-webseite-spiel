@@ -1,26 +1,10 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                    🎯 STANDARD FRAGEN-DATENBANK                             ║
-║                   Allgemeine Wissensfragen - Ohne Berufsfokus              ║
-║                                                                              ║
-║  🎯 Zielgruppe: Alle                                                        ║
-║  📚 Themen: Allgemeinwissen, Logik, Deutsch, Mathe, Kultur                 ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  🏗️ KATEGORIEN:                                                             ║
-║  ├── 🌍 Allgemeinwissen                                                    ║
-║  ├── 🧮 Mathematik & Logik                                                 ║
-║  ├── 📖 Deutsch & Sprache                                                  ║
-║  ├── 🎨 Kultur & Geschichte                                                ║
-║  └── 🔬 Wissenschaft & Natur                                               ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    🎯 STANDARD-MODUS FRAGEN
+    Allgemeinwissen ohne Berufsfokus - Für alle
+    Entwickler: Nico Kaschube | Oberlinhaus Oberhausen | 2025
 */
 
-// ============================================================================= 
-// 🎯 STANDARD FRAGEN-DATENBANK                                               
-// ============================================================================= 
+// Fragen-Datenbank
 const jeopardyData = {
     categories: [
         {

@@ -1,30 +1,11 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                      📚 JEOPARDY FRAGEN-DATENBANK                           ║
-║                        Allgemeinwissen Fragenkatalog                         ║
-║                                                                              ║
-║  🎯 Zweck: Fragen für das Jeopardy Spiel                                   ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║                                                                              ║
-║  📋 KATEGORIEN:                                                              ║
-║  ├── 📖 Geschichte (100-500 Punkte)                                         ║
-║  ├── 🔬 Wissenschaft (100-500 Punkte)                                       ║
-║  ├── 🌍 Geographie (100-500 Punkte)                                         ║
-║  ├── 🎨 Kunst & Kultur (100-500 Punkte)                                     ║
-║  └── ⚽ Sport (100-500 Punkte)                                              ║
-║                                                                              ║
-║  📝 Hinweise:                                                                ║
-║  • Schwierigkeitssteigerung nach Punktzahl                                  ║
-║  • Verschiedene Wissensgebiete abgedeckt                                     ║
-║  • Kurze und präzise Antworten                                              ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    📚 STANDARD FRAGEN (Legacy)
+    Allgemeinwissen Fragenkatalog
+    Entwickler: Nico Kaschube | Oberlinhaus Oberhausen | 2025
 */
 
-// ============================================================================= 
-// 📚 ALLGEMEINWISSEN FRAGEN-DATENBANK                                         
-// ============================================================================= 
+// ==================== FRAGEN-DATENBANK ====================
+
 const jeopardyData = {
     categories: [
         {

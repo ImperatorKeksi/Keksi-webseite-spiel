@@ -1,66 +1,31 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                      🎮 IT-JEOPARDY HAUPTPROGRAMM                           ║
-║                        JavaScript-Anwendung                                  ║
-║                                                                              ║
-║  📚 Projekt: IT-Jeopardy Spiel                                              ║
-║  👨‍💻 Entwickler: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║  🎯 Zweck: Interaktives Lernspiel für IT-Ausbildung                        ║
-║  🏗️ Technik: Vanilla JavaScript ES6+                                        ║
-║                                                                              ║
-║  📋 HAUPT-KOMPONENTEN:                                                       ║
-║  ├── 🔧 Debug-System & Entwicklertools                                      ║
-║  ├── 🎮 JeopardyGame - Haupt-Spielklasse                                   ║
-║  ├── 🎵 SoundManager Integration                                             ║
-║  ├── 📊 Statistik & Analytics                                               ║
-║  ├── ⏰ Timer-System & Animationen                                          ║
-║  ├── 🎨 Theme-System & UI-Management                                        ║
-║  └── 📱 Touch & Mobile Optimierung                                          ║
-║                                                                              ║
-║  ✨ FEATURES:                                                                ║
-║  • Progressive Web App (PWA)                                                ║
-║  • Offline-Funktionalität                                                   ║
-║  • Multi-Theme Support                                                       ║
-║  • Verschiedene Fragetypen                                                   ║
-║  • Audio-System                                                             ║
-║  • Statistiken & Analytics                                                   ║
-║  • Mobile-optimiert                                                         ║
-║                                                                              ║
-║  🎓 VERWENDUNG:                                                              ║
-║  • IT-Grundlagen lernen                                                     ║
-║  • Wissen testen und vertiefen                                              ║
-║  • Spielerisches Lernen                                                     ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    ╔═════════════════════════════════════════════════╗
+    ║  🎮 JEOPARDY QUIZ - HAUPTSPIEL-LOGIK           ║
+    ║  Kernfunktionalität des Quiz-Spiels            ║
+    ║                                                 ║
+    ║  Entwickler: Nico Kaschube                     ║
+    ║  Oberlinhaus Oberhausen | 2025                 ║
+    ╚═════════════════════════════════════════════════╝
 */
 
-/* ============================================================================= */
-/* 🔧 DEBUG & ENTWICKLERSYSTEM                                                  */
-/* ============================================================================= */
-
-// ===================================
-// DEBUG KONFIGURATION               
-// ===================================
+// ==================== DEBUG KONFIGURATION ====================
 const DEBUG_CONFIG = {
-    enabled: false, // 🔧 Hauptschalter für Debug-Modus (false für Production)
-    verbose: false, // 📝 Detaillierte Logs anzeigen
-    performance: false, // ⏱️ Performance-Messungen aktivieren
-    showFPS: false, // 📊 FPS Counter anzeigen
-    logLevel: 'info', // 📋 Log-Level: 'error', 'warn', 'info', 'debug'
+    enabled: false, // Hauptschalter für Debug-Modus (false für Production)
+    verbose: false, // Detaillierte Logs
+    performance: false, // Performance-Messungen
+    showFPS: false, // FPS Counter
+    logLevel: 'info', // Log-Level: 'error', 'warn', 'info', 'debug'
     modules: {
-        game: true,     // 🎮 Spiel-Logik
-        audio: true,    // 🔊 Audio-System
-        ui: true,       // 🎨 Benutzeroberfläche
-        statistics: true, // 📈 Statistiken
-        timer: true,    // ⏰ Timer-System
-        questions: true // ❓ Fragen-Management
+        game: true,     // Spiel-Logik
+        audio: true,    // Audio-System
+        ui: true,       // Benutzeroberfläche
+        statistics: true, // Statistiken
+        timer: true,    // Timer-System
+        questions: true // Fragen-Management
     }
 };
 
-// ===================================
-// DEBUG LOGGER KLASSE               
-// ===================================
+// ==================== DEBUG LOGGER ====================
 class DebugLogger {
     constructor(config) {
         this.config = config;

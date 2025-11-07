@@ -1,33 +1,14 @@
 /*
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                       🎮 GAME-MODULE & CORE-LOGIC                           ║
-║                     Zentrale Spiellogik & Zustandsverwaltung                ║
-║                                                                              ║
-║  🎯 Zweck: Modulare Spiel-Architektur                                      ║
-║  👨‍💻 Ersteller: Nico Kaschube                                              ║
-║  📅 Erstellt: 2025                                                          ║
-║  💡 Verwendete Patterns: Observer, State-Management, Events                  ║
-║                                                                              ║
-║  🏗️ MODULE:                                                                 ║
-║  ├── 📊 GameStateManager - Spielzustand & Events                           ║
-║  ├── 📈 PerformanceMonitor - Leistungsüberwachung                          ║
-║  ├── ⚡ LazyLoadManager - Ressourcen-Management                            ║
-║  └── 🔄 EventEmitter - Kommunikation zwischen Modulen                      ║
-║                                                                              ║
-║  📝 DESIGN PATTERNS:                                                         ║
-║  • Observer Pattern für Events                                              ║
-║  • Singleton Pattern für Manager                                            ║
-║  • Module Pattern für Kapselung                                             ║
-║  • Strategy Pattern für Spielmodi                                           ║
-║                                                                              ║
-╚══════════════════════════════════════════════════════════════════════════════╝
+    ╔══════════════════════════════════════════════════╗
+    ║  🎮 GAME MODULES - Spiellogik & State           ║
+    ║  Zentrale Module für Zustandsverwaltung         ║
+    ║                                                  ║
+    ║  Entwickler: Nico Kaschube                      ║
+    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ╚══════════════════════════════════════════════════╝
 */
 
-/* ============================================================================= */
-/* 🎮 CORE GAME-LOGIC MODULE                                                   */
-/* ============================================================================= */
-
-// ===================================
+// ==================== GAME STATE MANAGER ====================
 // SPIEL-ZUSTAND VERWALTUNG          
 // ===================================
 class GameStateManager {
