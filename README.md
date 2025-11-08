@@ -1,18 +1,20 @@
 ﻿<div align="center">
 
-#  Lehrer Tools - Oberlinhaus
+# 🎓 Lehrer Tools - Oberlinhaus
 
 ### *Digitale Werkzeuge für modernen Unterricht*
 
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![Version](https://img.shields.io/badge/version-beta%200.9-orange.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-aktiv-success.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![Status](https://img.shields.io/badge/status-in%20entwicklung-yellow.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 [![Made with](https://img.shields.io/badge/Made%20with-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-ready-orange.svg)](https://web.dev/progressive-web-apps/)
 
 **Eine wachsende Sammlung digitaler Tools für Lehrer und Ausbilder**
 
-[ Demo starten](#-schnellstart)  [ Kontakt](#-kontakt--soziale-medien)
+**⚠️ BETA-VERSION - Projekt in aktiver Entwicklung**
+
+[🚀 Demo starten](#-schnellstart) │ [📧 Kontakt](#-kontakt--soziale-medien)
 
 ---
 
@@ -22,69 +24,75 @@
 
 ---
 
-##  Inhaltsverzeichnis
+## 📋 Inhaltsverzeichnis
 
-- [ Über das Projekt](#-über-das-projekt)
-- [ Jeopardy Quiz](#-jeopardy-quiz)
-- [ Technologien](#-technologien)
-- [ Schnellstart](#-schnellstart)
-- [ Über den Entwickler](#-über-den-entwickler)
-- [ Kontakt & Soziale Medien](#-kontakt--soziale-medien)
-- [ Lizenz](#-lizenz)
+- [🎯 Über das Projekt](#-über-das-projekt)
+- [🎮 Verfügbare Tools](#-verfügbare-tools)
+  - [🎲 Jeopardy Quiz](#-jeopardy-quiz)
+  - [🕐 Digitale Uhr & Timer](#-digitale-uhr--timer)
+- [💻 Technologien](#-technologien)
+- [🚀 Schnellstart](#-schnellstart)
+- [👨‍💻 Über den Entwickler](#-über-den-entwickler)
+- [📧 Kontakt & Soziale Medien](#-kontakt--soziale-medien)
+- [📜 Lizenz](#-lizenz)
 
 ---
 
-##  Über das Projekt
+## 🎯 Über das Projekt
 
 **Lehrer Tools** ist eine vollständig selbst entwickelte Plattform mit digitalen Werkzeugen für Lehrer und Ausbilder. Das Projekt entstand während meiner Ausbildung zum Fachinformatiker und wird basierend auf Feedback von Berufsschullehrern weiterentwickelt.
 
-###  Was macht dieses Projekt besonders?
+### ✨ Was macht dieses Projekt besonders?
 
--  **100% Eigenentwicklung** - Komplett selbst programmiert, keine Frameworks
--  **Bildungsfokus** - Speziell für Berufsschulen und Ausbilder
--  **Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline
--  **Professionelles Design** - Modernes UI/UX
--  **PWA-Ready** - Installierbar wie eine native App
--  **Feedback-basiert** - Entwicklung nach Lehrerbedürfnissen
+- ✅ **100% Eigenentwicklung** - Komplett selbst programmiert, keine Frameworks
+- 🎓 **Bildungsfokus** - Speziell für Berufsschulen und Ausbilder
+- 📱 **Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline
+- 🎨 **Professionelles Design** - Modernes UI/UX mit dunklem Theme
+- 📦 **PWA-Ready** - Installierbar wie eine native App
+- 💬 **Feedback-basiert** - Entwicklung nach Lehrerbedürfnissen
 
-###  Motivation
+### 💡 Motivation
 
 Als IT-Azubi möchte ich:
--  Berufsschulen und Lehrern praktische Tools zur Verfügung stellen
--  Den Unterrichtsalltag vereinfachen
--  Basierend auf Feedback die Plattform erweitern
--  Meine Ausbildung erfolgreich abschließen (2025-2028)
+- 🎯 Berufsschulen und Lehrern praktische Tools zur Verfügung stellen
+- ⚡ Den Unterrichtsalltag vereinfachen
+- 📈 Basierend auf Feedback die Plattform erweitern
+- 🎓 Meine Ausbildung erfolgreich abschließen (2025-2028)
 
 ---
 
-##  Jeopardy Quiz
+## 🎮 Verfügbare Tools
+
+### 🎲 Jeopardy Quiz
 
 Das erste verfügbare Tool ist ein interaktives Quiz-Spiel nach dem Jeopardy-Prinzip.
 
-###  Features
+#### 🎯 Features
 
 <table>
 <tr>
 <td width="50%">
 
-** Spiel-Features**
--  4 Spielmodi (IT, Lagerlogistik, Kaufmännisch, Standard)
--  125+ Fragen über 25 Kategorien
--  Multiplayer (1-6 Spieler)
--  Daily Double Bonus-Fragen
--  Timer-Funktion
--  Sound-Effekte
+**🎮 Spiel-Features**
+- 🎯 4 Spielmodi (IT, Lagerlogistik, Kaufmännisch, Standard)
+- 📚 125+ Fragen über 25 Kategorien
+- 👥 Multiplayer (1-6 Spieler)
+- 💰 Daily Double Bonus-Fragen
+- ⏱️ Timer-Funktion
+- 🔊 Sound-Effekte
+- 🎨 6 Design-Themes
 
 </td>
 <td width="50%">
 
-** Lehrer-Tools**
--  Fragen-Editor
--  Eigene Kategorien erstellen
--  Import/Export
--  Login-System (Gast/Lehrer/Admin)
--  Statistiken
--  Offline verfügbar (PWA)
+**👨‍🏫 Lehrer-Tools**
+- ✏️ Fragen-Editor
+- 📝 Eigene Kategorien erstellen
+- 📥 Import/Export
+- 🔐 Login-System (Gast/Lehrer/Admin)
+- 📊 Statistiken
+- 📱 Offline verfügbar (PWA)
+- 💬 Feedback-System
 
 </td>
 </tr>
@@ -96,69 +104,143 @@ Das erste verfügbare Tool ist ein interaktives Quiz-Spiel nach dem Jeopardy-Pri
 <tr>
 <td width="50%">
 
-####  IT-Modus
+#### 💻 IT-Modus
 Für Fachinformatiker & IT-Azubis
 
 **Kategorien:**
--  Hardware-Basics
--  Software & Betriebssysteme
--  Netzwerk-Grundlagen
--  Programmierung
--  IT-Sicherheit
+- 🖥️ Hardware-Basics
+- 💿 Software & Betriebssysteme
+- 🌐 Netzwerk-Grundlagen
+- 💻 Programmierung
+- 🔐 IT-Sicherheit
 
 </td>
 <td width="50%">
 
-####  Lagerlogistik-Modus
+#### 📦 Lagerlogistik-Modus
 Für Fachlageristen & Logistik-Azubis
 
 **Kategorien:**
--  Lagertechnik
--  Arbeitssicherheit
--  Transport & Versand
--  Warenwirtschaft
--  Lagerorganisation
+- 🏭 Lagertechnik
+- ⚠️ Arbeitssicherheit
+- 🚚 Transport & Versand
+- 📊 Warenwirtschaft
+- 📋 Lagerorganisation
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-####  Kaufmännischer Modus
+#### 💼 Kaufmännischer Modus
 Für Bürokaufleute & kaufmännische Azubis
 
 **Kategorien:**
--  Büroorganisation
--  Rechnungswesen
--  Kommunikation & Korrespondenz
--  Geschäftsprozesse
--  Recht & Verträge
+- 📁 Büroorganisation
+- 💰 Rechnungswesen
+- 📧 Kommunikation & Korrespondenz
+- 🔄 Geschäftsprozesse
+- ⚖️ Recht & Verträge
 
 </td>
 <td width="50%">
 
-####  Standard-Modus
+#### 🌍 Standard-Modus
 Für alle - Allgemeinwissen
 
 **Kategorien:**
--  Allgemeinwissen
--  Mathematik & Logik
--  Deutsch & Sprache
--  Kultur & Geschichte
--  Wissenschaft & Natur
+- 🧠 Allgemeinwissen
+- 🔢 Mathematik & Logik
+- 📚 Deutsch & Sprache
+- 🎭 Kultur & Geschichte
+- 🔬 Wissenschaft & Natur
 
 </td>
 </tr>
 </table>
 
-###  Wie funktioniert es?
+#### 🎮 Wie funktioniert es?
 
-1.  Wähle eine Kategorie aus 5 Themenbereichen
-2.  Wähle einen Punktwert (100-500 Punkte)
-3.  Beantworte die Frage
-4.  Richtig = Punkte gewinnen,  Falsch = Punkte verlieren
-5.  Daily Doubles für zusätzliche Spannung
-6.  Multiplayer mit bis zu 6 Spielern
+1. 🎯 Wähle eine Kategorie aus 5 Themenbereichen
+2. 💯 Wähle einen Punktwert (100-500 Punkte)
+3. ❓ Beantworte die Frage
+4. ✅ Richtig = Punkte gewinnen, ❌ Falsch = Punkte verlieren
+5. 💰 Daily Doubles für zusätzliche Spannung
+6. 👥 Multiplayer mit bis zu 6 Spielern
+
+---
+
+### 🕐 Digitale Uhr & Timer
+
+**NEU!** Ein professionelles Timer-Tool speziell für Lehrer entwickelt.
+
+#### ⚡ Features
+
+<table>
+<tr>
+<td width="50%">
+
+**🕐 Uhr-Features**
+- ⏰ Aktuelle Uhrzeit-Anzeige
+- 📅 Datum mit Wochentag
+- 🔄 12h/24h Format umschaltbar
+- 👁️ Sekunden ein/ausblenden
+- 📱 Responsive für alle Bildschirmgrößen
+
+</td>
+<td width="50%">
+
+**⏱️ Timer-Features**
+- ⏲️ Countdown-Timer
+- ⏸️ Pause/Fortsetzen
+- 🔄 Reset-Funktion
+- 📊 Visueller Fortschrittsbalken
+- ⚠️ Warnung bei 10 Sekunden
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**🎨 Design-Optionen**
+- 🟣 Standard (Lila)
+- 🔵 Ozean-Blau
+- 🟢 Natur-Grün
+- 🔴 Feuer-Rot
+- 🟡 Gold-Luxus
+- ⚫ Pure Dark
+
+</td>
+<td width="50%">
+
+**🔔 Alarm-Sounds**
+- 📢 Standard Beep
+- 🔔 Schulglocke
+- 🎵 Sanfter Chime
+- 📱 Digital Alarm
+- ⏰ Klassischer Wecker
+- 🔇 Kein Sound
+
+</td>
+</tr>
+</table>
+
+#### 🎯 Perfekt für:
+
+- ⏱️ **Prüfungszeiten** - Timer für Tests und Klausuren
+- 📝 **Gruppenarbeiten** - Zeitlimits für Aufgaben setzen
+- ☕ **Pausen** - Pausenzeiten überwachen
+- 🗣️ **Präsentationen** - Redezeit im Blick behalten
+- 🎮 **Spiele** - Timer für Quiz-Runden
+- 🧘 **Fokuszeiten** - Konzentriertes Arbeiten fördern
+
+#### 💡 Besonderheiten:
+
+- 🖥️ **Vollbild-Modus** - Perfekt für Beamer/Smartboards
+- 🎨 **Live-Theme-Wechsel** - Farben sofort ändern
+- 🔊 **Lautstärke-Regelung** - Alarm-Sound anpassbar
+- 💾 **Einstellungen speichern** - Präferenzen bleiben erhalten
+- 🧪 **Sound-Test** - Alarm vor Nutzung anhören
 
 ---
 
@@ -181,13 +263,14 @@ Für alle - Allgemeinwissen
 
 ###  Code-Statistiken
 
--  **Total Dateien:** 22
--  **Code-Zeilen:** ~10.000+
--  **JavaScript:** ~6.500 Zeilen
--  **CSS:** ~3.500 Zeilen
+-  **Total Dateien:** 25+
+-  **Code-Zeilen:** ~12.000+
+-  **JavaScript:** ~8.000 Zeilen
+-  **CSS:** ~4.000 Zeilen
 -  **Fragen:** 125+ über 25 Kategorien
--  **Entwicklungszeit:** 5 Wochen
--  **Commits:** 150+
+-  **Entwicklungszeit:** 6+ Wochen
+-  **Commits:** 200+
+-  **Tools:** 2 (Jeopardy Quiz, Timer)
 
 ###  Browser-Kompatibilität
 
@@ -254,8 +337,9 @@ Das Projekt ist übersichtlich in Ordnern organisiert:
 ├── 📄 README.md                    ← Diese Dokumentation
 │
 ├── 📁 seiten/                      ← HTML-Seiten
-│   ├── index.html                  (Hauptmenü & Spielauswahl)
-│   └── game.html                   (Spielseite mit allen Modi)
+│   ├── index.html                  (Hauptmenü & Tool-Übersicht)
+│   ├── game.html                   (Jeopardy Quiz mit allen Modi)
+│   └── timer.html                  (Digitale Uhr & Timer) ✨ NEU
 │
 ├── 📁 stylesheets/                 ← CSS-Styles
 │   ├── main.css                    (Landing Page Styles)
@@ -270,7 +354,8 @@ Das Projekt ist übersichtlich in Ordnern organisiert:
 │   ├── editor.js                   (Fragen-Editor)
 │   ├── stats.js                    (Statistiken)
 │   ├── feedback.js                 (Feedback-System)
-│   └── main.js                     (Landing Page Logik)
+│   ├── main.js                     (Landing Page Logik)
+│   └── timer.js                    (Timer-Logik) ✨ NEU
 │
 ├── 📁 fragenkataloge/              ← Fragen-Datenbanken
 │   ├── questions_it.js             (IT-Modus)
@@ -294,9 +379,9 @@ Das Projekt ist übersichtlich in Ordnern organisiert:
 
 | Ordner | Beschreibung | Wichtige Dateien |
 |--------|--------------|------------------|
-| **seiten/** | Alle HTML-Seiten | `index.html`, `game.html` |
+| **seiten/** | Alle HTML-Seiten | `index.html`, `game.html`, `timer.html` ✨ |
 | **stylesheets/** | CSS-Dateien für Design | `styles.css`, `main.css` |
-| **javascript/** | Gesamte Spiellogik & Features | `script.js`, `modules.js`, `editor.js` |
+| **javascript/** | Gesamte Spiellogik & Features | `script.js`, `modules.js`, `editor.js`, `timer.js` ✨ |
 | **fragenkataloge/** | Fragen für alle 4 Modi | `questions_*.js` |
 | **icons/** | Icons für PWA-Installation | `icon-192x192.png` etc. |
 | **pwa/** | PWA-Konfiguration & Cache | `manifest.json`, `sw.js` |

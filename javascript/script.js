@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔═════════════════════════════════════════════════╗
     ║  🎮 JEOPARDY QUIZ - HAUPTSPIEL-LOGIK           ║
     ║  Kernfunktionalität des Quiz-Spiels            ║
     ║                                                 ║
     ║  Entwickler: Nico Kaschube                     ║
-    ║  Oberlinhaus Oberhausen | 2025                 ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                 ║
     ╚═════════════════════════════════════════════════╝
 */
 

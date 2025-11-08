@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔══════════════════════════════════════════════════╗
     ║  🎮 GAME MODULES - Spiellogik & State           ║
     ║  Zentrale Module für Zustandsverwaltung         ║
     ║                                                  ║
     ║  Entwickler: Nico Kaschube                      ║
-    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
     ╚══════════════════════════════════════════════════╝
 */
 

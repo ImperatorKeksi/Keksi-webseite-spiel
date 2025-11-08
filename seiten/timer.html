@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<!--
+    ╔═══════════════════════════════════════════════════╗
+    ║  🕐 DIGITALE UHR & TIMER - Lehrer Tool           ║
+    ║  Professionelle Uhr mit Timer-Funktion           ║
+    ║                                                   ║
+    ║  Entwickler: Nico Kaschube                       ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025║
+    ╚═══════════════════════════════════════════════════╝
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitale Uhr & Timer - Oberlinhaus Lehrer Tools</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Digitale Uhr und Timer für Lehrer - Verschiedene Designs und Alarm-Sounds">
+    <meta name="keywords" content="Timer, Digitale Uhr, Countdown, Lehrer Tool, Oberlinhaus">
+    <meta name="author" content="Nico Kaschube">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="../icons/icon-192x192.png">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0aaff;
+            --text-secondary: #c77dff;
+            --accent: #9d4edd;
+            --border: rgba(199, 125, 255, 0.3);
+            --glass-bg: rgba(26, 26, 26, 0.8);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .timer-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: rgba(157, 77, 221, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            color: #10002b;
+            border: none;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #c77dff, #9d4edd);
+        }
+
+        /* Main Container */
+        .timer-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        /* Clock Display */
+        .clock-display {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            min-width: 600px;
+            box-shadow: 0 10px 40px rgba(157, 77, 221, 0.3);
+        }
+
+        .clock-mode {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .time-display {
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 30px rgba(224, 170, 255, 0.5);
+            margin: 1rem 0;
+        }
+
+        .date-display {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+        }
+
+        /* Timer Controls */
+        .timer-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .time-input {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .time-input input {
+            width: 80px;
+            padding: 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .time-input label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .setting-group label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .setting-group select {
+            padding: 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .setting-group select:hover {
+            border-color: var(--accent);
+        }
+
+        /* Theme Previews */
+        .theme-preview {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-option.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(157, 77, 221, 0.5);
+        }
+
+        /* Progress Bar (for timer) */
+        .timer-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #e0aaff, #c77dff, #9d4edd);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        /* Status Messages */
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(157, 77, 221, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .status-message.alarm {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Fullscreen Mode */
+        .fullscreen-mode .clock-display {
+            min-width: 90vw;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .fullscreen-mode .time-display {
+            font-size: 12rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .clock-display {
+                min-width: auto;
+                width: 100%;
+                padding: 2rem 1rem;
+            }
+
+            .time-display {
+                font-size: 3rem;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-title h1 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Footer */
+        .timer-footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .developer-credit {
+            margin-top: 0.5rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="timer-header">
+        <div class="header-title">
+            <span style="font-size: 2rem;">🕐</span>
+            <h1>Digitale Uhr & Timer</h1>
+        </div>
+        <div class="header-controls">
+            <a href="index.html" class="btn">🏠 Zurück</a>
+            <button id="fullscreenBtn" class="btn">⛶ Vollbild</button>
+            <button id="resetBtn" class="btn">🔄 Zurücksetzen</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="timer-container">
+        <!-- Clock Display -->
+        <div class="clock-display" id="clockDisplay">
+            <div class="clock-mode" id="clockMode">AKTUELLE UHRZEIT</div>
+            <div class="time-display" id="timeDisplay">00:00:00</div>
+            <div class="date-display" id="dateDisplay">Freitag, 8. November 2025</div>
+            
+            <div class="timer-progress" id="timerProgress" style="display: none;">
+                <div class="progress-bar" id="progressBar" style="width: 100%;"></div>
+            </div>
+            
+            <div class="status-message" id="statusMessage" style="display: none;"></div>
+        </div>
+
+        <!-- Timer Controls -->
+        <div class="timer-controls" id="timerControls">
+            <button class="btn btn-primary" id="modeBtn">⏱️ Timer-Modus</button>
+            
+            <div class="time-input" id="timerInputs" style="display: none;">
+                <div>
+                    <input type="number" id="hoursInput" min="0" max="23" value="0" placeholder="00">
+                    <label>Std</label>
+                </div>
+                <div>
+                    <input type="number" id="minutesInput" min="0" max="59" value="5" placeholder="00">
+                    <label>Min</label>
+                </div>
+                <div>
+                    <input type="number" id="secondsInput" min="0" max="59" value="0" placeholder="00">
+                    <label>Sek</label>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" id="startBtn" style="display: none;">▶️ Start</button>
+            <button class="btn" id="pauseBtn" style="display: none;">⏸️ Pause</button>
+            <button class="btn" id="stopBtn" style="display: none;">⏹️ Stop</button>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel">
+            <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">⚙️ Einstellungen</h3>
+            <div class="settings-grid">
+                <div class="setting-group">
+                    <label for="themeSelect">🎨 Uhr-Design</label>
+                    <select id="themeSelect">
+                        <option value="default">Standard (Lila)</option>
+                        <option value="blue">Ozean-Blau</option>
+                        <option value="green">Natur-Grün</option>
+                        <option value="red">Feuer-Rot</option>
+                        <option value="gold">Gold-Luxus</option>
+                        <option value="dark">Pure Dark</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="alarmSelect">🔔 Alarm-Sound</label>
+                    <select id="alarmSelect">
+                        <option value="beep">Standard Beep</option>
+                        <option value="bell">Schulglocke</option>
+                        <option value="chime">Sanfter Chime</option>
+                        <option value="digital">Digital Alarm</option>
+                        <option value="classic">Klassischer Wecker</option>
+                        <option value="none">Kein Sound</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="volumeSlider">🔊 Lautstärke</label>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="70" 
+                           style="width: 100%; cursor: pointer;">
+                    <span id="volumeLabel" style="font-size: 0.85rem; color: var(--text-secondary);">70%</span>
+                </div>
+
+                <div class="setting-group">
+                    <label>💡 Features</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.3rem; cursor: pointer;">
+                            <input type="checkbox" id="showSecondsCheck" checked>
+                            <span style="font-size: 0.9rem;">Sekunden</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.3rem; cursor: pointer;">
+                            <input type="checkbox" id="show24hCheck" checked>
+                            <span style="font-size: 0.9rem;">24h Format</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn" id="testAlarmBtn">🔊 Alarm testen</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="timer-footer">
+        <p>&copy; 2025 Oberlinhaus - Lehrer Tools</p>
+        <p class="developer-credit">Entwickelt von Nico Kaschube, Azubi Fachinformatiker IT-Systemelektroniker</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../javascript/timer.js"></script>
+</body>
+</html>

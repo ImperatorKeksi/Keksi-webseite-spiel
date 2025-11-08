@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔══════════════════════════════════════════════════╗
     ║  🏠 LANDING PAGE - Navigation & Interaction     ║
     ║  Hauptmenü-Logik der Landing Page               ║
     ║                                                  ║
     ║  Entwickler: Nico Kaschube                      ║
-    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
     ╚══════════════════════════════════════════════════╝
 */
 

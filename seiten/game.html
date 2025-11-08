@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <!--
     ╔═══════════════════════════════════════════════════╗
@@ -6,7 +6,7 @@
     ║  Hauptspiel mit 4 Modi & Fragen-Editor           ║
     ║                                                   ║
     ║  Entwickler: Nico Kaschube                       ║
-    ║  Oberlinhaus Oberhausen | 2025                   ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                   ║
     ╚═══════════════════════════════════════════════════╝
 -->
 <head>
@@ -64,51 +64,8 @@
     </script>
 </head>
 <body>
-    <!-- Mode Selection Screen (NEW) -->
-    <div id="modeSelectionScreen" class="mode-selection-screen">
-        <div class="mode-selection-container">
-            <h1 class="mode-title">Wähle einen Spielmodus 🎮</h1>
-            <p class="mode-subtitle">Verschiedene Themenbereiche für dein Quiz-Erlebnis</p>
-            <p class="mode-developer" style="text-align: center; color: #9d4edd; margin-top: 10px; font-size: 0.9rem;">Entwickelt von Nico Kaschube, Azubi zum Fachinformatiker für IT-Systemelektroniker</p>
-            
-            <div class="mode-cards">
-                <!-- IT Mode -->
-                <div class="mode-card" data-mode="it">
-                    <div class="mode-card-icon">💻</div>
-                    <h3 class="mode-card-title">IT-Modus</h3>
-                    <p class="mode-card-desc">Fragen zu IT-Grundlagen, Hardware, Software, Netzwerke und IT-Sicherheit</p>
-                    <button class="mode-select-btn" data-mode="it">IT-Modus wählen</button>
-                </div>
-                
-                <!-- Lagerlogistik Mode -->
-                <div class="mode-card" data-mode="lagerlogistik">
-                    <div class="mode-card-icon">📦</div>
-                    <h3 class="mode-card-title">Lagerlogistik-Modus</h3>
-                    <p class="mode-card-desc">Fragen zu Lagerwirtschaft, Transport, Sicherheit und Warenwirtschaft</p>
-                    <button class="mode-select-btn" data-mode="lagerlogistik">Lagerlogistik wählen</button>
-                </div>
-                
-                <!-- Standard Mode -->
-                <div class="mode-card" data-mode="standard">
-                    <div class="mode-card-icon">🎯</div>
-                    <h3 class="mode-card-title">Standard-Modus</h3>
-                    <p class="mode-card-desc">Allgemeine Wissensfragen ohne berufsspezifischen Fokus - für alle geeignet</p>
-                    <button class="mode-select-btn" data-mode="standard">Standard-Modus wählen</button>
-                </div>
-                
-                <!-- Kaufmännisch Mode -->
-                <div class="mode-card" data-mode="kaufmaennisch">
-                    <div class="mode-card-icon">💼</div>
-                    <h3 class="mode-card-title">Kaufmännischer Modus</h3>
-                    <p class="mode-card-desc">Fragen zu Bürokaufmann, Verwaltung, Rechnungswesen und Geschäftsprozessen</p>
-                    <button class="mode-select-btn" data-mode="kaufmaennisch">Kaufmännisch wählen</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Setup Screen -->
-    <div id="setupScreen" class="setup-screen hidden" style="display: none;">
+    <!-- Setup Screen (direkt sichtbar, kein Modus-Auswahl mehr) -->
+    <div id="setupScreen" class="setup-screen">
         <div class="setup-container">
             <h1 class="setup-title">Jeopardy Spiel</h1>
             <div class="setup-subtitle">
@@ -175,6 +132,7 @@
                     </div>
                 </div>
                 <div class="settings-row settings-actions">
+                    <a href="index.html" class="settings-action-btn back-btn" style="text-decoration: none;">🏠 Zurück zur Startseite</a>
                     <button id="showRulesBtn" class="settings-action-btn rules-btn">📋 Spielregeln</button>
                     <button id="openEditorBtn" class="settings-action-btn editor-btn" style="display: none;">✏️ Fragen bearbeiten</button>
                     <button id="openStatsBtn" class="settings-action-btn stats-btn" style="display: none;">📊 Statistiken</button>
@@ -239,6 +197,7 @@
                     <span id="searchResultCount" class="search-result-count"></span>
                 </div>
                 <div class="editor-actions">
+                    <button id="loadTemplateBtn" class="btn-template">🎓 Berufs-Vorlage laden</button>
                     <button id="saveQuestionsBtn" class="btn-save">💾 Speichern</button>
                     <button id="resetQuestionsBtn" class="btn-reset">🔄 Zurücksetzen</button>
                     <button id="importQuestionsBtn" class="btn-import">📥 Importieren</button>
@@ -867,77 +826,38 @@
         let currentGameMode = null;
         let questionsLoaded = false;
         
-        // 🎮 Modus-Auswahl Handler
+        // 🎮 Automatischer Start mit Standard-Modus
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎮 Jeopardy Quiz - Modus-Auswahl initialisiert');
+            console.log('🎮 Jeopardy Quiz - Lade Standard-Modus...');
             
-            // Modus-Auswahl Event Listener
-            const modeButtons = document.querySelectorAll('.mode-select-btn');
-            modeButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const mode = this.dataset.mode;
-                    selectGameMode(mode);
-                });
-            });
+            // Direkt Standard-Modus laden (kein Modus-Auswahl mehr)
+            loadStandardMode();
         });
         
-        // 📦 Modus auswählen und Fragen laden
-        function selectGameMode(mode) {
-            currentGameMode = mode;
-            console.log(`🎯 Modus gewählt: ${mode}`);
+        // 📦 Standard-Modus direkt laden
+        function loadStandardMode() {
+            currentGameMode = 'standard';
+            console.log('🎯 Standard-Modus wird geladen...');
             
-            // Lade entsprechende Fragen-Datei
-            loadQuestionsForMode(mode).then(() => {
-                // Verstecke Modus-Auswahl
-                const modeScreen = document.getElementById('modeSelectionScreen');
-                modeScreen.classList.add('hidden');
-                modeScreen.style.display = 'none';
-                
-                // Zeige Setup-Screen
-                const setupScreen = document.getElementById('setupScreen');
-                setupScreen.classList.remove('hidden');
-                setupScreen.style.display = 'flex';
-                
+            // Lade Standard-Fragen
+            const script = document.createElement('script');
+            script.src = '../fragenkataloge/questions_standard.js';
+            script.onload = () => {
+                console.log('✅ questions_standard.js geladen');
                 questionsLoaded = true;
-            }).catch(error => {
-                console.error('❌ Fehler beim Laden der Fragen:', error);
-                alert(error);
-            });
-        }
-        
-        // 📥 Fragen für Modus laden
-        function loadQuestionsForMode(mode) {
-            return new Promise((resolve, reject) => {
-                // Lade externe Datei basierend auf Modus
-                const script = document.createElement('script');
-                let filename;
                 
-                switch(mode) {
-                    case 'it':
-                        filename = '../fragenkataloge/questions_it.js';
-                        break;
-                    case 'lagerlogistik':
-                        filename = '../fragenkataloge/questions_lagerlogistik.js';
-                        break;
-                    case 'standard':
-                        filename = '../fragenkataloge/questions_standard.js';
-                        break;
-                    case 'kaufmaennisch':
-                        filename = '../fragenkataloge/questions_kaufmaennisch.js';
-                        break;
-                    default:
-                        reject(`Unbekannter Modus: ${mode}`);
-                        return;
+                // Prüfe ob jeopardyData verfügbar ist
+                if (typeof jeopardyData !== 'undefined') {
+                    console.log('✅ jeopardyData verfügbar mit', jeopardyData.categories.length, 'Kategorien');
+                } else {
+                    console.error('❌ jeopardyData nicht gefunden!');
                 }
-                
-                script.src = filename;
-                script.onload = () => {
-                    console.log(`✅ ${filename} geladen`);
-                    resolve();
-                };
-                script.onerror = () => reject(`Fehler beim Laden von ${filename}`);
-                document.head.appendChild(script);
-            });
+            };
+            script.onerror = () => {
+                console.error('❌ Fehler beim Laden von questions_standard.js');
+                alert('Fehler: Fragen konnten nicht geladen werden!');
+            };
+            document.head.appendChild(script);
         }
     </script>
     
@@ -945,12 +865,12 @@
     <!-- INITIALISIERUNG & STARTUP               -->
     <!-- ========================================= -->
     <script>
-        // 🚀 Spiel nach DOM-Laden initialisieren
+        // 🚀 Debug-Modus nach DOM-Laden initialisieren (nur Debug, kein Spielstart mehr hier!)
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎮 Jeopardy Quiz wird geladen...');
+            console.log('🎮 Jeopardy Quiz - Initialisierung...');
             
             // Debug-Modus Hinweis in Console
-            if (DEBUG_CONFIG.enabled) {
+            if (typeof DEBUG_CONFIG !== 'undefined' && DEBUG_CONFIG.enabled) {
                 console.log('%c🔧 DEBUG-MODUS AKTIV 🔧', 'color: #ff6b6b; font-size: 16px; font-weight: bold;');
                 console.log('Verfügbare Debug-Befehle:');
                 console.log('• enableDebug() - Debug-Modus umschalten');
@@ -959,11 +879,9 @@
             }
             
             // Performance-Monitor starten falls aktiviert
-            if (DEBUG_CONFIG.performance && window.performanceMonitor) {
+            if (typeof DEBUG_CONFIG !== 'undefined' && DEBUG_CONFIG.performance && window.performanceMonitor) {
                 performanceMonitor.startMonitoring();
             }
-            
-            console.log('✅ Jeopardy Quiz bereit!');
         });
         
         // 📊 Unload-Event für Cleanup

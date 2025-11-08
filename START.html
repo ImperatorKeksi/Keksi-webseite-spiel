@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <!--
     ╔════════════════════════════════════════════════════════╗
@@ -7,7 +7,7 @@
     ║                                                        ║
     ║  Entwickler: Nico Kaschube                            ║
     ║  Ausbildung: Fachinformatiker IT-Systemelektroniker   ║
-    ║  Oberlinhaus Oberhausen | 2025                        ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                        ║
     ╚════════════════════════════════════════════════════════╝
 -->
 <head>
@@ -24,13 +24,13 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #e0aaff;
             overflow: hidden;
         }
 
@@ -48,7 +48,7 @@
         .bubble {
             position: absolute;
             bottom: -100px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(157, 77, 221, 0.1);
             border-radius: 50%;
             animation: rise 15s infinite ease-in;
         }
@@ -127,10 +127,11 @@
             width: 150px;
             height: 150px;
             margin: 0 auto 30px;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 30px;
             padding: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(199, 125, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(157, 77, 221, 0.4);
             animation: float 3s ease-in-out infinite;
         }
 
@@ -154,7 +155,11 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
             animation: fadeInDown 1s ease-out;
         }
 
@@ -172,6 +177,7 @@
         .subtitle {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            color: #c77dff;
             opacity: 0.95;
             animation: fadeInUp 1s ease-out 0.2s both;
         }
@@ -179,6 +185,7 @@
         .description {
             font-size: 1.1rem;
             margin-bottom: 40px;
+            color: #9d4edd;
             opacity: 0.9;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
@@ -197,16 +204,16 @@
         /* Start Button */
         .start-button {
             display: inline-block;
-            background: white;
-            color: #667eea;
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            color: #10002b;
             font-size: 1.5rem;
             font-weight: 600;
             padding: 20px 60px;
-            border: none;
+            border: 2px solid #9d4edd;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(157, 77, 221, 0.4);
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease-out 0.6s both;
             position: relative;
@@ -215,7 +222,8 @@
 
         .start-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #c77dff, #9d4edd);
+            box-shadow: 0 15px 40px rgba(157, 77, 221, 0.6);
         }
 
         .start-button:active {
@@ -230,7 +238,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(102, 126, 234, 0.2);
+            background: rgba(157, 77, 221, 0.3);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -265,8 +273,9 @@
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(199, 125, 255, 0.3);
             padding: 20px 30px;
             border-radius: 15px;
             font-size: 1rem;
@@ -277,8 +286,10 @@
         }
 
         .feature:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(26, 26, 26, 0.95);
+            border-color: rgba(199, 125, 255, 0.5);
             transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(157, 77, 221, 0.5);
         }
 
         .feature-icon {
@@ -381,7 +392,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p>© 2025 Oberlinhaus Oberhausen</p>
+            <p>© 2025 Berufsbildungswerk im Oberlinhaus Potsdam</p>
             <p class="developer">
                 Entwickelt von <strong>Nico Kaschube</strong><br>
                 Auszubildender Fachinformatiker für IT-Systemelektroniker

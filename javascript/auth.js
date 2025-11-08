@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔══════════════════════════════════════════════════╗
     ║  🔐 AUTHENTICATION - Login & Rollen             ║
     ║  Benutzer-Authentifizierung mit Berechtigungen  ║
     ║                                                  ║
     ║  Entwickler: Nico Kaschube                      ║
-    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
     ╚══════════════════════════════════════════════════╝
 */
 
@@ -459,6 +459,95 @@ class AuthManager {
             return [];
         }
         return JSON.parse(localStorage.getItem('jeopardy_audit_log') || '[]');
+    }
+    
+    // =========================================================================
+    // QUESTION STORAGE (Account-basierte Fragen-Speicherung)
+    // =========================================================================
+    
+    saveQuestions(userId, questions) {
+        try {
+            const key = `jeopardy_user_questions_${userId}`;
+            localStorage.setItem(key, JSON.stringify(questions));
+            console.log(`✅ Fragen gespeichert für User ${userId}`);
+            return { success: true };
+        } catch (error) {
+            console.error('❌ Fehler beim Speichern:', error);
+            return { success: false, error: error.message };
+        }
+    }
+    
+    loadQuestions(userId) {
+        try {
+            const key = `jeopardy_user_questions_${userId}`;
+            const stored = localStorage.getItem(key);
+            if (stored) {
+                const questions = JSON.parse(stored);
+                console.log(`✅ Fragen geladen für User ${userId}`);
+                return { success: true, questions };
+            } else {
+                console.log(`ℹ️ Keine gespeicherten Fragen für User ${userId}`);
+                return { success: true, questions: null };
+            }
+        } catch (error) {
+            console.error('❌ Fehler beim Laden:', error);
+            return { success: false, error: error.message };
+        }
+    }
+    
+    deleteQuestions(userId) {
+        try {
+            const key = `jeopardy_user_questions_${userId}`;
+            localStorage.removeItem(key);
+            console.log(`✅ Fragen gelöscht für User ${userId}`);
+            return { success: true };
+        } catch (error) {
+            console.error('❌ Fehler beim Löschen:', error);
+            return { success: false, error: error.message };
+        }
+    }
+    
+    // =========================================================================
+    // ADMIN: PASSWORD RESET
+    // =========================================================================
+    
+    resetUserPassword(username, newPassword) {
+        // Nur Admin darf Passwörter zurücksetzen
+        if (!this.canManageUsers()) {
+            console.warn('⚠️ Unauthorized password reset attempt');
+            return { success: false, error: 'Keine Berechtigung!' };
+        }
+        
+        try {
+            const users = this.getLocalUsers();
+            const userIndex = users.findIndex(u => u.username.toLowerCase() === username.toLowerCase());
+            
+            if (userIndex === -1) {
+                return { success: false, error: 'Benutzer nicht gefunden!' };
+            }
+            
+            // Neues Passwort hashen
+            const hashedPassword = this.hashPassword(newPassword);
+            users[userIndex].password = hashedPassword;
+            
+            // Speichern
+            localStorage.setItem(this.usersKey, JSON.stringify(users));
+            
+            // Audit-Log
+            this.logAudit({
+                action: 'password_reset',
+                target: username,
+                by: this.currentUser?.username || 'admin',
+                timestamp: new Date().toISOString()
+            });
+            
+            console.log(`✅ Passwort zurückgesetzt für: ${username}`);
+            return { success: true };
+            
+        } catch (error) {
+            console.error('❌ Fehler beim Passwort-Reset:', error);
+            return { success: false, error: error.message };
+        }
     }
 }
 

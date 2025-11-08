@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔══════════════════════════════════════════════════╗
     ║  🔊 SOUND ENGINE - Synthetische Audio-Gen.      ║
     ║  Web Audio API für programmatische Sounds       ║
     ║                                                  ║
     ║  Entwickler: Nico Kaschube                      ║
-    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
     ╚══════════════════════════════════════════════════╝
 */
 
@@ -36,8 +36,8 @@ class SoundManager {
             console.log('Web Audio API not supported');
         }
 
-        // Generate synthetic sounds using Web Audio API
-        this.generateSounds();
+        // Sounds werden NICHT hier generiert, sondern bei play()
+        // da AudioContext erst nach User-Interaktion verfügbar ist
     }
 
     // 🚀 Performance: Preload nur die wichtigsten Sounds
@@ -219,7 +219,7 @@ class SoundManager {
     }
 
     play(soundName) {
-        if (!this.enabled || !this.sounds[soundName]) return;
+        if (!this.enabled) return;
         
         try {
             // Erstelle AudioContext beim ersten Aufruf (nach User-Interaktion)
@@ -227,6 +227,8 @@ class SoundManager {
                 try {
                     this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
                     console.log('🎵 AudioContext initialisiert');
+                    // Jetzt können wir die Sounds generieren
+                    this.generateSounds();
                 } catch (e) {
                     console.warn('AudioContext konnte nicht erstellt werden:', e);
                     return;
@@ -238,7 +240,10 @@ class SoundManager {
                 this.audioContext.resume();
             }
             
-            this.sounds[soundName]();
+            // Sound abspielen
+            if (this.sounds[soundName]) {
+                this.sounds[soundName]();
+            }
         } catch (error) {
             console.log('Sound playback error:', error);
         }

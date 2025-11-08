@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔══════════════════════════════════════════════════╗
     ║  🎨 AUTH UI - Login/Register Modal              ║
     ║  Benutzeroberfläche für Authentifizierung       ║
     ║                                                  ║
     ║  Entwickler: Nico Kaschube                      ║
-    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
     ╚══════════════════════════════════════════════════╝
 */
 

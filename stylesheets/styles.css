@@ -24,9 +24,13 @@
 /* 🎨 CSS-VARIABLEN & THEME-SYSTEM                                              */
 /* ============================================================================= */
 :root {
+    /* Farben von main.css (index.html) übernommen */
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --secondary-gradient: linear-gradient(45deg, #9d4edd, #7209b7);
     --accent-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+    --background: #0a0a0a;
+    --surface: #1a1a1a;
+    --surface-light: #2a2a2a;
     --card-gradient: linear-gradient(45deg, #10002b, #240046);
     --modal-gradient: linear-gradient(135deg, #240046 0%, #10002b 100%);
     --text-primary: #e0aaff;
@@ -34,8 +38,10 @@
     --text-accent: #9d4edd;
     --border-primary: #c77dff;
     --border-secondary: rgba(199, 125, 255, 0.3);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --border: rgba(199, 125, 255, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* ===================================
@@ -90,10 +96,11 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: var(--primary-gradient);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--background);
     min-height: 100vh;
-    color: white;
+    color: var(--text-primary);
+    line-height: 1.6;
 }
 
 /* ===================================
@@ -792,6 +799,29 @@ input:checked + .toggle-slider:before {
     display: flex;
     gap: 15px;
     margin-top: 20px;
+}
+
+.back-btn {
+    flex: 0 0 auto;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: 2px solid #9bb5ff;
+    border-radius: 12px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: linear-gradient(45deg, #764ba2, #667eea);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .rules-btn {
@@ -2314,6 +2344,16 @@ kbd {
 .btn-save:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-template {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+}
+
+.btn-template:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-reset {

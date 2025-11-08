@@ -1,10 +1,10 @@
-/*
+﻿/*
     ╔══════════════════════════════════════════════════╗
     ║  📝 FRAGEN-EDITOR - Kategorien & Fragen         ║
     ║  Editor für Lehrer zum Erstellen von Fragen     ║
     ║                                                  ║
     ║  Entwickler: Nico Kaschube                      ║
-    ║  Oberlinhaus Oberhausen | 2025                  ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
     ╚══════════════════════════════════════════════════╝
 */
 
@@ -37,6 +37,9 @@ class QuestionEditor {
         // Save and Reset
         document.getElementById('saveQuestionsBtn').addEventListener('click', () => this.saveQuestions());
         document.getElementById('resetQuestionsBtn').addEventListener('click', () => this.resetQuestions());
+        
+        // Template Loading (NEU)
+        document.getElementById('loadTemplateBtn')?.addEventListener('click', () => this.showTemplateDialog());
         
         // Import/Export
         document.getElementById('importQuestionsBtn').addEventListener('click', () => this.showImportModal());
@@ -711,6 +714,65 @@ class QuestionEditor {
     clearSearchHighlights() {
         const highlightedElements = document.querySelectorAll('.search-highlight');
         highlightedElements.forEach(el => el.classList.remove('search-highlight'));
+    }
+    
+    // =========================================================================
+    // TEMPLATE-LOADING (NEU für Berufs-Vorlagen)
+    // =========================================================================
+    
+    showTemplateDialog() {
+        const confirmed = confirm(
+            '🎓 Berufs-Vorlage laden?\n\n' +
+            'Wähle eine Vorlage:\n' +
+            '1 = IT-Vorlage\n' +
+            '2 = Lagerlogistik-Vorlage\n' +
+            '3 = Kaufmännische Vorlage\n\n' +
+            'ACHTUNG: Aktuelle Fragen werden überschrieben!'
+        );
+        
+        if (confirmed) {
+            const choice = prompt('Welche Vorlage? (1, 2 oder 3)');
+            if (choice) {
+                this.loadTemplate(choice);
+            }
+        }
+    }
+    
+    loadTemplate(choice) {
+        const templates = {
+            '1': '../fragenkataloge/questions_it.js',
+            '2': '../fragenkataloge/questions_lagerlogistik.js',
+            '3': '../fragenkataloge/questions_kaufmaennisch.js'
+        };
+        
+        const templateFile = templates[choice];
+        if (!templateFile) {
+            alert('❌ Ungültige Auswahl!');
+            return;
+        }
+        
+        // Lade Template-Datei
+        const script = document.createElement('script');
+        script.src = templateFile;
+        script.onload = () => {
+            console.log('✅ Template geladen:', templateFile);
+            
+            // Übernehme Daten aus jeopardyData
+            if (typeof jeopardyData !== 'undefined' && jeopardyData.categories) {
+                this.categories = JSON.parse(JSON.stringify(jeopardyData.categories));
+                this.renderCategories();
+                alert('✅ Vorlage erfolgreich geladen! Du kannst sie jetzt bearbeiten.');
+            } else {
+                alert('❌ Fehler beim Laden der Vorlage!');
+            }
+            
+            // Entferne Script-Tag wieder
+            document.head.removeChild(script);
+        };
+        script.onerror = () => {
+            alert('❌ Fehler: Template-Datei konnte nicht geladen werden!');
+        };
+        document.head.appendChild(script);
     }
 }
 

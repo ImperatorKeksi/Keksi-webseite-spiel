@@ -1,7 +1,7 @@
-/*
+﻿/*
     📚 STANDARD FRAGEN (Legacy)
     Allgemeinwissen Fragenkatalog
-    Entwickler: Nico Kaschube | Oberlinhaus Oberhausen | 2025
+    Entwickler: Nico Kaschube | Berufsbildungswerk im Oberlinhaus Potsdam | 2025
 */
 
 // ==================== FRAGEN-DATENBANK ====================
