@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="de">
+<!--
+    ╔═══════════════════════════════════════════════════╗
+    ║  🌍 STADT LAND FLUSS - Digital                   ║
+    ║  Digitale Version mit Timer & Punkteberechnung   ║
+    ║                                                   ║
+    ║  Entwickler: Nico Kaschube                       ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025║
+    ╚═══════════════════════════════════════════════════╝
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stadt Land Fluss - Oberlinhaus Lehrer Tools</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="Digitales Stadt Land Fluss mit Timer und automatischer Punkteberechnung">
+    <meta name="keywords" content="Stadt Land Fluss, Digital, Timer, Lehrer Tool, Oberlinhaus">
+    <meta name="author" content="Nico Kaschube">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
+    
+    <!-- Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0aaff;
+            --text-secondary: #c77dff;
+            --accent: #9d4edd;
+            --border: rgba(199, 125, 255, 0.3);
+            --glass-bg: rgba(26, 26, 26, 0.8);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .game-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-display {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: rgba(157, 77, 221, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            color: #10002b;
+            border: none;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #c77dff, #9d4edd);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .game-setup {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .panel-title {
+            text-align: center;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .settings-section {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .game-setup h2 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(157, 77, 221, 0.1);
+            box-shadow: 0 0 0 3px rgba(157, 77, 221, 0.1);
+        }
+
+        .categories-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .category-chip {
+            padding: 8px 15px;
+            background: rgba(157, 77, 221, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            color: var(--text-primary);
+        }
+
+        .category-chip button {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 0;
+            margin-left: 8px;
+        }
+
+        .letter-display {
+            font-size: 8em;
+            font-weight: bold;
+            text-align: center;
+            color: #667eea;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            animation: pulse 1s ease-in-out infinite;
+            padding: 40px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .timer-display {
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            color: #38ef7d;
+            margin: 20px 0;
+        }
+
+        .timer-display.warning {
+            color: #ff6b6b;
+            animation: blink 0.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .game-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: rgba(102, 126, 234, 0.3);
+            padding: 15px;
+            color: #e0e0e0;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td {
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td input {
+            width: 100%;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-size: 1em;
+        }
+
+        td input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        td input.duplicate {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        td input.unique {
+            border-color: #38ef7d;
+            background: rgba(56, 239, 125, 0.1);
+        }
+
+        .points-cell {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #38ef7d;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 106, 0, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .scoreboard {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scoreboard h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .score-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .score-item {
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .score-item.winner {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .player-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .player-score {
+            font-size: 2em;
+            color: #38ef7d;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-title h1 {
+                font-size: 1.4rem;
+            }
+            .letter-display {
+                font-size: 4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-title">
+            <span style="font-size: 2rem;">🌍</span>
+            <h1>Stadt Land Fluss</h1>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="index.html" class="btn">← Zurück</a>
+            <span id="userDisplaySLF" class="user-display" style="display: none;">👤 Gast</span>
+            <button id="loginBtnSLF" class="btn">🔐 Anmelden</button>
+            <button id="logoutBtnSLF" class="btn" style="display: none;">🚪 Abmelden</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Setup Phase -->
+        <div id="setupPhase" class="game-setup">
+            <h2 class="panel-title">⚙️ Spiel einrichten</h2>
+            
+            <div class="settings-section">
+                <h3 class="section-label">👥 Spieler & ⏱️ Zeit</h3>
+                <div class="setup-grid">
+                    <div class="input-group">
+                        <label>Spieler hinzufügen:</label>
+                        <input type="text" id="playerInput" placeholder="Spielername eingeben">
+                        <button class="btn btn-primary" onclick="game.addPlayer()" style="margin-top: 10px; width: 100%;">
+                            👤 Spieler hinzufügen
+                        </button>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Rundendauer:</label>
+                        <select id="timerDuration">
+                            <option value="30">30 Sekunden</option>
+                            <option value="60" selected>1 Minute</option>
+                            <option value="90">1,5 Minuten</option>
+                            <option value="120">2 Minuten</option>
+                            <option value="180">3 Minuten</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="playersList" style="margin-top: 20px;"></div>
+            </div>
+
+            <div class="settings-section">
+                <h3 class="section-label">📋 Kategorien</h3>
+                <div class="input-group">
+                    <label>Kategorien hinzufügen:</label>
+                    <input type="text" id="categoryInput" placeholder="z.B. Stadt, Land, Fluss">
+                    <button class="btn btn-primary" onclick="game.addCategory()" style="margin-top: 10px; width: 100%;">
+                        ➕ Kategorie hinzufügen
+                    </button>
+                </div>
+                
+                <div id="categoriesList" class="categories-list" style="margin-top: 15px;"></div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-success" onclick="game.startGame()">
+                    🎮 Spiel starten
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Phase -->
+        <div id="gamePhase" class="hidden">
+            <div class="game-setup">
+                <div class="letter-display" id="letterDisplay">?</div>
+                <div class="timer-display" id="timerDisplay">00:00</div>
+                
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="game.newRound()">
+                        🔄 Neue Runde
+                    </button>
+                    <button class="btn btn-success" onclick="game.startTimer()">
+                        ▶️ Timer starten
+                    </button>
+                    <button class="btn btn-danger" onclick="game.stopTimer()">
+                        ⏸️ Stopp
+                    </button>
+                    <button class="btn btn-primary" onclick="game.calculatePoints()">
+                        📊 Punkte berechnen
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-table">
+                <table id="gameTable"></table>
+            </div>
+
+            <div class="scoreboard">
+                <h2>🏆 Punktestand</h2>
+                <div id="scoreList" class="score-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascript/auth.js"></script>
+    <script src="../javascript/auth-ui.js"></script>
+    <script src="../javascript/stadt-land-fluss.js"></script>
+</body>
+</html>

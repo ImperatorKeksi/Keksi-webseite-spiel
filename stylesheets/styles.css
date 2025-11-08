@@ -24,24 +24,31 @@
 /* 🎨 CSS-VARIABLEN & THEME-SYSTEM                                              */
 /* ============================================================================= */
 :root {
-    /* Farben von main.css (index.html) übernommen */
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(45deg, #9d4edd, #7209b7);
-    --accent-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
-    --background: #0a0a0a;
-    --surface: #1a1a1a;
-    --surface-light: #2a2a2a;
-    --card-gradient: linear-gradient(45deg, #10002b, #240046);
-    --modal-gradient: linear-gradient(135deg, #240046 0%, #10002b 100%);
+    /* Timer-Design Farben - Konsistent über alle Seiten */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
     --text-primary: #e0aaff;
     --text-secondary: #c77dff;
-    --text-accent: #9d4edd;
-    --border-primary: #c77dff;
-    --border-secondary: rgba(199, 125, 255, 0.3);
-    --border: rgba(199, 125, 255, 0.2);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    --accent: #9d4edd;
+    --border: rgba(199, 125, 255, 0.3);
+    --glass-bg: rgba(26, 26, 26, 0.8);
+    
+    /* Gradients */
+    --primary-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+    --secondary-gradient: linear-gradient(45deg, #9d4edd, #7209b7);
+    --accent-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+    --card-gradient: linear-gradient(45deg, rgba(26, 26, 26, 0.8), rgba(16, 0, 43, 0.8));
+    --modal-gradient: linear-gradient(135deg, rgba(36, 0, 70, 0.95) 0%, rgba(16, 0, 43, 0.95) 100%);
+    
+    /* Legacy Support */
+    --background: var(--bg-primary);
+    --surface: var(--bg-secondary);
+    --surface-light: #2a2a2a;
+    --text-accent: var(--accent);
+    --border-primary: var(--text-secondary);
+    --border-secondary: var(--border);
+    --glass-border: rgba(199, 125, 255, 0.2);
+    --shadow: 0 10px 40px rgba(157, 77, 221, 0.3);
 }
 
 /* ===================================
@@ -108,6 +115,50 @@ body {
    =================================== */
 .hidden {
     display: none !important;
+}
+
+/* ===================================
+   📋 GAME HEADER (wie bei anderen Tools)
+   =================================== */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.game-header h1 {
+    font-size: 1.8rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.game-header .btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.game-header .btn:hover {
+    background: var(--accent-gradient);
+    color: #10002b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(157, 77, 221, 0.4);
 }
 
 /* ============================================================================= */
@@ -227,8 +278,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    min-height: calc(100vh - 100px);
+    padding: 2rem;
 }
 
 /* Setup Screen initial versteckt */
@@ -240,51 +291,28 @@ body {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--glass-border);
-    max-width: 700px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    max-width: 800px;
     width: 100%;
-}
-
-.setup-title {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 10px;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
 }
 
 .setup-subtitle {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
 }
 
 .developer-badge {
     display: inline-block;
-    background: linear-gradient(45deg, rgba(199, 125, 255, 0.2), rgba(224, 170, 255, 0.2));
-    border: 1px solid var(--border-primary);
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
     color: var(--text-primary);
-    padding: 8px 20px;
+    padding: 0.5rem 1.5rem;
     border-radius: 20px;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 600;
     backdrop-filter: blur(5px);
-    animation: developerBadgeGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes developerBadgeGlow {
-    0% { 
-        box-shadow: 0 0 10px rgba(199, 125, 255, 0.3);
-        border-color: var(--border-primary);
-    }
-    100% { 
-        box-shadow: 0 0 20px rgba(199, 125, 255, 0.6);
-        border-color: var(--text-primary);
-    }
 }
 
 /* ===================================
@@ -292,72 +320,76 @@ body {
    =================================== */
 .settings-panel {
     background: var(--glass-bg);
+    backdrop-filter: blur(10px);
     border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 25px;
-    border: 1px solid var(--border-secondary);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
 }
 
-.settings-row {
+.panel-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.settings-section {
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(199, 125, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.settings-section:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.section-label {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.settings-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    align-items: center;
-}
-
-.settings-row:last-child {
-    margin-bottom: 0;
+    gap: 1.25rem;
+    align-items: start;
 }
 
 .settings-actions {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 1rem;
     flex-wrap: wrap;
-    padding-top: 15px;
-    margin-top: 15px;
-    border-top: 2px solid var(--border-secondary);
+    padding-top: 1rem;
 }
 
 .settings-action-btn {
-    padding: 12px 24px;
-    border: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
     border-radius: 10px;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 0.95rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: var(--glass-bg);
+    color: var(--text-primary);
 }
 
-.settings-action-btn.rules-btn {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-    color: white;
-}
-
-.settings-action-btn.rules-btn:hover {
+.settings-action-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-}
-
-.settings-action-btn.editor-btn {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-    color: white;
-}
-
-.settings-action-btn.editor-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-}
-
-.settings-action-btn.feedback-btn {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-}
-
-.settings-action-btn.feedback-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 5px 20px rgba(157, 77, 221, 0.3);
+    background: var(--accent-gradient);
+    color: #10002b;
 }
 
 .setting-group {
@@ -714,28 +746,29 @@ input:checked + .toggle-slider:before {
 }
 
 .mode-btn {
-    background: var(--secondary-gradient);
-    border: none;
-    border-radius: 15px;
-    padding: 15px 30px;
-    color: white;
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    color: var(--text-primary);
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(157, 78, 221, 0.4);
+    backdrop-filter: blur(10px);
 }
 
 .mode-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(157, 78, 221, 0.6);
-    background: var(--secondary-gradient);
-    filter: brightness(1.1);
+    box-shadow: 0 8px 25px rgba(157, 77, 221, 0.4);
+    background: var(--accent-gradient);
+    color: #10002b;
 }
 
 .mode-btn.active {
     background: var(--accent-gradient);
-    box-shadow: 0 8px 25px rgba(199, 125, 255, 0.6);
+    color: #10002b;
+    box-shadow: 0 8px 25px rgba(157, 77, 221, 0.5);
 }
 
 .player-setup {
@@ -754,21 +787,21 @@ input:checked + .toggle-slider:before {
 
 .setup-section input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 2px solid rgba(224, 170, 255, 0.3);
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: var(--glass-bg);
+    color: var(--text-primary);
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
 .setup-section input:focus {
     outline: none;
-    border-color: #c77dff;
-    box-shadow: 0 0 10px rgba(199, 125, 255, 0.5);
-    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--text-primary);
+    box-shadow: 0 0 10px rgba(157, 77, 221, 0.3);
+    background: rgba(26, 26, 26, 0.9);
 }
 
 .setup-section input::placeholder {
@@ -777,22 +810,21 @@ input:checked + .toggle-slider:before {
 
 .start-btn {
     width: 100%;
-    background: linear-gradient(45deg, #10002b, #240046);
-    border: 2px solid #c77dff;
-    border-radius: 15px;
-    padding: 15px;
-    color: white;
+    background: var(--accent-gradient);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    color: #10002b;
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 20px;
+    margin-top: 1.5rem;
 }
 
 .start-btn:hover {
-    background: linear-gradient(45deg, #240046, #3c096c);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(199, 125, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(157, 77, 221, 0.5);
 }
 
 .setup-buttons {
@@ -1941,25 +1973,26 @@ body {
 
 /* Timer Configuration Styles */
 .timer-config {
-    margin-top: 10px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    padding: 1.25rem;
+    background: rgba(157, 77, 221, 0.1);
+    border-radius: 10px;
+    border: 1px solid var(--border);
 }
 
 .timer-controls {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin: 10px 0;
+    gap: 1rem;
+    margin: 1rem 0;
 }
 
 .timer-slider {
     flex: 1;
     height: 6px;
     border-radius: 3px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(199, 125, 255, 0.3);
     outline: none;
     cursor: pointer;
 }
@@ -1969,20 +2002,25 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--text-secondary);
+    background: var(--accent-gradient);
     cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--text-primary);
+    box-shadow: 0 2px 8px rgba(157, 77, 221, 0.4);
+    transition: all 0.2s ease;
+}
+
+.timer-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
 }
 
 .timer-slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--text-secondary);
+    background: var(--accent-gradient);
     cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--text-primary);
+    box-shadow: 0 2px 8px rgba(157, 77, 221, 0.4);
 }
 
 .timer-display {
@@ -1998,31 +2036,34 @@ body {
 
 .timer-presets {
     display: flex;
-    gap: 8px;
+    gap: 0.75rem;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .preset-btn {
-    padding: 6px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.85em;
+    font-size: 0.9rem;
+    font-weight: 600;
     transition: all 0.2s ease;
 }
 
 .preset-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: var(--text-secondary);
+    background: rgba(157, 77, 221, 0.2);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
 .preset-btn.active {
-    background: var(--text-secondary);
-    border-color: var(--text-secondary);
-    color: white;
+    background: var(--accent-gradient);
+    border-color: var(--accent);
+    color: #10002b;
+    box-shadow: 0 4px 12px rgba(157, 77, 221, 0.4);
 }
 
 /* Notification System */

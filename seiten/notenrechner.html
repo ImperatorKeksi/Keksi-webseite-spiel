@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<!--
+    ╔═══════════════════════════════════════════════════╗
+    ║  📊 NOTEN-RECHNER - Lehrer Tool                  ║
+    ║  Notenschlüssel-Generator & Punkteberechnung     ║
+    ║                                                   ║
+    ║  Entwickler: Nico Kaschube                       ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025║
+    ╚═══════════════════════════════════════════════════╝
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noten-Rechner - Oberlinhaus Lehrer Tools</title>
+    <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0aaff;
+            --text-secondary: #c77dff;
+            --accent: #9d4edd;
+            --border: rgba(199, 125, 255, 0.3);
+            --glass-bg: rgba(26, 26, 26, 0.8);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header-title h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .user-display {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: rgba(157, 77, 221, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            color: #10002b;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #c77dff, #9d4edd);
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 2rem; 
+        }
+        
+        .panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .panel-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .settings-section {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid rgba(199, 125, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-label {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 900px) {
+            .input-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-group { 
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .input-group label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .input-group input, .input-group select {
+            padding: 0.75rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: var(--text-primary);
+            background: rgba(157, 77, 221, 0.15);
+            box-shadow: 0 0 10px rgba(157, 77, 221, 0.3);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        th {
+            background: rgba(102, 126, 234, 0.3);
+            font-weight: 600;
+        }
+        .grade-1 { background: rgba(56, 239, 125, 0.2); color: #38ef7d; }
+        .grade-2 { background: rgba(102, 255, 102, 0.2); color: #66ff66; }
+        .grade-3 { background: rgba(255, 255, 102, 0.2); color: #ffff66; }
+        .grade-4 { background: rgba(255, 165, 0, 0.2); color: #ffa500; }
+        .grade-5 { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+        .grade-6 { background: rgba(255, 0, 0, 0.2); color: #ff0000; }
+        .result-card {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        .result-card h3 { color: #667eea; margin-bottom: 15px; }
+        .result-value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #38ef7d;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-title">
+            <span style="font-size: 2rem;">📊</span>
+            <h1>Noten-Rechner</h1>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="index.html" class="btn">← Zurück</a>
+            <span id="userDisplayNR" class="user-display" style="display: none;">👤 Gast</span>
+            <button id="loginBtnNR" class="btn">🔐 Anmelden</button>
+            <button id="logoutBtnNR" class="btn" style="display: none;">🚪 Abmelden</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <h2 class="panel-title">⚙️ Konfiguration</h2>
+            
+            <div class="settings-section">
+                <h3 class="section-label">📊 Notenschlüssel-Einstellungen</h3>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Maximale Punktzahl:</label>
+                        <input type="number" id="maxPoints" value="100" min="1">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Notensystem:</label>
+                        <select id="gradeSystem">
+                            <option value="german">Deutsch (1-6)</option>
+                            <option value="percent">Prozent (0-100%)</option>
+                            <option value="points">Punkte (0-15)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Verteilungsart:</label>
+                        <select id="distribution">
+                            <option value="linear">Linear</option>
+                            <option value="ihk">IHK Standard</option>
+                            <option value="gauss">Gauß-Kurve</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="calculator.generateTable()">📊 Notenschlüssel generieren</button>
+            </div>
+
+            <div id="gradeTable" style="margin-top: 2rem;"></div>
+        </div>
+
+        <div class="panel">
+            <h2 class="panel-title">🎯 Punkte in Note umrechnen</h2>
+            
+            <div class="settings-section">
+                <h3 class="section-label">🔢 Berechnung</h3>
+                <div class="input-group">
+                    <label>Erreichte Punktzahl:</label>
+                    <input type="number" id="achievedPoints" placeholder="z.B. 85">
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-top: 1rem;">
+                    <button class="btn btn-primary" onclick="calculator.calculateGrade()">🔢 Note berechnen</button>
+                </div>
+            </div>
+
+            <div id="gradeResult"></div>
+        </div>
+
+        <div class="panel">
+            <h2 class="panel-title">📈 Schnittberechnung</h2>
+            
+            <div class="settings-section">
+                <h3 class="section-label">📝 Noteneingabe</h3>
+                <div class="input-group">
+                    <label>Noten (kommagetrennt, z.B. 1.5, 2.0, 1.7):</label>
+                    <input type="text" id="gradeList" placeholder="1.5, 2.0, 1.7, 3.0">
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-top: 1rem;">
+                    <button class="btn btn-primary" onclick="calculator.calculateAverage()">📊 Schnitt berechnen</button>
+                </div>
+            </div>
+
+            <div id="averageResult"></div>
+        </div>
+    </div>
+
+    <script src="../javascript/auth.js"></script>
+    <script src="../javascript/auth-ui.js"></script>
+    <script src="../javascript/notenrechner.js"></script>
+</body>
+</html>

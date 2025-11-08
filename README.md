@@ -4,11 +4,12 @@
 
 ### *Digitale Werkzeuge für modernen Unterricht*
 
-[![Version](https://img.shields.io/badge/version-beta%200.9-orange.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![Version](https://img.shields.io/badge/version-v1.5.0-orange.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-in%20entwicklung-yellow.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 [![Made with](https://img.shields.io/badge/Made%20with-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-ready-orange.svg)](https://web.dev/progressive-web-apps/)
+[![Design](https://img.shields.io/badge/Design-Glassmorphism-purple.svg)](https://uxdesign.cc/glassmorphism-in-user-interfaces-1f39bb1308c9)
 
 **Eine wachsende Sammlung digitaler Tools für Lehrer und Ausbilder**
 
@@ -30,6 +31,10 @@
 - [🎮 Verfügbare Tools](#-verfügbare-tools)
   - [🎲 Jeopardy Quiz](#-jeopardy-quiz)
   - [🕐 Digitale Uhr & Timer](#-digitale-uhr--timer)
+  - [🌍 Stadt Land Fluss](#-stadt-land-fluss)
+  - [🎲 Zufalls-Generator](#-zufalls-generator)
+  - [📊 Noten-Rechner](#-noten-rechner)
+  - [🎯 Aufgaben-Roulette](#-aufgaben-roulette)
 - [💻 Technologien](#-technologien)
 - [🚀 Schnellstart](#-schnellstart)
 - [👨‍💻 Über den Entwickler](#-über-den-entwickler)
@@ -243,6 +248,141 @@ Für alle - Allgemeinwissen
 - 🧪 **Sound-Test** - Alarm vor Nutzung anhören
 
 ---
+---
+
+### 🌍 Stadt Land Fluss
+
+Digitale Version des Klassikers mit modernen Features.
+
+#### 🎯 Features
+
+- 👥 **Multiplayer** - Unbegrenzt viele Spieler
+- 📋 **Anpassbare Kategorien** - Standard oder eigene Kategorien
+- ⏱️ **Timer-Funktion** - 30s bis 3 Minuten einstellbar
+- 🔍 **Duplikat-Erkennung** - Automatische Punktevergabe
+- 📊 **Punkteberechnung**:
+  - Einzigartig: 20 Punkte
+  - Duplikat: 5 Punkte
+  - Falsch: 0 Punkte
+- 🏆 **Live-Rangliste** - Echtzeit-Punktestand
+- 🎨 **Farbcodierung** - Grün (einzigartig), Rot (Duplikat)
+
+#### 💡 Standard-Kategorien:
+
+Stadt | Land | Fluss | Tier | Beruf
+
+---
+
+### 🎲 Zufalls-Generator
+
+5 Tools in einem - der ultimative Zufallshelfer für Lehrer.
+
+#### 🎯 Module
+
+<table>
+<tr>
+<td width="50%">
+
+**👤 Schülerauswahl**
+- Zufälligen Schüler auswählen
+- Mit/Ohne Zurücklegen
+- Liste der bereits ausgewählten
+- Reset-Funktion
+
+**👥 Team-Generator**
+- Automatische Teambildung
+- 2-10 Teams möglich
+- Faire Verteilung
+- Shuffle-Algorithmus
+
+**🎲 Würfel**
+- 1-4 Würfel gleichzeitig
+- Würfel-Emojis
+- Summen-Berechnung
+- Roll-Animation
+
+</td>
+<td width="50%">
+
+**🪙 Münzwurf**
+- Kopf oder Zahl
+- Flip-Animation
+- Sofortiges Ergebnis
+
+**🎡 Glücksrad**
+- Beliebig viele Optionen
+- Animiertes Rad
+- Farbcodierte Segmente
+- Dreh-Animation
+
+</td>
+</tr>
+</table>
+
+#### 💡 Perfekt für:
+
+- 📢 Zufällige Schülerauswahl für Antworten
+- 🤝 Gruppenbildung für Projekte
+- 🎮 Spielerische Entscheidungen
+- 🎯 Aufgabenverteilung
+- 📊 Präsentationsreihenfolge
+
+---
+
+### 📊 Noten-Rechner
+
+Professioneller Notenschlüssel-Generator mit 3 Verteilungsarten.
+
+#### 🎯 Features
+
+- 🎚️ **3 Verteilungsarten**:
+  - 📏 **Linear** - Gleichmäßige Verteilung
+  - 🏢 **IHK Standard** - Offizielle IHK-Notenskala
+  - 📈 **Gauß-Kurve** - Normalverteilung
+- 🔢 **3 Notensysteme**:
+  - 🇩🇪 Deutsch (1.0 - 6.0)
+  - 💯 Prozent (0 - 100%)
+  - 📋 Punkte (0 - 15)
+- ⚙️ **Flexible Konfiguration** - Maximalpunktzahl anpassbar
+- 🎯 **Punkt → Note Umrechner** - Erreichte Punkte eingeben
+- 📈 **Schnittberechnung** - Notendurchschnitt berechnen
+- 🎨 **Farbcodierung** - Grün (sehr gut) bis Rot (ungenügend)
+- 📊 **Übersichtstabelle** - Kompletter Notenschlüssel
+
+#### 💡 IHK-Notenschlüssel:
+
+- 92-100%: 1,0
+- 89-91%: 1,3
+- 86-88%: 1,7
+- 83-85%: 2,0
+- ... (bis 6,0)
+
+---
+
+### 🎯 Aufgaben-Roulette
+
+Faire Zufallsverteilung von Aufgaben und Präsentationen.
+
+#### 🎯 Features
+
+- ⚖️ **Faire Verteilung** - Optional: Jede Person max. 1x
+- 📝 **Flexible Eingabe** - Personen & Aufgaben als Liste
+- 🎲 **Zufällige Zuordnung** - Fisher-Yates Shuffle
+- 📊 **Live-Übersicht** - Zugewiesene Aufgaben sehen
+- 📜 **Verlaufs-Historie** - Letzte 10 Zuweisungen
+- 💾 **Export-Funktion** - Als Textdatei speichern
+- 🔄 **Reset-Option** - Zurücksetzen möglich
+- 🎨 **Visuelle Darstellung** - Übersichtliche Anzeige
+
+#### 💡 Perfekt für:
+
+- 📚 Referate/Präsentationen verteilen
+- 📝 Hausaufgaben zuweisen
+- 🎤 Vortragsthemen auslosen
+- 📊 Projektthemen vergeben
+- 🎭 Rollenzuteilung
+
+---
 
 ##  Technologien
 
@@ -263,14 +403,14 @@ Für alle - Allgemeinwissen
 
 ###  Code-Statistiken
 
--  **Total Dateien:** 25+
--  **Code-Zeilen:** ~12.000+
--  **JavaScript:** ~8.000 Zeilen
--  **CSS:** ~4.000 Zeilen
+-  **Total Dateien:** 33+
+-  **Code-Zeilen:** ~18.000+
+-  **JavaScript:** ~12.000 Zeilen
+-  **CSS:** ~6.000 Zeilen
 -  **Fragen:** 125+ über 25 Kategorien
--  **Entwicklungszeit:** 6+ Wochen
--  **Commits:** 200+
--  **Tools:** 2 (Jeopardy Quiz, Timer)
+-  **Entwicklungszeit:** 8+ Wochen
+-  **Commits:** 250+
+-  **Tools:** 6 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette)
 
 ###  Browser-Kompatibilität
 

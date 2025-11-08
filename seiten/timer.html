@@ -20,7 +20,7 @@
     <meta name="author" content="Nico Kaschube">
     
     <!-- Icons -->
-    <link rel="icon" type="image/png" href="../icons/icon-192x192.png">
+    <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
     
     <!-- Styles -->
     <style>
@@ -81,6 +81,16 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+        }
+
+        .user-display {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .btn {
@@ -361,7 +371,10 @@
             <h1>Digitale Uhr & Timer</h1>
         </div>
         <div class="header-controls">
-            <a href="index.html" class="btn">🏠 Zurück</a>
+            <a href="index.html" class="btn">← Zurück</a>
+            <span id="userDisplayTimer" class="user-display" style="display: none;">👤 Gast</span>
+            <button id="loginBtnTimer" class="btn">🔐 Anmelden</button>
+            <button id="logoutBtnTimer" class="btn" style="display: none;">🚪 Abmelden</button>
             <button id="fullscreenBtn" class="btn">⛶ Vollbild</button>
             <button id="resetBtn" class="btn">🔄 Zurücksetzen</button>
         </div>
@@ -469,6 +482,8 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="../javascript/auth.js"></script>
+    <script src="../javascript/auth-ui.js"></script>
     <script src="../javascript/timer.js"></script>
 </body>
 </html>

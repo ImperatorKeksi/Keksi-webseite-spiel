@@ -32,6 +32,9 @@
     <meta property="twitter:title" content="Jeopardy Quiz - Oberlinhaus">
     <meta property="twitter:description" content="Interaktives Lernspiel für Azubis">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
+    
     <!-- PWA Manifest -->
     <link rel="manifest" href="../pwa/manifest.json">
     <meta name="theme-color" content="#667eea">
@@ -64,61 +67,81 @@
     </script>
 </head>
 <body>
+    <!-- Game Header (wie bei anderen Tools) -->
+    <header class="game-header">
+        <h1>🎮 Jeopardy Quiz</h1>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="index.html" class="btn">← Zurück</a>
+            <span id="userDisplayGame" class="user-display" style="display: none;">👤 Gast</span>
+            <button id="loginBtnGame" class="btn">🔐 Anmelden</button>
+            <button id="logoutBtnGame" class="btn" style="display: none;">🚪 Abmelden</button>
+        </div>
+    </header>
+
     <!-- Setup Screen (direkt sichtbar, kein Modus-Auswahl mehr) -->
     <div id="setupScreen" class="setup-screen">
         <div class="setup-container">
-            <h1 class="setup-title">Jeopardy Spiel</h1>
             <div class="setup-subtitle">
                 <span class="developer-badge">👨‍💻 Entwickelt von Nico Kaschube</span>
             </div>
             
             <!-- Theme and Settings Panel -->
             <div class="settings-panel">
-                <div class="settings-row">
-                    <div class="setting-group">
-                        <label for="themeSelect">🎨 Design-Theme:</label>
-                        <select id="themeSelect" class="theme-select">
-                            <option value="purple-blue">Lila-Blau (Standard)</option>
-                            <option value="ocean-blue">Ozean-Blau</option>
-                            <option value="green-silver">Grün-Silber</option>
-                            <option value="dark-mode">Dark Mode</option>
-                        </select>
-                    </div>
-                    <div class="setting-group">
-                        <label for="soundToggle">🔊 Sound-Effekte:</label>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="soundToggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    
-
-                    <div class="setting-group">
-                        <label for="dailyDoublesToggle">💰 Daily Doubles:</label>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="dailyDoublesToggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
+                <h3 class="panel-title">⚙️ Einstellungen</h3>
+                
+                <!-- Visuelle Einstellungen -->
+                <div class="settings-section">
+                    <h4 class="section-label">🎨 Visuelles</h4>
+                    <div class="settings-grid">
+                        <div class="setting-group">
+                            <label for="themeSelect">Design-Theme:</label>
+                            <select id="themeSelect" class="theme-select">
+                                <option value="purple-blue">Lila-Blau (Standard)</option>
+                                <option value="ocean-blue">Ozean-Blau</option>
+                                <option value="green-silver">Grün-Silber</option>
+                                <option value="dark-mode">Dark Mode</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="animationToggle">Animationen:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="animationToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="settings-row">
-                    <div class="setting-group">
-                        <label for="animationToggle">✨ Animationen:</label>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="animationToggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="setting-group">
-                        <label for="timerToggle">⏰ Timer aktivieren:</label>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="timerToggle">
-                            <span class="toggle-slider"></span>
-                        </label>
+
+                <!-- Spiel Einstellungen -->
+                <div class="settings-section">
+                    <h4 class="section-label">🎮 Spielmechanik</h4>
+                    <div class="settings-grid">
+                        <div class="setting-group">
+                            <label for="soundToggle">Sound-Effekte:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="soundToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label for="dailyDoublesToggle">Daily Doubles:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="dailyDoublesToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-group">
+                            <label for="timerToggle">Timer aktivieren:</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="timerToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
                     </div>
                     
+                    <!-- Timer Konfiguration -->
                     <div class="setting-group timer-config" id="timerConfig" style="display: none;">
-                        <label for="timerDuration">🕐 Zeit pro Frage:</label>
+                        <label for="timerDuration">⏱️ Zeit pro Frage:</label>
                         <div class="timer-controls">
                             <input type="range" id="timerDuration" min="15" max="120" value="60" step="5" class="timer-slider">
                             <span id="timerDisplay" class="timer-display">60 Sekunden</span>
@@ -131,19 +154,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="settings-row settings-actions">
-                    <a href="index.html" class="settings-action-btn back-btn" style="text-decoration: none;">🏠 Zurück zur Startseite</a>
-                    <button id="showRulesBtn" class="settings-action-btn rules-btn">📋 Spielregeln</button>
-                    <button id="openEditorBtn" class="settings-action-btn editor-btn" style="display: none;">✏️ Fragen bearbeiten</button>
-                    <button id="openStatsBtn" class="settings-action-btn stats-btn" style="display: none;">📊 Statistiken</button>
-                    <button id="openFeedbackBtn" class="settings-action-btn feedback-btn">💬 Feedback & Bug Report</button>
-                </div>
-                <div class="settings-row auth-section">
-                    <div class="auth-display">
-                        <span id="userDisplay" style="display: none;">👤 Gast</span>
-                        <button id="loginBtn" class="settings-action-btn login-btn">🔐 Anmelden</button>
-                        <button id="logoutBtn" class="settings-action-btn logout-btn" style="display: none;">🚪 Abmelden</button>
-                    </div>
+
+                <!-- Action Buttons -->
+                <div class="settings-actions">
+                    <button id="showRulesBtn" class="settings-action-btn">📋 Spielregeln</button>
+                    <button id="openEditorBtn" class="settings-action-btn" style="display: none;">✏️ Fragen bearbeiten</button>
+                    <button id="openStatsBtn" class="settings-action-btn" style="display: none;">📊 Statistiken</button>
+                    <button id="openFeedbackBtn" class="settings-action-btn">💬 Feedback</button>
                 </div>
             </div>
 

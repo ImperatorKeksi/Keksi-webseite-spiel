@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<!--
+    ╔═══════════════════════════════════════════════════╗
+    ║  🎯 AUFGABEN-ROULETTE - Lehrer Tool              ║
+    ║  Faire Zufallsverteilung von Aufgaben & Themen   ║
+    ║                                                   ║
+    ║  Entwickler: Nico Kaschube                       ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025║
+    ╚═══════════════════════════════════════════════════╝
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgaben-Roulette - Oberlinhaus Lehrer Tools</title>
+    <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0aaff;
+            --text-secondary: #c77dff;
+            --accent: #9d4edd;
+            --border: rgba(199, 125, 255, 0.3);
+            --glass-bg: rgba(26, 26, 26, 0.8);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .game-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .header-title h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .user-display {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: rgba(157, 77, 221, 0.2);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            color: #10002b;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #c77dff, #9d4edd);
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .panel-title {
+            text-align: center;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .settings-section {
+            background: rgba(26, 26, 26, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .panel h2 { color: var(--text-primary); margin-bottom: 20px; }
+        
+        .input-group { margin-bottom: 20px; }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        .input-group textarea { min-height: 150px; resize: vertical; }
+        .input-group input:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(157, 77, 221, 0.1);
+            box-shadow: 0 0 0 3px rgba(157, 77, 221, 0.1);
+        }
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            color: #10002b;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        }
+        .roulette-display {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 20px 0;
+        }
+        .result-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            color: #667eea;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        .assignment-list {
+            max-height: 400px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .assignment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .assignment-item.used {
+            opacity: 0.4;
+            border-left-color: #555;
+        }
+        .assignment-item .task {
+            color: #e0e0e0;
+            font-weight: 500;
+            flex: 1;
+        }
+        .assignment-item .person {
+            color: #38ef7d;
+            font-weight: 600;
+            padding: 5px 15px;
+            background: rgba(56, 239, 125, 0.2);
+            border-radius: 15px;
+        }
+        .history-list {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .history-item {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+        }
+        @media (max-width: 1000px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-title">
+            <span style="font-size: 2rem;">🎯</span>
+            <h1>Aufgaben-Roulette</h1>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="index.html" class="btn">← Zurück</a>
+            <span id="userDisplayAR" class="user-display" style="display: none;">👤 Gast</span>
+            <button id="loginBtnAR" class="btn">🔐 Anmelden</button>
+            <button id="logoutBtnAR" class="btn" style="display: none;">🚪 Abmelden</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-grid">
+            <!-- Eingabe Panel -->
+            <div class="panel">
+                <h2 class="panel-title">⚙️ Konfiguration</h2>
+                
+                <div class="settings-section">
+                    <h3 class="section-label">📝 Eingabe</h3>
+                    
+                    <div class="input-group">
+                        <label>Personen/Schüler (ein Name pro Zeile):</label>
+                        <textarea id="peopleInput" placeholder="Max Mustermann&#10;Anna Schmidt&#10;Tom Weber"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Aufgaben/Themen (eins pro Zeile):</label>
+                        <textarea id="tasksInput" placeholder="Referat über Klimawandel&#10;Präsentation HTML/CSS&#10;Vortrag Marketing"></textarea>
+                    </div>
+
+                    <div class="input-group" style="flex-direction: row; align-items: center; gap: 0.75rem;">
+                        <input type="checkbox" id="fairDistribution" checked style="width: auto; margin: 0;">
+                        <label style="margin: 0;">Faire Verteilung (jede Person max. 1 Aufgabe)</label>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem;">
+                    <button class="btn btn-primary" onclick="roulette.loadData()">📥 Daten laden</button>
+                    <button class="btn" onclick="roulette.assignTask()">🎲 Aufgabe ziehen</button>
+                    <button class="btn btn-danger" onclick="roulette.reset()">🔄 Zurücksetzen</button>
+                </div>
+
+                <div class="roulette-display" id="resultDisplay">
+                    <p style="color: #888;">Lade Daten und ziehe eine Aufgabe</p>
+                </div>
+            </div>
+
+            <!-- Übersicht Panel -->
+            <div class="panel">
+                <h2>📊 Übersicht</h2>
+                
+                <h3 style="color: #c77dff; margin-bottom: 15px;">🎯 Zugewiesene Aufgaben:</h3>
+                <div class="assignment-list" id="assignmentsList">
+                    <p style="text-align: center; color: #888;">Noch keine Aufgaben verteilt</p>
+                </div>
+
+                <h3 style="color: #c77dff; margin: 20px 0 15px;">📜 Verlauf:</h3>
+                <div class="history-list" id="historyList">
+                    <p style="text-align: center; color: #888;">Noch keine Historie</p>
+                </div>
+
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="btn" onclick="roulette.exportResults()">💾 Ergebnisse exportieren</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascript/auth.js"></script>
+    <script src="../javascript/auth-ui.js"></script>
+    <script src="../javascript/aufgabenroulette.js"></script>
+</body>
+</html>

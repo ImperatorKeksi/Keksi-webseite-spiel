@@ -9,19 +9,25 @@
 /* 🎨 CSS VARIABLES & THEME                                                     */
 /* ============================================================================= */
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(45deg, #9d4edd, #7209b7);
-    --accent-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
-    --background: #0a0a0a;
-    --surface: #1a1a1a;
-    --surface-light: #2a2a2a;
+    /* Timer Design Colors */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
     --text-primary: #e0aaff;
     --text-secondary: #c77dff;
     --text-muted: #9d4edd;
-    --border: rgba(199, 125, 255, 0.2);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    --accent: #9d4edd;
+    --border: rgba(199, 125, 255, 0.3);
+    --glass-bg: rgba(26, 26, 26, 0.8);
+    --glass-border: rgba(199, 125, 255, 0.2);
+    
+    /* Gradients */
+    --primary-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+    --secondary-gradient: linear-gradient(45deg, #c77dff, #9d4edd);
+    --accent-gradient: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+    
+    /* Effects */
+    --shadow: 0 10px 40px rgba(157, 77, 221, 0.3);
+    --backdrop-blur: blur(10px);
 }
 
 * {
@@ -36,7 +42,7 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--background);
+    background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -194,7 +200,7 @@ body {
     position: absolute;
     width: 150%;
     height: 150%;
-    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(157, 77, 221, 0.15) 0%, transparent 70%);
     animation: rotate 30s linear infinite;
 }
 
@@ -251,12 +257,12 @@ body {
 
 .btn-primary {
     background: var(--primary-gradient);
-    color: white;
+    color: #10002b;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 30px rgba(157, 77, 221, 0.5);
 }
 
 .btn-secondary {
@@ -345,7 +351,8 @@ body {
 }
 
 .game-card {
-    background: var(--surface);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 2rem;
@@ -355,7 +362,7 @@ body {
 
 .game-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 20px 60px rgba(157, 77, 221, 0.4);
     border-color: var(--text-primary);
 }
 
@@ -457,7 +464,7 @@ body {
 .btn-play {
     padding: 1rem 2rem;
     background: var(--primary-gradient);
-    color: white;
+    color: #10002b;
     border: none;
     border-radius: 12px;
     font-weight: bold;
@@ -474,7 +481,7 @@ body {
 
 .btn-play:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 10px 30px rgba(157, 77, 221, 0.5);
 }
 
 .btn-play:disabled {
@@ -495,7 +502,8 @@ body {
 
 .about-card,
 .contact-card {
-    background: var(--surface);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 2rem;
@@ -506,7 +514,7 @@ body {
 .about-card:hover,
 .contact-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 30px rgba(157, 77, 221, 0.3);
 }
 
 .about-icon,
@@ -548,7 +556,8 @@ body {
 /* 🦶 FOOTER                                                                    */
 /* ============================================================================= */
 .main-footer {
-    background: var(--surface);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
     border-top: 1px solid var(--border);
     padding: 3rem 2rem 1rem;
     margin-top: 4rem;
@@ -620,14 +629,15 @@ body {
 }
 
 .modal-content {
-    background: var(--surface);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur);
     border: 1px solid var(--border);
     border-radius: 20px;
     max-width: 500px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(157, 77, 221, 0.4);
 }
 
 .modal-header {
@@ -680,7 +690,7 @@ body {
 
 .modal-btn.btn-primary {
     background: var(--primary-gradient);
-    color: white;
+    color: #10002b;
 }
 
 .modal-btn-secondary {

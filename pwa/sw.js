@@ -3,7 +3,7 @@
 /* Ermöglicht das Spiel auch ohne Internet zu spielen         */
 /* =========================================================== */
 
-const CACHE_NAME = 'it-jeopardy-v1.2.0';
+const CACHE_NAME = 'it-jeopardy-v1.5.0';
 const DEBUG_MODE = false; // Für Debug-Nachrichten
 
 // ========================================= 
@@ -13,6 +13,11 @@ const CACHE_FILES = [
   '../',
   '../seiten/index.html',
   '../seiten/game.html',
+  '../seiten/timer.html',
+  '../seiten/stadt-land-fluss.html',
+  '../seiten/zufallsgenerator.html',
+  '../seiten/notenrechner.html',
+  '../seiten/aufgabenroulette.html',
   '../stylesheets/styles.css',
   '../stylesheets/main.css',
   '../javascript/script.js',
@@ -24,10 +29,17 @@ const CACHE_FILES = [
   '../javascript/editor.js',
   '../javascript/stats.js',
   '../javascript/feedback.js',
+  '../javascript/timer.js',
+  '../javascript/stadt-land-fluss.js',
+  '../javascript/zufallsgenerator.js',
+  '../javascript/notenrechner.js',
+  '../javascript/aufgabenroulette.js',
   '../fragenkataloge/questions_it.js',
   '../fragenkataloge/questions_lagerlogistik.js',
   '../fragenkataloge/questions_standard.js',
   '../fragenkataloge/questions_kaufmaennisch.js',
+  '../icons/logo.svg',
+  '../icons/logo-simple.svg',
   '../pwa/manifest.json'
 ];
 
@@ -125,14 +137,14 @@ self.addEventListener('push', event => {
     
     const options = {
       body: data.body || 'Neue Herausforderung verfügbar!',
-      icon: './icons/icon-192x192.png',
-      badge: './icons/icon-72x72.png',
+      icon: './icons/logo-simple.svg',
+      badge: './icons/logo-simple.svg',
       vibrate: [200, 100, 200],
       actions: [
         {
           action: 'open',
           title: 'Spiel öffnen',
-          icon: './icons/icon-192x192.png'
+          icon: './icons/logo-simple.svg'
         },
         {
           action: 'close', 
