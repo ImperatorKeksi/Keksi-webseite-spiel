@@ -4,18 +4,17 @@
 
 ### *Digitale Werkzeuge für modernen Unterricht*
 
-[![Version](https://img.shields.io/badge/version-v1.5.0-orange.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-in%20entwicklung-yellow.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![Version](https://img.shields.io/badge/version-v1.0--beta-orange.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
+[![Status](https://img.shields.io/badge/status-Open%20Beta-yellow.svg)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 [![Made with](https://img.shields.io/badge/Made%20with-JavaScript-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-ready-orange.svg)](https://web.dev/progressive-web-apps/)
 [![Design](https://img.shields.io/badge/Design-Glassmorphism-purple.svg)](https://uxdesign.cc/glassmorphism-in-user-interfaces-1f39bb1308c9)
 
 **Eine wachsende Sammlung digitaler Tools für Lehrer und Ausbilder**
 
-**⚠️ BETA-VERSION - Projekt in aktiver Entwicklung**
+**⚠️ OPEN BETA - In aktiver Entwicklungsphase | Feedback willkommen!**
 
-[🚀 Demo starten](#-schnellstart) │ [📧 Kontakt](#-kontakt--soziale-medien)
+[📧 Kontakt & Feedback](#-über-den-entwickler)
 
 ---
 
@@ -28,41 +27,76 @@
 ## 📋 Inhaltsverzeichnis
 
 - [🎯 Über das Projekt](#-über-das-projekt)
-- [🎮 Verfügbare Tools](#-verfügbare-tools)
-  - [🎲 Jeopardy Quiz](#-jeopardy-quiz)
-  - [🕐 Digitale Uhr & Timer](#-digitale-uhr--timer)
-  - [🌍 Stadt Land Fluss](#-stadt-land-fluss)
-  - [🎲 Zufalls-Generator](#-zufalls-generator)
-  - [📊 Noten-Rechner](#-noten-rechner)
-  - [🎯 Aufgaben-Roulette](#-aufgaben-roulette)
+- [✨ Neue Features v1.0](#-neue-features-v10)
+- [� Verfügbare Tools](#-verfügbare-tools)
 - [💻 Technologien](#-technologien)
-- [🚀 Schnellstart](#-schnellstart)
 - [👨‍💻 Über den Entwickler](#-über-den-entwickler)
-- [📧 Kontakt & Soziale Medien](#-kontakt--soziale-medien)
-- [📜 Lizenz](#-lizenz)
+- [� Danksagungen](#-danksagungen)
 
 ---
 
 ## 🎯 Über das Projekt
 
-**Lehrer Tools** ist eine vollständig selbst entwickelte Plattform mit digitalen Werkzeugen für Lehrer und Ausbilder. Das Projekt entstand während meiner Ausbildung zum Fachinformatiker und wird basierend auf Feedback von Berufsschullehrern weiterentwickelt.
+**Lehrer Tools** ist eine vollständig selbst entwickelte Plattform mit digitalen Werkzeugen für Lehrer und Ausbilder. Das Projekt entsteht während meiner Ausbildung zum Fachinformatiker und wird basierend auf Feedback von Berufsschullehrern kontinuierlich weiterentwickelt.
 
 ### ✨ Was macht dieses Projekt besonders?
 
 - ✅ **100% Eigenentwicklung** - Komplett selbst programmiert, keine Frameworks
 - 🎓 **Bildungsfokus** - Speziell für Berufsschulen und Ausbilder
-- 📱 **Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline
-- 🎨 **Professionelles Design** - Modernes UI/UX mit dunklem Theme
-- 📦 **PWA-Ready** - Installierbar wie eine native App
-- 💬 **Feedback-basiert** - Entwicklung nach Lehrerbedürfnissen
+- 📱 **Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline (PWA)
+- 🎨 **Professionelles Design** - Modernes UI/UX mit Glassmorphism & Dark Theme
+- � **Performance-optimiert** - Schnelle Ladezeiten, progressive Enhancement
+- ♿ **Barrierefrei** - WCAG 2.1 AA konform
+- 💬 **Open Beta** - Aktive Entwicklung mit Feedback-Integration
 
 ### 💡 Motivation
 
 Als IT-Azubi möchte ich:
 - 🎯 Berufsschulen und Lehrern praktische Tools zur Verfügung stellen
-- ⚡ Den Unterrichtsalltag vereinfachen
-- 📈 Basierend auf Feedback die Plattform erweitern
-- 🎓 Meine Ausbildung erfolgreich abschließen (2025-2028)
+- ⚡ Den Unterrichtsalltag vereinfachen und digitalisieren
+- 📈 Basierend auf Feedback die Plattform stetig erweitern
+- 🎓 Meine Fähigkeiten während der Ausbildung unter Beweis stellen
+
+---
+
+## ✨ Neue Features v1.0
+
+### 🎨 Design & UX Verbesserungen
+
+- **Animations System** - Smooth fade-in, hover-effects, microinteractions
+- **Responsive Design** - Optimiert für Mobile, Tablet & Desktop
+- **Accessibility** - WCAG 2.1 AA konform, Screen-Reader Support
+- **Theme Toggle** - Dark/Light/Auto Mode mit Live-Preview
+- **Performance** - Code-Splitting, Lazy-Loading, optimierte Assets
+
+### 📊 Lehrer-Dashboard (NEU!)
+
+- 📈 **Statistik-Übersicht** - Nutzungsdaten & Aktivitäten
+- 🎮 **Spielstatistiken** - Quiz-Performance, häufige Fehler
+- 🔧 **Tool-Nutzung** - Welche Tools werden am meisten verwendet
+- 📅 **Zeitliche Auswertung** - Tages-, Wochen-, Monatsansicht
+- 📊 **Export-Funktionen** - Daten als PDF oder CSV exportieren
+
+### 🔄 Export & Share Features
+
+- 📤 **Quiz-Ergebnisse exportieren** - PDF, JSON, Textformat
+- 📊 **Statistiken teilen** - Generierte QR-Codes
+- 🔗 **Web Share API** - Direkt über native Share-Funktion teilen
+- 💾 **LocalStorage Backup** - Automatische Datensicherung
+
+### 📱 PWA Verbesserungen
+
+- 🔔 **Install-Prompt** - Intelligente Installation für Desktop & Mobile
+- 📶 **Offline-First** - Alle Tools funktionieren ohne Internet
+- 🔄 **Auto-Update** - Service Worker mit Versions-Management
+- 💾 **Cache-Optimierung** - Schnellere Ladezeiten
+
+### 🎯 Weitere Features
+
+- 📊 **Live-Statistiken** - Echtzeit-Tracking von Tool-Nutzung
+- 📳 **Haptic Feedback** - Vibration bei Touch-Interaktionen (Mobile)
+- 🎵 **Sound-Effekte** - Optional für interaktive Elemente
+- 🌐 **i18n Ready** - Vorbereitet für mehrsprachige Unterstützung
 
 ---
 
@@ -384,91 +418,48 @@ Faire Zufallsverteilung von Aufgaben und Präsentationen.
 
 ---
 
-##  Technologien
+## 💻 Technologien
 
-###  Tech Stack
+### 🛠️ Tech Stack
 
 <div align="center">
 
 | Kategorie | Technologien |
 |-----------|-------------|
 | **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) |
-| **Architektur** | Vanilla JS, OOP, Event-Driven, Modular |
-| **PWA** | Service Worker, Web App Manifest, Cache API |
-| **Storage** | LocalStorage API |
+| **Architektur** | Vanilla JS, OOP, Event-Driven, Modular Design |
+| **PWA** | Service Worker, Web App Manifest, Cache API, Install Prompts |
+| **Storage** | LocalStorage API, IndexedDB (planned) |
 | **Audio** | Web Audio API (synthetisch generiert) |
-| **Design** | CSS Grid, Flexbox, Animations, Glassmorphism |
+| **Design** | CSS Grid, Flexbox, Animations, Glassmorphism, CSS Variables |
+| **Accessibility** | WCAG 2.1 AA, ARIA Labels, Keyboard Navigation |
+| **Performance** | Code Splitting, Lazy Loading, Asset Optimization |
 
 </div>
 
-###  Code-Statistiken
+### 📊 Code-Statistiken
 
--  **Total Dateien:** 33+
--  **Code-Zeilen:** ~18.000+
--  **JavaScript:** ~12.000 Zeilen
--  **CSS:** ~6.000 Zeilen
--  **Fragen:** 125+ über 25 Kategorien
--  **Entwicklungszeit:** 8+ Wochen
--  **Commits:** 250+
--  **Tools:** 6 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette)
+- 📁 **Total Dateien:** 60+
+- 💻 **Code-Zeilen:** ~25.000+
+- 📜 **JavaScript:** ~16.000 Zeilen
+- 🎨 **CSS:** ~9.000 Zeilen
+- ❓ **Fragen:** 125+ über 25 Kategorien
+- ⏱️ **Entwicklungszeit:** 10+ Wochen
+- 🔄 **Commits:** 300+
+- 🛠️ **Tools:** 6 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette)
+- ✨ **Features:** 10 Enhancement-Module (v1.0)
 
-###  Browser-Kompatibilität
+### 🌐 Browser-Kompatibilität
 
 | Browser | Version | Status |
 |---------|---------|--------|
-|  Chrome | 90+ |  Vollständig unterstützt |
-|  Firefox | 88+ |  Vollständig unterstützt |
-|  Safari | 14+ |  Vollständig unterstützt |
-|  Edge | 90+ |  Vollständig unterstützt |
-|  Mobile | iOS/Android |  Optimiert |
+| 🟢 Chrome | 90+ | ✅ Vollständig unterstützt |
+| 🟠 Firefox | 88+ | ✅ Vollständig unterstützt |
+| 🔵 Safari | 14+ | ✅ Vollständig unterstützt |
+| 🟣 Edge | 90+ | ✅ Vollständig unterstützt |
+| 📱 Mobile | iOS/Android | ✅ Optimiert |
 
----
-
-##  Schnellstart
-
-###  ⚠️ WICHTIG: Lokaler Webserver erforderlich!
-
-Das Projekt muss über einen **lokalen Webserver** gestartet werden, nicht per Doppelklick!  
-Grund: Browser blockieren `file://` Protokoll wegen CORS-Sicherheitsrichtlinien.
-
-###  Installation & Start
-
-```bash
-# 1. Repository klonen
-git clone https://github.com/ImperatorKeksi/Keksi-webseite-spiel.git
-
-# 2. In Ordner wechseln
-cd Keksi-webseite-spiel
-
-# 3. Mit VS Code öffnen
-code .
-
-# 4. Live Server starten (VS Code Extension)
-# Rechtsklick auf START.html → "Open with Live Server"
-# Oder F1 → "Live Server: Open"
-```
-
-### 🚀 Alternative: Python Server
-
-```bash
-# Python 3
-python -m http.server 8000
-
-# Dann im Browser öffnen:
-# http://localhost:8000/START.html
-```
-
-###  Tipps
-
--  **Für beste Erfahrung:** Nutze Chrome, Firefox oder Edge
--  **Auf Smartphone:** Als PWA installieren für Offline-Nutzung
--  **Als Lehrer:** Account erstellen für Zugriff auf Editor
-
----
-
-##  Projektstruktur
-
-Das Projekt ist übersichtlich in Ordnern organisiert:
+### � Projektstruktur
 
 ```
 📂 Keksi-webseite-spiel/
@@ -478,12 +469,21 @@ Das Projekt ist übersichtlich in Ordnern organisiert:
 │
 ├── 📁 seiten/                      ← HTML-Seiten
 │   ├── index.html                  (Hauptmenü & Tool-Übersicht)
-│   ├── game.html                   (Jeopardy Quiz mit allen Modi)
-│   └── timer.html                  (Digitale Uhr & Timer) ✨ NEU
+│   ├── game.html                   (Jeopardy Quiz)
+│   ├── dashboard.html              (Lehrer-Dashboard) ✨ NEU
+│   └── timer.html                  (Digitale Uhr & Timer)
 │
 ├── 📁 stylesheets/                 ← CSS-Styles
-│   ├── main.css                    (Landing Page Styles)
-│   └── styles.css                  (Spiel-Styles)
+│   ├── main.css                    (Landing Page)
+│   ├── styles.css                  (Spiel-Styles)
+│   ├── animations.css              (Animation System) ✨ NEU
+│   ├── responsive.css              (Responsive Design) ✨ NEU
+│   ├── accessibility.css           (A11y Styles) ✨ NEU
+│   ├── theme.css                   (Theme Toggle) ✨ NEU
+│   ├── statistics.css              (Stats Widget) ✨ NEU
+│   ├── pwa-styles.css              (PWA UI) ✨ NEU
+│   ├── dashboard.css               (Dashboard) ✨ NEU
+│   └── export-share.css            (Export UI) ✨ NEU
 │
 ├── 📁 javascript/                  ← JavaScript-Dateien
 │   ├── script.js                   (Hauptspiel-Logik)
@@ -495,41 +495,40 @@ Das Projekt ist übersichtlich in Ordnern organisiert:
 │   ├── stats.js                    (Statistiken)
 │   ├── feedback.js                 (Feedback-System)
 │   ├── main.js                     (Landing Page Logik)
-│   └── timer.js                    (Timer-Logik) ✨ NEU
+│   ├── timer.js                    (Timer-Logik)
+│   ├── animations.js               (Animation Controller) ✨ NEU
+│   ├── responsive.js               (Responsive Controller) ✨ NEU
+│   ├── accessibility.js            (A11y Features) ✨ NEU
+│   ├── theme-controller.js         (Theme System) ✨ NEU
+│   ├── statistics.js               (Stats Tracking) ✨ NEU
+│   ├── performance.js              (Performance Monitor) ✨ NEU
+│   ├── pwa-controller.js           (PWA Management) ✨ NEU
+│   ├── dashboard.js                (Dashboard Logic) ✨ NEU
+│   ├── export-share.js             (Export Features) ✨ NEU
+│   ├── haptic-feedback.js          (Haptics) ✨ NEU
+│   └── enhancements-loader.js      (Module Loader) ✨ NEU
 │
 ├── 📁 fragenkataloge/              ← Fragen-Datenbanken
 │   ├── questions_it.js             (IT-Modus)
-│   ├── questions_lagerlogistik.js  (Lagerlogistik-Modus)
-│   ├── questions_kaufmaennisch.js  (Kaufmännischer-Modus)
-│   ├── questions_standard.js       (Standard-Modus)
-│   └── questions.js                (Legacy)
+│   ├── questions_lagerlogistik.js  (Lagerlogistik)
+│   ├── questions_kaufmaennisch.js  (Kaufmännisch)
+│   └── questions_standard.js       (Standard)
 │
 ├── 📁 icons/                       ← PWA-Icons
-│   └── icon-*.png                  (8 Größen: 72px bis 512px)
+│   └── icon-*.png                  (8 Größen: 72px-512px)
 │
 ├── 📁 pwa/                         ← Progressive Web App
 │   ├── manifest.json               (App-Manifest)
-│   └── sw.js                       (Service Worker)
+│   ├── sw.js                       (Service Worker v2.1.0) ✨ UPDATED
+│   └── version.json                (Version Tracking) ✨ NEU
 │
 └── 📁 tools/                       ← Entwickler-Tools
     └── generate_icons.html         (Icon-Generator)
 ```
 
-### 📝 Erklärung der Ordner:
-
-| Ordner | Beschreibung | Wichtige Dateien |
-|--------|--------------|------------------|
-| **seiten/** | Alle HTML-Seiten | `index.html`, `game.html`, `timer.html` ✨ |
-| **stylesheets/** | CSS-Dateien für Design | `styles.css`, `main.css` |
-| **javascript/** | Gesamte Spiellogik & Features | `script.js`, `modules.js`, `editor.js`, `timer.js` ✨ |
-| **fragenkataloge/** | Fragen für alle 4 Modi | `questions_*.js` |
-| **icons/** | Icons für PWA-Installation | `icon-192x192.png` etc. |
-| **pwa/** | PWA-Konfiguration & Cache | `manifest.json`, `sw.js` |
-| **tools/** | Hilfswerkzeuge | `generate_icons.html` |
-
 ---
 
-##  Über den Entwickler
+## 👨‍💻 Über den Entwickler
 
 <div align="center">
 
@@ -541,22 +540,22 @@ Das Projekt ist übersichtlich in Ordnern organisiert:
 
 </div>
 
-####  Persönliche Informationen
+#### 📋 Persönliche Informationen
 
--  **Ausbildung:** Fachinformatiker für IT-Systemelektroniker
--  **Ausbildungsstätte:** Oberlinhaus Oberhausen
--  **Ausbildungszeitraum:** 01.09.2025 - 31.08.2028 (3 Jahre, laufend)
--  **Standort:** Oberhausen, Deutschland
+- 🎓 **Ausbildung:** Fachinformatiker für IT-Systemelektroniker
+- 🏢 **Ausbildungsstätte:** Berufsbildungswerk im Oberlinhaus, Potsdam
+- 📅 **Ausbildungszeitraum:** 01.09.2025 - 31.08.2028 (3 Jahre, laufend)
+- 📍 **Standort:** Potsdam, Deutschland
 
-####  Motivation
+#### 💡 Motivation
 
-Dieses Projekt ist aus dem Wunsch entstanden, digitale Tools zu schaffen, die:
--  Lernen motivierend machen (Gamification statt trockene Theorie)
--  Lehrern helfen (Moderne Werkzeuge für modernen Unterricht)
--  Technik sinnvoll nutzen (Zeigen, was mit Webtechnologien möglich ist)
--  Wissen teilen (Open Source für alle zugänglich)
+Dieses Projekt entstand aus dem Wunsch, digitale Tools zu schaffen, die:
+- 🎮 **Lernen motivierend machen** - Gamification statt trockene Theorie
+- 👨‍🏫 **Lehrern helfen** - Moderne Werkzeuge für modernen Unterricht
+- 💻 **Technik sinnvoll nutzen** - Zeigen, was mit Webtechnologien möglich ist
+- 🌐 **Wissen teilen** - Open Source für alle zugänglich
 
-####  Technische Kompetenzen
+#### 🛠️ Technische Kompetenzen
 
 <table>
 <tr>
@@ -567,6 +566,7 @@ Dieses Projekt ist aus dem Wunsch entstanden, digitale Tools zu schaffen, die:
 - JavaScript ES6+
 - Responsive Design
 - PWA Development
+- Web Accessibility
 
 </td>
 <td width="50%">
@@ -576,108 +576,83 @@ Dieses Projekt ist aus dem Wunsch entstanden, digitale Tools zu schaffen, die:
 - VS Code
 - Chrome DevTools
 - Live Server
+- Performance Optimization
 
 </td>
 </tr>
 </table>
 
-####  Ziel
+#### 🎯 Projekt-Ziele
 
-**Projekt-Ziel:**
--  Berufsschulen und Ausbildern praktische digitale Tools zur Verfügung stellen
--  Unterrichtsalltag vereinfachen
--  Basierend auf Feedback neue Tools entwickeln
-
-**Persönliches Ziel:**
--  Ausbildung erfolgreich abschließen (2025-2028)
+- ✅ Berufsschulen und Ausbildern praktische digitale Tools zur Verfügung stellen
+- ✅ Unterrichtsalltag vereinfachen und digitalisieren
+- ✅ Basierend auf Feedback neue Features und Tools entwickeln
+- ✅ Meine Fähigkeiten während der Ausbildung unter Beweis stellen
+- 🎓 Ausbildung erfolgreich abschließen (2025-2028)
 
 ---
 
-##  Kontakt & Soziale Medien
+### 📧 Kontakt & Feedback
 
 <div align="center">
 
-###  Lass uns vernetzen!
+#### 🔗 Alle meine Links
 
 [![Soziale Medien](https://img.shields.io/badge/Alle%20Links-guns.lol-ff69b4?style=for-the-badge&logo=linktree&logoColor=white)](https://guns.lol/imperatorkeksi)
 
-** [guns.lol/imperatorkeksi](https://guns.lol/imperatorkeksi) **
+**➡️ [guns.lol/imperatorkeksi](https://guns.lol/imperatorkeksi) ⬅️**
 
-*Alle meine Social Media Profile an einem Ort!*
+*Alle meine Social Media Profile & Kontaktmöglichkeiten an einem Ort!*
 
 ---
 
-###  Weitere Kontaktmöglichkeiten
+#### 💻 GitHub
 
 [![GitHub](https://img.shields.io/badge/GitHub-ImperatorKeksi-181717?style=for-the-badge&logo=github)](https://github.com/ImperatorKeksi)
 [![Repository](https://img.shields.io/badge/Repo-Keksi--webseite--spiel-blue?style=for-the-badge&logo=github)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 
 ---
 
-###  Feedback & Fragen
+#### 💬 Feedback erwünscht!
 
 Hast du Fragen, Anregungen oder Verbesserungsvorschläge?
 
--  **Feature Requests:** [GitHub Issues](https://github.com/ImperatorKeksi/Keksi-webseite-spiel/issues)
--  **Bug Reports:** [GitHub Issues](https://github.com/ImperatorKeksi/Keksi-webseite-spiel/issues)
--  **Stars:** Wenn dir das Projekt gefällt, gib einen Stern!
+- 🐛 **Bug Reports:** [GitHub Issues](https://github.com/ImperatorKeksi/Keksi-webseite-spiel/issues)
+- ✨ **Feature Requests:** [GitHub Issues](https://github.com/ImperatorKeksi/Keksi-webseite-spiel/issues)
+- ⭐ **Feedback:** Wenn dir das Projekt gefällt, gib einen Stern auf GitHub!
+- 📧 **Direktkontakt:** Über [guns.lol/imperatorkeksi](https://guns.lol/imperatorkeksi)
 
 </div>
 
 ---
 
-##  Lizenz
+## 🙏 Danksagungen
 
-<div align="center">
-
-###  Nutzungsbedingungen
-
-Dieses Projekt ist **Open Source** und frei nutzbar!
-
-**Bedingungen:**
--  **Nutzen** - Frei für Bildungszwecke verwendbar
--  **Lernen** - Code anschauen und davon lernen
--  **Teilen** - Mit anderen teilen und weitergeben
-
-**Bei Weiterentwicklung:**
--  **Bitte kontaktiere mich** - Vor größeren Änderungen oder eigenem Projekt
--  **Zusammenarbeit** - Gemeinsam am Projekt arbeiten
--  **Austausch** - Ideen und Verbesserungen besprechen
-
-[![License](https://img.shields.io/badge/License-Contact%20Developer-blue?style=for-the-badge)](https://guns.lol/imperatorkeksi)
-
-*Bei Interesse an Weiterentwicklung oder Verwendung kontaktiere mich gerne!*
-
-</div>
-
----
-
-##  Danksagungen
-
--  **Oberlinhaus Oberhausen** - Für die Ausbildung und Unterstützung
--  **Meine Ausbilder & Berufsschullehrer** - Für Feedback und Förderung
--  **Kollegen & Azubis** - Für Ideen und Testen
--  **Open Source Community** - Für Inspiration
+- 🏢 **Berufsbildungswerk im Oberlinhaus, Potsdam** - Für die Ausbildung und Unterstützung
+- 👨‍🏫 **Meine Ausbilder & Berufsschullehrer** - Für wertvolles Feedback und Förderung
+- 👥 **Kollegen & Azubis** - Für Ideen, Testen und konstruktive Kritik
+- 🌐 **Open Source Community** - Für Inspiration und Lernressourcen
 
 ---
 
 <div align="center">
 
-##  Danke fürs Lesen!
+## ⭐ Danke fürs Lesen!
 
-*Wenn dir dieses Projekt gefällt, gib ihm einen  auf GitHub!*
+*Wenn dir dieses Projekt gefällt, gib ihm einen ⭐ auf GitHub!*
 
 ---
 
-**Entwickelt mit  und viel  für bessere Bildung**
+**Entwickelt mit ❤️ und viel ☕ für bessere digitale Bildung**
 
 *Nico Kaschube - Auszubildender Fachinformatiker für IT-Systemelektroniker*  
-*Oberlinhaus Oberhausen, 2025*
+*Berufsbildungswerk im Oberlinhaus, Potsdam | 2025*
 
 ---
 
-[![Made with Love](https://img.shields.io/badge/Made%20with--red?style=for-the-badge)](https://github.com/ImperatorKeksi)
-[![Built with Coffee](https://img.shields.io/badge/Built%20with--brown?style=for-the-badge)](https://github.com/ImperatorKeksi)
+[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/ImperatorKeksi)
+[![Built with Coffee](https://img.shields.io/badge/Built%20with-☕-brown?style=for-the-badge)](https://github.com/ImperatorKeksi)
 [![Powered by JavaScript](https://img.shields.io/badge/Powered%20by-JavaScript-yellow?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Open Beta](https://img.shields.io/badge/Status-Open%20Beta-orange?style=for-the-badge)](https://github.com/ImperatorKeksi/Keksi-webseite-spiel)
 
 </div>
