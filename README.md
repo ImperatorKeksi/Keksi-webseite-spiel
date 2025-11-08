@@ -16,10 +16,6 @@
 
 [📧 Kontakt & Feedback](#-über-den-entwickler)
 
----
-
-![Lehrer Tools Banner](https://via.placeholder.com/800x200/667eea/ffffff?text=Lehrer+Tools+-+Digitale+Bildung)
-
 </div>
 
 ---
@@ -27,11 +23,11 @@
 ## 📋 Inhaltsverzeichnis
 
 - [🎯 Über das Projekt](#-über-das-projekt)
-- [✨ Neue Features v1.0](#-neue-features-v10)
-- [� Verfügbare Tools](#-verfügbare-tools)
+- [✨ Features & Funktionen](#-features--funktionen)
+- [🎮 Verfügbare Tools](#-verfügbare-tools)
 - [💻 Technologien](#-technologien)
 - [👨‍💻 Über den Entwickler](#-über-den-entwickler)
-- [� Danksagungen](#-danksagungen)
+- [🙏 Danksagungen](#-danksagungen)
 
 ---
 
