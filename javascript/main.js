@@ -1,11 +1,11 @@
-﻿/*
-    ╔══════════════════════════════════════════════════╗
-    ║  🏠 LANDING PAGE - Navigation & Interaction     ║
-    ║  Hauptmenü-Logik der Landing Page               ║
-    ║                                                  ║
-    ║  Entwickler: Nico Kaschube                      ║
-    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
-    ╚══════════════════════════════════════════════════╝
+/*
+    +--------------------------------------------------+
+    �  ?? LANDING PAGE - Navigation & Interaction     �
+    �  Hauptmen�-Logik der Landing Page               �
+    �                                                  �
+    �  Entwickler: Nico Kaschube                      �
+    �  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  �
+    +--------------------------------------------------+
 */
 
 // ==================== MAIN PAGE MANAGER ====================
@@ -28,7 +28,7 @@ class MainPage {
         this.setupSmoothScroll();
         this.setupMobileMenu();
         this.setupAuthIntegration();
-        console.log('🎮 Main Page initialized');
+        console.log('?? Main Page initialized');
     }
     
     // =========================================================================
@@ -130,7 +130,7 @@ class MainPage {
                 if (logoutBtnNav) logoutBtnNav.style.display = 'inline-flex';
                 if (userDisplayNav) {
                     userDisplayNav.style.display = 'inline-flex';
-                    userDisplayNav.textContent = `👤 ${this.currentUser.username}`;
+                    userDisplayNav.textContent = `?? ${this.currentUser.username}`;
                 }
             } else {
                 if (loginBtnNav) loginBtnNav.style.display = 'inline-flex';
@@ -146,7 +146,7 @@ class MainPage {
         
         if (logoutBtnNav) {
             logoutBtnNav.addEventListener('click', () => {
-                if (confirm('Möchtest du dich wirklich abmelden?')) {
+                if (confirm('M�chtest du dich wirklich abmelden?')) {
                     window.authManager.logout();
                 }
             });
@@ -155,7 +155,7 @@ class MainPage {
         // Initial UI update
         window.authManager.updateUI();
         
-        console.log('✅ Auth integration complete');
+        console.log('? Auth integration complete');
     }
 }
 

@@ -274,4 +274,3 @@ class RandomGenerator {
 // Initialisierung
 const randomGen = new RandomGenerator();
 
-console.log('✅ Zufalls-Generator geladen!');

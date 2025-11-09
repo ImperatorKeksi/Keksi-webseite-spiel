@@ -21,9 +21,7 @@ class SoundManager {
         this.initializeSounds();
         
         // 📊 Debug-Logging
-        if (window.debugLog) {
-            debugLog.log('info', 'audio', '🎵 SoundManager initialisiert');
-        }
+        console.log('🎵 SoundManager initialisiert');
     }
 
     initializeSounds() {
@@ -59,10 +57,6 @@ class SoundManager {
     setMasterVolume(volume) {
         this.masterVolume = Math.max(0, Math.min(100, volume)) / 100;
         
-        if (window.debugLog) {
-            debugLog.log('info', 'audio', `🎵 Master-Lautstärke: ${Math.round(this.masterVolume * 100)}%`);
-        }
-        
         // Hintergrundmusik-Lautstärke anpassen
         if (this.backgroundMusic && this.backgroundMusic.gainNode) {
             this.backgroundMusic.gainNode.gain.value = this.masterVolume * 0.3; // BG-Musik leiser
@@ -90,20 +84,12 @@ class SoundManager {
     testSound() {
         if (!this.enabled) return;
         this.playSound('correct', this.masterVolume);
-        
-        if (window.debugLog) {
-            debugLog.log('info', 'audio', '🎵 Sound-Test gespielt');
-        }
     }
 
     generateSounds() {
         // ===================================
         // SOUND-GENERIERUNG                 
         // ===================================
-        
-        if (window.debugLog) {
-            debugLog.log('info', 'audio', '🔨 Generiere synthetische Sounds...');
-        }
         
         // Click Sound - Short beep
         this.sounds.click = this.createTone(800, 0.1, 'sine');

@@ -24,24 +24,12 @@ class AccessibilityController {
     }
 
     // ========================================
-    // SKIP NAVIGATION LINK
+    // SKIP NAVIGATION LINK (deaktiviert - nicht benötigt)
     // ========================================
     addSkipLink() {
-        if (document.querySelector('.skip-link')) return;
-
-        const skipLink = document.createElement('a');
-        skipLink.href = '#main-content';
-        skipLink.className = 'skip-link';
-        skipLink.textContent = 'Zum Hauptinhalt springen';
-        
-        document.body.insertBefore(skipLink, document.body.firstChild);
-
-        // Main Content ID hinzufügen falls nicht vorhanden
-        const main = document.querySelector('main, .container, #app');
-        if (main && !main.id) {
-            main.id = 'main-content';
-            main.setAttribute('tabindex', '-1');
-        }
+        // Skip-Link wurde vom Benutzer als störend empfunden
+        // Daher deaktiviert
+        return;
     }
 
     // ========================================

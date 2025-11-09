@@ -313,5 +313,3 @@ class StadtLandFlussGame {
 
 // Initialisierung
 const game = new StadtLandFlussGame();
-
-console.log('✅ Stadt Land Fluss geladen!');

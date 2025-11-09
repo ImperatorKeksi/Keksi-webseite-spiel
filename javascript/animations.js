@@ -359,8 +359,8 @@ if (document.readyState === 'loading') {
 }
 
 // Slideout animation für Notifications
-const style = document.createElement('style');
-style.textContent = `
+const notificationStyle = document.createElement('style');
+notificationStyle.textContent = `
     @keyframes slideOutRight {
         from {
             opacity: 1;
@@ -372,7 +372,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(notificationStyle);
 
 // Export für externe Nutzung
 if (typeof module !== 'undefined' && module.exports) {

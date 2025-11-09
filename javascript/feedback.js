@@ -450,19 +450,31 @@ class FeedbackManager {
         const description = document.getElementById('feedbackDescription').value.trim();
         const name = document.getElementById('feedbackName').value.trim() || 'Anonym';
         
-        // Validate required fields
+        // Validate required fields with toast notifications
         if (!type) {
-            alert('❌ Bitte wähle einen Typ aus!');
+            if (window.toast) {
+                window.toast.warning('Bitte wähle einen Typ aus!', 'Fehlende Angabe');
+            } else {
+                alert('❌ Bitte wähle einen Typ aus!');
+            }
             return;
         }
         
         if (!description) {
-            alert('❌ Bitte beschreibe dein Anliegen!');
+            if (window.toast) {
+                window.toast.warning('Bitte beschreibe dein Anliegen!', 'Fehlende Angabe');
+            } else {
+                alert('❌ Bitte beschreibe dein Anliegen!');
+            }
             return;
         }
         
         if (description.length < 10) {
-            alert('❌ Bitte gib eine ausführlichere Beschreibung an (mindestens 10 Zeichen)!');
+            if (window.toast) {
+                window.toast.warning('Bitte gib eine ausführlichere Beschreibung an (mindestens 10 Zeichen)!', 'Zu kurz');
+            } else {
+                alert('❌ Bitte gib eine ausführlichere Beschreibung an (mindestens 10 Zeichen)!');
+            }
             return;
         }
         
@@ -474,7 +486,11 @@ class FeedbackManager {
         
         // Validate bug category
         if (isBug && !category) {
-            alert('❌ Bei Bug-Meldungen bitte den Bereich auswählen!');
+            if (window.toast) {
+                window.toast.warning('Bei Bug-Meldungen bitte den Bereich auswählen!', 'Fehlende Angabe');
+            } else {
+                alert('❌ Bei Bug-Meldungen bitte den Bereich auswählen!');
+            }
             return;
         }
         
@@ -504,11 +520,16 @@ class FeedbackManager {
         
         console.log('📊 Feedback data:', feedbackData);
         
-        // Show loading
+        // Show loading with new loading states system
         const submitBtn = document.getElementById('submitFeedbackBtn');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = '⏳ Wird gesendet...';
-        submitBtn.disabled = true;
+        
+        if (window.setButtonLoading) {
+            window.setButtonLoading(submitBtn, true);
+        } else {
+            submitBtn.textContent = '⏳ Wird gesendet...';
+            submitBtn.disabled = true;
+        }
         
         try {
             // Send to FormSubmit (free service, no registration needed)
@@ -554,7 +575,14 @@ class FeedbackManager {
             
             if (response.ok) {
                 console.log('✅ Feedback sent successfully!');
-                alert('✅ Feedback erfolgreich gesendet! Vielen Dank!');
+                
+                // Use new toast notification system
+                if (window.toast) {
+                    window.toast.success('Feedback erfolgreich gesendet! Vielen Dank!', 'Erfolg');
+                } else {
+                    alert('✅ Feedback erfolgreich gesendet! Vielen Dank!');
+                }
+                
                 this.closeModal();
                 this.resetForm();
             } else {
@@ -568,17 +596,36 @@ class FeedbackManager {
             
             if (queued) {
                 const queueSize = this.feedbackQueue.getQueueSize();
-                alert(`📴 Server nicht erreichbar.\n\n💾 Feedback wurde lokal gespeichert (${queueSize} in Queue).\n\nWir versuchen es automatisch erneut, sobald du online bist!`);
+                
+                // Use new toast notification system
+                if (window.toast) {
+                    window.toast.warning(
+                        `Feedback wurde lokal gespeichert (${queueSize} in Queue). Wir versuchen es automatisch erneut, sobald du online bist!`,
+                        'Server nicht erreichbar'
+                    );
+                } else {
+                    alert(`📴 Server nicht erreichbar.\n\n💾 Feedback wurde lokal gespeichert (${queueSize} in Queue).\n\nWir versuchen es automatisch erneut, sobald du online bist!`);
+                }
+                
                 this.closeModal();
                 this.resetForm();
             } else {
                 // Queue failed, fallback to download
-                alert('⚠️ Speicherung fehlgeschlagen. Feedback wird als Datei heruntergeladen.');
+                if (window.toast) {
+                    window.toast.error('Speicherung fehlgeschlagen. Feedback wird als Datei heruntergeladen.', 'Fehler');
+                } else {
+                    alert('⚠️ Speicherung fehlgeschlagen. Feedback wird als Datei heruntergeladen.');
+                }
                 this.generateFeedbackFile(feedbackData);
             }
         } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+            // Restore button state
+            if (window.setButtonLoading) {
+                window.setButtonLoading(submitBtn, false);
+            } else {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         }
     }
 
@@ -725,25 +772,26 @@ try {
     console.error('Failed to add feedback animations:', error);
 }
 
+// Ensure debugLog exists
+window.debugLog = window.debugLog || function() {};
+
 // Initialize FeedbackManager
-console.log('🔄 Loading FeedbackManager...');
+window.debugLog('Loading FeedbackManager...');
 
 function initializeFeedbackManager() {
     try {
-        console.log('🔄 Initializing FeedbackManager...');
+        window.debugLog('Initializing FeedbackManager...');
         window.feedbackManager = new FeedbackManager();
-        console.log('✅ FeedbackManager loaded successfully!', window.feedbackManager);
+        window.debugLog('FeedbackManager loaded successfully!', window.feedbackManager);
     } catch (error) {
-        console.error('❌ Failed to initialize FeedbackManager:', error);
-        console.error('Error details:', error.message, error.stack);
+        console.error('Failed to initialize FeedbackManager:', error);
     }
 }
 
 // Initialize based on document state
 if (document.readyState === 'loading') {
-    console.log('⏳ Document still loading, waiting for DOMContentLoaded...');
     document.addEventListener('DOMContentLoaded', initializeFeedbackManager);
 } else {
-    console.log('✅ Document already loaded, initializing immediately...');
     initializeFeedbackManager();
 }
+

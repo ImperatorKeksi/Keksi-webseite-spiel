@@ -1,11 +1,11 @@
-﻿/*
-    ╔══════════════════════════════════════════════════╗
-    ║  🎨 AUTH UI - Login/Register Modal              ║
-    ║  Benutzeroberfläche für Authentifizierung       ║
-    ║                                                  ║
-    ║  Entwickler: Nico Kaschube                      ║
-    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
-    ╚══════════════════════════════════════════════════╝
+/*
+    +--------------------------------------------------+
+    �  ?? AUTH UI - Login/Register Modal              �
+    �  Benutzeroberfl�che f�r Authentifizierung       �
+    �                                                  �
+    �  Entwickler: Nico Kaschube                      �
+    �  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  �
+    +--------------------------------------------------+
 */
 
 // ==================== AUTH UI MANAGER ====================
@@ -29,7 +29,7 @@ class AuthUI {
     setup() {
         this.loginModal = document.getElementById('loginModal');
         this.bindEvents();
-        console.log('🎨 Auth UI initialized');
+        console.log('?? Auth UI initialized');
     }
     
     bindEvents() {
@@ -145,22 +145,22 @@ class AuthUI {
         const password = document.getElementById('loginPassword')?.value;
         
         if (!username || !password) {
-            this.showError('login', 'Bitte fülle alle Felder aus!');
+            this.showError('login', 'Bitte f�lle alle Felder aus!');
             return;
         }
         
-        // Disable button während Login
+        // Disable button w�hrend Login
         const submitBtn = document.getElementById('submitLoginBtn');
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.textContent = '⏳ Anmeldung läuft...';
+            submitBtn.textContent = '? Anmeldung l�uft...';
         }
         
         try {
             const result = await window.authManager.login(username, password);
             
             if (result.success) {
-                this.showSuccess('login', `✅ Willkommen ${result.user.username}!`);
+                this.showSuccess('login', `? Willkommen ${result.user.username}!`);
                 
                 setTimeout(() => {
                     this.closeLoginModal();
@@ -173,15 +173,15 @@ class AuthUI {
         } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.textContent = '🔓 Anmelden';
+                submitBtn.textContent = '?? Anmelden';
             }
         }
     }
     
     handleLogout() {
-        if (confirm('Möchtest du dich wirklich abmelden?')) {
+        if (confirm('M�chtest du dich wirklich abmelden?')) {
             window.authManager.logout();
-            this.showNotification('👋 Erfolgreich abgemeldet!', 'info');
+            this.showNotification('?? Erfolgreich abgemeldet!', 'info');
         }
     }
     
@@ -191,12 +191,12 @@ class AuthUI {
         const passwordConfirm = document.getElementById('registerPasswordConfirm')?.value;
         
         if (!username || !password || !passwordConfirm) {
-            this.showError('register', 'Bitte fülle alle Felder aus!');
+            this.showError('register', 'Bitte f�lle alle Felder aus!');
             return;
         }
         
         if (password !== passwordConfirm) {
-            this.showError('register', 'Passwörter stimmen nicht überein!');
+            this.showError('register', 'Passw�rter stimmen nicht �berein!');
             return;
         }
         

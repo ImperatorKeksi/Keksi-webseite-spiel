@@ -1,15 +1,15 @@
-﻿/*
-    ╔══════════════════════════════════════════════════╗
-    ║  📝 FRAGEN-EDITOR - Kategorien & Fragen         ║
-    ║  Editor für Lehrer zum Erstellen von Fragen     ║
-    ║                                                  ║
-    ║  Entwickler: Nico Kaschube                      ║
-    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ║
-    ╚══════════════════════════════════════════════════╝
+/*
+    +--------------------------------------------------+
+    �  ?? FRAGEN-EDITOR - Kategorien & Fragen         �
+    �  Editor f�r Lehrer zum Erstellen von Fragen     �
+    �                                                  �
+    �  Entwickler: Nico Kaschube                      �
+    �  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  �
+    +--------------------------------------------------+
 */
 
 // ==================== QUESTION EDITOR ====================
-// 📝 FRAGEN-EDITOR KLASSE                                                     
+// ?? FRAGEN-EDITOR KLASSE                                                     
 // ============================================================================= 
 class QuestionEditor {
     constructor() {
@@ -23,7 +23,7 @@ class QuestionEditor {
     init() {
         this.loadCustomData();
         this.bindEventListeners();
-        console.log('📝 Question Editor initialized');
+        console.log('?? Question Editor initialized');
     }
 
     bindEventListeners() {
@@ -67,6 +67,21 @@ class QuestionEditor {
     // =========================================================================
     
     openEditor() {
+        // 🔐 AUTH-CHECK: Nur Lehrer & Admins dürfen Editor öffnen!
+        if (!window.authManager) {
+            alert('⚠️ Auth-System nicht geladen!');
+            console.error('❌ authManager nicht verfügbar');
+            return;
+        }
+        
+        const currentUser = window.authManager.currentUser;
+        if (!currentUser || (currentUser.role !== 'teacher' && currentUser.role !== 'admin')) {
+            alert('🔒 Nur Lehrer und Admins können Fragen bearbeiten!\n\nBitte melde dich mit einem Lehrer- oder Admin-Account an.');
+            console.warn('⚠️ Editor-Zugriff verweigert - User:', currentUser?.username || 'Nicht angemeldet');
+            return;
+        }
+        
+        console.log('✅ Editor-Zugriff gewährt für:', currentUser.username, '(Rolle:', currentUser.role + ')');
         document.getElementById('setupScreen').classList.add('hidden');
         document.getElementById('editorScreen').classList.remove('hidden');
         this.renderCategories();
@@ -87,9 +102,9 @@ class QuestionEditor {
             try {
                 const parsed = JSON.parse(savedData);
                 this.categories = parsed.categories || [];
-                console.log('📥 Custom data loaded:', this.categories.length, 'categories');
+                console.log('?? Custom data loaded:', this.categories.length, 'categories');
             } catch (e) {
-                console.error('❌ Error loading custom data:', e);
+                console.error('? Error loading custom data:', e);
                 this.categories = [];
             }
         } else {
@@ -123,15 +138,15 @@ class QuestionEditor {
                 lastModified: new Date().toISOString()
             };
             localStorage.setItem(this.customDataKey, JSON.stringify(data));
-            console.log('💾 Data saved to localStorage');
+            console.log('?? Data saved to localStorage');
             
             // Notify game if it's running
             this.notifyGameOfChanges();
             
             return true;
         } catch (e) {
-            console.error('❌ Error saving to localStorage:', e);
-            alert('Fehler beim Speichern! Daten könnten zu groß sein.');
+            console.error('? Error saving to localStorage:', e);
+            alert('Fehler beim Speichern! Daten k�nnten zu gro� sein.');
             return false;
         }
     }
@@ -139,25 +154,25 @@ class QuestionEditor {
     notifyGameOfChanges() {
         // Check if game exists and is active
         if (window.jeopardyGame && document.getElementById('gameScreen').classList.contains('hidden') === false) {
-            console.log('🔄 Notifying game of category changes...');
+            console.log('?? Notifying game of category changes...');
             // Game will reload data on next start
         }
     }
 
     saveQuestions() {
         if (this.saveToLocalStorage()) {
-            this.showNotification('✅ Fragen erfolgreich gespeichert!', 'success');
+            this.showNotification('? Fragen erfolgreich gespeichert!', 'success');
         }
     }
 
     resetQuestions() {
-        if (confirm('Möchtest du wirklich alle benutzerdefinierten Fragen löschen und zu den Standardfragen zurückkehren?')) {
+        if (confirm('M�chtest du wirklich alle benutzerdefinierten Fragen l�schen und zu den Standardfragen zur�ckkehren?')) {
             localStorage.removeItem(this.customDataKey);
             this.categories = this.getDefaultCategories();
             this.currentCategoryId = null;
             this.renderCategories();
             this.showQuestionsPlaceholder();
-            this.showNotification('🔄 Fragen wurden zurückgesetzt!', 'info');
+            this.showNotification('?? Fragen wurden zur�ckgesetzt!', 'info');
         }
     }
 
@@ -191,19 +206,19 @@ class QuestionEditor {
                         <button onclick="editor.moveCategoryUp('${category.id}')" 
                                 ${isFirst ? 'disabled' : ''} 
                                 title="Nach oben verschieben" 
-                                class="btn-move-up">⬆️</button>
+                                class="btn-move-up">??</button>
                         <button onclick="editor.moveCategoryDown('${category.id}')" 
                                 ${isLast ? 'disabled' : ''} 
                                 title="Nach unten verschieben" 
-                                class="btn-move-down">⬇️</button>
+                                class="btn-move-down">??</button>
                     </div>
                     <div class="category-main-info">
                         <div class="category-name">${this.escapeHtml(category.name)}</div>
                         <div class="category-info">${questionCount} / 20 Fragen</div>
                     </div>
                     <div class="category-actions">
-                        <button onclick="editor.editCategoryName('${category.id}')" title="Umbenennen">✏️</button>
-                        <button onclick="editor.deleteCategory('${category.id}')" title="Löschen">🗑️</button>
+                        <button onclick="editor.editCategoryName('${category.id}')" title="Umbenennen">??</button>
+                        <button onclick="editor.deleteCategory('${category.id}')" title="L�schen">???</button>
                     </div>
                 </div>
             `;
@@ -236,14 +251,14 @@ class QuestionEditor {
         this.renderCategories();
         this.selectCategory(newCategory.id);
         this.saveToLocalStorage(); // Auto-save
-        this.showNotification('✅ Kategorie hinzugefügt!', 'success');
+        this.showNotification('? Kategorie hinzugef�gt!', 'success');
     }
 
     editCategoryName(categoryId) {
         const category = this.categories.find(c => c.id === categoryId);
         if (!category) return;
 
-        const newName = prompt('Neuer Name für die Kategorie:', category.name);
+        const newName = prompt('Neuer Name f�r die Kategorie:', category.name);
         if (newName && newName.trim() !== '' && newName !== category.name) {
             category.name = newName.trim();
             this.renderCategories();
@@ -251,7 +266,7 @@ class QuestionEditor {
                 this.renderQuestions();
             }
             this.saveToLocalStorage(); // Auto-save
-            this.showNotification('✅ Kategorie umbenannt!', 'success');
+            this.showNotification('? Kategorie umbenannt!', 'success');
         }
     }
 
@@ -259,7 +274,7 @@ class QuestionEditor {
         const category = this.categories.find(c => c.id === categoryId);
         if (!category) return;
 
-        if (confirm(`Möchtest du die Kategorie "${category.name}" wirklich löschen? Alle Fragen gehen verloren!`)) {
+        if (confirm(`M�chtest du die Kategorie "${category.name}" wirklich l�schen? Alle Fragen gehen verloren!`)) {
             this.categories = this.categories.filter(c => c.id !== categoryId);
             if (this.currentCategoryId === categoryId) {
                 this.currentCategoryId = null;
@@ -267,7 +282,7 @@ class QuestionEditor {
             }
             this.renderCategories();
             this.saveToLocalStorage(); // Auto-save
-            this.showNotification('🗑️ Kategorie gelöscht!', 'info');
+            this.showNotification('??? Kategorie gel�scht!', 'info');
         }
     }
 
@@ -280,7 +295,7 @@ class QuestionEditor {
         
         this.renderCategories();
         this.saveToLocalStorage(); // Auto-save
-        this.showNotification('⬆️ Kategorie nach oben verschoben', 'success');
+        this.showNotification('?? Kategorie nach oben verschoben', 'success');
     }
 
     moveCategoryDown(categoryId) {
@@ -292,7 +307,7 @@ class QuestionEditor {
         
         this.renderCategories();
         this.saveToLocalStorage(); // Auto-save
-        this.showNotification('⬇️ Kategorie nach unten verschoben', 'success');
+        this.showNotification('?? Kategorie nach unten verschoben', 'success');
     }
 
     selectCategory(categoryId) {
@@ -328,7 +343,7 @@ class QuestionEditor {
         if (category.questions.length < 20) {
             const addBtn = document.createElement('button');
             addBtn.className = 'add-question-btn';
-            addBtn.textContent = `+ Neue Frage hinzufügen (${category.questions.length}/20)`;
+            addBtn.textContent = `+ Neue Frage hinzuf�gen (${category.questions.length}/20)`;
             addBtn.addEventListener('click', () => this.addQuestion());
             container.appendChild(addBtn);
         }
@@ -343,8 +358,8 @@ class QuestionEditor {
             <div class="question-header">
                 <span class="question-number">Frage ${number}</span>
                 <div class="question-actions">
-                    <button class="btn-duplicate" onclick="editor.duplicateQuestion('${question.id}')" title="Frage duplizieren">📋 Duplizieren</button>
-                    <button class="btn-delete" onclick="editor.deleteQuestion('${question.id}')" title="Frage löschen">🗑️ Löschen</button>
+                    <button class="btn-duplicate" onclick="editor.duplicateQuestion('${question.id}')" title="Frage duplizieren">?? Duplizieren</button>
+                    <button class="btn-delete" onclick="editor.deleteQuestion('${question.id}')" title="Frage l�schen">??? L�schen</button>
                 </div>
             </div>
             <div class="question-form">
@@ -427,11 +442,11 @@ class QuestionEditor {
         const category = this.categories.find(c => c.id === this.currentCategoryId);
         if (!category) return;
 
-        if (confirm('Möchtest du diese Frage wirklich löschen?')) {
+        if (confirm('M�chtest du diese Frage wirklich l�schen?')) {
             category.questions = category.questions.filter(q => q.id !== questionId);
             this.renderQuestions();
             this.renderCategories(); // Update question count
-            this.showNotification('🗑️ Frage gelöscht!', 'info');
+            this.showNotification('??? Frage gel�scht!', 'info');
         }
     }
 
@@ -441,7 +456,7 @@ class QuestionEditor {
 
         // Check if we've reached the maximum number of questions
         if (category.questions.length >= 20) {
-            alert('⚠️ Maximum von 20 Fragen pro Kategorie erreicht!');
+            alert('?? Maximum von 20 Fragen pro Kategorie erreicht!');
             return;
         }
 
@@ -473,7 +488,7 @@ class QuestionEditor {
             }
         }, 100);
 
-        this.showNotification('📋 Frage dupliziert!', 'success');
+        this.showNotification('?? Frage dupliziert!', 'success');
     }
 
     showQuestionsPlaceholder() {
@@ -481,7 +496,7 @@ class QuestionEditor {
         document.getElementById('questionCounter').textContent = '0 / 20 Fragen';
         document.getElementById('questionsEditor').innerHTML = `
             <div class="editor-placeholder">
-                <p>👈 Wähle eine Kategorie aus, um Fragen zu bearbeiten</p>
+                <p>?? W�hle eine Kategorie aus, um Fragen zu bearbeiten</p>
             </div>
         `;
     }
@@ -491,9 +506,9 @@ class QuestionEditor {
     // =========================================================================
     
     showImportModal() {
-        document.getElementById('importExportTitle').textContent = '📥 Fragen importieren';
+        document.getElementById('importExportTitle').textContent = '?? Fragen importieren';
         document.getElementById('importExportData').value = '';
-        document.getElementById('importExportData').placeholder = 'Füge hier die JSON-Daten ein...';
+        document.getElementById('importExportData').placeholder = 'F�ge hier die JSON-Daten ein...';
         document.getElementById('confirmImportBtn').classList.remove('hidden');
         document.getElementById('copyExportBtn').classList.add('hidden');
         document.getElementById('importExportModal').classList.remove('hidden');
@@ -506,7 +521,7 @@ class QuestionEditor {
             categories: this.categories
         };
         
-        document.getElementById('importExportTitle').textContent = '📤 Fragen exportieren';
+        document.getElementById('importExportTitle').textContent = '?? Fragen exportieren';
         document.getElementById('importExportData').value = JSON.stringify(exportData, null, 2);
         document.getElementById('importExportData').placeholder = '';
         document.getElementById('confirmImportBtn').classList.add('hidden');
@@ -521,7 +536,7 @@ class QuestionEditor {
     confirmImport() {
         const jsonText = document.getElementById('importExportData').value.trim();
         if (!jsonText) {
-            alert('Bitte füge gültige JSON-Daten ein!');
+            alert('Bitte f�ge g�ltige JSON-Daten ein!');
             return;
         }
 
@@ -530,20 +545,20 @@ class QuestionEditor {
             
             // Validate structure
             if (!data.categories || !Array.isArray(data.categories)) {
-                throw new Error('Ungültiges Format: categories fehlt');
+                throw new Error('Ung�ltiges Format: categories fehlt');
             }
 
             // Validate categories
             for (const cat of data.categories) {
                 if (!cat.name || !Array.isArray(cat.questions)) {
-                    throw new Error('Ungültiges Kategorien-Format');
+                    throw new Error('Ung�ltiges Kategorien-Format');
                 }
                 if (!cat.id) {
                     cat.id = `cat-${Date.now()}-${Math.random()}`;
                 }
                 for (const q of cat.questions) {
                     if (typeof q.question !== 'string' || typeof q.answer !== 'string') {
-                        throw new Error('Ungültiges Fragen-Format');
+                        throw new Error('Ung�ltiges Fragen-Format');
                     }
                     if (!q.id) {
                         q.id = `q-${Date.now()}-${Math.random()}`;
@@ -558,7 +573,7 @@ class QuestionEditor {
             this.renderCategories();
             this.showQuestionsPlaceholder();
             this.closeImportExportModal();
-            this.showNotification('✅ Fragen erfolgreich importiert!', 'success');
+            this.showNotification('? Fragen erfolgreich importiert!', 'success');
 
         } catch (e) {
             alert('Fehler beim Importieren:\n' + e.message);
@@ -570,7 +585,7 @@ class QuestionEditor {
         const textarea = document.getElementById('importExportData');
         textarea.select();
         document.execCommand('copy');
-        this.showNotification('📋 Daten in Zwischenablage kopiert!', 'success');
+        this.showNotification('?? Daten in Zwischenablage kopiert!', 'success');
     }
 
     // =========================================================================
@@ -717,17 +732,17 @@ class QuestionEditor {
     }
     
     // =========================================================================
-    // TEMPLATE-LOADING (NEU für Berufs-Vorlagen)
+    // TEMPLATE-LOADING (NEU f�r Berufs-Vorlagen)
     // =========================================================================
     
     showTemplateDialog() {
         const confirmed = confirm(
-            '🎓 Berufs-Vorlage laden?\n\n' +
-            'Wähle eine Vorlage:\n' +
+            '?? Berufs-Vorlage laden?\n\n' +
+            'W�hle eine Vorlage:\n' +
             '1 = IT-Vorlage\n' +
             '2 = Lagerlogistik-Vorlage\n' +
-            '3 = Kaufmännische Vorlage\n\n' +
-            'ACHTUNG: Aktuelle Fragen werden überschrieben!'
+            '3 = Kaufm�nnische Vorlage\n\n' +
+            'ACHTUNG: Aktuelle Fragen werden �berschrieben!'
         );
         
         if (confirmed) {
@@ -747,7 +762,7 @@ class QuestionEditor {
         
         const templateFile = templates[choice];
         if (!templateFile) {
-            alert('❌ Ungültige Auswahl!');
+            alert('? Ung�ltige Auswahl!');
             return;
         }
         
@@ -755,22 +770,22 @@ class QuestionEditor {
         const script = document.createElement('script');
         script.src = templateFile;
         script.onload = () => {
-            console.log('✅ Template geladen:', templateFile);
+            console.log('? Template geladen:', templateFile);
             
-            // Übernehme Daten aus jeopardyData
+            // �bernehme Daten aus jeopardyData
             if (typeof jeopardyData !== 'undefined' && jeopardyData.categories) {
                 this.categories = JSON.parse(JSON.stringify(jeopardyData.categories));
                 this.renderCategories();
-                alert('✅ Vorlage erfolgreich geladen! Du kannst sie jetzt bearbeiten.');
+                alert('? Vorlage erfolgreich geladen! Du kannst sie jetzt bearbeiten.');
             } else {
-                alert('❌ Fehler beim Laden der Vorlage!');
+                alert('? Fehler beim Laden der Vorlage!');
             }
             
             // Entferne Script-Tag wieder
             document.head.removeChild(script);
         };
         script.onerror = () => {
-            alert('❌ Fehler: Template-Datei konnte nicht geladen werden!');
+            alert('? Fehler: Template-Datei konnte nicht geladen werden!');
         };
         document.head.appendChild(script);
     }
@@ -795,8 +810,8 @@ if (document.readyState === 'loading') {
 }
 
 // Add CSS animations
-const style = document.createElement('style');
-style.textContent = `
+const editorStyle = document.createElement('style');
+editorStyle.textContent = `
     @keyframes slideIn {
         from {
             transform: translateX(100%);
@@ -819,4 +834,4 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(editorStyle);

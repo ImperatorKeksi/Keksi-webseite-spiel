@@ -199,4 +199,3 @@ class TaskRoulette {
 // Initialisierung
 const roulette = new TaskRoulette();
 
-console.log('✅ Aufgaben-Roulette geladen!');

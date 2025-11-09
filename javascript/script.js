@@ -10,7 +10,7 @@
 
 // ==================== DEBUG KONFIGURATION ====================
 const DEBUG_CONFIG = {
-    enabled: false, // Hauptschalter für Debug-Modus (false für Production)
+    enabled: false, // Hauptschalter für Debug-Modus (false für Production) - DEAKTIVIERT, nutze window.debugLog aus production-config.js
     verbose: false, // Detaillierte Logs
     performance: false, // Performance-Messungen
     showFPS: false, // FPS Counter
@@ -115,13 +115,17 @@ Verfügbare Befunde:
     }
 }
 
-// 🌐 Globaler Debug Logger
-const debugLog = new DebugLogger(DEBUG_CONFIG);
+// 🌐 Globaler Debug Logger (lokale Instanz für script.js)
+const scriptDebugLogger = new DebugLogger(DEBUG_CONFIG);
 
-// 🔧 Debug-Funktionen global verfügbar machen
-window.enableDebug = () => debugLog.toggleDebugMode();
-window.debugStats = () => debugLog.showStats();
-window.debugLog = debugLog;
+// 🔧 Debug-Funktionen global verfügbar machen (nur wenn noch nicht vorhanden)
+if (!window.enableDebug) {
+    window.enableDebug = () => scriptDebugLogger.toggleDebugMode();
+}
+if (!window.debugStats) {
+    window.debugStats = () => scriptDebugLogger.showStats();
+}
+// window.debugLog existiert bereits von production-config.js - nicht überschreiben!
 
 /* ============================================================================= */
 /* JEOPARDY SPIEL HAUPTKLASSE                                                   */
@@ -170,11 +174,11 @@ class JeopardyGame {
         this.bindEventListeners();
         // Volume control removed
         this.initializeDebugControls();
+        this.initializeAnalytics();
         this.showSetupScreen();
         
-        if (window.debugLog) {
-            debugLog.log('info', 'game', '🎮 Jeopardy-Spiel initialisiert');
-        }
+        // ✅ FIXED: debugLog ist eine Funktion, kein Objekt!
+        console.log('🎮 Jeopardy-Spiel initialisiert');
     }
 
     bindEventListeners() {
@@ -287,8 +291,6 @@ class JeopardyGame {
         
         // Virtualisierung für große Listen (falls nötig)
         this.optimizeAnimations();
-        
-        console.log('⚡ Performance optimizations applied');
     }
 
     addDebouncedEvents() {
@@ -447,12 +449,26 @@ class JeopardyGame {
         
         // Play theme sound
         this.soundManager.play('theme');
+        
+        // Track Game Start
+        if (window.analyticsEvents) {
+            window.analyticsEvents.gameStarted(
+                this.gameMode,
+                this.gameData.categories.map(c => c.name),
+                {
+                    playerCount: this.players.length,
+                    timerEnabled: this.timerEnabled,
+                    dailyDoublesEnabled: this.dailyDoublesEnabled,
+                    selectedCategories: this.gameData.categories.length
+                }
+            );
+            window.analyticsEvents.screenViewed('game_screen');
+        }
     }
 
     loadGameData() {
         // Check if custom questions are available from the editor
         if (window.editor && window.editor.hasCustomQuestions()) {
-            console.log('🎯 Loading custom questions from editor...');
             const customData = window.editor.getCustomQuestions();
             
             if (customData && customData.categories && customData.categories.length > 0) {
@@ -468,8 +484,6 @@ class JeopardyGame {
                         ...question,
                         points: (index + 1) * 100
                     }));
-                    
-                    console.log(`📋 ${category.name}: ${selectedQuestions.length} questions selected randomly`);
 
                     return {
                         name: category.name,
@@ -477,7 +491,6 @@ class JeopardyGame {
                     };
                 });
 
-                console.log('✅ Custom questions loaded successfully:', categories);
                 return { categories: categories };
             }
         }
@@ -487,8 +500,6 @@ class JeopardyGame {
             console.error('jeopardyData not found!');
             return { categories: [] };
         }
-
-        console.log('🎯 Loading default questions...');
 
         // Choose 5 RANDOM questions from each category for the game
         const categories = jeopardyData.categories.map(category => {
@@ -502,8 +513,6 @@ class JeopardyGame {
                 ...question,
                 points: (index + 1) * 100
             }));
-            
-            console.log(`📋 ${category.name}: ${selectedQuestions.length} questions selected randomly`);
 
             return {
                 name: category.name,
@@ -511,7 +520,6 @@ class JeopardyGame {
             };
         });
 
-        console.log('✅ Questions loaded successfully:', categories);
         return { categories: categories };
     }
 
@@ -581,9 +589,6 @@ class JeopardyGame {
     }
 
     initializeBoard() {
-        console.log('🎮 Initializing board...');
-        console.log('Game data:', this.gameData);
-        
         if (!this.gameData || !this.gameData.categories || this.gameData.categories.length === 0) {
             console.error('❌ No categories found!');
             alert('Keine Kategorien verfügbar! Bitte füge Kategorien im Editor hinzu.');
@@ -591,7 +596,6 @@ class JeopardyGame {
         }
 
         const numCategories = this.gameData.categories.length;
-        console.log(`Creating board with ${numCategories} categories`);
 
         // Update categories row dynamically
         const categoriesRow = document.querySelector('.categories-row');
@@ -624,7 +628,6 @@ class JeopardyGame {
         }
         
         const maxQuestions = this.gameData.categories[0].questions.length;
-        console.log(`Creating board with ${maxQuestions} questions per category`);
 
         // Create question cards
         for (let questionIndex = 0; questionIndex < maxQuestions; questionIndex++) {
@@ -719,9 +722,6 @@ class JeopardyGame {
     }
 
     answerResult(isCorrect) {
-        console.log('answerResult called:', isCorrect);
-        console.log('currentQuestion:', this.currentQuestion);
-        
         if (!this.currentQuestion) {
             console.error('No current question set!');
             alert('Fehler: Keine aktuelle Frage gefunden!');
@@ -736,12 +736,21 @@ class JeopardyGame {
         const categoryName = this.gameData.categories[categoryIndex].name;
         const questionText = this.currentQuestion.questionData.question;
 
-        console.log('Processing answer:', { points, currentPlayer: currentPlayer.name, categoryName });
-
         // 📊 Track question statistics
+        const timeTaken = this.timerStartTime ? (Date.now() - this.timerStartTime) / 1000 : 0;
+        
         if (window.questionStats) {
-            const timeTaken = this.timerStartTime ? (Date.now() - this.timerStartTime) / 1000 : 0;
             window.questionStats.recordAnswer(questionText, categoryName, isCorrect, timeTaken);
+        }
+        
+        // 📊 Track analytics
+        if (window.analyticsEvents) {
+            window.analyticsEvents.questionAnswered(
+                categoryName,
+                this.currentQuestion.questionData.points,
+                isCorrect,
+                timeTaken
+            );
         }
 
         // Play sound effect
@@ -830,8 +839,6 @@ class JeopardyGame {
 
     // 🔄 Neue Runde mit neuen zufälligen Fragen
     startNewRound() {
-        console.log('🔄 Starting new round with fresh questions!');
-        
         // Reset used questions
         this.usedQuestions.clear();
         
@@ -954,8 +961,6 @@ class JeopardyGame {
     }
 
     newGame() {
-        console.log('🔄 Starting completely new game');
-        
         // Reset ALL game state
         this.players = [];
         this.currentPlayerIndex = 0;
@@ -1401,8 +1406,6 @@ class JeopardyGame {
         // Set the wager
         this.currentWager = wagerAmount;
         
-        console.log(`💰 Daily Double Wager set: ${this.currentWager} points`);
-        
         // Close Daily Double modal and show question
         document.getElementById('dailyDoubleModal').classList.add('hidden');
         
@@ -1529,7 +1532,7 @@ class JeopardyGame {
     toggleFullscreen() {
         if (!document.fullscreenElement) {
             document.documentElement.requestFullscreen().catch(err => {
-                console.log('Fullscreen error:', err);
+                console.error('Fullscreen error:', err);
             });
         } else {
             document.exitFullscreen();
@@ -1643,6 +1646,47 @@ class JeopardyGame {
     // Volume control completely removed
     
     // ===================================
+    // ANALYTICS SYSTEM INITIALISIEREN   
+    // ===================================
+    initializeAnalytics() {
+        // Analytics Toggle
+        const analyticsToggle = document.getElementById('analyticsToggle');
+        if (analyticsToggle && window.analyticsManager) {
+            // Lade aktuellen Status
+            analyticsToggle.checked = window.analyticsManager.isEnabled();
+            
+            // Event Listener
+            analyticsToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    window.analyticsManager.enable();
+                    console.log('✅ Analytics aktiviert');
+                } else {
+                    window.analyticsManager.disable();
+                    console.log('❌ Analytics deaktiviert');
+                }
+            });
+        }
+        
+        // Analytics Dashboard Button (nur für Admins)
+        const analyticsBtn = document.getElementById('openAnalyticsBtn');
+        if (analyticsBtn && window.analyticsDashboard) {
+            analyticsBtn.addEventListener('click', () => {
+                window.analyticsDashboard.open();
+                if (window.analyticsEvents) {
+                    window.analyticsEvents.buttonClicked('openAnalyticsBtn', 'setup_screen');
+                }
+            });
+        }
+        
+        // Track Page Load
+        if (window.analyticsEvents) {
+            const loadTime = performance.now();
+            window.analyticsEvents.pageLoadTime(loadTime);
+            window.analyticsEvents.screenViewed('setup_screen');
+        }
+    }
+    
+    // ===================================
     // DEBUG-KONTROLLEN INITIALISIEREN   
     // ===================================
     initializeDebugControls() {
@@ -1651,9 +1695,7 @@ class JeopardyGame {
             // Ctrl + Shift + D = Debug-Modus umschalten
             if (e.ctrlKey && e.shiftKey && e.key === 'D') {
                 e.preventDefault();
-                if (window.debugLog) {
-                    debugLog.toggleDebugMode();
-                }
+                console.log('🔧 Debug-Toggle nicht verfügbar');
             }
             
             // Ctrl + Shift + P = Performance-Monitor
@@ -1673,9 +1715,7 @@ class JeopardyGame {
             // Ctrl + Shift + S = Statistiken anzeigen
             if (e.ctrlKey && e.shiftKey && e.key === 'S') {
                 e.preventDefault();
-                if (window.debugLog) {
-                    debugLog.showStats();
-                }
+                console.log('📊 Statistiken-Anzeige nicht verfügbar');
             }
         });
         

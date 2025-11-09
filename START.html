@@ -423,6 +423,12 @@
         </div>
     </div>
 
+    <!-- 🎯 PRODUCTION CONFIG - MUSS ZUERST GELADEN WERDEN! (blocking) -->
+    <script src="javascript/production-config.js"></script>
+    
+    <!-- Error Handler - Global Error Catching (blocking) -->
+    <script src="javascript/error-handler.js"></script>
+
     <!-- PWA Service Worker Registration -->
     <script>
         // Service Worker für PWA registrieren
@@ -445,6 +451,11 @@
             }, 100);
         });
     </script>
-    <script src="javascript/animations.js"></script>
+    
+    <!-- UI/UX Systems (defer) -->
+    <script defer src="javascript/toast.js"></script>
+    <script defer src="javascript/loading-states.js"></script>
+    <script defer src="javascript/micro-animations.js"></script>
+    <script defer src="javascript/animations.js"></script>
 </body>
 </html>

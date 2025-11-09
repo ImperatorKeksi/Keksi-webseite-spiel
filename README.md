@@ -23,6 +23,7 @@
 ## 📋 Inhaltsverzeichnis
 
 - [🎯 Über das Projekt](#-über-das-projekt)
+- [🎮 Verfügbare Tools](#-verfügbare-tools)
 - [💻 Technologien](#-technologien)
 - [👨‍💻 Über den Entwickler](#-über-den-entwickler)
 - [🙏 Danksagungen](#-danksagungen)
@@ -39,9 +40,10 @@
 - 🎓 **Bildungsfokus** - Speziell für Berufsschulen und Ausbilder
 - 📱 **Modern & Zugänglich** - Läuft auf jedem Gerät, auch offline (PWA)
 - 🎨 **Professionelles Design** - Modernes UI/UX mit Glassmorphism & Dark Theme
-- � **Performance-optimiert** - Schnelle Ladezeiten, progressive Enhancement
+- ⚡ **Performance-optimiert** - Schnelle Ladezeiten, progressive Enhancement
 - ♿ **Barrierefrei** - WCAG 2.1 AA konform
 - 💬 **Open Beta** - Aktive Entwicklung mit Feedback-Integration
+- 🇩🇪 **Vollständig auf Deutsch** - Optimiert für deutsche Berufsschulen
 
 ### 💡 Motivation
 
@@ -50,6 +52,94 @@ Als IT-Azubi möchte ich:
 - ⚡ Den Unterrichtsalltag vereinfachen und digitalisieren
 - 📈 Basierend auf Feedback die Plattform stetig erweitern
 - 🎓 Meine Fähigkeiten während der Ausbildung unter Beweis stellen
+
+---
+
+## 🎮 Verfügbare Tools
+
+### 🎯 Jeopardy Quiz
+Das Hauptspiel der Plattform - ein interaktives Quiz-Spiel nach dem bekannten TV-Format.
+
+**Features:**
+- 🎮 **4 Spielmodi:** Standard, IT, Lagerlogistik, Kaufmännisch
+- 👥 **Multiplayer:** 2-6 Spieler
+- 💰 **Daily Doubles:** Risiko-Fragen mit doppeltem Einsatz
+- ⏱️ **Timer-System:** Anpassbare Zeit pro Frage
+- 📝 **Fragen-Editor:** Lehrer können eigene Fragen erstellen
+- 📊 **Statistiken:** Detaillierte Performance-Analyse
+- 🎨 **Themes:** 4 verschiedene Design-Themes
+- 💾 **Auto-Save:** Spielstand wird automatisch gespeichert
+
+**Fragen:**
+- ❓ 125+ Fragen über 25 Kategorien
+- 🎯 Schwierigkeitsgrade: 200, 400, 600, 800, 1000 Punkte
+- 📚 Fachspezifische Inhalte für IT und Logistik
+
+### ⏰ Digitale Uhr & Timer
+Professionelle Zeitanzeige mit Countdown-Funktion für den Unterricht.
+
+**Features:**
+- 🕐 **Echtzeit-Uhr:** Große, gut lesbare Anzeige
+- ⏱️ **Countdown-Timer:** Für Prüfungen und Übungen
+- 🔔 **Alarm-Sounds:** 3 verschiedene Sounds
+- 🎨 **Designs:** 3 verschiedene Layouts
+- 📱 **Vollbild-Modus:** Optimal für Präsentationen
+- ⌨️ **Tastatur-Steuerung:** Schnelle Bedienung
+
+### 🌍 Stadt Land Fluss
+Digitale Version des Klassikers mit automatischer Auswertung.
+
+**Features:**
+- 👥 **Multiplayer:** Unbegrenzte Spieleranzahl
+- ⏱️ **Timer-Funktion:** Anpassbare Rundenzeit
+- 🔄 **Duplikat-Erkennung:** Automatische Punktevergabe
+- 📝 **Anpassbare Kategorien:** Eigene Kategorien definieren
+- 📊 **Punkteberechnung:** Automatisch & fair
+- 💾 **Spielstand speichern:** Jederzeit pausieren
+
+### 🎲 Zufallsgenerator
+Umfassendes Tool für zufällige Auswahl und Entscheidungen.
+
+**Features:**
+- 👥 **Schülerauswahl:** Zufällige Namensauswahl
+- 🎯 **Team-Generator:** Automatische Teambildung
+- 🎲 **Würfel:** 1-6 Würfel gleichzeitig
+- 🪙 **Münzwurf:** Kopf oder Zahl
+- 🎡 **Glücksrad:** Eigene Optionen definieren
+- 📝 **Namenslisten:** Speichern und laden
+
+### 📊 Notenrechner
+Schnelle Notenberechnung mit verschiedenen Systemen.
+
+**Features:**
+- 🎯 **IHK-Standard:** Prozent zu Noten-Umrechnung
+- 📈 **3 Berechnungsarten:** Linear, Schnittpunkt, Gaußsche Kurve
+- 💯 **Punktetabellen:** Automatisch generiert
+- 📋 **Schnittberechnung:** Notendurchschnitt berechnen
+- 💾 **Export:** Als PDF oder Excel
+- ⚙️ **Anpassbar:** Eigene Notenschlüssel
+
+### 🎰 Aufgabenroulette
+Zufällige Aufgabenverteilung für faire Hausaufgabenvergabe.
+
+**Features:**
+- 📝 **Faires System:** Gleichmäßige Verteilung
+- 👥 **Schülerlisten:** Import und Verwaltung
+- 🎲 **Rotations-Modus:** Niemand bekommt zweimal die gleiche Aufgabe
+- 📊 **Verlaufs-Historie:** Wer hatte welche Aufgabe
+- 💾 **Speicherfunktion:** Listen und Einstellungen speichern
+- 🎨 **Animations-Effekt:** Spannender Roulette-Effekt
+
+### 📈 Dashboard (für Lehrer)
+Zentrale Verwaltung und Übersicht für Lehrkräfte.
+
+**Features:**
+- 📊 **Analytics Dashboard:** Nutzungsstatistiken
+- 👥 **User Management:** Schüler-Accounts verwalten
+- 📝 **Fragen-Verwaltung:** Zentrale Fragenbearbeitung
+- 📈 **Performance-Metriken:** Detaillierte Auswertungen
+- 💾 **Backup & Export:** Daten sichern und exportieren
+- 🔐 **Admin-Bereich:** Erweiterte Einstellungen
 
 ---
 
@@ -72,17 +162,41 @@ Als IT-Azubi möchte ich:
 
 </div>
 
+### 🆕 Kürzlich implementierte Features
+
+#### ✅ Analytics System (DSGVO-konform)
+- 📊 Lokale Datenerfassung (keine Server-Übertragung)
+- 📈 Event-Tracking für Spielaktionen
+- 🎯 Performance-Metriken
+- 👥 Admin-Dashboard für Auswertungen
+- ✅ Opt-in/Opt-out Toggle
+- 🔒 100% DSGVO-konform (Daten bleiben auf dem Gerät)
+
+#### ✅ Vollständige Fehlerbereinigung
+- 🐛 Alle debugLog-Fehler behoben
+- 🔧 Auth-System stabilisiert
+- ✅ Code-Qualität verbessert
+- 📝 Konsistente Error-Handling
+- 🎯 UTF-8 Encoding optimiert
+
+#### 🚫 Entfernte Features
+- ❌ i18n-System entfernt (Fokus auf deutsche Berufsschulen)
+- 🇩🇪 Webseite vollständig auf Deutsch optimiert
+- ⚡ Performance-Verbesserung durch Code-Reduktion
+
 ### 📊 Code-Statistiken
 
-- 📁 **Total Dateien:** 60+
-- 💻 **Code-Zeilen:** ~25.000+
-- 📜 **JavaScript:** ~16.000 Zeilen
-- 🎨 **CSS:** ~9.000 Zeilen
+- 📁 **Total Dateien:** 65+
+- 💻 **Code-Zeilen:** ~28.000+
+- 📜 **JavaScript:** ~18.000 Zeilen
+- 🎨 **CSS:** ~10.000 Zeilen
 - ❓ **Fragen:** 125+ über 25 Kategorien
-- ⏱️ **Entwicklungszeit:** 10+ Wochen
-- 🔄 **Commits:** 300+
-- 🛠️ **Tools:** 6 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette)
-- ✨ **Features:** 10 Enhancement-Module
+- ⏱️ **Entwicklungszeit:** 12+ Wochen
+- 🔄 **Commits:** 350+
+- 🛠️ **Tools:** 7 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette, Dashboard)
+- ✨ **Features:** 12 Enhancement-Module
+- 📊 **Analytics:** DSGVO-konform, lokal gespeichert
+- 🎮 **Spielmodi:** 4 (Standard, IT, Lagerlogistik, Kaufmännisch)
 
 ### 🌐 Browser-Kompatibilität
 
@@ -94,7 +208,7 @@ Als IT-Azubi möchte ich:
 | 🟣 Edge | 90+ | ✅ Vollständig unterstützt |
 | 📱 Mobile | iOS/Android | ✅ Optimiert |
 
-### � Projektstruktur
+### 📁 Projektstruktur
 
 ```
 📂 Keksi-webseite-spiel/
@@ -105,12 +219,16 @@ Als IT-Azubi möchte ich:
 ├── 📁 seiten/                      ← HTML-Seiten
 │   ├── index.html                  (Hauptmenü & Tool-Übersicht)
 │   ├── game.html                   (Jeopardy Quiz)
-│   ├── dashboard.html              (Lehrer-Dashboard)
-│   └── timer.html                  (Digitale Uhr & Timer)
+│   ├── stadt-land-fluss.html       (Stadt Land Fluss)
+│   ├── timer.html                  (Digitale Uhr & Timer)
+│   ├── zufallsgenerator.html       (Zufallsgenerator)
+│   ├── notenrechner.html           (Notenrechner)
+│   ├── aufgabenroulette.html       (Aufgabenroulette)
+│   └── dashboard.html              (Lehrer-Dashboard)
 │
 ├── 📁 stylesheets/                 ← CSS-Styles
-│   ├── main.css                    (Landing Page)
-│   ├── styles.css                  (Spiel-Styles)
+│   ├── main.css                    (Landing Page - 800+ Zeilen)
+│   ├── styles.css                  (Spiel-Styles - 3500+ Zeilen)
 │   ├── animations.css              (Animation System)
 │   ├── responsive.css              (Responsive Design)
 │   ├── accessibility.css           (A11y Styles)
@@ -121,16 +239,23 @@ Als IT-Azubi möchte ich:
 │   └── export-share.css            (Export UI)
 │
 ├── 📁 javascript/                  ← JavaScript-Dateien
-│   ├── script.js                   (Hauptspiel-Logik)
-│   ├── modules.js                  (Game State Management)
-│   ├── sounds.js                   (Audio-Engine)
-│   ├── auth.js                     (Authentifizierung)
+│   ├── script.js                   (Hauptspiel-Logik - 2800+ Zeilen)
+│   ├── modules.js                  (Game State Management - 1200+ Zeilen)
+│   ├── sounds.js                   (Audio-Engine - 600+ Zeilen)
+│   ├── auth.js                     (Authentifizierung - 400+ Zeilen)
 │   ├── auth-ui.js                  (Login-UI)
-│   ├── editor.js                   (Fragen-Editor)
-│   ├── stats.js                    (Statistiken)
-│   ├── feedback.js                 (Feedback-System)
+│   ├── editor.js                   (Fragen-Editor - 1500+ Zeilen)
+│   ├── stats.js                    (Statistiken - 800+ Zeilen)
+│   ├── feedback.js                 (Feedback-System - 500+ Zeilen)
+│   ├── analytics.js                (Analytics Core - 600+ Zeilen)
+│   ├── analytics-events.js         (Event Tracking)
+│   ├── analytics-ui.js             (Analytics Dashboard)
 │   ├── main.js                     (Landing Page Logik)
 │   ├── timer.js                    (Timer-Logik)
+│   ├── stadt-land-fluss.js         (Stadt Land Fluss Logik)
+│   ├── zufallsgenerator.js         (Zufallsgenerator Logik)
+│   ├── notenrechner.js             (Notenrechner Logik)
+│   ├── aufgabenroulette.js         (Aufgabenroulette Logik)
 │   ├── animations.js               (Animation Controller)
 │   ├── responsive.js               (Responsive Controller)
 │   ├── accessibility.js            (A11y Features)
@@ -141,13 +266,17 @@ Als IT-Azubi möchte ich:
 │   ├── dashboard.js                (Dashboard Logic)
 │   ├── export-share.js             (Export Features)
 │   ├── haptic-feedback.js          (Haptics)
+│   ├── toast.js                    (Toast Notifications)
+│   ├── loading-states.js           (Loading Indicators)
+│   ├── error-handler.js            (Global Error Handler)
 │   └── enhancements-loader.js      (Module Loader)
 │
 ├── 📁 fragenkataloge/              ← Fragen-Datenbanken
-│   ├── questions_it.js             (IT-Modus)
-│   ├── questions_lagerlogistik.js  (Lagerlogistik)
-│   ├── questions_kaufmaennisch.js  (Kaufmännisch)
-│   └── questions_standard.js       (Standard)
+│   ├── questions_it.js             (IT-Modus - 25 Fragen)
+│   ├── questions_lagerlogistik.js  (Lagerlogistik - 25 Fragen)
+│   ├── questions_kaufmaennisch.js  (Kaufmännisch - 25 Fragen)
+│   ├── questions_standard.js       (Standard - 25 Fragen)
+│   └── questions.js                (Custom-Loader)
 │
 ├── 📁 icons/                       ← PWA-Icons
 │   └── icon-*.png                  (8 Größen: 72px-512px)
@@ -156,6 +285,9 @@ Als IT-Azubi möchte ich:
 │   ├── manifest.json               (App-Manifest)
 │   ├── sw.js                       (Service Worker v2.1.0)
 │   └── version.json                (Version Tracking)
+│
+├── 📁 docs/                        ← Dokumentation
+│   └── PROJECT_STRUCTURE.md        (Ausführliche Struktur)
 │
 └── 📁 tools/                       ← Entwickler-Tools
     └── generate_icons.html         (Icon-Generator)

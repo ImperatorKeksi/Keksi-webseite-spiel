@@ -27,47 +27,85 @@ class GameStateManager {
         this.listeners = {};
         
         if (window.debugLog) {
-            debugLog.log('info', 'game', '🎮 GameStateManager initialisiert');
+            window.debugLog('🎮 GameStateManager initialisiert');
         }
     }
     
     // 📡 Event-System für Zustandsänderungen
     on(event, callback) {
-        if (!this.listeners[event]) {
-            this.listeners[event] = [];
+        try {
+            if (!event || typeof event !== 'string') {
+                throw new Error('Event-Name muss ein String sein');
+            }
+            if (typeof callback !== 'function') {
+                throw new Error('Callback muss eine Funktion sein');
+            }
+            
+            if (!this.listeners[event]) {
+                this.listeners[event] = [];
+            }
+            this.listeners[event].push(callback);
+        } catch (error) {
+            console.error('❌ Fehler beim Registrieren des Event-Listeners:', error);
         }
-        this.listeners[event].push(callback);
     }
     
     emit(event, data) {
-        if (this.listeners[event]) {
-            this.listeners[event].forEach(callback => callback(data));
-        }
-        
-        if (window.debugLog) {
-            debugLog.log('debug', 'game', `📡 Event: ${event}`, data);
+        try {
+            if (!this.listeners[event]) return;
+            
+            this.listeners[event].forEach(callback => {
+                try {
+                    callback(data);
+                } catch (error) {
+                    console.error(`❌ Fehler in Event-Callback für "${event}":`, error);
+                }
+            });
+        } catch (error) {
+            console.error('❌ Fehler beim Auslösen des Events:', error);
         }
     }
     
     // 🔄 Zustand ändern
     setState(updates) {
-        const oldState = { ...this.state };
-        Object.assign(this.state, updates);
-        
-        this.emit('stateChanged', {
-            oldState,
-            newState: this.state,
-            updates
-        });
-        
-        if (window.debugLog) {
-            debugLog.log('info', 'game', '🔄 Zustand geändert', updates);
+        try {
+            if (!updates || typeof updates !== 'object') {
+                throw new Error('Updates müssen ein Objekt sein');
+            }
+            
+            const oldState = { ...this.state };
+            Object.assign(this.state, updates);
+            
+            this.emit('stateChanged', {
+                oldState,
+                newState: this.state,
+                updates
+            });
+            
+        } catch (error) {
+            console.error('❌ Fehler beim Ändern des Zustands:', error);
+            // Bei Fehler: Zustand nicht ändern
         }
     }
     
     // 📊 Zustand abrufen
     getState() {
-        return { ...this.state };
+        try {
+            return { ...this.state };
+        } catch (error) {
+            console.error('❌ Fehler beim Abrufen des Zustands:', error);
+            // Fallback: Leerer State
+            return {
+                phase: 'setup',
+                round: 1,
+                currentPlayer: 0,
+                score: {},
+                usedQuestions: new Set(),
+                dailyDoubles: new Set(),
+                gameMode: null,
+                difficulty: 'azubi1'
+            };
+        }
     }
 }
 
@@ -87,9 +125,7 @@ class PerformanceMonitor {
         this.isMonitoring = false;
         this.animationFrame = null;
         
-        if (window.debugLog) {
-            debugLog.log('info', 'performance', '⚡ PerformanceMonitor bereit');
-        }
+        window.debugLog('⚡ PerformanceMonitor bereit');
     }
     
     // 📊 Monitoring starten
@@ -99,9 +135,7 @@ class PerformanceMonitor {
         this.isMonitoring = true;
         this.updateMetrics();
         
-        if (window.debugLog) {
-            debugLog.log('info', 'performance', '📊 Performance-Monitoring gestartet');
-        }
+        console.log('📊 Performance-Monitoring gestartet');
     }
     
     // ⏹️ Monitoring stoppen
@@ -111,9 +145,7 @@ class PerformanceMonitor {
             cancelAnimationFrame(this.animationFrame);
         }
         
-        if (window.debugLog) {
-            debugLog.log('info', 'performance', '⏹️ Performance-Monitoring gestoppt');
-        }
+        console.log('⏹️ Performance-Monitoring gestoppt');
     }
     
     // 🔄 Metriken aktualisieren
@@ -189,9 +221,7 @@ class LazyLoadManager {
         this.loadedResources = new Set();
         this.loadingPromises = new Map();
         
-        if (window.debugLog) {
-            debugLog.log('info', 'performance', '📦 LazyLoadManager initialisiert');
-        }
+        console.log('📦 LazyLoadManager initialisiert');
     }
     
     // 📦 Resource lazy laden
@@ -212,9 +242,7 @@ class LazyLoadManager {
     
     async performLoad(name, loadFunction) {
         try {
-            if (window.debugLog) {
-                debugLog.log('info', 'performance', `📦 Lade Resource: ${name}`);
-            }
+            console.log(`📦 Lade Resource: ${name}`);
             
             const startTime = performance.now();
             await loadFunction();
@@ -223,18 +251,12 @@ class LazyLoadManager {
             this.loadedResources.add(name);
             this.loadingPromises.delete(name);
             
-            if (window.debugLog) {
-                debugLog.log('info', 'performance', `✅ Resource geladen: ${name} (${loadTime.toFixed(2)}ms)`);
-            }
+            console.log(`✅ Resource geladen: ${name} (${loadTime.toFixed(2)}ms)`);
             
             return true;
         } catch (error) {
             this.loadingPromises.delete(name);
-            
-            if (window.debugLog) {
-                debugLog.log('error', 'performance', `❌ Fehler beim Laden: ${name}`, error);
-            }
-            
+            console.error(`❌ Fehler beim Laden: ${name}`, error);
             throw error;
         }
     }
@@ -244,9 +266,7 @@ class LazyLoadManager {
         this.loadedResources.clear();
         this.loadingPromises.clear();
         
-        if (window.debugLog) {
-            debugLog.log('info', 'performance', '🧹 Resource-Cache geleert');
-        }
+        console.log('🧹 Resource-Cache geleert');
     }
 }
 

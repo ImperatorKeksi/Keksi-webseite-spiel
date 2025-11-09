@@ -243,5 +243,3 @@ const calculator = new GradeCalculator();
 window.addEventListener('load', () => {
     calculator.generateTable();
 });
-
-console.log('✅ Noten-Rechner geladen!');

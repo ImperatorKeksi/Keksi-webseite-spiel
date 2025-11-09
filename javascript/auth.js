@@ -46,7 +46,6 @@ class AuthManager {
         this.loadSession();
         this.initializeDefaultUsers();
         this.updateUI();
-        console.log('🔐 Auth Manager initialized');
     }
     
     // =========================================================================
@@ -75,13 +74,41 @@ class AuthManager {
                 }
             ];
             localStorage.setItem(this.usersKey, JSON.stringify(users));
-            console.log('✅ Default users created: admin/admin123, lehrer/lehrer123');
         }
     }
     
     getLocalUsers() {
-        const stored = localStorage.getItem(this.usersKey);
-        return stored ? JSON.parse(stored) : [];
+        try {
+            const stored = localStorage.getItem(this.usersKey);
+            if (!stored) {
+                console.warn('⚠️ Keine Nutzer im LocalStorage gefunden');
+                return [];
+            }
+            
+            const users = JSON.parse(stored);
+            
+            // Validierung: Prüfen ob Array
+            if (!Array.isArray(users)) {
+                console.error('❌ LocalStorage Daten sind kein Array');
+                return [];
+            }
+            
+            return users;
+        } catch (error) {
+            console.error('❌ Fehler beim Laden der Nutzer:', error);
+            console.error('LocalStorage könnte korrupt sein. Erstelle Backup...');
+            
+            // Backup erstellen falls möglich
+            try {
+                const corruptData = localStorage.getItem(this.usersKey);
+                localStorage.setItem(this.usersKey + '_backup', corruptData);
+                console.log('💾 Backup erstellt: ' + this.usersKey + '_backup');
+            } catch (backupError) {
+                console.error('❌ Konnte kein Backup erstellen:', backupError);
+            }
+            
+            return [];
+        }
     }
     
     // Einfaches Password Hashing (für Lokal)
@@ -211,15 +238,27 @@ class AuthManager {
     }
     
     logout() {
-        if (this.currentUser) {
-            this.logAudit('logout', this.currentUser.username);
+        try {
+            if (this.currentUser) {
+                this.logAudit('logout', this.currentUser.username);
+            }
+            
+            localStorage.removeItem(this.storageKey);
+            this.currentUser = null;
+            this.updateUI();
+            
+            console.log('✅ Logout erfolgreich');
+            console.log('👋 User logged out');
+        } catch (error) {
+            console.error('❌ Fehler beim Logout:', error);
+            // Trotzdem UI updaten
+            this.currentUser = null;
+            try {
+                this.updateUI();
+            } catch (uiError) {
+                console.error('❌ UI-Update nach Logout fehlgeschlagen:', uiError);
+            }
         }
-        
-        localStorage.removeItem(this.storageKey);
-        this.currentUser = null;
-        this.updateUI();
-        
-        console.log('👋 User logged out');
     }
     
     loadSession() {
@@ -363,6 +402,17 @@ class AuthManager {
                 statsBtn.disabled = false;
             } else {
                 statsBtn.style.display = 'none';
+            }
+        }
+        
+        // Analytics Button (nur für Admins)
+        const analyticsBtn = document.getElementById('openAnalyticsBtn');
+        if (analyticsBtn) {
+            if (this.currentUser && this.currentUser.role === 'admin') {
+                analyticsBtn.style.display = 'inline-flex';
+                analyticsBtn.disabled = false;
+            } else {
+                analyticsBtn.style.display = 'none';
             }
         }
         
@@ -561,10 +611,8 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         authManager = new AuthManager();
         window.authManager = authManager;
-        console.log('✅ Auth Manager loaded');
     });
 } else {
     authManager = new AuthManager();
     window.authManager = authManager;
-    console.log('✅ Auth Manager loaded');
 }
