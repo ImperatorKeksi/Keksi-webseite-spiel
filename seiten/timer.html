@@ -362,6 +362,7 @@
             color: var(--accent);
         }
     </style>
+    <link rel="stylesheet" href="../stylesheets/styles.css">
     <link rel="stylesheet" href="../stylesheets/animations.css">
 </head>
 <body>
@@ -383,6 +384,11 @@
 
     <!-- Main Container -->
     <main class="timer-container">
+        <!-- Developer Badge -->
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span class="developer-badge">👨‍💻 Entwickelt von Nico Kaschube</span>
+        </div>
+        
         <!-- Clock Display -->
         <div class="clock-display" id="clockDisplay">
             <div class="clock-mode" id="clockMode">AKTUELLE UHRZEIT</div>
@@ -476,10 +482,14 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="timer-footer">
-        <p>&copy; 2025 Oberlinhaus - Lehrer Tools</p>
-        <p class="developer-credit">Entwickelt von Nico Kaschube, Azubi Fachinformatiker IT-Systemelektroniker</p>
+    <footer class="game-footer">
+        <div class="footer-content">
+            <div class="developer-credit">
+                <span class="footer-icon">⚡</span>
+                <span class="footer-text">Entwickelt von <strong>Nico Kaschube</strong> • 2025</span>
+                <span class="footer-icon">🎮</span>
+            </div>
+        </div>
     </footer>
 
     <!-- JavaScript -->

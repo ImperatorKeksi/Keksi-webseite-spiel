@@ -244,6 +244,20 @@ class JeopardyGame {
         document.getElementById('helpBtn').addEventListener('click', () => this.showHelp());
         document.getElementById('showRulesBtn').addEventListener('click', () => this.showRules());
         
+        // Fullscreen Change Event - Button-Status aktualisieren
+        document.addEventListener('fullscreenchange', () => {
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            if (fullscreenBtn) {
+                if (document.fullscreenElement) {
+                    fullscreenBtn.innerHTML = '🔲';
+                    fullscreenBtn.title = 'Vollbild verlassen (F11 oder ESC)';
+                } else {
+                    fullscreenBtn.innerHTML = '🔳';
+                    fullscreenBtn.title = 'Vollbild (F11)';
+                }
+            }
+        });
+        
         // Help and Pause
         document.getElementById('closeHelpBtn').addEventListener('click', () => this.closeModal());
         document.getElementById('closeRulesBtn').addEventListener('click', () => this.closeModal());
@@ -616,6 +630,9 @@ class JeopardyGame {
             categoriesRow.appendChild(categoryDiv);
         });
 
+        // Dynamische Schriftgröße für lange Kategorienamen
+        this.adjustCategoryFontSizes();
+
         // Create question grid
         const questionsGrid = document.getElementById('questionsGrid');
         questionsGrid.innerHTML = '';
@@ -653,6 +670,58 @@ class JeopardyGame {
 
         // Update total questions count
         this.gameStats.totalQuestions = numCategories * maxQuestions;
+    }
+
+    /**
+     * Passt die Schriftgröße von Kategorietiteln dynamisch an deren Länge an
+     * Verhindert Textüberlauf und sorgt für professionelles Aussehen
+     */
+    adjustCategoryFontSizes() {
+        const categoryTitles = document.querySelectorAll('.category-title');
+        
+        categoryTitles.forEach(title => {
+            const text = title.textContent;
+            const length = text.length;
+            
+            // Basis-Schriftgröße zurücksetzen
+            title.style.fontSize = '';
+            
+            // Dynamische Anpassung basierend auf Textlänge
+            if (length > 15) {
+                // Sehr lange Wörter (z.B. "NATURWISSENSCHAFTEN")
+                title.style.fontSize = 'clamp(0.75rem, 0.9vw, 1rem)';
+                title.style.letterSpacing = '1px';
+                title.style.lineHeight = '1.2';
+            } else if (length > 12) {
+                // Lange Wörter (z.B. "WISSENSCHAFT")
+                title.style.fontSize = 'clamp(0.85rem, 1vw, 1.15rem)';
+                title.style.letterSpacing = '1.5px';
+                title.style.lineHeight = '1.3';
+            } else if (length > 9) {
+                // Mittlere Wörter (z.B. "GEOGRAFIE")
+                title.style.fontSize = 'clamp(0.95rem, 1.1vw, 1.25rem)';
+                title.style.letterSpacing = '1.8px';
+            } else {
+                // Kurze Wörter (z.B. "SPORT", "MUSIK")
+                title.style.fontSize = 'clamp(1rem, 1.2vw, 1.4rem)';
+                title.style.letterSpacing = '2px';
+            }
+            
+            // Zusätzliche Prüfung: Wenn Text trotzdem zu breit ist
+            const parent = title.closest('.category');
+            if (parent) {
+                const titleWidth = title.scrollWidth;
+                const parentWidth = parent.clientWidth - 40; // Padding berücksichtigen
+                
+                if (titleWidth > parentWidth) {
+                    // Text ist zu breit → weitere Verkleinerung
+                    const currentSize = parseFloat(window.getComputedStyle(title).fontSize);
+                    const scaleFactor = parentWidth / titleWidth;
+                    const newSize = Math.max(0.7, currentSize * scaleFactor * 0.95); // Min 0.7rem
+                    title.style.fontSize = `${newSize}rem`;
+                }
+            }
+        });
     }
 
     updatePlayerDisplay() {
@@ -1530,12 +1599,29 @@ class JeopardyGame {
     }
 
     toggleFullscreen() {
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        
         if (!document.fullscreenElement) {
+            // Vollbild aktivieren
             document.documentElement.requestFullscreen().catch(err => {
-                console.error('Fullscreen error:', err);
+                console.error('❌ Fullscreen error:', err);
+                this.showToast('Vollbild konnte nicht aktiviert werden', 'error');
             });
+            
+            // Button-Text aktualisieren
+            if (fullscreenBtn) {
+                fullscreenBtn.innerHTML = '🔲';
+                fullscreenBtn.title = 'Vollbild verlassen';
+            }
         } else {
+            // Vollbild verlassen
             document.exitFullscreen();
+            
+            // Button-Text aktualisieren
+            if (fullscreenBtn) {
+                fullscreenBtn.innerHTML = '🔳';
+                fullscreenBtn.title = 'Vollbild';
+            }
         }
     }
 

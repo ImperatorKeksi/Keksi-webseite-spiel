@@ -206,19 +206,19 @@ class QuestionEditor {
                         <button onclick="editor.moveCategoryUp('${category.id}')" 
                                 ${isFirst ? 'disabled' : ''} 
                                 title="Nach oben verschieben" 
-                                class="btn-move-up">??</button>
+                                class="btn-move-up">⬆️</button>
                         <button onclick="editor.moveCategoryDown('${category.id}')" 
                                 ${isLast ? 'disabled' : ''} 
                                 title="Nach unten verschieben" 
-                                class="btn-move-down">??</button>
+                                class="btn-move-down">⬇️</button>
                     </div>
                     <div class="category-main-info">
                         <div class="category-name">${this.escapeHtml(category.name)}</div>
                         <div class="category-info">${questionCount} / 20 Fragen</div>
                     </div>
                     <div class="category-actions">
-                        <button onclick="editor.editCategoryName('${category.id}')" title="Umbenennen">??</button>
-                        <button onclick="editor.deleteCategory('${category.id}')" title="L�schen">???</button>
+                        <button onclick="editor.editCategoryName('${category.id}')" title="Umbenennen">✏️</button>
+                        <button onclick="editor.deleteCategory('${category.id}')" title="Löschen">🗑️</button>
                     </div>
                 </div>
             `;
@@ -282,7 +282,7 @@ class QuestionEditor {
             }
             this.renderCategories();
             this.saveToLocalStorage(); // Auto-save
-            this.showNotification('??? Kategorie gel�scht!', 'info');
+            this.showNotification('🗑️ Kategorie gelöscht!', 'info');
         }
     }
 
@@ -358,8 +358,8 @@ class QuestionEditor {
             <div class="question-header">
                 <span class="question-number">Frage ${number}</span>
                 <div class="question-actions">
-                    <button class="btn-duplicate" onclick="editor.duplicateQuestion('${question.id}')" title="Frage duplizieren">?? Duplizieren</button>
-                    <button class="btn-delete" onclick="editor.deleteQuestion('${question.id}')" title="Frage l�schen">??? L�schen</button>
+                    <button class="btn-duplicate" onclick="editor.duplicateQuestion('${question.id}')" title="Frage duplizieren">📋 Duplizieren</button>
+                    <button class="btn-delete" onclick="editor.deleteQuestion('${question.id}')" title="Frage löschen">🗑️ Löschen</button>
                 </div>
             </div>
             <div class="question-form">
@@ -446,7 +446,7 @@ class QuestionEditor {
             category.questions = category.questions.filter(q => q.id !== questionId);
             this.renderQuestions();
             this.renderCategories(); // Update question count
-            this.showNotification('??? Frage gel�scht!', 'info');
+            this.showNotification('🗑️ Frage gelöscht!', 'info');
         }
     }
 
