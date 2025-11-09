@@ -23,7 +23,6 @@
 ## 📋 Inhaltsverzeichnis
 
 - [🎯 Über das Projekt](#-über-das-projekt)
-- [🎮 Verfügbare Tools](#-verfügbare-tools)
 - [💻 Technologien](#-technologien)
 - [👨‍💻 Über den Entwickler](#-über-den-entwickler)
 - [🙏 Danksagungen](#-danksagungen)
@@ -55,95 +54,7 @@ Als IT-Azubi möchte ich:
 
 ---
 
-## 🎮 Verfügbare Tools
-
-### 🎯 Jeopardy Quiz
-Das Hauptspiel der Plattform - ein interaktives Quiz-Spiel nach dem bekannten TV-Format.
-
-**Features:**
-- 🎮 **4 Spielmodi:** Standard, IT, Lagerlogistik, Kaufmännisch
-- 👥 **Multiplayer:** 2-6 Spieler
-- 💰 **Daily Doubles:** Risiko-Fragen mit doppeltem Einsatz
-- ⏱️ **Timer-System:** Anpassbare Zeit pro Frage
-- 📝 **Fragen-Editor:** Lehrer können eigene Fragen erstellen
-- 📊 **Statistiken:** Detaillierte Performance-Analyse
-- 🎨 **Themes:** 4 verschiedene Design-Themes
-- 💾 **Auto-Save:** Spielstand wird automatisch gespeichert
-
-**Fragen:**
-- ❓ 125+ Fragen über 25 Kategorien
-- 🎯 Schwierigkeitsgrade: 200, 400, 600, 800, 1000 Punkte
-- 📚 Fachspezifische Inhalte für IT und Logistik
-
-### ⏰ Digitale Uhr & Timer
-Professionelle Zeitanzeige mit Countdown-Funktion für den Unterricht.
-
-**Features:**
-- 🕐 **Echtzeit-Uhr:** Große, gut lesbare Anzeige
-- ⏱️ **Countdown-Timer:** Für Prüfungen und Übungen
-- 🔔 **Alarm-Sounds:** 3 verschiedene Sounds
-- 🎨 **Designs:** 3 verschiedene Layouts
-- 📱 **Vollbild-Modus:** Optimal für Präsentationen
-- ⌨️ **Tastatur-Steuerung:** Schnelle Bedienung
-
-### 🌍 Stadt Land Fluss
-Digitale Version des Klassikers mit automatischer Auswertung.
-
-**Features:**
-- 👥 **Multiplayer:** Unbegrenzte Spieleranzahl
-- ⏱️ **Timer-Funktion:** Anpassbare Rundenzeit
-- 🔄 **Duplikat-Erkennung:** Automatische Punktevergabe
-- 📝 **Anpassbare Kategorien:** Eigene Kategorien definieren
-- 📊 **Punkteberechnung:** Automatisch & fair
-- 💾 **Spielstand speichern:** Jederzeit pausieren
-
-### 🎲 Zufallsgenerator
-Umfassendes Tool für zufällige Auswahl und Entscheidungen.
-
-**Features:**
-- 👥 **Schülerauswahl:** Zufällige Namensauswahl
-- 🎯 **Team-Generator:** Automatische Teambildung
-- 🎲 **Würfel:** 1-6 Würfel gleichzeitig
-- 🪙 **Münzwurf:** Kopf oder Zahl
-- 🎡 **Glücksrad:** Eigene Optionen definieren
-- 📝 **Namenslisten:** Speichern und laden
-
-### 📊 Notenrechner
-Schnelle Notenberechnung mit verschiedenen Systemen.
-
-**Features:**
-- 🎯 **IHK-Standard:** Prozent zu Noten-Umrechnung
-- 📈 **3 Berechnungsarten:** Linear, Schnittpunkt, Gaußsche Kurve
-- 💯 **Punktetabellen:** Automatisch generiert
-- 📋 **Schnittberechnung:** Notendurchschnitt berechnen
-- 💾 **Export:** Als PDF oder Excel
-- ⚙️ **Anpassbar:** Eigene Notenschlüssel
-
-### 🎰 Aufgabenroulette
-Zufällige Aufgabenverteilung für faire Hausaufgabenvergabe.
-
-**Features:**
-- 📝 **Faires System:** Gleichmäßige Verteilung
-- 👥 **Schülerlisten:** Import und Verwaltung
-- 🎲 **Rotations-Modus:** Niemand bekommt zweimal die gleiche Aufgabe
-- 📊 **Verlaufs-Historie:** Wer hatte welche Aufgabe
-- 💾 **Speicherfunktion:** Listen und Einstellungen speichern
-- 🎨 **Animations-Effekt:** Spannender Roulette-Effekt
-
-### 📈 Dashboard (für Lehrer)
-Zentrale Verwaltung und Übersicht für Lehrkräfte.
-
-**Features:**
-- 📊 **Analytics Dashboard:** Nutzungsstatistiken
-- 👥 **User Management:** Schüler-Accounts verwalten
-- 📝 **Fragen-Verwaltung:** Zentrale Fragenbearbeitung
-- 📈 **Performance-Metriken:** Detaillierte Auswertungen
-- 💾 **Backup & Export:** Daten sichern und exportieren
-- 🔐 **Admin-Bereich:** Erweiterte Einstellungen
-
----
-
-## 💻 Technologien
+##  Technologien
 
 ### 🛠️ Tech Stack
 
@@ -161,28 +72,6 @@ Zentrale Verwaltung und Übersicht für Lehrkräfte.
 | **Performance** | Code Splitting, Lazy Loading, Asset Optimization |
 
 </div>
-
-### 🆕 Kürzlich implementierte Features
-
-#### ✅ Analytics System (DSGVO-konform)
-- 📊 Lokale Datenerfassung (keine Server-Übertragung)
-- 📈 Event-Tracking für Spielaktionen
-- 🎯 Performance-Metriken
-- 👥 Admin-Dashboard für Auswertungen
-- ✅ Opt-in/Opt-out Toggle
-- 🔒 100% DSGVO-konform (Daten bleiben auf dem Gerät)
-
-#### ✅ Vollständige Fehlerbereinigung
-- 🐛 Alle debugLog-Fehler behoben
-- 🔧 Auth-System stabilisiert
-- ✅ Code-Qualität verbessert
-- 📝 Konsistente Error-Handling
-- 🎯 UTF-8 Encoding optimiert
-
-#### 🚫 Entfernte Features
-- ❌ i18n-System entfernt (Fokus auf deutsche Berufsschulen)
-- 🇩🇪 Webseite vollständig auf Deutsch optimiert
-- ⚡ Performance-Verbesserung durch Code-Reduktion
 
 ### 📊 Code-Statistiken
 
