@@ -18,24 +18,25 @@ class SoundManager {
         this.backgroundMusic = null; // 🎼 Hintergrundmusik
         this.fadeIntervals = new Map(); // 📉 Fade-Animationen
         this.soundQueue = []; // 🔄 Sound-Warteschlange
-        this.initializeSounds();
+        this.initialized = false; // Flag für Lazy Initialization
         
         // 📊 Debug-Logging
-        console.log('🎵 SoundManager initialisiert');
+        console.log('🎵 SoundManager bereit (AudioContext wird bei Bedarf erstellt)');
     }
 
     initializeSounds() {
-        // Create audio context for better sound control
-        // AudioContext wird erst nach User-Interaktion erstellt (Browser-Policy)
+        // AudioContext wird erst beim ersten play() erstellt (Browser-Policy)
+        // Diese Methode wird von play() aufgerufen
+        if (this.initialized) return;
+        
         try {
-            // Lazy initialization - wird beim ersten play() erstellt
-            this.audioContext = null;
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            console.log('🎵 AudioContext initialisiert nach User-Interaktion');
+            this.generateSounds();
+            this.initialized = true;
         } catch (e) {
-            console.log('Web Audio API not supported');
+            console.warn('⚠️ Web Audio API nicht unterstützt:', e);
         }
-
-        // Sounds werden NICHT hier generiert, sondern bei play()
-        // da AudioContext erst nach User-Interaktion verfügbar ist
     }
 
     // 🚀 Performance: Preload nur die wichtigsten Sounds
@@ -209,29 +210,29 @@ class SoundManager {
         
         try {
             // Erstelle AudioContext beim ersten Aufruf (nach User-Interaktion)
-            if (!this.audioContext) {
-                try {
-                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    console.log('🎵 AudioContext initialisiert');
-                    // Jetzt können wir die Sounds generieren
-                    this.generateSounds();
-                } catch (e) {
-                    console.warn('AudioContext konnte nicht erstellt werden:', e);
+            if (!this.initialized) {
+                this.initializeSounds();
+                if (!this.initialized) {
+                    // Initialization fehlgeschlagen
                     return;
                 }
             }
             
             // Resume audio context if suspended (required by some browsers)
             if (this.audioContext && this.audioContext.state === 'suspended') {
-                this.audioContext.resume();
+                this.audioContext.resume().catch(err => {
+                    console.warn('⚠️ AudioContext konnte nicht fortgesetzt werden:', err);
+                });
             }
             
             // Sound abspielen
             if (this.sounds[soundName]) {
                 this.sounds[soundName]();
+            } else {
+                console.warn(`⚠️ Sound '${soundName}' nicht gefunden`);
             }
         } catch (error) {
-            console.log('Sound playback error:', error);
+            console.warn('⚠️ Sound-Wiedergabe Fehler:', error);
         }
     }
 
