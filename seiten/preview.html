@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exklusive Leaks - Lehrer Tools</title>
+    <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .video-container.active {
+            display: flex;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            z-index: 10;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .overlay.active {
+            display: flex;
+        }
+
+        .leak-badge {
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(157, 77, 221, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            z-index: 10;
+            animation: fadeIn 1s ease;
+            text-align: center;
+            display: none;
+        }
+
+        .message.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            background: #0a0a0a;
+        }
+
+        .start-box {
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid rgba(199, 125, 255, 0.2);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(157, 77, 221, 0.3);
+            text-align: center;
+            max-width: 500px;
+            animation: slideIn 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .start-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .start-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e0aaff;
+            margin-bottom: 15px;
+        }
+
+        .start-text {
+            font-size: 16px;
+            color: #c77dff;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .start-warning {
+            background: rgba(157, 77, 221, 0.15);
+            border-left: 4px solid #9d4edd;
+            padding: 12px 15px;
+            margin-bottom: 30px;
+            text-align: left;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #e0aaff;
+        }
+
+        .start-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-confirm {
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(157, 77, 221, 0.4);
+        }
+
+        .btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(157, 77, 221, 0.6);
+        }
+
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(199, 125, 255, 0.3);
+            color: #c77dff;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(199, 125, 255, 0.5);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #9d4edd;
+            z-index: 999;
+        }
+
+        .footer.video-mode {
+            display: none;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .loading-screen.active {
+            display: flex;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(199, 125, 255, 0.2);
+            border-top: 4px solid #c77dff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #c77dff;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(199, 125, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9d4edd, #c77dff);
+            width: 0%;
+            animation: progress 2.5s ease-out forwards;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 20px 0;
+            padding: 15px 20px;
+            background: rgba(157, 77, 221, 0.1);
+            border-radius: 10px;
+            border-left: 3px solid #9d4edd;
+        }
+
+        .feature-item {
+            color: #c77dff;
+            font-size: 14px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #9d4edd;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(157, 77, 221, 0.2);
+            color: #e0aaff;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .confidential-notice {
+            background: rgba(255, 59, 48, 0.15);
+            border-left: 4px solid #ff3b30;
+            padding: 12px 15px;
+            margin-bottom: 25px;
+            text-align: left;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #ff6b6b;
+        }
+
+        .confidential-notice strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Screen -->
+    <div class="start-screen" id="startScreen">
+        <div class="start-box">
+            <div class="start-icon">🎯</div>
+            <span class="version-badge">v2.5.0-beta</span>
+            <h2 class="start-title">Early Access Preview</h2>
+            <p class="start-text">
+                Du hast Zugriff auf unveröffentlichte Features der nächsten Version.
+            </p>
+            
+            <div class="feature-list">
+                <div class="feature-item">KI-gestützter Fragengenerator</div>
+                <div class="feature-item">Erweiterte Statistiken & Analytics</div>
+                <div class="feature-item">Neue Quiz-Modi (Buzzer, Speed-Round)</div>
+                <div class="feature-item">Interaktive Schüler-Dashboards</div>
+            </div>
+
+            <div class="confidential-notice">
+                <strong>🔒 Vertraulich - Nur für Lehrkräfte</strong>
+                Bitte teile diese Vorschau nicht mit Schülern. Die Features befinden sich noch in der Testphase.
+            </div>
+
+            <div class="start-buttons">
+                <button class="btn-cancel" onclick="goBack()">Zurück</button>
+                <button class="btn-confirm" onclick="showLoading()">Preview starten</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Features werden geladen...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="footer">
+        Entwickelt von Nico Kaschube, Azubi zum Fachinformatiker für IT-Systemelektroniker
+    </div>
+
+    <!-- Video Container -->
+    <div class="overlay" id="overlay">
+        <div class="leak-badge">
+            🔓 EXKLUSIVE LEAKS
+        </div>
+        <button class="close-btn" onclick="goBack()">← Zurück</button>
+    </div>
+
+    <div class="video-container" id="videoContainer">
+        <video id="video" loop>
+            <source src="../assets/preview.mp4" type="video/mp4">
+            Dein Browser unterstützt das Video-Tag nicht.
+        </video>
+    </div>
+
+    <div class="message" id="message">
+        <span class="emoji">😂</span>
+        Du wurdest erfolgreich gerickrollt!
+        <span class="emoji">🎵</span>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const startScreen = document.getElementById('startScreen');
+        const loadingScreen = document.getElementById('loadingScreen');
+        const videoContainer = document.getElementById('videoContainer');
+        const overlay = document.getElementById('overlay');
+        const message = document.getElementById('message');
+        const footer = document.getElementById('footer');
+
+        function showLoading() {
+            // Verstecke Start-Screen
+            startScreen.style.display = 'none';
+            
+            // Zeige Loading-Screen
+            loadingScreen.classList.add('active');
+            
+            // Nach 2.5 Sekunden: Starte Video
+            setTimeout(() => {
+                startVideo();
+            }, 2500);
+        }
+
+        function startVideo() {
+            // Verstecke Loading-Screen und Footer
+            loadingScreen.classList.remove('active');
+            footer.classList.add('video-mode');
+            
+            // Zeige Video
+            videoContainer.classList.add('active');
+            overlay.classList.add('active');
+            
+            // Starte Video mit Sound
+            video.volume = 0.7;
+            video.play();
+            
+            // Zeige Rickroll-Nachricht nach 2 Sekunden
+            setTimeout(() => {
+                message.classList.add('active');
+            }, 2000);
+        }
+
+        function goBack() {
+            window.close();
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 100);
+        }
+    </script>
+</body>
+</html>

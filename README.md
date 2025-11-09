@@ -113,7 +113,8 @@ Als IT-Azubi möchte ich:
 │   ├── zufallsgenerator.html       (Zufallsgenerator)
 │   ├── notenrechner.html           (Notenrechner)
 │   ├── aufgabenroulette.html       (Aufgabenroulette)
-│   └── dashboard.html              (Lehrer-Dashboard)
+│   ├── dashboard.html              (Lehrer-Dashboard)
+│   └── preview.html                (Beta Preview-Seite)
 │
 ├── 📁 stylesheets/                 ← CSS-Styles
 │   ├── main.css                    (Landing Page - 800+ Zeilen)
@@ -169,6 +170,9 @@ Als IT-Azubi möchte ich:
 │
 ├── 📁 icons/                       ← PWA-Icons
 │   └── icon-*.png                  (8 Größen: 72px-512px)
+│
+├── 📁 assets/                      ← Media & Assets
+│   └── preview.mp4                 (Beta Preview-Video)
 │
 ├── 📁 pwa/                         ← Progressive Web App
 │   ├── manifest.json               (App-Manifest)
