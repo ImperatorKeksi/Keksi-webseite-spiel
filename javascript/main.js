@@ -1,10 +1,10 @@
 /*
     +--------------------------------------------------+
-    ¦  ?? LANDING PAGE - Navigation & Interaction     ¦
-    ¦  Hauptmenü-Logik der Landing Page               ¦
-    ¦                                                  ¦
-    ¦  Entwickler: Nico Kaschube                      ¦
-    ¦  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ¦
+    ï¿½  ?? LANDING PAGE - Navigation & Interaction     ï¿½
+    ï¿½  Hauptmenï¿½-Logik der Landing Page               ï¿½
+    ï¿½                                                  ï¿½
+    ï¿½  Entwickler: Nico Kaschube                      ï¿½
+    ï¿½  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ï¿½
     +--------------------------------------------------+
 */
 
@@ -146,7 +146,7 @@ class MainPage {
         
         if (logoutBtnNav) {
             logoutBtnNav.addEventListener('click', () => {
-                if (confirm('Möchtest du dich wirklich abmelden?')) {
+                if (confirm('Mï¿½chtest du dich wirklich abmelden?')) {
                     window.authManager.logout();
                 }
             });
@@ -220,3 +220,7 @@ const pageEffects = new PageEffects();
 
 // Make globally accessible
 window.mainPage = mainPage;
+
+// ============================================================================= 
+// ============================================================================= 
+

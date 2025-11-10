@@ -121,7 +121,36 @@
             margin-right: 10px;
         }
 
-        /* Start Screen */
+        /* ESC Message */
+        .esc-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 59, 48, 0.95);
+            color: white;
+            padding: 30px 50px;
+            border-radius: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 59, 48, 0.5);
+            animation: shake 0.5s;
+        }
+
+        .esc-message.active {
+            display: block;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            25% { transform: translate(-50%, -50%) rotate(-5deg); }
+            75% { transform: translate(-50%, -50%) rotate(5deg); }
+        }
+
+        /* Loading Screen */
         .start-screen {
             position: fixed;
             top: 0;
@@ -282,6 +311,13 @@
             margin-bottom: 30px;
         }
 
+        .loading-subtext {
+            color: #9d4edd;
+            font-size: 14px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
         .progress-bar {
             width: 300px;
             height: 6px;
@@ -356,12 +392,44 @@
     </style>
 </head>
 <body>
+    <!-- Professional Watermark & Build Info (Nr. 4) -->
+    <div class="watermark" id="watermark" style="position: fixed; top: 80px; right: 10px; background: rgba(255, 59, 48, 0.15); border: 1px solid rgba(255, 59, 48, 0.4); padding: 8px 15px; border-radius: 8px; font-size: 11px; color: #ff6b6b; font-family: 'Courier New', monospace; z-index: 998; backdrop-filter: blur(10px);">
+        ⚠️ INTERNAL PREVIEW - NOT FOR PRODUCTION
+    </div>
+    <div class="build-info" id="buildInfo" style="position: fixed; bottom: 10px; right: 10px; background: rgba(157, 77, 221, 0.15); border: 1px solid rgba(157, 77, 221, 0.4); padding: 6px 12px; border-radius: 6px; font-size: 10px; color: #e0aaff; font-family: 'Courier New', monospace; z-index: 998;">
+        Build: 2025.11.10-dev | v1.1.0-beta (1147)
+    </div>
+
+    <!-- Changelog Overlay (Nr. 5) -->
+    <div class="changelog-overlay" id="changelogOverlay">
+        <div class="changelog-box" style="background: rgba(26, 26, 26, 0.95); border: 1px solid rgba(199, 125, 255, 0.3); border-radius: 15px; padding: 30px 40px; max-width: 600px; box-shadow: 0 20px 60px rgba(157, 77, 221, 0.4);">
+            <div style="color: #e0aaff; font-size: 22px; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                📋 Release Notes v1.1.0-beta
+            </div>
+            <div style="color: #e0aaff; font-size: 14px; line-height: 1.8;">
+                <div style="color: #e0aaff; font-weight: bold; margin-top: 15px; margin-bottom: 5px; font-size: 15px;">✨ Neue Features (+12)</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• KI-gestützter Fragengenerator mit GPT-Integration</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Erweiterte Statistiken & Analytics Dashboard</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Neue Quiz-Modi: Buzzer & Speed-Round</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Interaktive Schüler-Dashboards mit Live-Updates</div>
+                
+                <div style="color: #e0aaff; font-weight: bold; margin-top: 15px; margin-bottom: 5px; font-size: 15px;">🐛 Bug Fixes (-8)</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Timer-Synchronisation verbessert</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Sound-Engine Performance optimiert</div>
+                
+                <div style="color: #e0aaff; font-weight: bold; margin-top: 15px; margin-bottom: 5px; font-size: 15px;">⚡ Performance</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Ladezeit um 40% verbessert</div>
+                <div style="margin: 10px 0; padding-left: 20px; color: #c77dff;">• Memory-Optimierung durchgeführt</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Start Screen -->
     <div class="start-screen" id="startScreen">
         <div class="start-box">
             <div class="start-icon">🎯</div>
-            <span class="version-badge">v2.5.0-beta</span>
-            <h2 class="start-title">Early Access Preview</h2>
+            <span class="version-badge">v1.1.0-beta</span>
+            <h2 class="start-title">Vorabzugriff-Vorschau</h2>
             <p class="start-text">
                 Du hast Zugriff auf unveröffentlichte Features der nächsten Version.
             </p>
@@ -389,7 +457,8 @@
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <div class="loading-text">Features werden geladen...</div>
+            <div class="loading-text" id="loadingText">Verbinde mit Preview-Server...</div>
+            <div class="loading-subtext" id="loadingSubtext">Initialisiere Verbindung...</div>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
@@ -422,26 +491,339 @@
         <span class="emoji">🎵</span>
     </div>
 
+    <!-- ESC Easter Egg Message -->
+    <div class="esc-message" id="escMessage">
+        🚫 Schöner Versuch! Kein Entkommen mehr! 😂
+    </div>
+
     <script>
+        // ===== ENHANCED FAKE DEVELOPER CONSOLE LOGS (Nr. 1) =====
+        const currentTime = new Date().toISOString();
+        const fakeIP = '192.168.1.' + Math.floor(Math.random() * 254 + 1);
+        const sessionId = 'sess_' + Math.random().toString(36).substr(2, 9);
+        
+        console.log('%c🔓 Beta Preview Modul v1.1.0', 'color: #9d4edd; font-weight: bold; font-size: 16px;');
+        console.log('%c═══════════════════════════════════════', 'color: #9d4edd;');
+        console.log(`%c[${currentTime}] System initialisiert`, 'color: #c77dff;');
+        console.log(`%c[Preview] Sitzungs-ID: ${sessionId}`, 'color: #c77dff;');
+        console.log(`%c[Preview] Client IP: ${fakeIP}`, 'color: #c77dff;');
+        console.log(`%c[Preview] User-Agent: ${navigator.userAgent.substring(0, 50)}...`, 'color: #c77dff;');
+        console.log('%c[Preview] Umgebung: Entwicklung', 'color: #c77dff;');
+        console.log('%c[Preview] Build: 2025.11.10-dev (1147)', 'color: #c77dff;');
+        
+        setTimeout(() => {
+            console.log('%c[Preview] Prüfe Server-Status...', 'color: #c77dff;');
+            console.log('%c[Preview] ✓ Server: preview.oberlinhaus.local [ONLINE]', 'color: #50fa7b;');
+        }, 300);
+
+        setTimeout(() => {
+            console.log('%c[Preview] Verifiziere SSL-Zertifikat...', 'color: #c77dff;');
+            console.log('%c[Preview] ✓ SSL: Gültig (Läuft ab: 2026-11-10)', 'color: #50fa7b;');
+        }, 600);
+        
+        setTimeout(() => {
+            console.log('%c[Preview] Prüfe Autorisierung...', 'color: #c77dff;');
+            console.log('%c[Preview] ✓ Autorisierung: Beta-Zugang gewährt', 'color: #50fa7b;');
+            console.log('%c[Preview] Lade verschlüsselte Assets...', 'color: #c77dff;');
+        }, 900);
+
+        setTimeout(() => {
+            console.log('%c[Preview] ✓ Assets entschlüsselt (AES-256)', 'color: #50fa7b;');
+            console.log('%c[Preview] Initialisiere Feature-Module...', 'color: #c77dff;');
+            console.log('%c[Preview]   → KI-Fragengenerator: OK', 'color: #50fa7b;');
+            console.log('%c[Preview]   → Analytics-Engine: OK', 'color: #50fa7b;');
+            console.log('%c[Preview]   → Live-Dashboard: OK', 'color: #50fa7b;');
+        }, 1200);
+
+        setTimeout(() => {
+            console.log('%c[Preview] Stelle sichere Verbindung her...', 'color: #c77dff;');
+            console.log('%c[Preview] ✓ WebSocket verbunden: wss://preview.oberlinhaus.local:8443', 'color: #50fa7b;');
+        }, 1500);
+
+        setTimeout(() => {
+            console.log('%c[Preview] Sende anonyme Telemetrie-Daten...', 'color: #c77dff;'); // Nr. 6
+            console.log('%c[Preview] ✓ Telemetrie gesendet: 847 Bytes', 'color: #50fa7b;');
+        }, 1800);
+
+        setTimeout(() => {
+            console.log('%c[Preview] ✓ Preview-Modul bereit', 'color: #50fa7b; font-weight: bold;');
+            console.log('%c[Preview] Warte auf Benutzer-Interaktion...', 'color: #c77dff;');
+            console.log('%c═══════════════════════════════════════', 'color: #9d4edd;');
+        }, 2100);
+
+        // ===== MAIN SCRIPT =====
         const video = document.getElementById('video');
         const startScreen = document.getElementById('startScreen');
         const loadingScreen = document.getElementById('loadingScreen');
+        const loadingText = document.getElementById('loadingText');
+        const loadingSubtext = document.getElementById('loadingSubtext');
         const videoContainer = document.getElementById('videoContainer');
         const overlay = document.getElementById('overlay');
         const message = document.getElementById('message');
         const footer = document.getElementById('footer');
+        const escMessage = document.getElementById('escMessage');
+        const watermark = document.getElementById('watermark');
+        const buildInfo = document.getElementById('buildInfo');
+        const changelogOverlay = document.getElementById('changelogOverlay');
+
+        // ===== ESC KEY EASTER EGG (Nr. 5) =====
+        let videoStarted = false;
+        let escPressed = false;
+        let altF4Blocked = false;
+        let closeAttempted = false;
+
+        function showNiceTryMessage(trigger) {
+            if (videoStarted) {
+                // Zeige "Schöner Versuch!" Nachricht
+                escMessage.classList.add('active');
+                
+                // Console log
+                console.log(`%c🚫 ${trigger} erkannt! Schöner Versuch! 😂`, 'color: #ff6b6b; font-size: 14px; font-weight: bold;');
+                console.log('%cAber es gibt kein Entkommen vor Rick Astley! 🎵', 'color: #ff6b6b;');
+                
+                // Verstecke nach 2 Sekunden
+                setTimeout(() => {
+                    escMessage.classList.remove('active');
+                }, 2000);
+            }
+        }
+
+        // ESC Taste
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && videoStarted && !escPressed) {
+                escPressed = true;
+                showNiceTryMessage('ESC');
+                
+                setTimeout(() => {
+                    escPressed = false;
+                }, 2500);
+                
+                e.preventDefault();
+                return false;
+            }
+            
+            // ALT+F4 (nur ALT+F4 zusammen)
+            if (e.altKey && e.key === 'F4' && videoStarted) {
+                if (!altF4Blocked) {
+                    altF4Blocked = true;
+                    showNiceTryMessage('ALT+F4');
+                    
+                    // Nach 2.5 Sekunden erlauben
+                    setTimeout(() => {
+                        altF4Blocked = false;
+                    }, 2500);
+                    
+                    e.preventDefault();
+                    return false;
+                }
+                // Beim zweiten Mal nicht blockieren - Browser schließt
+            }
+
+            // STRG+W (Tab schließen) - fangen wir hier ab!
+            if (e.ctrlKey && e.key === 'w' && videoStarted) {
+                if (!closeAttempted) {
+                    closeAttempted = true;
+                    showNiceTryMessage('STRG+W (Tab Close)');
+                    
+                    setTimeout(() => {
+                        closeAttempted = false;
+                    }, 2500);
+                    
+                    e.preventDefault();
+                    return false;
+                }
+                // Beim zweiten Mal durchlassen
+            }
+        });
+
+        // Browser Zurück-Button (History back)
+        let backButtonBlocked = false;
+        
+        window.addEventListener('popstate', function(e) {
+            if (videoStarted && !backButtonBlocked) {
+                backButtonBlocked = true;
+                
+                // Zeige Nachricht
+                showNiceTryMessage('Browser Back');
+                
+                // Pushe State zurück damit wir auf der Seite bleiben
+                history.pushState(null, '', window.location.href);
+                
+                // Nach 2.5 Sekunden erlaube zurückgehen
+                setTimeout(() => {
+                    backButtonBlocked = false;
+                }, 2500);
+            }
+        });
+
+        // Seite schließen / Tab schließen (X-Button)
+        // Trick: Mouse-Bewegung zum oberen Rand erkennen (X-Button Area)
+        let isClosing = false;
+        let mouseAtTop = false;
+        let mouseAtBackButton = false;
+        
+        document.addEventListener('mousemove', function(e) {
+            // Wenn Maus ganz oben ist (wo X-Button ist)
+            if (e.clientY < 10 && videoStarted && !closeAttempted) {
+                mouseAtTop = true;
+            } else {
+                mouseAtTop = false;
+            }
+            
+            // Zurück-Button Area (links oben: X < 100, Y < 50)
+            if (e.clientX < 100 && e.clientY < 50 && videoStarted) {
+                if (!mouseAtBackButton) {
+                    mouseAtBackButton = true;
+                    
+                    // Zeige rote Box beim Hovern über Zurück-Button
+                    if (!escMessage.classList.contains('active')) {
+                        escMessage.classList.add('active');
+                        console.log('%c🚫 Maus schwebt über Zurück-Button! Schöner Versuch! 😂', 'color: #ff6b6b; font-size: 14px; font-weight: bold;');
+                        
+                        // Verstecke nach 2 Sekunden automatisch
+                        setTimeout(() => {
+                            if (mouseAtBackButton && !backButtonBlocked) {
+                                escMessage.classList.remove('active');
+                            }
+                        }, 2000);
+                    }
+                }
+            } else {
+                if (mouseAtBackButton) {
+                    mouseAtBackButton = false;
+                    // Verstecke Box wenn Maus weggeht (falls nicht durch Zurück-Button blockiert)
+                    setTimeout(() => {
+                        if (!backButtonBlocked && !mouseAtBackButton) {
+                            escMessage.classList.remove('active');
+                        }
+                    }, 500);
+                }
+            }
+        });
+        
+        // Mouse verlässt das Fenster oben = wahrscheinlich X-Button!
+        document.addEventListener('mouseleave', function(e) {
+            if (mouseAtTop && videoStarted && !closeAttempted && !isClosing) {
+                isClosing = true;
+                
+                // Zeige rote Box SOFORT
+                escMessage.classList.add('active');
+                console.log('%c🚫 Maus oben verlassen - X-Button-Klick erkannt! Nice try! 😂', 'color: #ff6b6b; font-size: 14px; font-weight: bold;');
+                
+                // Verstecke nach 1.5 Sekunden falls es doch kein Schließen war
+                setTimeout(() => {
+                    if (!closeAttempted) {
+                        escMessage.classList.remove('active');
+                        isClosing = false;
+                    }
+                }, 1500);
+            }
+        });
+        
+        // Fange blur event (wenn Tab Fokus verliert)
+        window.addEventListener('blur', function() {
+            if (videoStarted && !closeAttempted && !isClosing) {
+                isClosing = true;
+                
+                // Zeige rote Box falls noch nicht sichtbar
+                if (!escMessage.classList.contains('active')) {
+                    escMessage.classList.add('active');
+                    console.log('%c🚫 Tab-Schließen erkannt! Schöner Versuch! 😂', 'color: #ff6b6b; font-size: 14px; font-weight: bold;');
+                }
+                
+                // Falls es doch kein Schließen war, verstecke nach 2 Sekunden
+                setTimeout(() => {
+                    if (!closeAttempted) {
+                        escMessage.classList.remove('active');
+                        isClosing = false;
+                    }
+                }, 2000);
+            }
+        });
+        
+        // beforeunload für X-Button
+        window.addEventListener('beforeunload', function(e) {
+            if (videoStarted && !closeAttempted) {
+                closeAttempted = true;
+                
+                // Rote Box sollte schon sichtbar sein
+                escMessage.classList.add('active');
+                console.log('%c🚫 beforeunload triggered!', 'color: #ff6b6b;');
+                
+                // Browser-Dialog mit Custom-Text
+                const message = '🚫 Schöner Versuch! Willst du Rick Astley wirklich verlassen? 😂';
+                e.preventDefault();
+                e.returnValue = message;
+                
+                // Reset nach 3 Sekunden wenn User bleibt
+                setTimeout(() => {
+                    closeAttempted = false;
+                    isClosing = false;
+                    escMessage.classList.remove('active');
+                }, 3000);
+                
+                return message;
+            }
+            // Beim zweiten Versuch: durchlassen
+        });
+
+        // Realistic loading messages (Enhanced - Nr. 1, 2, 6)
+        const loadingSteps = [
+            { main: 'Verbinde mit Preview-Server...', sub: `wss://preview.oberlinhaus.local:8443 | ${fakeIP}` },
+            { main: 'Authentifiziere Beta-Zugang...', sub: `Token: ${sessionId.substring(0, 15)}...` },
+            { main: 'Lade verschlüsselte Assets...', sub: 'AES-256 Entschlüsselung: 847KB | 89%...' },
+            { main: 'Initialisiere Feature-Module...', sub: 'AI Engine | Analytics | Live Updates' },
+            { main: 'Sende Telemetrie-Daten...', sub: 'Anonymous usage stats: 847 bytes' },
+            { main: 'Validiere Build-Integrität...', sub: 'Checksum: OK | Signature: Valid' }
+        ];
+
+        let currentStep = 0;
 
         function showLoading() {
+            // Console log
+            console.log('%c[Preview] Benutzer hat Preview-Zugang angefordert', 'color: #c77dff; font-weight: bold;');
+            console.log(`%c[Preview] Zeitstempel: ${new Date().toISOString()}`, 'color: #c77dff;');
+            console.log('%c[Preview] Starte Preview-Sequenz...', 'color: #c77dff;');
+            
             // Verstecke Start-Screen
             startScreen.style.display = 'none';
             
-            // Zeige Loading-Screen
-            loadingScreen.classList.add('active');
+            // Zeige Changelog erst für 3 Sekunden (Nr. 5)
+            changelogOverlay.classList.add('active');
+            console.log('%c[Preview] Zeige Release Notes v1.1.0-beta...', 'color: #c77dff;');
             
-            // Nach 2.5 Sekunden: Starte Video
             setTimeout(() => {
-                startVideo();
-            }, 2500);
+                changelogOverlay.classList.remove('active');
+                console.log('%c[Preview] Release Notes bestätigt', 'color: #50fa7b;');
+                
+                // Dann zeige Loading-Screen
+                loadingScreen.classList.add('active');
+                
+                // Update loading text dynamically
+                const updateInterval = setInterval(() => {
+                    if (currentStep < loadingSteps.length) {
+                        loadingText.textContent = loadingSteps[currentStep].main;
+                        loadingSubtext.textContent = loadingSteps[currentStep].sub;
+                        
+                        // Console log für jeden Schritt
+                        console.log(`%c[Preview] ${loadingSteps[currentStep].main}`, 'color: #c77dff;');
+                        
+                        currentStep++;
+                    } else {
+                        clearInterval(updateInterval);
+                    }
+                }, 500);
+                
+                // Random delay zwischen 3-4 Sekunden (für Changelog + Loading)
+                const randomDelay = 3000 + Math.random() * 1000;
+                
+                setTimeout(() => {
+                    console.log('%c[Preview] ✓ Alle Systeme bereit', 'color: #50fa7b; font-weight: bold;');
+                    console.log('%c[Preview] Starte Preview-Wiedergabe...', 'color: #c77dff;');
+                    startVideo();
+                }, randomDelay);
+                
+            }, 3000); // Changelog für 3 Sekunden
         }
 
         function startVideo() {
@@ -449,9 +831,24 @@
             loadingScreen.classList.remove('active');
             footer.classList.add('video-mode');
             
+            // Verstecke Watermarks wenn Video startet
+            watermark.classList.add('hidden');
+            buildInfo.classList.add('hidden');
+            
             // Zeige Video
             videoContainer.classList.add('active');
             overlay.classList.add('active');
+            
+            // Mark video as started (for ESC easter egg)
+            videoStarted = true;
+            
+            // Add history state for back button detection
+            history.pushState(null, '', window.location.href);
+            
+            // Console log
+            console.log('%c[Preview] 🎬 Wiedergabe gestartet', 'color: #50fa7b; font-weight: bold;');
+            console.log(`%c[Preview] Video-Codec: H.264 | Auflösung: 1280x720 | Bitrate: 2500kbps`, 'color: #c77dff;');
+            console.log(`%c[Preview] Audio: AAC 44.1kHz Stereo`, 'color: #c77dff;');
             
             // Starte Video mit Sound
             video.volume = 0.7;
@@ -460,15 +857,41 @@
             // Zeige Rickroll-Nachricht nach 2 Sekunden
             setTimeout(() => {
                 message.classList.add('active');
+                console.log('%c═══════════════════════════════════════', 'color: #ff6b6b;');
+                console.log('%c😂 GERICKROLLT! Du wurdest reingelegt!', 'color: #ff6b6b; font-size: 18px; font-weight: bold;');
+                console.log('%cNever gonna give you up, never gonna let you down! 🎵', 'color: #ff6b6b; font-size: 14px;');
+                console.log('%c═══════════════════════════════════════', 'color: #ff6b6b;');
+                console.log('%cDas war KEINE echte Beta-Vorschau 😄', 'color: #ff6b6b;');
+                console.log('%cAber du bist drauf reingefallen! Gut gemacht, dass du die Konsole checkst! 👍', 'color: #ff6b6b;');
             }, 2000);
         }
 
         function goBack() {
+            if (videoStarted && !backButtonBlocked) {
+                // Erster Klick: Zeige "Schöner Versuch!" Nachricht
+                backButtonBlocked = true;
+                showNiceTryMessage('Zurück-Button');
+                
+                setTimeout(() => {
+                    backButtonBlocked = false;
+                }, 2500);
+                
+                return; // Blockiere das Zurückgehen
+            }
+            
+            // Zweiter Klick: Erlaube zurückgehen
+            console.log('%c[Preview] Benutzer hat Preview verlassen', 'color: #c77dff;');
             window.close();
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 100);
         }
+
+        // Initial console log on page load
+        setTimeout(() => {
+            console.log('%c[Preview] ✓ Preview module ready', 'color: #50fa7b;');
+            console.log('%c[Preview] Waiting for user interaction...', 'color: #c77dff;');
+        }, 1500);
     </script>
 </body>
 </html>
