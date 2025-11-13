@@ -149,7 +149,7 @@ Als IT-Azubi möchte ich:
 │   ├── animations.js               (Animation Controller)
 │   ├── responsive.js               (Responsive Controller)
 │   ├── accessibility.js            (A11y Features)
-│   ├── theme-controller.js         (Theme System)
+│   <!-- Theme-System und theme-controller.js entfernt, alle Seiten nutzen jetzt ein einheitliches Farbschema und Design -->
 │   ├── statistics.js               (Stats Tracking)
 │   ├── performance.js              (Performance Monitor)
 │   ├── pwa-controller.js           (PWA Management)
