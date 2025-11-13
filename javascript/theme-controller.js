@@ -40,11 +40,15 @@ class ThemeController {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 this.setupThemeToggle();
+                this.setupHeaderThemeButton();
                 this.setupSystemThemeListener();
+                this.setupCrossTabSync();
             });
         } else {
             this.setupThemeToggle();
+            this.setupHeaderThemeButton();
             this.setupSystemThemeListener();
+            this.setupCrossTabSync();
         }
     }
 
@@ -110,6 +114,36 @@ class ThemeController {
         });
         
         document.body.appendChild(toggle);
+    }
+
+    // Kleiner Header-Button (Icon) in bestehende Headerzeile integrieren
+    setupHeaderThemeButton() {
+        if (document.getElementById('theme-header-btn')) return;
+
+        const container = document.querySelector('.nav-auth') || document.querySelector('.header-controls');
+        if (!container) return; // Kein Header gefunden → nichts tun
+
+        const btn = document.createElement('button');
+        btn.id = 'theme-header-btn';
+        btn.className = 'theme-header-btn';
+        btn.type = 'button';
+        btn.setAttribute('aria-label', 'Theme ändern');
+        btn.title = 'Theme ändern';
+        btn.addEventListener('click', () => this.showThemePicker());
+        this.updateHeaderButtonIcon(btn);
+
+        // Möglichst vor/zwischen Auth-Buttons platzieren
+        container.appendChild(btn);
+
+        // Wenn Header-Button existiert, große Floating-Blase ausblenden
+        const floating = document.getElementById('theme-toggle');
+        if (floating) floating.style.display = 'none';
+    }
+
+    updateHeaderButtonIcon(btn) {
+        const currentTheme = this.getCurrentTheme();
+        const icon = this.themes[currentTheme]?.icon || '🎨';
+        btn.textContent = icon;
     }
 
     updateToggleContent(toggle) {
@@ -223,6 +257,9 @@ class ThemeController {
         if (toggle) {
             this.updateToggleContent(toggle);
         }
+        // Update Header Button
+        const headerBtn = document.getElementById('theme-header-btn');
+        if (headerBtn) this.updateHeaderButtonIcon(headerBtn);
         
         // Update Active State im Modal
         document.querySelectorAll('.theme-option').forEach(option => {
@@ -280,6 +317,22 @@ class ThemeController {
                         2500
                     );
                 }
+            }
+        });
+    }
+
+    // ========================================
+    // CROSS-TAB SYNC
+    // ========================================
+    setupCrossTabSync() {
+        window.addEventListener('storage', (e) => {
+            if (e.key === this.STORAGE_KEY && e.newValue) {
+                const newTheme = e.newValue;
+                this.applyTheme(newTheme);
+                const headerBtn = document.getElementById('theme-header-btn');
+                if (headerBtn) this.updateHeaderButtonIcon(headerBtn);
+                const toggle = document.getElementById('theme-toggle');
+                if (toggle) this.updateToggleContent(toggle);
             }
         });
     }

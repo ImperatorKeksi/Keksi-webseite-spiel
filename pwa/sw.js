@@ -51,7 +51,6 @@ const CACHE_FILES = [
   '../javascript/aufgabenroulette.js',
   '../javascript/dashboard.js',
   '../javascript/performance.js',
-  '../javascript/theme-controller.js',
   '../javascript/statistics.js',
   '../javascript/export-share.js',
   '../javascript/haptic-feedback.js',

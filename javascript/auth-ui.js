@@ -1,10 +1,10 @@
 /*
     +--------------------------------------------------+
-    ¦  ?? AUTH UI - Login/Register Modal              ¦
-    ¦  Benutzeroberfläche für Authentifizierung       ¦
-    ¦                                                  ¦
-    ¦  Entwickler: Nico Kaschube                      ¦
-    ¦  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ¦
+    ï¿½  ?? AUTH UI - Login/Register Modal              ï¿½
+    ï¿½  Benutzeroberflï¿½che fï¿½r Authentifizierung       ï¿½
+    ï¿½                                                  ï¿½
+    ï¿½  Entwickler: Nico Kaschube                      ï¿½
+    ï¿½  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                  ï¿½
     +--------------------------------------------------+
 */
 
@@ -39,8 +39,18 @@ class AuthUI {
         const closeLoginBtn = document.getElementById('closeLoginBtn');
         const cancelLoginBtn = document.getElementById('cancelLoginBtn');
         
+        // Explizite Binder
         if (loginBtn) loginBtn.addEventListener('click', () => this.openLoginModal());
         if (loginBtnNav) loginBtnNav.addEventListener('click', () => this.openLoginModal());
+        // Generischer Binder: alle IDs, die mit loginBtn anfangen (z.B. loginBtnGame, loginBtnAR, ...)
+        document.querySelectorAll('[id^="loginBtn"]').forEach(el => {
+            // Nicht den Submit-Button im Modal erwischen (heiÃŸt submitLoginBtn)
+            if (el.id === 'submitLoginBtn') return;
+            // Doppelte Listener vermeiden
+            if (el._loginBound) return;
+            el._loginBound = true;
+            el.addEventListener('click', () => this.openLoginModal());
+        });
         if (closeLoginBtn) closeLoginBtn.addEventListener('click', () => this.closeLoginModal());
         if (cancelLoginBtn) cancelLoginBtn.addEventListener('click', () => this.closeLoginModal());
         
@@ -49,6 +59,12 @@ class AuthUI {
         const logoutBtnNav = document.getElementById('logoutBtnNav');
         if (logoutBtn) logoutBtn.addEventListener('click', () => this.handleLogout());
         if (logoutBtnNav) logoutBtnNav.addEventListener('click', () => this.handleLogout());
+        // Generischer Binder: alle IDs, die mit logoutBtn anfangen (z.B. logoutBtnGame, logoutBtnAR, ...)
+        document.querySelectorAll('[id^="logoutBtn"]').forEach(el => {
+            if (el._logoutBound) return;
+            el._logoutBound = true;
+            el.addEventListener('click', () => this.handleLogout());
+        });
         
         // Tab Switching
         const authTabs = document.querySelectorAll('.auth-tab');
@@ -145,15 +161,15 @@ class AuthUI {
         const password = document.getElementById('loginPassword')?.value;
         
         if (!username || !password) {
-            this.showError('login', 'Bitte fülle alle Felder aus!');
+            this.showError('login', 'Bitte fï¿½lle alle Felder aus!');
             return;
         }
         
-        // Disable button während Login
+        // Disable button wï¿½hrend Login
         const submitBtn = document.getElementById('submitLoginBtn');
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.textContent = '? Anmeldung läuft...';
+            submitBtn.textContent = '? Anmeldung lï¿½uft...';
         }
         
         try {
@@ -179,7 +195,7 @@ class AuthUI {
     }
     
     handleLogout() {
-        if (confirm('Möchtest du dich wirklich abmelden?')) {
+        if (confirm('Mï¿½chtest du dich wirklich abmelden?')) {
             window.authManager.logout();
             this.showNotification('?? Erfolgreich abgemeldet!', 'info');
         }
@@ -191,12 +207,12 @@ class AuthUI {
         const passwordConfirm = document.getElementById('registerPasswordConfirm')?.value;
         
         if (!username || !password || !passwordConfirm) {
-            this.showError('register', 'Bitte fülle alle Felder aus!');
+            this.showError('register', 'Bitte fï¿½lle alle Felder aus!');
             return;
         }
         
         if (password !== passwordConfirm) {
-            this.showError('register', 'Passwörter stimmen nicht überein!');
+            this.showError('register', 'Passwï¿½rter stimmen nicht ï¿½berein!');
             return;
         }
         

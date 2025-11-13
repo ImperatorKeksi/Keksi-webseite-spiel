@@ -46,6 +46,7 @@ class AuthManager {
         this.loadSession();
         this.initializeDefaultUsers();
         this.updateUI();
+        this.bindProfileNavigation();
     }
     
     // =========================================================================
@@ -343,44 +344,60 @@ class AuthManager {
     // =========================================================================
     
     updateUI() {
-        // Zeige/Verstecke Login/Logout Buttons
-        const loginBtn = document.getElementById('loginBtn');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const userDisplay = document.getElementById('userDisplay');
-        
-        // Navigation Buttons (für Landing Page)
-        const loginBtnNav = document.getElementById('loginBtnNav');
-        const logoutBtnNav = document.getElementById('logoutBtnNav');
-        const userDisplayNav = document.getElementById('userDisplayNav');
-        
+        // Sammle alle bekannten Button-/Display-IDs (seitenübergreifend)
+        const loginIds = ['loginBtn','loginBtnNav','loginBtnGame','loginBtnAR','loginBtnNR','loginBtnSLF','loginBtnDB','loginBtnTimer','loginBtnZG'];
+        const logoutIds = ['logoutBtn','logoutBtnNav','logoutBtnGame','logoutBtnAR','logoutBtnNR','logoutBtnSLF','logoutBtnDB','logoutBtnTimer','logoutBtnZG'];
+        const userDisplayIds = ['userDisplay','userDisplayNav','userDisplayGame','userDisplayAR','userDisplayNR','userDisplaySLF','userDisplayDB','userDisplayTimer','userDisplayZG'];
+
+        const logins = loginIds.map(id => document.getElementById(id)).filter(Boolean);
+        const logouts = logoutIds.map(id => document.getElementById(id)).filter(Boolean);
+        const displays = userDisplayIds.map(id => document.getElementById(id)).filter(Boolean);
+
         if (this.isLoggedIn()) {
-            if (loginBtn) loginBtn.style.display = 'none';
-            if (logoutBtn) logoutBtn.style.display = 'inline-flex';
-            if (loginBtnNav) loginBtnNav.style.display = 'none';
-            if (logoutBtnNav) logoutBtnNav.style.display = 'inline-flex';
-            
-            if (userDisplay) {
-                userDisplay.style.display = 'inline-flex';
-                userDisplay.textContent = `👤 ${this.currentUser.username}`;
-                userDisplay.title = `Rolle: ${this.getRoleLabel(this.currentUser.role)}`;
-            }
-            if (userDisplayNav) {
-                userDisplayNav.style.display = 'inline-flex';
-                userDisplayNav.textContent = `👤 ${this.currentUser.username}`;
-                userDisplayNav.title = `Rolle: ${this.getRoleLabel(this.currentUser.role)}`;
-            }
+            logins.forEach(el => el.style.display = 'none');
+            logouts.forEach(el => el.style.display = 'inline-flex');
+            displays.forEach(el => {
+                el.style.display = 'inline-flex';
+                el.textContent = `👤 ${this.currentUser.username}`;
+                el.title = `Rolle: ${this.getRoleLabel(this.currentUser.role)}`;
+            });
         } else {
-            if (loginBtn) loginBtn.style.display = 'inline-flex';
-            if (logoutBtn) logoutBtn.style.display = 'none';
-            if (loginBtnNav) loginBtnNav.style.display = 'inline-flex';
-            if (logoutBtnNav) logoutBtnNav.style.display = 'none';
-            if (userDisplay) userDisplay.style.display = 'none';
-            if (userDisplayNav) userDisplayNav.style.display = 'none';
+            logins.forEach(el => el.style.display = 'inline-flex');
+            logouts.forEach(el => el.style.display = 'none');
+            displays.forEach(el => {
+                el.style.display = 'none';
+            });
         }
-        
+
         // Zeige/Verstecke Feature-Buttons basierend auf Berechtigungen
         this.updateFeatureButtons();
+        
+        // Nach UI-Update: sicherstellen, dass Klick auf Profil zur Dashboard-Seite führt
+        this.bindProfileNavigation();
     }
+
+    // Profil-Klick: zum Dashboard navigieren
+    bindProfileNavigation() {
+        try {
+            const profileEls = Array.from(document.querySelectorAll('[id^="userDisplay"]'));
+            profileEls.forEach(el => {
+                // Doppelte Listener vermeiden
+                if (el._dashboardBound) return;
+                el._dashboardBound = true;
+                el.style.cursor = 'pointer';
+                el.addEventListener('click', (e) => {
+                    if (!this.isLoggedIn()) return;
+                    const inSeiten = window.location.pathname.includes('/seiten/');
+                    const target = inSeiten ? 'dashboard.html' : 'seiten/dashboard.html';
+                    window.location.href = target;
+                });
+            });
+        } catch (e) {
+            console.warn('⚠️ Konnte Profil-Navigation nicht binden:', e);
+        }
+    }
+
+    // (Entfernt) Zusätzlich angehängter Dashboard-Link wird nicht mehr verwendet
     
     updateFeatureButtons() {
         // Editor Button

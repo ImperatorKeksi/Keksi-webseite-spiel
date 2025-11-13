@@ -32,6 +32,7 @@ class TimerManager {
         this.bindElements();
         this.bindEvents();
         this.startClock();
+        this.updateClock(); // Fallback: Zeigt sofort die aktuelle Uhrzeit beim Laden
         this.loadSettings();
         console.log('🕐 Timer Manager initialisiert');
     }

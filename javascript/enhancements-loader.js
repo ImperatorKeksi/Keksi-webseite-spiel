@@ -33,7 +33,7 @@
     // JavaScript Files laden
     const jsFiles = [
         'performance.js',           // Performance als erstes (wichtig!)
-        'theme-controller.js',      // Theme laden
+        // 'theme-controller.js' entfernt (Theme-Auswahl deaktiviert)
         'statistics.js',            // Statistics früh laden
         'export-share.js',          // Export & Share
         'haptic-feedback.js',       // Haptic & Enhanced Sound

@@ -17,6 +17,75 @@
     padding: 20px;
 }
 
+/* Abstand unter der fixierten Haupt-Navigation (aus main.css) */
+.main-header + .container {
+    padding-top: 84px;
+}
+
+/* Header Branding: Logo + Titel nebeneinander wie in der Navi */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    background: var(--accent-gradient, linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+/* Position des Theme-Toggles so kollidiert er nicht mit der Header-Navigation */
+.theme-toggle {
+    top: 76px;
+    right: 24px;
+}
+
+/* Floating Theme-Toggle auf dem Dashboard wieder sichtbar lassen */
+/* (keine Sonderbehandlung mehr notwendig) */
+
+/* =============================
+   Favoriten-Editor Modal
+   ============================= */
+.dashboard-modal-content {
+    max-width: 720px;
+    width: 92%;
+}
+
+.favorites-grid-edit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.fav-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-secondary, #1a1a1a);
+    border: 1px solid var(--border-secondary, rgba(199, 125, 255, 0.2));
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.fav-option input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+.fav-icon {
+    font-size: 1.4rem;
+}
+
+.fav-name {
+    color: var(--text-primary, #ffffff);
+    font-weight: 600;
+}
+
 /* ========================================
    WELCOME SECTION
    ======================================== */
@@ -396,6 +465,85 @@
 .btn-sm {
     padding: 8px 16px !important;
     font-size: 0.9rem !important;
+}
+
+/* ========================================
+   CONFIG MANAGER MODAL
+   ======================================== */
+.config-manager-modal .modal-content {
+    max-width: 920px;
+    width: 95%;
+}
+
+.config-manager-body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
+}
+
+.config-list {
+    background: var(--bg-secondary, #1a1a1a);
+    border: 1px solid var(--border-secondary, rgba(199, 125, 255, 0.2));
+    border-radius: 12px;
+    padding: 10px;
+    max-height: 420px;
+    overflow: auto;
+}
+
+.config-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.config-list-item:hover,
+.config-list-item.active {
+    background: var(--glass-bg, rgba(157, 77, 221, 0.12));
+}
+
+.config-editor {
+    background: var(--bg-secondary, #1a1a1a);
+    border: 1px solid var(--border-secondary, rgba(199, 125, 255, 0.2));
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.config-editor .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.config-editor input[type="text"],
+.config-editor textarea {
+    width: 100%;
+    background: var(--bg-tertiary, #2a2a2a);
+    border: 1px solid var(--border-secondary, rgba(199, 125, 255, 0.2));
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text-primary, #ffffff);
+}
+
+.config-editor textarea {
+    min-height: 140px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.config-editor .editor-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+    .config-manager-body {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ========================================

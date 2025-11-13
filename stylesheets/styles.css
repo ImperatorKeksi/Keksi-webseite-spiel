@@ -143,24 +143,21 @@ body {
 }
 
 .game-header .btn {
-    background: linear-gradient(135deg, #240046 0%, #10002b 100%);
-    border: 2px solid rgba(199, 125, 255, 0.4);
-    color: #e0aaff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 12px;
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .game-header .btn:hover {
-    background: linear-gradient(135deg, #9d4edd 0%, #7209b7 100%);
-    border-color: #c77dff;
-    color: white;
+    background: rgba(157, 77, 221, 0.2);
+    border-color: var(--accent);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.5);
 }
 
 /* ============================================================================= */
@@ -252,11 +249,11 @@ body {
 }
 
 .mode-select-btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
+    background: var(--primary-gradient);
+    color: #10002b;
     border: none;
     padding: 15px 30px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
@@ -265,8 +262,8 @@ body {
 }
 
 .mode-select-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(157, 77, 221, 0.5);
 }
 
 .mode-select-btn:active {
@@ -1080,19 +1077,6 @@ input:checked + .toggle-slider:before {
 }
 
 /* Vollbild-Button hervorheben */
-#fullscreenBtn {
-    background: linear-gradient(135deg, #9d4edd 0%, #7209b7 100%);
-    border-color: rgba(199, 125, 255, 0.6);
-    color: white;
-    font-size: 1.5rem;
-}
-
-#fullscreenBtn:hover {
-    background: linear-gradient(135deg, #c77dff 0%, #9d4edd 100%);
-    border-color: #e0aaff;
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(199, 125, 255, 0.5);
-}
 
 .next-round-btn, .end-game-btn, .stats-btn {
     background: linear-gradient(45deg, #10002b, #240046);
@@ -2958,13 +2942,13 @@ kbd {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #9d4edd 0%, #7209b7 100%);
-    color: white;
+    background: var(--primary-gradient);
+    color: #10002b;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(157, 77, 221, 0.5);
 }
 
 @media (max-width: 600px) {
@@ -2999,8 +2983,8 @@ kbd {
 
 /* Editor Button in Setup */
 .editor-btn {
-    background: linear-gradient(135deg, #9d4edd 0%, #7209b7 100%);
-    color: white;
+    background: var(--primary-gradient);
+    color: #10002b;
     padding: 15px 30px;
     border: none;
     border-radius: 12px;

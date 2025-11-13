@@ -12,6 +12,8 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../stylesheets/main.css">
+    <link rel="stylesheet" href="../stylesheets/animations.css">
+    <link rel="stylesheet" href="../stylesheets/responsive.css">
     <link rel="stylesheet" href="../stylesheets/styles.css">
     <link rel="stylesheet" href="../stylesheets/dashboard.css">
     
@@ -22,20 +24,24 @@
     <!-- Enhancements Loader (lädt automatisch alle Features) -->
     <script src="../javascript/enhancements-loader.js"></script>
 </head>
-<body>
+<body class="dashboard-page">
     <!-- Skip Link für Accessibility -->
     <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
 
     <!-- Header -->
-    <header class="header">
-        <div class="header-content">
+    <header class="header main-header">
+        <div class="header-content nav-container">
             <div class="logo-container">
                 <img src="../icons/logo-simple.svg" alt="Lehrer-Tools Logo" class="logo" width="40" height="40">
                 <h1 class="header-title">Mein Dashboard</h1>
             </div>
-            <nav class="header-nav">
-                <a href="../START.html" class="nav-link">🏠 Startseite</a>
-                <a href="../seiten/index.html" class="nav-link">🎮 IT Jeopardy</a>
+            <nav class="header-nav" style="display:flex; align-items:center; gap:12px;">
+                <a href="../seiten/index.html" class="nav-link">🏠 Startseite</a>
+                <div class="nav-auth" style="display:flex; align-items:center; gap:12px;">
+                    <span id="userDisplayDB" class="user-display" style="display:none;"></span>
+                    <button id="loginBtnDB" class="btn-login" style="display:none;">Anmelden</button>
+                    <button id="logoutBtnDB" class="btn-logout" style="display:none;">Abmelden</button>
+                </div>
             </nav>
         </div>
     </header>
@@ -126,11 +132,20 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Berufsbildungswerk im Oberlinhaus Potsdam | Entwickelt von Nico Kaschube</p>
+    <!-- Footer im Stil der Tools (schmale Leiste) -->
+    <footer class="game-footer">
+        <div class="footer-content">
+            <div class="developer-credit">
+                <span class="footer-icon">⚡</span>
+                <span class="footer-text">Entwickelt von <strong>Nico Kaschube</strong> • 2025</span>
+                <span class="footer-icon">🎮</span>
+            </div>
+        </div>
     </footer>
 
+    <!-- Auth + UI (für Login-Status, Profil, Logout) -->
+    <script src="../javascript/auth.js"></script>
+    <script src="../javascript/auth-ui.js"></script>
     <!-- Dashboard Controller -->
     <script src="../javascript/dashboard.js"></script>
 

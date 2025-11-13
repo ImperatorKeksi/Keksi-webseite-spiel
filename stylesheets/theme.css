@@ -104,171 +104,9 @@
     --glass-border: rgba(0, 0, 0, 0.1);
 }
 
-/* ========================================
-   THEME TOGGLE BUTTON
-   ======================================== */
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 80px;
-    z-index: 9998;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--border-primary);
-    border-radius: 30px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    box-shadow: 0 4px 16px var(--shadow-primary);
-}
+/* Theme-Auswahl UI entfernt */
 
-.theme-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px var(--shadow-glow);
-    border-color: var(--border-focus);
-}
-
-.theme-toggle:active {
-    transform: scale(0.95);
-}
-
-.theme-icon {
-    font-size: 1.4rem;
-    transition: transform var(--transition-normal);
-}
-
-.theme-toggle:hover .theme-icon {
-    transform: rotate(20deg);
-}
-
-.theme-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    display: none;
-}
-
-/* ========================================
-   THEME PICKER MODAL
-   ======================================== */
-.theme-picker-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--overlay-dark);
-    backdrop-filter: blur(10px);
-    z-index: 100001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.theme-picker-content {
-    background: var(--bg-secondary);
-    border: 2px solid var(--border-primary);
-    border-radius: 24px;
-    padding: 40px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 20px 60px var(--shadow-primary);
-}
-
-.theme-picker-title {
-    font-size: 1.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
-    font-weight: 700;
-    text-align: center;
-}
-
-.theme-picker-subtitle {
-    font-size: 1rem;
-    color: var(--text-tertiary);
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.theme-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.theme-option {
-    background: var(--bg-tertiary);
-    border: 3px solid transparent;
-    border-radius: 16px;
-    padding: 20px;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    text-align: center;
-}
-
-.theme-option:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px var(--shadow-primary);
-}
-
-.theme-option.active {
-    border-color: var(--brand-primary);
-    background: var(--glass-bg);
-    box-shadow: 0 0 30px var(--shadow-glow);
-}
-
-.theme-option-icon {
-    font-size: 2.5rem;
-    margin-bottom: 12px;
-    display: block;
-}
-
-.theme-option-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
-}
-
-.theme-option-desc {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-}
-
-.theme-picker-info {
-    background: var(--glass-bg);
-    border: 1px solid var(--border-secondary);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    color: var(--text-tertiary);
-    text-align: center;
-}
-
-.theme-picker-close {
-    width: 100%;
-    background: var(--gradient-primary);
-    border: none;
-    border-radius: 12px;
-    padding: 14px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-}
-
-.theme-picker-close:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px var(--shadow-glow);
-}
+/* Kompakter Header-Button entfernt */
 
 /* ========================================
    THEME PREVIEW
@@ -331,39 +169,7 @@
 /* ========================================
    RESPONSIVE
    ======================================== */
-@media (max-width: 768px) {
-    .theme-toggle {
-        top: 15px;
-        right: 15px;
-        padding: 8px 12px;
-        gap: 8px;
-    }
-
-    .theme-icon {
-        font-size: 1.2rem;
-    }
-
-    .theme-picker-content {
-        padding: 30px 20px;
-    }
-
-    .theme-picker-title {
-        font-size: 1.5rem;
-    }
-
-    .theme-options {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .theme-option {
-        padding: 16px;
-    }
-
-    .theme-option-icon {
-        font-size: 2rem;
-    }
-}
+@media (max-width: 768px) { }
 
 /* Desktop - Label anzeigen */
 @media (min-width: 1024px) {
@@ -375,31 +181,12 @@
 /* ========================================
    PRINT STYLES
    ======================================== */
-@media print {
-    .theme-toggle,
-    .theme-picker-modal {
-        display: none !important;
-    }
-    
-    /* Force light theme for print */
-    :root {
-        --bg-primary: #ffffff;
-        --text-primary: #000000;
-    }
-}
+@media print { }
 
 /* ========================================
    HIGH CONTRAST MODE
    ======================================== */
-@media (prefers-contrast: high) {
-    .theme-option {
-        border-width: 4px;
-    }
-    
-    .theme-option.active {
-        border-width: 5px;
-    }
-}
+@media (prefers-contrast: high) { }
 
 /* ========================================
    REDUCED MOTION

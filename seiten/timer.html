@@ -366,19 +366,18 @@
     <link rel="stylesheet" href="../stylesheets/animations.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="timer-header">
+    <!-- Header: Struktur und Klassen wie Zufallsgenerator -->
+    <header class="game-header">
         <div class="header-title">
             <span style="font-size: 2rem;">🕐</span>
             <h1>Digitale Uhr & Timer</h1>
         </div>
-        <div class="header-controls">
+        <div style="display: flex; gap: 1rem; align-items: center;">
             <a href="index.html" class="btn">← Zurück</a>
             <span id="userDisplayTimer" class="user-display" style="display: none;">👤 Gast</span>
             <button id="loginBtnTimer" class="btn">🔐 Anmelden</button>
             <button id="logoutBtnTimer" class="btn" style="display: none;">🚪 Abmelden</button>
-            <button id="fullscreenBtn" class="btn">⛶ Vollbild</button>
-            <button id="resetBtn" class="btn">🔄 Zurücksetzen</button>
+            <button id="fullscreenBtn" class="btn btn-secondary">⛶ Vollbild</button>
         </div>
     </header>
 
@@ -422,8 +421,9 @@
             </div>
             
             <button class="btn btn-primary" id="startBtn" style="display: none;">▶️ Start</button>
-            <button class="btn" id="pauseBtn" style="display: none;">⏸️ Pause</button>
-            <button class="btn" id="stopBtn" style="display: none;">⏹️ Stop</button>
+            <button class="btn btn-secondary" id="pauseBtn" style="display: none;">⏸️ Pause</button>
+            <button class="btn btn-secondary" id="stopBtn" style="display: none;">⏹️ Stop</button>
+                    <button class="btn" id="resetBtn">🔄 Zurücksetzen</button>
         </div>
 
         <!-- Settings Panel -->
@@ -477,7 +477,7 @@
             </div>
 
             <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
-                <button class="btn" id="testAlarmBtn">🔊 Alarm testen</button>
+                <button class="btn btn-secondary" id="testAlarmBtn">🔊 Alarm testen</button>
             </div>
         </div>
     </main>
@@ -498,4 +498,4 @@
     <script src="../javascript/animations.js"></script>
     <script src="../javascript/timer.js"></script>
 </body>
-</html>
+    <!-- Entfernt: Individuelle Styles, zentrale CSS wird verwendet -->

@@ -49,6 +49,8 @@ class DashboardController {
         };
     }
 
+    
+
     loadData() {
         try {
             const saved = localStorage.getItem(this.STORAGE_KEY);
@@ -123,12 +125,37 @@ class DashboardController {
     // RENDER FUNCTIONS
     // ========================================
     render() {
+        this.renderWelcomeUser();
         this.renderQuickAccess();
         this.renderFavorites();
         this.renderRecentActivity();
         this.renderSavedConfigs();
         this.renderStatsOverview();
         this.renderWidgets();
+    }
+
+    renderWelcomeUser() {
+        const titleEl = document.querySelector('.welcome-title');
+        if (!titleEl) return;
+
+        let username = null;
+        try {
+            if (window.authManager && window.authManager.isLoggedIn()) {
+                username = window.authManager.currentUser?.username || null;
+            } else {
+                const raw = localStorage.getItem('jeopardy_auth_session');
+                if (raw) {
+                    const sess = JSON.parse(raw);
+                    username = sess?.username || null;
+                }
+            }
+        } catch (_) {}
+
+        if (username) {
+            titleEl.textContent = `👋 Willkommen zurück, ${username}!`;
+        } else {
+            titleEl.textContent = '👋 Willkommen zurück!';
+        }
     }
 
     renderQuickAccess() {
@@ -350,9 +377,58 @@ class DashboardController {
     }
 
     showEditFavorites() {
-        if (typeof AnimationsController !== 'undefined') {
-            AnimationsController.showNotification('⭐ Favoriten-Editor kommt bald!', 'info', 3000);
-        }
+        const existing = document.getElementById('favoritesModal');
+        if (existing) existing.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'favoritesModal';
+        modal.className = 'modal';
+        const toolOptions = Object.entries(this.tools).map(([id, tool]) => {
+            const checked = this.data.favorites.includes(id) ? 'checked' : '';
+            return `
+                <label class="fav-option">
+                    <input type="checkbox" value="${id}" ${checked}>
+                    <span class="fav-icon">${tool.icon}</span>
+                    <span class="fav-name">${tool.name}</span>
+                </label>
+            `;
+        }).join('');
+
+        modal.innerHTML = `
+            <div class="modal-content dashboard-modal-content">
+                <div class="modal-header">
+                    <h3>Favoriten bearbeiten</h3>
+                    <button class="modal-close-btn" id="closeFavoritesModal">✖️</button>
+                </div>
+                <div class="modal-body">
+                    <div class="favorites-grid-edit">
+                        ${toolOptions}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="saveFavoritesBtn" class="modal-btn btn-primary">Speichern</button>
+                    <button type="button" id="cancelFavoritesBtn" class="modal-btn-secondary">Abbrechen</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const close = () => modal.remove();
+        modal.querySelector('#closeFavoritesModal')?.addEventListener('click', close);
+        modal.querySelector('#cancelFavoritesBtn')?.addEventListener('click', close);
+        modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+
+        modal.querySelector('#saveFavoritesBtn')?.addEventListener('click', () => {
+            const selected = Array.from(modal.querySelectorAll('input[type="checkbox"]:checked')).map(el => el.value);
+            this.data.favorites = selected;
+            this.saveData();
+            this.renderFavorites();
+            if (typeof AnimationsController !== 'undefined') {
+                AnimationsController.showNotification('⭐ Favoriten aktualisiert', 'success', 2000);
+            }
+            close();
+        });
     }
 
     // ========================================
@@ -398,9 +474,167 @@ class DashboardController {
     }
 
     showConfigManager() {
-        if (typeof AnimationsController !== 'undefined') {
-            AnimationsController.showNotification('💾 Konfigurations-Manager kommt bald!', 'info', 3000);
-        }
+        const existing = document.getElementById('configManagerModal');
+        if (existing) existing.remove();
+
+        const modal = document.createElement('div');
+        modal.id = 'configManagerModal';
+        modal.className = 'modal config-manager-modal';
+
+        const listItems = this.data.savedConfigs.map((cfg, i) => {
+            const tool = this.tools[cfg.tool];
+            const label = tool ? `${tool.icon} ${tool.name}` : 'Unbekanntes Tool';
+            return `
+                <div class="config-list-item" data-index="${i}" tabindex="0">
+                    <span>${cfg.name}</span>
+                    <small class="config-tool">${label}</small>
+                </div>
+            `;
+        }).join('');
+
+        const first = this.data.savedConfigs[0] || { name: '', description: '', tool: '', config: {} };
+        const firstTool = this.tools[first.tool];
+        const firstToolLabel = firstTool ? `${firstTool.icon} ${firstTool.name}` : '';
+
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Gespeicherte Konfigurationen</h3>
+                    <button class="modal-close-btn" id="closeCfgMgr">✖️</button>
+                </div>
+                <div class="modal-body config-manager-body">
+                    <div class="config-list" id="cfgList">
+                        ${listItems || '<div class="empty-state">Keine Konfigurationen gespeichert</div>'}
+                    </div>
+                    <div class="config-editor" id="cfgEditor">
+                        <div class="form-row">
+                            <label for="cfgName">Name</label>
+                            <input type="text" id="cfgName" value="${first.name?.replace(/"/g, '&quot;')}">
+                        </div>
+                        <div class="form-row">
+                            <label for="cfgDesc">Beschreibung</label>
+                            <input type="text" id="cfgDesc" value="${first.description?.replace(/"/g, '&quot;') || ''}">
+                        </div>
+                        <div class="form-row">
+                            <label>Tool</label>
+                            <div class="config-tool">${firstToolLabel}</div>
+                        </div>
+                        <div class="form-row">
+                            <label for="cfgJson">Config (JSON)</label>
+                            <textarea id="cfgJson">${first && first.config ? JSON.stringify(first.config, null, 2) : '{}'} </textarea>
+                        </div>
+                        <div class="editor-actions">
+                            <button class="btn btn-danger btn-sm" id="cfgDeleteBtn" ${this.data.savedConfigs.length ? '' : 'disabled'}>Löschen</button>
+                            <button class="btn btn-secondary btn-sm" id="cfgExportBtn" ${this.data.savedConfigs.length ? '' : 'disabled'}>Exportieren</button>
+                            <button class="btn btn-primary btn-sm" id="cfgSaveBtn" ${this.data.savedConfigs.length ? '' : 'disabled'}>Speichern</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn-secondary" id="cfgCloseBtn">Schließen</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        const cleanup = () => modal.remove();
+        modal.querySelector('#closeCfgMgr')?.addEventListener('click', cleanup);
+        modal.querySelector('#cfgCloseBtn')?.addEventListener('click', cleanup);
+        modal.addEventListener('click', (e) => { if (e.target === modal) cleanup(); });
+
+        let activeIndex = this.data.savedConfigs.length ? 0 : -1;
+        const listEl = modal.querySelector('#cfgList');
+        const nameEl = modal.querySelector('#cfgName');
+        const descEl = modal.querySelector('#cfgDesc');
+        const jsonEl = modal.querySelector('#cfgJson');
+        const delBtn = modal.querySelector('#cfgDeleteBtn');
+        const saveBtn = modal.querySelector('#cfgSaveBtn');
+        const expBtn = modal.querySelector('#cfgExportBtn');
+
+        const refreshActive = () => {
+            listEl?.querySelectorAll('.config-list-item').forEach((el, i) => {
+                el.classList.toggle('active', i === activeIndex);
+            });
+        };
+
+        const loadIntoEditor = (idx) => {
+            const cfg = this.data.savedConfigs[idx];
+            if (!cfg) return;
+            const t = this.tools[cfg.tool];
+            nameEl.value = cfg.name || '';
+            descEl.value = cfg.description || '';
+            jsonEl.value = JSON.stringify(cfg.config || {}, null, 2);
+            const toolRow = modal.querySelector('.config-editor .config-tool');
+            if (toolRow) toolRow.textContent = t ? `${t.icon} ${t.name}` : '';
+        };
+
+        listEl?.querySelectorAll('.config-list-item').forEach((item) => {
+            const idx = parseInt(item.getAttribute('data-index'));
+            const select = () => {
+                activeIndex = idx;
+                loadIntoEditor(activeIndex);
+                refreshActive();
+            };
+            item.addEventListener('click', select);
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    select();
+                }
+            });
+        });
+        refreshActive();
+
+        saveBtn?.addEventListener('click', () => {
+            if (activeIndex < 0) return;
+            try {
+                const parsed = JSON.parse(jsonEl.value || '{}');
+                const entry = this.data.savedConfigs[activeIndex];
+                entry.name = nameEl.value.trim() || entry.name;
+                entry.description = descEl.value.trim();
+                entry.config = parsed;
+                this.saveData();
+                this.renderSavedConfigs();
+                if (typeof AnimationsController !== 'undefined') {
+                    AnimationsController.showNotification('💾 Konfiguration gespeichert', 'success', 2000);
+                }
+            } catch (e) {
+                alert('Ungültiges JSON. Bitte prüfen.');
+            }
+        });
+
+        delBtn?.addEventListener('click', () => {
+            if (activeIndex < 0) return;
+            if (confirm('Diese Konfiguration wirklich löschen?')) {
+                this.data.savedConfigs.splice(activeIndex, 1);
+                this.saveData();
+                this.renderSavedConfigs();
+                if (this.data.savedConfigs.length) {
+                    activeIndex = 0;
+                    loadIntoEditor(activeIndex);
+                    refreshActive();
+                } else {
+                    cleanup();
+                }
+                if (typeof AnimationsController !== 'undefined') {
+                    AnimationsController.showNotification('🗑️ Konfiguration gelöscht', 'warning', 2000);
+                }
+            }
+        });
+
+        expBtn?.addEventListener('click', async () => {
+            if (activeIndex < 0) return;
+            try {
+                await navigator.clipboard.writeText(jsonEl.value);
+                if (typeof AnimationsController !== 'undefined') {
+                    AnimationsController.showNotification('📋 In Zwischenablage kopiert', 'info', 2000);
+                }
+            } catch (_) {
+                // Fallback
+                prompt('JSON kopieren:', jsonEl.value);
+            }
+        });
     }
 
     // ========================================
