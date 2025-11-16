@@ -75,17 +75,22 @@ Als IT-Azubi möchte ich:
 
 ### 📊 Code-Statistiken
 
- - 📁 **Total Dateien:** 45+
- - 💻 **Code-Zeilen:** ~26.500+
- - 📜 **JavaScript:** ~16.000 Zeilen
- - 🎨 **CSS:** ~4.000 Zeilen
- - ❓ **Fragen:** 100+ über 4 Kategorien
- - ⏱️ **Entwicklungszeit:** 12+ Wochen
- - 🔄 **Commits:** 350+
- - 🛠️ **Tools:** 7 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette, Dashboard)
- - ✨ **Features:** 12 Enhancement-Module
- - 📊 **Analytics:** DSGVO-konform, lokal gespeichert
- - 🎮 **Spielmodi:** 4 (Standard, IT, Lagerlogistik, Kaufmännisch)
+| Kategorie         | Dateien | Zeilen    |
+|-------------------|---------|-----------|
+| **HTML**          | 12      | ~2.500    |
+| **JavaScript**    | 39      | ~22.000   |
+| **CSS**           | 11      | ~7.000    |
+| **Fragen-DB**     | 5       | ~3.500    |
+| **Dokumentation** | 3       | ~2.000    |
+| **Assets**        | 5       | -         |
+| **GESAMT**        | 75      | **~37.000** |
+
+- ⏱️ **Entwicklungszeit:** 6 Wochen
+- 🔄 **Commits:** 350+
+- 🛠️ **Tools:** 7 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette, Dashboard)
+- ✨ **Features:** 12 Enhancement-Module
+- 📊 **Analytics:** DSGVO-konform, lokal gespeichert
+- 🎮 **Spielmodi:** 4 (Standard, IT, Lagerlogistik, Kaufmännisch)
 
 ### 🌐 Browser-Kompatibilität
 
@@ -102,89 +107,86 @@ Als IT-Azubi möchte ich:
 ```
 📂 Keksi-webseite-spiel/
 │
-├── 📄 START.html                   ← Zentrale Startdatei
-├── 📄 README.md                    ← Diese Dokumentation
-│
-├── 📁 seiten/                      ← HTML-Seiten
-│   ├── index.html                  (Hauptmenü & Tool-Übersicht)
-│   ├── game.html                   (Jeopardy Quiz)
-│   ├── stadt-land-fluss.html       (Stadt Land Fluss)
-│   ├── timer.html                  (Digitale Uhr & Timer)
-│   ├── zufallsgenerator.html       (Zufallsgenerator)
-│   ├── notenrechner.html           (Notenrechner)
-│   ├── aufgabenroulette.html       (Aufgabenroulette)
-│   ├── dashboard.html              (Lehrer-Dashboard)
-│   ├── preview.html                (Beta Preview-Seite)
-│
-├── 📁 stylesheets/                 ← CSS-Styles
-│   ├── main.css                    (Landing Page)
-│   ├── styles.css                  (Spiel-Styles)
-│   ├── animations.css              (Animation System)
-│   ├── responsive.css              (Responsive Design)
-│   ├── accessibility.css           (A11y Styles)
-│   ├── theme.css                   (Theme Toggle)
-│   ├── statistics.css              (Stats Widget)
-│   ├── pwa-styles.css              (PWA UI)
-│   ├── dashboard.css               (Dashboard)
-│   └── export-share.css            (Export UI)
-│
-├── 📁 javascript/                  ← JavaScript-Dateien
-│   ├── script.js                   (Hauptspiel-Logik)
-│   ├── modules.js                  (Game State Management)
-│   ├── sounds.js                   (Audio-Engine)
-│   ├── auth.js                     (Authentifizierung)
-│   ├── auth-ui.js                  (Login-UI)
-│   ├── editor.js                   (Fragen-Editor)
-│   ├── stats.js                    (Statistiken)
-│   ├── feedback.js                 (Feedback-System)
-│   ├── analytics.js                (Analytics Core)
-│   ├── analytics-events.js         (Event Tracking)
-│   ├── analytics-ui.js             (Analytics Dashboard)
-│   ├── main.js                     (Landing Page Logik)
-│   ├── timer.js                    (Timer-Logik)
-│   ├── stadt-land-fluss.js         (Stadt Land Fluss Logik)
-│   ├── zufallsgenerator.js         (Zufallsgenerator Logik)
-│   ├── notenrechner.js             (Notenrechner Logik)
-│   ├── aufgabenroulette.js         (Aufgabenroulette Logik)
-│   ├── animations.js               (Animation Controller)
-│   ├── responsive.js               (Responsive Controller)
-│   ├── accessibility.js            (A11y Features)
-│   ├── statistics.js               (Stats Tracking)
-│   ├── performance.js              (Performance Monitor)
-│   ├── pwa-controller.js           (PWA Management)
-│   ├── dashboard.js                (Dashboard Logic)
-│   ├── export-share.js             (Export Features)
-│   ├── haptic-feedback.js          (Haptics)
-│   ├── toast.js                    (Toast Notifications)
-│   ├── loading-states.js           (Loading Indicators)
-│   ├── error-handler.js            (Global Error Handler)
-│   └── enhancements-loader.js      (Module Loader)
-│
-├── 📁 fragenkataloge/              ← Fragen-Datenbanken
-│   ├── questions_it.js             (IT-Modus)
-│   ├── questions_lagerlogistik.js  (Lagerlogistik)
-│   ├── questions_kaufmaennisch.js  (Kaufmännisch)
-│   ├── questions_standard.js       (Standard)
-│   └── questions.js                (Custom-Loader)
-│
-├── 📁 icons/                       ← PWA-Icons
-│   ├── logo-simple.svg             (Simple Logo)
-│   ├── logo.svg                    (Vollständiges Logo)
-│
-├── 📁 assets/                      ← Media & Assets
-│   └── preview.mp4                 (Beta Preview-Video)
-│
-├── 📁 pwa/                         ← Progressive Web App
-│   ├── manifest.json               (App-Manifest)
-│   ├── sw.js                       (Service Worker)
-│   └── version.json                (Version Tracking)
-│
-├── 📁 docs/                        ← Dokumentation
-│   ├── ANALYTICS.md                (Analytics Doku)
-│   ├── PROJECT_STRUCTURE.md        (Strukturübersicht)
-│
-└── 📁 tools/                       ← Entwickler-Tools
-    └── generate_icons.html         (Icon-Generator)
+├── 📄 START.html                   # Einstiegspunkt, zentrale Startseite für alle Nutzer
+├── 📄 README.md                    # Projektübersicht, Dokumentation und Hinweise
+├── 📁 config/                      # Build-Konfiguration und Paketverwaltung
+│   ├── package.json                # NPM-Pakete und Skripte
+│   └── vite.config.js              # Vite Build System für Produktion
+├── 📁 docs/                        # Projekt-Dokumentation und technische Guides
+│   ├── ANALYTICS.md                # Analytics- und Tracking-Dokumentation
+│   ├── PROJECT_STRUCTURE.md        # Ausführliche Projektstruktur und Erklärungen
+├── 📁 seiten/                      # Alle HTML-Seiten der Anwendung
+│   ├── index.html                  # Hauptmenü und Tool-Übersicht
+│   ├── game.html                   # Jeopardy Quiz Spiel
+│   ├── stadt-land-fluss.html       # Stadt-Land-Fluss Spiel
+│   ├── timer.html                  # Digitale Uhr und Timer
+│   ├── zufallsgenerator.html       # Zufallsgenerator Tool
+│   ├── notenrechner.html           # Notenrechner Tool
+│   ├── aufgabenroulette.html       # Aufgabenroulette Spiel
+│   ├── dashboard.html              # Lehrer-Dashboard und Statistiken
+│   ├── preview.html                # Beta-Preview und Testseite
+├── 📁 portfolio/                   # Entwickler-Portfolio und persönliche Infos
+│   └── Portfolio.html              # Portfolio-Seite des Entwicklers
+├── 📁 stylesheets/                 # Alle CSS-Styles für Layout und Design
+│   ├── main.css                    # Haupt-Styles für Landing Page
+│   ├── styles.css                  # Styles für die Spiele und Tools
+│   ├── animations.css              # Animationen und Effekte
+│   ├── responsive.css              # Responsives Design für alle Geräte
+│   ├── accessibility.css           # Barrierefreiheit und A11y-Styles
+│   ├── theme.css                   # Theme- und Farbwechsel
+│   ├── statistics.css              # Statistik-Widget Styles
+│   ├── pwa-styles.css              # PWA-spezifische Styles
+│   ├── dashboard.css               # Dashboard-Styles
+│   ├── export-share.css            # Export- und Teilen-UI
+│   ├── analytics.css               # Analytics-Dashboard Styles
+├── 📁 javascript/                  # Alle JavaScript-Dateien und Module
+│   ├── script.js                   # Hauptspiel-Logik
+│   ├── modules.js                  # Game State Management und Core-Module
+│   ├── sounds.js                   # Audio-Engine und Soundeffekte
+│   ├── auth.js                     # Authentifizierung und Login
+│   ├── auth-ui.js                  # Login-UI Komponenten
+│   ├── editor.js                   # Fragen-Editor für Quiz
+│   ├── stats.js                    # Statistiken und Auswertungen
+│   ├── feedback.js                 # Feedback-System
+│   ├── analytics.js                # Analytics Core
+│   ├── analytics-events.js         # Event-Tracking
+│   ├── analytics-ui.js             # Analytics Dashboard
+│   ├── main.js                     # Logik für Landing Page
+│   ├── timer.js                    # Timer-Logik
+│   ├── stadt-land-fluss.js         # Stadt-Land-Fluss Logik
+│   ├── zufallsgenerator.js         # Zufallsgenerator Logik
+│   ├── notenrechner.js             # Notenrechner Logik
+│   ├── aufgabenroulette.js         # Aufgabenroulette Logik
+│   ├── animations.js               # Animation Controller
+│   ├── responsive.js               # Responsive Controller
+│   ├── accessibility.js            # Barrierefreiheit Features
+│   ├── statistics.js               # Statistik-Tracking
+│   ├── performance.js              # Performance-Monitor
+│   ├── pwa-controller.js           # PWA-Management
+│   ├── dashboard.js                # Dashboard-Logik
+│   ├── export-share.js             # Export-Features
+│   ├── haptic-feedback.js          # Haptisches Feedback
+│   ├── toast.js                    # Toast Notifications
+│   ├── loading-states.js           # Ladeindikatoren
+│   ├── error-handler.js            # Globaler Error Handler
+│   ├── enhancements-loader.js      # Modul-Loader für Erweiterungen
+├── 📁 fragenkataloge/              # Fragen-Datenbanken für Quiz und Spiele
+│   ├── questions_standard.js       # Standard-Fragen
+│   ├── questions_it.js             # IT-Fragen
+│   ├── questions_kaufmaennisch.js  # Kaufmännische Fragen
+│   ├── questions_lagerlogistik.js  # Lagerlogistik-Fragen
+│   ├── questions.js                # Custom-Loader
+├── 📁 icons/                       # App Icons und Logos
+│   ├── logo.svg                    # Vollständiges Logo
+│   ├── logo-simple.svg             # Einfaches Logo
+├── 📁 assets/                      # Medien und Assets
+│   └── preview.mp4                 # Beta Preview-Video
+├── 📁 pwa/                         # Progressive Web App Dateien
+│   ├── manifest.json               # Web App Manifest
+│   ├── sw.js                       # Service Worker
+│   ├── version.json                # Versionstracking
+├── 📁 tools/                       # Entwickler-Tools und Generatoren
+│   └── generate_icons.html         # Icon-Generator Tool
 ```
 
 ---
