@@ -75,17 +75,17 @@ Als IT-Azubi möchte ich:
 
 ### 📊 Code-Statistiken
 
-- 📁 **Total Dateien:** 65+
-- 💻 **Code-Zeilen:** ~28.000+
-- 📜 **JavaScript:** ~18.000 Zeilen
-- 🎨 **CSS:** ~10.000 Zeilen
-- ❓ **Fragen:** 125+ über 25 Kategorien
-- ⏱️ **Entwicklungszeit:** 12+ Wochen
-- 🔄 **Commits:** 350+
-- 🛠️ **Tools:** 7 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette, Dashboard)
-- ✨ **Features:** 12 Enhancement-Module
-- 📊 **Analytics:** DSGVO-konform, lokal gespeichert
-- 🎮 **Spielmodi:** 4 (Standard, IT, Lagerlogistik, Kaufmännisch)
+ - 📁 **Total Dateien:** 45+
+ - 💻 **Code-Zeilen:** ~26.500+
+ - 📜 **JavaScript:** ~16.000 Zeilen
+ - 🎨 **CSS:** ~4.000 Zeilen
+ - ❓ **Fragen:** 100+ über 4 Kategorien
+ - ⏱️ **Entwicklungszeit:** 12+ Wochen
+ - 🔄 **Commits:** 350+
+ - 🛠️ **Tools:** 7 (Quiz, Timer, Stadt-Land-Fluss, Zufallsgenerator, Notenrechner, Aufgabenroulette, Dashboard)
+ - ✨ **Features:** 12 Enhancement-Module
+ - 📊 **Analytics:** DSGVO-konform, lokal gespeichert
+ - 🎮 **Spielmodi:** 4 (Standard, IT, Lagerlogistik, Kaufmännisch)
 
 ### 🌐 Browser-Kompatibilität
 
@@ -114,11 +114,11 @@ Als IT-Azubi möchte ich:
 │   ├── notenrechner.html           (Notenrechner)
 │   ├── aufgabenroulette.html       (Aufgabenroulette)
 │   ├── dashboard.html              (Lehrer-Dashboard)
-│   └── preview.html                (Beta Preview-Seite)
+│   ├── preview.html                (Beta Preview-Seite)
 │
 ├── 📁 stylesheets/                 ← CSS-Styles
-│   ├── main.css                    (Landing Page - 800+ Zeilen)
-│   ├── styles.css                  (Spiel-Styles - 3500+ Zeilen)
+│   ├── main.css                    (Landing Page)
+│   ├── styles.css                  (Spiel-Styles)
 │   ├── animations.css              (Animation System)
 │   ├── responsive.css              (Responsive Design)
 │   ├── accessibility.css           (A11y Styles)
@@ -129,15 +129,15 @@ Als IT-Azubi möchte ich:
 │   └── export-share.css            (Export UI)
 │
 ├── 📁 javascript/                  ← JavaScript-Dateien
-│   ├── script.js                   (Hauptspiel-Logik - 2800+ Zeilen)
-│   ├── modules.js                  (Game State Management - 1200+ Zeilen)
-│   ├── sounds.js                   (Audio-Engine - 600+ Zeilen)
-│   ├── auth.js                     (Authentifizierung - 400+ Zeilen)
+│   ├── script.js                   (Hauptspiel-Logik)
+│   ├── modules.js                  (Game State Management)
+│   ├── sounds.js                   (Audio-Engine)
+│   ├── auth.js                     (Authentifizierung)
 │   ├── auth-ui.js                  (Login-UI)
-│   ├── editor.js                   (Fragen-Editor - 1500+ Zeilen)
-│   ├── stats.js                    (Statistiken - 800+ Zeilen)
-│   ├── feedback.js                 (Feedback-System - 500+ Zeilen)
-│   ├── analytics.js                (Analytics Core - 600+ Zeilen)
+│   ├── editor.js                   (Fragen-Editor)
+│   ├── stats.js                    (Statistiken)
+│   ├── feedback.js                 (Feedback-System)
+│   ├── analytics.js                (Analytics Core)
 │   ├── analytics-events.js         (Event Tracking)
 │   ├── analytics-ui.js             (Analytics Dashboard)
 │   ├── main.js                     (Landing Page Logik)
@@ -149,7 +149,6 @@ Als IT-Azubi möchte ich:
 │   ├── animations.js               (Animation Controller)
 │   ├── responsive.js               (Responsive Controller)
 │   ├── accessibility.js            (A11y Features)
-│   <!-- Theme-System und theme-controller.js entfernt, alle Seiten nutzen jetzt ein einheitliches Farbschema und Design -->
 │   ├── statistics.js               (Stats Tracking)
 │   ├── performance.js              (Performance Monitor)
 │   ├── pwa-controller.js           (PWA Management)
@@ -162,25 +161,27 @@ Als IT-Azubi möchte ich:
 │   └── enhancements-loader.js      (Module Loader)
 │
 ├── 📁 fragenkataloge/              ← Fragen-Datenbanken
-│   ├── questions_it.js             (IT-Modus - 25 Fragen)
-│   ├── questions_lagerlogistik.js  (Lagerlogistik - 25 Fragen)
-│   ├── questions_kaufmaennisch.js  (Kaufmännisch - 25 Fragen)
-│   ├── questions_standard.js       (Standard - 25 Fragen)
+│   ├── questions_it.js             (IT-Modus)
+│   ├── questions_lagerlogistik.js  (Lagerlogistik)
+│   ├── questions_kaufmaennisch.js  (Kaufmännisch)
+│   ├── questions_standard.js       (Standard)
 │   └── questions.js                (Custom-Loader)
 │
 ├── 📁 icons/                       ← PWA-Icons
-│   └── icon-*.png                  (8 Größen: 72px-512px)
+│   ├── logo-simple.svg             (Simple Logo)
+│   ├── logo.svg                    (Vollständiges Logo)
 │
 ├── 📁 assets/                      ← Media & Assets
 │   └── preview.mp4                 (Beta Preview-Video)
 │
 ├── 📁 pwa/                         ← Progressive Web App
 │   ├── manifest.json               (App-Manifest)
-│   ├── sw.js                       (Service Worker v2.1.0)
+│   ├── sw.js                       (Service Worker)
 │   └── version.json                (Version Tracking)
 │
 ├── 📁 docs/                        ← Dokumentation
-│   └── PROJECT_STRUCTURE.md        (Ausführliche Struktur)
+│   ├── ANALYTICS.md                (Analytics Doku)
+│   ├── PROJECT_STRUCTURE.md        (Strukturübersicht)
 │
 └── 📁 tools/                       ← Entwickler-Tools
     └── generate_icons.html         (Icon-Generator)

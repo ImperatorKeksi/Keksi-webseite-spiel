@@ -1,0 +1,701 @@
+<!--
+  Moderne One-Page Portfolio-Webseite für Nico Kaschube
+  Erstellt von GitHub Copilot (GPT-4.1)
+  Struktur: Header, About, Ausbildung, Skills, Projekte, Kontakt
+  Design: Dark Mode, Responsive, Smooth Scrolling, Tailwind-like CSS
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nico Kaschube | Portfolio</title>
+  <!-- Google Fonts für moderne Typografie -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind-like CSS (inline, keine Abhängigkeit) -->
+  <style>
+    /* Animierte SVG-Wellen für Sektionstrennung */
+    .wave {
+      display: block;
+      width: 100%;
+      height: 60px;
+      margin: -2rem 0 0 0;
+      animation: waveMove 3s infinite linear alternate;
+    }
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(20px); }
+    }
+    /* Skill-Karten Animationen */
+    .skill-card {
+      background: #1c1c22;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 1px 8px #0002;
+      transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
+      position: relative;
+      animation: skillFadeIn 1.2s cubic-bezier(.23,1,.32,1);
+    }
+    .skill-card:hover {
+      transform: scale(1.07) translateY(-6px);
+      box-shadow: 0 8px 32px #7c3aed44;
+      background: linear-gradient(135deg, #23232a 80%, #7c3aed22 100%);
+    }
+    @keyframes skillFadeIn {
+      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .skill-card span {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+    .skill-card:hover span {
+      transform: rotate(-10deg) scale(1.2);
+      filter: drop-shadow(0 0 6px var(--accent));
+    }
+    .skill-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: #333;
+      margin-top: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 0 8px #7c3aed44 inset;
+      position: relative;
+    }
+    .skill-bar-inner {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent) 60%, var(--accent2) 100%);
+      box-shadow: 0 0 12px var(--accent2);
+      transition: width 1.2s cubic-bezier(.23,1,.32,1), background 0.4s;
+      width: 0;
+    }
+    .skill-card.visible .skill-bar-inner {
+      width: var(--bar-width);
+    }
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.7rem 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #7c3aed44;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+      z-index: 999;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Social-Icons Animation */
+    .social-links a {
+      transition: color 0.2s, transform 0.3s;
+    }
+    .social-links a:hover {
+      color: var(--accent);
+      transform: scale(1.2) rotate(-8deg);
+      filter: drop-shadow(0 0 8px var(--accent));
+    }
+    /* Navigation Underline Animation */
+    nav a {
+      position: relative;
+      overflow: hidden;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    nav a:hover::after, nav a.active::after {
+      transform: scaleX(1);
+    }
+    /* Glassmorphism Panels */
+    section {
+      background: rgba(35,35,42,0.95);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 24px #7c3aed22;
+    }
+    /* Parallax Effekt für Sektionen */
+    body {
+      background: linear-gradient(120deg, #18181b 80%, #7c3aed11 100%);
+    }
+    /* Responsive Anpassungen */
+    @media (max-width: 600px) {
+      .back-to-top { right: 12px; bottom: 12px; }
+    }
+    :root {
+      --bg: #18181b;
+      --card: #23232a;
+      --accent: #7c3aed;
+      --accent2: #a78bfa;
+      --text: #f3f3f7;
+      --muted: #b3b3c6;
+      --danger: #ef4444;
+      --success: #22c55e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Quicksand', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; scroll-behavior: smooth;
+    }
+    header {
+      background: var(--card); padding: 2rem 0 1rem 0; text-align: center;
+      box-shadow: 0 2px 8px #0002;
+    }
+    nav {
+      display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem;
+    }
+    nav a {
+      color: var(--accent2); text-decoration: none; font-weight: 700;
+      padding: 0.5rem 1rem; border-radius: 999px; transition: background 0.2s;
+    }
+    nav a:hover, nav a.active { background: var(--accent); color: #fff; }
+    .hero {
+      margin-top: 1rem; margin-bottom: 2rem;
+    }
+    .hero h1 { font-size: 2.5rem; margin: 0; }
+    .hero .nicknames { color: var(--accent2); font-size: 1.2rem; }
+    .hero .subtitle { margin-top: 0.5rem; font-size: 1.1rem; color: var(--muted); }
+    section { max-width: 900px; margin: 2rem auto; background: var(--card); border-radius: 1rem; box-shadow: 0 2px 16px #0003; padding: 2rem; position: relative; overflow: hidden; animation: fadeInUp 1s cubic-bezier(.23,1,.32,1); }
+    section h2 { color: var(--accent); margin-top: 0; font-size: 2rem; letter-spacing: 1px; }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .about-block {
+      background: linear-gradient(135deg, #23232a 80%, #7c3aed22 100%);
+      border-radius: 1rem;
+      box-shadow: 0 4px 32px #0004;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      animation: fadeInUp 1.2s cubic-bezier(.23,1,.32,1);
+    }
+    .about-block::before {
+      content: "";
+      position: absolute;
+      top: -40px; left: -40px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, var(--accent2) 0%, transparent 70%);
+      opacity: 0.15;
+      z-index: 0;
+    }
+    .about-list, .weakness-list { list-style: none; padding: 0; margin: 0; }
+    .about-list li, .weakness-list li { margin-bottom: 0.5rem; font-size: 1.08rem; }
+    .about-list li::before { content: '• '; color: var(--accent2); font-weight: bold; }
+    .weakness-list li::before { content: '– '; color: var(--danger); font-weight: bold; }
+    /* Projektkarten Grid optimiert für 2 Spalten */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      margin-top: 2.5rem;
+      justify-items: center;
+    }
+    .project-card {
+      padding: 2.2rem 2rem 1.7rem 2rem;
+      min-width: 0;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      box-sizing: border-box;
+      border-radius: 1.2rem;
+      background: rgba(35,35,42,0.96);
+      box-shadow: 0 8px 32px #7c3aed33, 0 1px 8px #0002;
+      backdrop-filter: blur(10px);
+      border: 2px solid #7c3aed22;
+      transition: transform 0.4s, box-shadow 0.4s, background 0.4s, border 0.4s;
+      position: relative;
+      animation: cardFadeIn 1.2s cubic-bezier(.23,1,.32,1);
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: scale(1.04) translateY(-6px);
+      box-shadow: 0 16px 48px #7c3aed66, 0 1px 8px #0002;
+      background: linear-gradient(135deg, #23232a 80%, #7c3aed22 100%);
+      border: 2.5px solid var(--accent2);
+    }
+    .project-title {
+      margin-bottom: 0.8rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .project-tech {
+      margin-bottom: 0.7rem;
+      font-size: 1.08rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .project-desc {
+      margin-bottom: 1rem;
+      font-size: 1.12rem;
+      color: var(--text);
+      text-align: center;
+    }
+    .project-link {
+      margin-top: auto;
+      font-size: 1.08rem;
+      color: var(--accent2);
+      text-decoration: none;
+      transition: color 0.3s;
+      text-align: center;
+    }
+    .project-link:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    /* Filter-Bar Buttons optimiert */
+    .filter-bar {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      justify-content: center;
+    }
+    .filter-btn {
+      padding: 0.9rem 2.2rem;
+      font-size: 1.15rem;
+      border-radius: 999px;
+      border: 2px solid #7c3aed22;
+      margin: 0 0.3rem;
+      box-shadow: 0 2px 12px #7c3aed22;
+      transition: background 0.2s, color 0.2s, border 0.3s, transform 0.2s;
+      font-weight: 700;
+      background: var(--card);
+      color: var(--accent2);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border: 2px solid var(--accent2);
+      box-shadow: 0 4px 24px #7c3aed44;
+      transform: scale(1.11);
+      filter: drop-shadow(0 0 8px var(--accent2));
+    }
+    .filter-btn:active {
+      transform: scale(0.97);
+    }
+    @media (max-width: 900px) {
+      .projects { grid-template-columns: 1fr; gap: 2rem; }
+      .project-card { max-width: 98vw; }
+      .filter-bar { gap: 1rem; }
+    }
+    @media (max-width: 600px) {
+      .projects { grid-template-columns: 1fr; gap: 1.2rem; }
+      .project-card { padding: 1.2rem; }
+      .filter-bar { gap: 0.7rem; }
+      .filter-btn { padding: 0.7rem 1.2rem; font-size: 1rem; }
+    }
+    /* Kontaktformular optimiert */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 400px;
+      margin: 0 auto;
+      align-items: stretch;
+      padding: 1.2rem 0 0 0;
+    }
+    .contact-form input, .contact-form textarea {
+      background: #23232a;
+      color: var(--text);
+      border: 1.5px solid #7c3aed44;
+      border-radius: 0.7rem;
+      padding: 0.9rem 1.1rem;
+      font-size: 1.08rem;
+      margin-bottom: 0;
+      box-shadow: 0 2px 8px #7c3aed11;
+      transition: border 0.2s, box-shadow 0.2s;
+      resize: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border: 1.5px solid var(--accent2);
+      box-shadow: 0 2px 16px #7c3aed33;
+      outline: none;
+    }
+    .contact-form textarea {
+      min-height: 90px;
+      max-height: 180px;
+    }
+    .contact-form button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 0.7rem;
+      padding: 0.9rem 1.1rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #7c3aed22;
+      transition: background 0.2s, box-shadow 0.2s;
+      margin-top: 0.2rem;
+    }
+    .contact-form button:hover {
+      background: var(--accent2);
+      box-shadow: 0 4px 24px #7c3aed44;
+    }
+    @media (max-width: 600px) {
+      .contact-form { max-width: 98vw; padding: 0.7rem 0 0 0; }
+      .contact-form input, .contact-form textarea, .contact-form button { font-size: 1rem; padding: 0.7rem 0.8rem; }
+    }
+    /* ...bestehende Styles... */
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <a href="#hero" class="active">Home</a>
+      <a href="#about">Über mich</a>
+      <a href="#ausbildung">Ausbildung</a>
+      <a href="#skills">Skills</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="hero" id="hero">
+      <h1>Nico Kaschube</h1>
+      <div class="nicknames">Spitznamen: Cookie, Keksi</div>
+      <div class="subtitle">19 Jahre &ndash; IT-Systemelektroniker in Ausbildung</div>
+      <p style="margin-top:1rem;font-size:1.15rem;">Selbstständiger IT-Liebhaber mit Leidenschaft für Technik, Elektronik und Webentwicklung.</p>
+    </div>
+  </header>
+
+  <!-- Über mich -->
+  <section id="about">
+    <h2>Über mich</h2>
+    <div class="about-block">
+      <p style="font-size:1.15rem;line-height:1.7;">
+        <span style="font-size:1.25rem;font-weight:700;color:var(--accent2);">Mein Name ist Nico Kaschube</span>, ich bin 19 Jahre alt und mache derzeit eine Ausbildung zum Fachinformatiker für IT-Systemelektronik im Oberlinhaus Potsdam.<br><br>
+        Schon seit vielen Jahren begeistere ich mich für Computer, Technik, Server, Gaming und die Entwicklung kleinerer Web- und IT-Projekte. Was früher ein Hobby war, hat sich zu meiner beruflichen Richtung entwickelt – heute arbeite ich strukturiert, neugierig und mit echter Leidenschaft an technischen Lösungen.<br><br>
+        Ich bin ein ruhiger, hilfsbereiter und geduldiger Mensch, der sich schnell in neue Themen einarbeitet und gerne selbstständig Projekte umsetzt. In meiner Ausbildungsgruppe ITFI / E25 habe ich gelernt, sowohl eigenständig als auch im Team effizient und konzentriert zu arbeiten. Besonders viel Freude bereitet es mir, Systeme aufzubauen, Fehler zu analysieren und nachhaltige technische Lösungen zu entwickeln.<br><br>
+        <span style="font-weight:600;color:var(--accent);">Neben meiner Ausbildung beschäftige ich mich privat mit:</span>
+        <ul class="about-list">
+          <li>Webentwicklung (HTML, CSS und JavaScript)</li>
+          <li>Serververwaltung & Systemintegration</li>
+          <li>Hardware, Elektronik und PC-Bau</li>
+          <li>Netzwerken und Fehlersuche</li>
+          <li>Automatisierung von Abläufen</li>
+          <li>Gaming und der technischen Entwicklung von RP-Servern</li>
+        </ul>
+        Durch eigene Projekte – Webseiten, Scripte, Tools und IT-Lösungen – habe ich mir ein breites technisches Wissen angeeignet, das ich stetig weiter ausbaue.<br><br>
+        <span style="font-weight:600;color:var(--accent);">Meine Stärken:</span>
+        <ul class="about-list">
+          <li>hilfsbereit und geduldig</li>
+          <li>ruhiges und konzentriertes Arbeiten</li>
+          <li>schnelle Auffassungsgabe</li>
+          <li>strukturiertes Denken</li>
+          <li>hohe Lernbereitschaft</li>
+          <li>Teamfähigkeit</li>
+          <li>selbstständige Arbeitsweise</li>
+          <li>technisches Verständnis</li>
+        </ul>
+        <span style="font-weight:600;color:var(--accent);">Meine Schwächen:</span>
+        <ul class="weakness-list">
+          <li>Lese-Rechtschreibschwäche (die ich aktiv ausgleiche)</li>
+          <li>manchmal zu perfektionistisch</li>
+          <li>arbeite gelegentlich zu lange an Projekten, weil ich sie optimal machen möchte</li>
+        </ul>
+        Trotzdem sehe ich solche Punkte als Chancen, um mich weiterzuentwickeln. Menschen in meinem Umfeld beschreiben mich als zuverlässig, freundlich, respektvoll und als jemanden, der gerade in stressigen Situationen den Überblick behält.<br><br>
+        In meiner Freizeit spiele ich gerne Games wie Garry’s Mod, GTA, Red Dead Redemption, Sea of Thieves, The Finals, Valorant, Minecraft und viele weitere Titel. Seit mehreren Jahren bin ich in verschiedenen RP-Communitys aktiv und habe dort sogar eine Art „RP-Familie“ gefunden, die mich auch im echten Leben unterstützt, motiviert und positiv beeinflusst.<br><br>
+        Mein Ziel ist es, mich im IT-Bereich kontinuierlich weiterzuentwickeln, neue Technologien zu lernen und meine Fähigkeiten sowohl beruflich als auch privat einzusetzen.<br><br>
+        Mit meinem Portfolio möchte ich klar zeigen, wer ich bin, was ich kann und woran ich bereits gearbeitet habe.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ausbildung -->
+  <section id="ausbildung">
+    <h2>Ausbildung</h2>
+    <div><strong>Beruf:</strong> IT-Systemelektroniker</div>
+    <div><strong>Standort:</strong> Oberlinhaus Potsdam</div>
+    <p>Ich baue technische Systeme auf, installiere und konfiguriere Hardware/Netzwerke, bin im Bereich IT-Support tätig und habe Erfahrung mit Servern, Elektronik und Systemintegration.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+      <svg class="wave" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#23232a" fill-opacity="1" d="M0,32L60,37.3C120,43,240,53,360,53.3C480,53,600,43,720,32C840,21,960,11,1080,10.7C1200,11,1320,21,1380,26.7L1440,32L1440,60L1380,60C1320,60,1200,60,1080,60C960,60,840,60,720,60C600,60,480,60,360,60C240,60,120,60,60,60L0,60Z"></path></svg>
+    <h2>Skills</h2>
+    <div style="margin-bottom:1.2rem;">
+      <span style="font-size:1.08rem;color:var(--muted);">Weitere Skills: <strong>Englisch (sehr gut für Programmierung & technisches Verständnis, aber nicht für Konversation)</strong>, Internationalisierung (i18n), Präsentation</span>
+    </div>
+    <div class="skills">
+      <div class="skill-card" style="--bar-width:95%">
+        <div>HTML <span title="Webentwicklung">🌐</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:90%">
+        <div>CSS <span title="Design">🎨</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:85%">
+        <div>JavaScript <span title="Interaktivität">⚡</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:90%">
+        <div>Python <span title="Automatisierung">🐍</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:80%">
+        <div>Lua <span title="Garry's Mod Scripting">🌙</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:70%">
+        <div>C / C++ <span title="Systemnahe Entwicklung">💻</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:80%">
+        <div>Serververwaltung <span title="Linux, Windows">🖥️</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:80%">
+        <div>Hardware & Elektronik <span title="PC-Bau, Reparatur">🔧</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:75%">
+        <div>Systemintegration <span title="Netzwerk, IT">🔗</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:70%">
+        <div>Batch & Shell Scripting <span title="Automatisierung">📜</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:75%">
+        <div>API-Integration <span title="REST, OSC, PWA">🔌</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:80%">
+        <div>GUI-Entwicklung <span title="Tkinter, CustomTkinter">🖱️</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:85%">
+        <div>Netzwerk & Troubleshooting <span title="Fehlersuche">🛠️</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner"></div></div>
+      </div>
+      <div class="skill-card" style="--bar-width:100%">
+        <div>Gaming & RP <span style="font-size:1.2em;">🎮</span></div>
+        <div class="skill-bar"><div class="skill-bar-inner" style="background:var(--accent2)"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projekte -->
+  <section id="projekte">
+        <div class="filter-bar" id="filterBar">
+          <button class="filter-btn active" data-filter="all">Alle</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="python">Python</button>
+          <button class="filter-btn" data-filter="lua">Lua</button>
+        </div>
+    <h2>Projekte</h2>
+    <div class="projects">
+      <!-- Projektkarten automatisch generiert -->
+      <!-- Web Projekte -->
+      <div class="project-card" data-tags="web">
+        <div class="project-title">Keksi-webseite-spiel</div>
+        <div class="project-tech">JavaScript, HTML, CSS, PWA</div>
+        <div class="project-desc">Digitale Tools für Lehrer und Ausbilder. Moderne Plattform mit Glassmorphism-Design, responsive und barrierefrei.</div>
+        <a class="project-link" href="https://github.com/ImperatorKeksi/Keksi-webseite-spiel" target="_blank">Code ansehen</a>
+      </div>
+      <div class="project-card" data-tags="web">
+        <div class="project-title">Do you love me code</div>
+        <div class="project-tech">HTML, CSS, JavaScript</div>
+        <div class="project-desc">Interaktive Liebesfrage mit Animation und Video. Modernes Webdesign und spielerische Interaktion.</div>
+      </div>
+      <div class="project-card" data-tags="web">
+        <div class="project-title">I love you Animation</div>
+        <div class="project-tech">HTML, CSS, JavaScript, SVG</div>
+        <div class="project-desc">SVG- und Audio-Animation „I love you“. Für kreative Webprojekte und Animationen.</div>
+      </div>
+      <div class="project-card" data-tags="web">
+        <div class="project-title">Süße VRChat Date Einladung</div>
+        <div class="project-tech">HTML, CSS</div>
+        <div class="project-desc">Animierte Einladung mit Herzen, Gradient und liebevollem Design für VRChat Dates.</div>
+      </div>
+      <!-- Python Projekte -->
+      <div class="project-card" data-tags="python">
+        <div class="project-title">Tic-Tac-Toe für VRChat</div>
+        <div class="project-tech">Python</div>
+        <div class="project-desc">Sprach- und Chatgesteuertes Tic-Tac-Toe-Spiel für VRChat mit Highscore und API-Integration.</div>
+      </div>
+      <div class="project-card" data-tags="python">
+        <div class="project-title">Shutdown Scheduler</div>
+        <div class="project-tech">Python, CustomTkinter</div>
+        <div class="project-desc">Modernes Tool zum automatischen Herunterfahren des PCs oder Beenden von Programmen mit GUI.</div>
+      </div>
+      <div class="project-card" data-tags="python">
+        <div class="project-title">Video Konverter Pro</div>
+        <div class="project-tech">Python, FFmpeg, moviepy</div>
+        <div class="project-desc">Videos und Bilder konvertieren, komprimieren und stapelweise verarbeiten. Super Performance dank FFmpeg.</div>
+      </div>
+      <div class="project-card" data-tags="python">
+        <div class="project-title">Button (VRChat)</div>
+        <div class="project-tech">Python</div>
+        <div class="project-desc">OSC-Skript für VRChat: Button-Trigger, Logging und flexible Konfiguration. Für Events und Chat-Interaktionen.</div>
+      </div>
+      <div class="project-card" data-tags="python">
+        <div class="project-title">OSC Sprachsteuerung (VRChat)</div>
+        <div class="project-tech">Python</div>
+        <div class="project-desc">Sprachsteuerung für VRChat via OSC. Wetterabfrage, Chatbox-Steuerung und Logging. Anpassbar für eigene Befehle.</div>
+      </div>
+      <!-- Lua Projekte -->
+      <div class="project-card" data-tags="lua">
+        <div class="project-title">Keksi-HUD</div>
+        <div class="project-tech">Lua (Garry's Mod)</div>
+        <div class="project-desc">Futuristisches Sci-Fi HUD-System für Garry's Mod mit dynamischen Scanner-Effekten und Star Wars Theming.</div>
+        <a class="project-link" href="https://github.com/imperatorkeksi/keksi-hud" target="_blank">Code ansehen</a>
+      </div>
+      <div class="project-card" data-tags="lua">
+        <div class="project-title">Keksi-Kleiderschrank-und-Bodygroup-System</div>
+        <div class="project-tech">Lua (Garry's Mod)</div>
+        <div class="project-desc">Professionelles Bodygroup-Management mit 3D-Vorschau und Set-Management für Garry's Mod RP-Server.</div>
+        <a class="project-link" href="https://github.com/imperatorkeksi/keksi-kleiderschrank-und-bodygroup-system" target="_blank">Code ansehen</a>
+      </div>
+      <div class="project-card" data-tags="lua">
+        <div class="project-title">Keksi-Deathscreen</div>
+        <div class="project-tech">Lua (Garry's Mod)</div>
+        <div class="project-desc">Erweiterter Death-Screen mit Star Wars Theming, Fortschrittsbalken und DarkRP-Integration.</div>
+        <a class="project-link" href="https://github.com/imperatorkeksi/keksi-deathscreen" target="_blank">Code ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <form class="contact-form" autocomplete="off">
+      <input type="email" name="email" placeholder="E-Mail (optional)">
+      <textarea name="message" rows="4" placeholder="Deine Nachricht..."></textarea>
+      <button type="submit">Absenden</button>
+    </form>
+    <div class="social-links">
+      <a href="https://github.com/ImperatorKeksi" target="_blank" title="GitHub"><span aria-label="GitHub" role="img">🐙</span></a>
+      <a href="https://discord.com/users/ImperatorKeksi" target="_blank" title="Discord"><span aria-label="Discord" role="img">💬</span></a>
+    </div>
+  </section>
+
+  <!-- Smooth Scrolling & Navigation Highlight JS -->
+  <script>
+        // Projekt-Filter
+        const filterBar = document.getElementById('filterBar');
+        const projectCards = document.querySelectorAll('.project-card');
+        filterBar.addEventListener('click', e => {
+          if (e.target.classList.contains('filter-btn')) {
+            filterBar.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            const filter = e.target.getAttribute('data-filter');
+            projectCards.forEach(card => {
+              if (filter === 'all' || card.getAttribute('data-tags').includes(filter)) {
+                card.style.display = 'flex';
+                setTimeout(() => { card.style.opacity = 1; }, 100);
+              } else {
+                card.style.opacity = 0;
+                setTimeout(() => { card.style.display = 'none'; }, 300);
+              }
+            });
+          }
+        });
+    // Smooth scroll for anchor links
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+    // Skill bar animation
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.skill-bar-inner').forEach(bar => {
+        bar.style.width = bar.style.width;
+      });
+      // Animierte Cards
+      document.querySelectorAll('.project-card').forEach((card, i) => {
+        card.style.opacity = 0;
+        setTimeout(() => {
+          card.style.transition = 'opacity 0.7s cubic-bezier(.23,1,.32,1)';
+          card.style.opacity = 1;
+        }, 200 + i * 120);
+      });
+      // About-Block Animation
+      const aboutBlock = document.querySelector('.about-block');
+      if (aboutBlock) {
+        aboutBlock.style.opacity = 0;
+        setTimeout(() => {
+          aboutBlock.style.transition = 'opacity 1.2s cubic-bezier(.23,1,.32,1)';
+          aboutBlock.style.opacity = 1;
+        }, 200);
+      }
+    });
+    // Prevent form submit (Demo)
+    document.querySelector('.contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Danke für deine Nachricht!');
+    });
+    // Skill-Bar Animation beim Scrollen
+    function animateSkillBars() {
+      document.querySelectorAll('.skill-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          card.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', animateSkillBars);
+    window.addEventListener('DOMContentLoaded', animateSkillBars);
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // Animierte Cards beim Scrollen
+    function animateProjectCards() {
+      document.querySelectorAll('.project-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          card.style.opacity = 1;
+          card.style.transform = 'translateY(0) scale(1)';
+        } else {
+          card.style.opacity = 0;
+          card.style.transform = 'translateY(40px) scale(0.95)';
+        }
+      });
+    }
+    window.addEventListener('scroll', animateProjectCards);
+    window.addEventListener('DOMContentLoaded', animateProjectCards);
+  </script>
+  <button class="back-to-top" id="backToTop" title="Nach oben">↑</button>
+</body>
+</html>
