@@ -281,6 +281,70 @@ class AuthUI {
     }
 }
 
+// EPIC LOGIN MODAL INTERACTION & ANIMATION
+function epicLoginInit() {
+    // Show/Hide Passwort
+    function togglePassword(inputId, toggleId) {
+        const input = document.getElementById(inputId);
+        const toggle = document.getElementById(toggleId);
+        if (!input || !toggle) return;
+        toggle.addEventListener('click', () => {
+            input.type = input.type === 'password' ? 'text' : 'password';
+            toggle.textContent = input.type === 'password' ? '👁️' : '🙈';
+        });
+    }
+    togglePassword('loginPassword', 'toggleLoginPassword');
+    togglePassword('registerPassword', 'toggleRegisterPassword');
+    togglePassword('registerPasswordConfirm', 'toggleRegisterPasswordConfirm');
+
+    // Dynamischer Hintergrund (Partikel/Glow)
+    const bg = document.getElementById('epicLoginBg');
+    if (bg) {
+        let glowPos = 0;
+        setInterval(() => {
+            glowPos = (glowPos + 1) % 100;
+            bg.style.background = `radial-gradient(circle at ${60+Math.sin(glowPos/10)*20}% ${20+Math.cos(glowPos/10)*10}%, #9d4edd44 0%, #1a1a1a 100%)`;
+        }, 80);
+    }
+
+    // Konfetti bei Erfolg
+    function showConfetti() {
+        const confetti = document.getElementById('epicLoginConfetti');
+        if (!confetti) return;
+        confetti.innerHTML = '';
+        for (let i = 0; i < 24; i++) {
+            const el = document.createElement('div');
+            el.style.position = 'absolute';
+            el.style.left = Math.random()*100+'%';
+            el.style.top = '-40px';
+            el.style.width = '12px';
+            el.style.height = '12px';
+            el.style.borderRadius = '50%';
+            el.style.background = `hsl(${Math.random()*360},80%,60%)`;
+            el.style.opacity = '0.85';
+            el.style.zIndex = '10';
+            el.style.animation = `epicConfetti 1.2s ${Math.random()*0.7}s both`;
+            confetti.appendChild(el);
+            setTimeout(() => { el.remove(); }, 1800);
+        }
+    }
+    // Erfolgsmeldung abfangen
+    const loginSuccess = document.getElementById('loginSuccess');
+    if (loginSuccess) {
+        const observer = new MutationObserver(() => {
+            if (loginSuccess.style.display === 'block') {
+                showConfetti();
+            }
+        });
+        observer.observe(loginSuccess, { attributes: true, attributeFilter: ['style'] });
+    }
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', epicLoginInit);
+} else {
+    epicLoginInit();
+}
+
 // Initialize
 let authUI;
 if (document.readyState === 'loading') {

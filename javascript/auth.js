@@ -56,7 +56,7 @@ class AuthManager {
     initializeDefaultUsers() {
         let users = this.getLocalUsers();
         
-        // Erstelle Standard-Admin wenn keine Benutzer existieren
+        // Erstelle Standard-Accounts wenn keine Benutzer existieren
         if (users.length === 0) {
             users = [
                 {
@@ -71,6 +71,13 @@ class AuthManager {
                     username: 'lehrer',
                     password: this.hashPassword('lehrer123'),
                     role: this.roles.TEACHER,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'schueler-1',
+                    username: 'schueler',
+                    password: this.hashPassword('schueler123'),
+                    role: this.roles.GUEST,
                     createdAt: new Date().toISOString()
                 }
             ];
@@ -358,7 +365,7 @@ class AuthManager {
             logouts.forEach(el => el.style.display = 'inline-flex');
             displays.forEach(el => {
                 el.style.display = 'inline-flex';
-                el.textContent = `👤 ${this.currentUser.username}`;
+                el.textContent = `${this.currentUser.username}`;
                 el.title = `Rolle: ${this.getRoleLabel(this.currentUser.role)}`;
             });
         } else {

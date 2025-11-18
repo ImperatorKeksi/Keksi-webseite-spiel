@@ -300,6 +300,11 @@ body {
     50% { transform: translateY(-20px); }
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -787,6 +792,211 @@ body {
 }
 
 /* ============================================================================= */
+/* 🚀 EPIC LOGIN MODAL STYLES                                                   */
+/* ============================================================================= */
+.epic-login-modal {
+    background: var(--glass-bg);
+    box-shadow: 0 0 60px 0 #9d4edd88, 0 0 0 8px #1a1a1a44;
+    border: 2px solid #9d4edd;
+    border-radius: 32px;
+    position: relative;
+    overflow: visible;
+    animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+.epic-login-title {
+    font-size: 2.1rem;
+    font-weight: bold;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px #9d4edd88;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    animation: fadeIn 1s;
+}
+
+.login-lottie img {
+    display: block;
+    margin: 0 auto 0.5rem auto;
+    filter: drop-shadow(0 0 18px #9d4edd) drop-shadow(0 0 8px #e0aaff);
+    animation: pulse 2.5s infinite;
+}
+
+.epic-login-body {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 0.5rem;
+}
+
+.epic-login-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 32px;
+    background: radial-gradient(circle at 60% 20%, #9d4edd44 0%, #1a1a1a 100%);
+    animation: epicBgMove 8s linear infinite;
+    opacity: 0.7;
+}
+@keyframes epicBgMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+.epic-auth-form {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1.2s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+.epic-form-group label {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.5px;
+}
+
+.epic-input {
+    background: rgba(26,26,26,0.95);
+    border: 2px solid #9d4edd;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1.08rem;
+    padding: 0.85rem 1.1rem;
+    box-shadow: 0 0 12px #9d4edd33;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.epic-input:focus {
+    border-color: #e0aaff;
+    box-shadow: 0 0 24px #e0aaff66;
+    outline: none;
+}
+
+.epic-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #9d4edd;
+    transition: color 0.2s;
+    user-select: none;
+}
+.toggle-password:hover {
+    color: #e0aaff;
+}
+
+.epic-auth-info {
+    background: linear-gradient(90deg, #9d4edd22 0%, #e0aaff22 100%);
+    border: 1.5px solid #9d4edd;
+    box-shadow: 0 0 8px #9d4edd44;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    animation: fadeIn 1.2s;
+}
+
+.epic-auth-error, .epic-auth-success {
+    font-size: 1.05rem;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    animation: fadeInLeft 0.7s;
+}
+
+.epic-auth-success {
+    background: linear-gradient(90deg, #22c55e44 0%, #86efac44 100%);
+    border: 2px solid #22c55e;
+    color: #22c55e;
+    box-shadow: 0 0 12px #22c55e44;
+    position: relative;
+}
+
+.epic-auth-error {
+    background: linear-gradient(90deg, #ef444444 0%, #fca5a544 100%);
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    box-shadow: 0 0 12px #ef444444;
+    position: relative;
+}
+
+.epic-btn {
+    background: var(--accent-gradient);
+    color: #10002b;
+    font-weight: bold;
+    font-size: 1.08rem;
+    border-radius: 12px;
+    box-shadow: 0 0 16px #9d4edd44;
+    border: none;
+    transition: box-shadow 0.3s, transform 0.2s;
+    animation: fadeInUp 1.2s;
+}
+.epic-btn:hover {
+    box-shadow: 0 0 32px #e0aaff88;
+    transform: scale(1.05);
+}
+
+.epic-btn-secondary {
+    background: rgba(26,26,26,0.95);
+    color: #c77dff;
+    border: 2px solid #9d4edd;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.08rem;
+    box-shadow: 0 0 8px #9d4edd44;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+.epic-btn-secondary:hover {
+    box-shadow: 0 0 24px #e0aaff66;
+    transform: scale(1.04);
+}
+
+.epic-modal-footer {
+    border-top: 2px solid #9d4edd;
+    background: rgba(26,26,26,0.85);
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 0 12px #9d4edd33;
+}
+
+/* Konfetti Animation */
+.epic-login-confetti {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes epicConfetti {
+    0% { transform: translateY(-40px) scale(1); opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(320px) scale(0.7); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .epic-login-modal {
+        max-width: 98vw;
+        border-radius: 18px;
+        padding: 0.5rem;
+    }
+    .epic-login-title {
+        font-size: 1.3rem;
+    }
+    .epic-auth-form {
+        padding: 0.5rem;
+    }
+}
+
+/* ============================================================================= */
 /* 📱 RESPONSIVE                                                                */
 /* ============================================================================= */
 @media (max-width: 768px) {
@@ -818,9 +1028,4 @@ body {
         flex-direction: column;
         gap: 0.5rem;
     }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }

@@ -315,54 +315,81 @@
         </div>
     </footer>
     <div id="loginModal" class="modal hidden">
-        <div class="modal-content login-modal-content">
+        <div class="modal-content login-modal-content epic-login-modal">
             <div class="modal-header">
-                <h3>Anmelden</h3>
-                <button class="modal-close-btn" id="closeLoginBtn">X</button>
+                <div class="login-animation-container">
+                    <!-- Lottie/Animated SVG Icon (Platzhalter) -->
+                    <div class="login-lottie" id="loginLottie">
+                        <img src="../icons/logo-simple.svg" alt="Logo" style="width:60px;height:60px;filter:drop-shadow(0 0 12px #9d4edd);">
+                    </div>
+                </div>
+                <h3 class="epic-login-title">Anmelden</h3>
+                <button class="modal-close-btn" id="closeLoginBtn">✖</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body epic-login-body">
+                <div class="epic-login-bg" id="epicLoginBg"></div>
                 <div class="auth-tabs">
                     <button class="auth-tab active" data-tab="login">Anmelden</button>
                     <button class="auth-tab" data-tab="register">Registrieren</button>
                 </div>
-                <form id="loginForm" class="auth-form">
-                    <div class="form-group">
+                <form id="loginForm" class="auth-form epic-auth-form">
+                    <div class="form-group epic-form-group">
                         <label for="loginUsername">Benutzername:</label>
-                        <input type="text" id="loginUsername" placeholder="Benutzername" required>
+                        <input type="text" id="loginUsername" class="epic-input" placeholder="Benutzername" required autocomplete="username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group epic-form-group">
                         <label for="loginPassword">Passwort:</label>
-                        <input type="password" id="loginPassword" placeholder="Passwort" required>
+                        <div class="epic-password-wrapper">
+                            <input type="password" id="loginPassword" class="epic-input" placeholder="Passwort" required autocomplete="current-password">
+                            <span class="toggle-password" id="toggleLoginPassword" title="Passwort anzeigen">👁️</span>
+                        </div>
                     </div>
-                    <div class="auth-info">
+                    <div class="auth-info epic-auth-info">
                         <p><strong>Test-Accounts:</strong></p>
-                        <p style="font-size: 0.9rem;">Admin: admin / admin123<br>Lehrer: lehrer / lehrer123</p>
+                        <div class="epic-account-list" style="display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.3rem;">
+                            <span style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size:1.2rem;">🛡️</span> <span>Administrator: <b>admin</b> / <b>admin123</b></span>
+                            </span>
+                            <span style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size:1.2rem;">🧑‍🏫</span> <span>Lehrer: <b>lehrer</b> / <b>lehrer123</b></span>
+                            </span>
+                            <span style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size:1.2rem;">🎓</span> <span>Schüler: <b>schueler</b> / <b>schueler123</b></span>
+                            </span>
+                        </div>
                     </div>
-                    <div id="loginError" class="auth-error" style="display: none;"></div>
-                    <div id="loginSuccess" class="auth-success" style="display: none;"></div>
+                    <div id="loginError" class="auth-error epic-auth-error" style="display: none;"></div>
+                    <div id="loginSuccess" class="auth-success epic-auth-success" style="display: none;"></div>
                 </form>
-                <form id="registerForm" class="auth-form" style="display: none;">
-                    <div class="form-group">
+                <form id="registerForm" class="auth-form epic-auth-form" style="display: none;">
+                    <div class="form-group epic-form-group">
                         <label for="registerUsername">Benutzername:</label>
-                        <input type="text" id="registerUsername" placeholder="Min. 3 Zeichen" required>
+                        <input type="text" id="registerUsername" class="epic-input" placeholder="Min. 3 Zeichen" required autocomplete="username">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group epic-form-group">
                         <label for="registerPassword">Passwort:</label>
-                        <input type="password" id="registerPassword" placeholder="Min. 6 Zeichen" required>
+                        <div class="epic-password-wrapper">
+                            <input type="password" id="registerPassword" class="epic-input" placeholder="Min. 6 Zeichen" required autocomplete="new-password">
+                            <span class="toggle-password" id="toggleRegisterPassword" title="Passwort anzeigen">👁️</span>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group epic-form-group">
                         <label for="registerPasswordConfirm">Passwort bestätigen:</label>
-                        <input type="password" id="registerPasswordConfirm" placeholder="Wiederholen" required>
+                        <div class="epic-password-wrapper">
+                            <input type="password" id="registerPasswordConfirm" class="epic-input" placeholder="Wiederholen" required autocomplete="new-password">
+                            <span class="toggle-password" id="toggleRegisterPasswordConfirm" title="Passwort anzeigen">👁️</span>
+                        </div>
                     </div>
-                    <div id="registerError" class="auth-error" style="display: none;"></div>
-                    <div id="registerSuccess" class="auth-success" style="display: none;"></div>
+                    <div id="registerError" class="auth-error epic-auth-error" style="display: none;"></div>
+                    <div id="registerSuccess" class="auth-success epic-auth-success" style="display: none;"></div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" id="submitLoginBtn" class="modal-btn btn-primary">Anmelden</button>
-                <button type="button" id="submitRegisterBtn" class="modal-btn btn-primary" style="display: none;">Registrieren</button>
-                <button type="button" id="cancelLoginBtn" class="modal-btn-secondary">Abbrechen</button>
+            <div class="modal-footer epic-modal-footer">
+                <button type="button" id="submitLoginBtn" class="modal-btn btn-primary epic-btn">Anmelden</button>
+                <button type="button" id="submitRegisterBtn" class="modal-btn btn-primary epic-btn" style="display: none;">Registrieren</button>
+                <button type="button" id="cancelLoginBtn" class="modal-btn-secondary epic-btn-secondary">Abbrechen</button>
             </div>
+            <div id="epicLoginConfetti" class="epic-login-confetti"></div>
         </div>
     </div>
     <script src="../javascript/auth.js"></script>
