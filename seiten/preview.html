@@ -1,11 +1,113 @@
+<!--
+    Datei: preview.html
+    Projekt: Lehrer Tools Web-App
+    Autor: Nico Kaschube
+    Jahr: 2025
+    Beschreibung: Vorschau und Leaks zu kommenden Tools und Spielen.
+-->
 <!DOCTYPE html>
 <html lang="de">
 <head>
+        <!--
+            HEAD-Bereich: Einstellungen, Styles und Skripte für die Seite.
+            - Styles: Aussehen und Layout der Seite
+            - JavaScript: Dynamische Funktionen (z.B. Responsive-Design)
+        -->
+            <script>
+            function setBaseSizeVar() {
+                var vh = window.innerHeight * 0.01;
+                var vw = window.innerWidth * 0.01;
+                if (window.matchMedia('(orientation: portrait)').matches) {
+                    document.documentElement.style.setProperty('--base-size', vw + 'px');
+                } else {
+                    document.documentElement.style.setProperty('--base-size', vh + 'px');
+                }
+            }
+            window.addEventListener('resize', setBaseSizeVar);
+            window.addEventListener('orientationchange', setBaseSizeVar);
+            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
+            </script>
+        <style>
+            /* Fallback für ältere Browser: Sorgt für Lesbarkeit, wenn moderne CSS-Features nicht unterstützt werden */
+            @supports not (container-type: inline-size) {
+                .leak-title, .leak-badge {
+                    font-size: clamp(2.5em, 6vw, 5em);
+                }
+                .leak-card, .leak-section {
+                    font-size: clamp(1em, 3vw, 2em);
+                }
+            }
+            .leak-title, .leak-badge {
+                font-weight: 800;
+                text-shadow: 0 2px 8px #222, 0 0 1px #fff;
+            }
+            .leak-card, .leak-section {
+                font-weight: 500;
+            }
+            :root {
+                --color-bg: #0a0a0a;
+                --color-accent: #9d4edd;
+                --color-primary: #e0aaff;
+                --color-secondary: #c77dff;
+                --color-card-bg: rgba(26,26,26,0.8);
+            }
+            body {
+                background: var(--color-bg);
+                color: var(--color-primary);
+            }
+            .btn-primary {
+                background: var(--color-accent);
+                color: #fff;
+            }
+            .leak-title, .leak-card, .leak-section {
+                will-change: transform;
+            }
+        </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exklusive Leaks - Lehrer Tools</title>
     <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
     <style>
+        :root {
+            --base-size: 1vh;
+        }
+        @media (orientation: portrait) {
+            :root {
+                --base-size: 1vw;
+            }
+        }
+        html, body {
+            font-size: var(--base-size);
+        }
+        main.page-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+        .leak-section, .video-container, .overlay {
+            container-type: inline-size;
+            container-name: mainblock;
+        }
+        .leak-title, .leak-badge {
+            font-size: clamp(2.5em, 6cqw, 5em);
+        }
+        .leak-card, .leak-section {
+            font-size: clamp(1em, 3cqw, 2em);
+        }
+        .leak-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        @media (max-width: 700px) {
+            .leak-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .leak-card {
+            padding: min(2.5em, 5cqw);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -392,6 +494,22 @@
     </style>
 </head>
 <body>
+            <!-- HEADER: Seitenkopf mit Titel, Navigation und Login/Logout -->
+            <!--
+                Hauptnavigation und Titel der Seite.
+                - Links führen zurück zur Startseite
+                - Login/Logout wird per JavaScript gesteuert
+            -->
+            <!--
+                VORSCHAU: Leaks und Vorschau auf kommende Tools und Spiele
+                - Karten und Sektionen zeigen neue Features und geplante Erweiterungen
+            -->
+            <!-- FOOTER: Entwickler-Credit und Jahr -->
+        <!--
+        Testing-Hinweis:
+        Teste die Seite auf verschiedenen Geräten, Browsern und mit Screenreadern.
+        Prüfe Zoom, Kontrast und Layout bei extremen Größen.
+        -->
     <!-- Professional Watermark & Build Info (Nr. 4) -->
     <div class="watermark" id="watermark" style="position: fixed; top: 80px; right: 10px; background: rgba(255, 59, 48, 0.15); border: 1px solid rgba(255, 59, 48, 0.4); padding: 8px 15px; border-radius: 8px; font-size: 11px; color: #ff6b6b; font-family: 'Courier New', monospace; z-index: 998; backdrop-filter: blur(10px);">
         ⚠️ INTERNAL PREVIEW - NOT FOR PRODUCTION

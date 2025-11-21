@@ -1,15 +1,146 @@
 ﻿<!--
-    ╔═══════════════════════════════════════════════════╗
-    ║  🏠 HAUPTMENÜ - Lehrer Tools                     ║
-    ║  Landing Page mit Spielauswahl & Login           ║
-    ║                                                   ║
-    ║  Entwickler: Nico Kaschube                       ║
-    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025║
-    ╚═══════════════════════════════════════════════════╝
+    Datei: index.html
+    Projekt: Lehrer Tools Web-App
+    Autor: Wendy (Vorarbeit: Nico Kaschube)
+    Jahr: 2025
+    Beschreibung: Startseite der Lernplattform mit Navigation, Spiele- und Tool-Auswahl, Projektinfos und Footer.
 -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
+                    <!-- Head-Bereich: Meta-Angaben, globale Styles und spezielle Styles für die About-Section -->
+                <!-- ABOUT SECTION STYLES: Grid-Layout und Responsive-Design für die Info-Boxen im About-Bereich -->
+                        <style>
+                /* Grid-Layout für die About-Boxen: 3 Spalten oben, 1 breite Box unten */
+                            .about-section .about-content {
+                                display: grid;
+                                grid-template-columns: repeat(3, 1fr);
+                                grid-template-rows: auto auto;
+                                gap: 2.5rem 2.5rem;
+                                align-items: stretch;
+                            }
+
+            /* Standard-Box für die oberen Info-Karten */
+                            .about-section .about-card {
+                                min-width: 0;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                padding: 2.5rem 2rem 2rem 2rem;
+                                box-sizing: border-box;
+                            }
+                            .about-section .about-card h3 {
+                                margin-bottom: 0.7em;
+                            }
+                            .about-section .about-card p {
+                                margin-bottom: 0.7em;
+                                text-align: center;
+                            }
+
+            /* Die untere breite Box (Über mich) */
+                            .about-section .about-card.full-width {
+                                grid-column: 1 / 4;
+                                grid-row: 2;
+                                margin-top: 0;
+                            }
+
+            /* Responsive: Bei kleinen Bildschirmen werden alle Boxen untereinander angezeigt */
+                            @media (max-width: 1100px) {
+                                .about-section .about-content {
+                                    grid-template-columns: 1fr;
+                                    grid-template-rows: auto auto auto auto;
+                                }
+                                .about-section .about-card.full-width {
+                                    grid-column: auto;
+                                    grid-row: auto;
+                                }
+                            }
+                        </style>
+                }
+        <!-- Verbesserungen: Fallbacks, Performance, Accessibility, Design, Animation, Testing -->
+            <script>
+            // Performance: JS-Viewport-Fix für iOS Safari & Bugs
+            function setBaseSizeVar() {
+                var vh = window.innerHeight * 0.01;
+                var vw = window.innerWidth * 0.01;
+                if (window.matchMedia('(orientation: portrait)').matches) {
+                    document.documentElement.style.setProperty('--base-size', vw + 'px');
+                } else {
+                    document.documentElement.style.setProperty('--base-size', vh + 'px');
+                }
+            }
+            window.addEventListener('resize', setBaseSizeVar);
+            window.addEventListener('orientationchange', setBaseSizeVar);
+            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
+            </script>
+        <style>
+            /* Fallback für Container Queries: Sorgt für Lesbarkeit auf älteren Browsern */
+            @supports not (container-type: inline-size) {
+                .hero-title, .section-title {
+                    font-size: clamp(2.5em, 6vw, 5em);
+                }
+                .game-card, .about-card {
+                    font-size: clamp(1em, 3vw, 2em);
+                }
+            }
+            /* Accessibility: Kontrast und Lesbarkeit für Titel und Karten */
+            .hero-title, .section-title {
+                font-weight: 800;
+                background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-fill-color: transparent;
+                text-shadow: none;
+            }
+            .game-card, .about-card {
+                font-weight: 500;
+                color: #e0aaff;
+                background: linear-gradient(135deg, rgba(26,26,26,0.95) 80%, rgba(157,77,221,0.08) 100%);
+                box-shadow: 0 6px 32px rgba(157,77,221,0.12), 0 1.5px 8px rgba(0,0,0,0.18);
+                border-radius: 1.5rem;
+                border: 1.5px solid rgba(199,125,255,0.18);
+                transition: box-shadow 0.25s, transform 0.18s;
+                line-height: 1.6;
+                letter-spacing: 0.01em;
+            }
+            .game-card:hover, .about-card:hover {
+                box-shadow: 0 12px 48px rgba(157,77,221,0.22), 0 3px 16px rgba(0,0,0,0.22);
+                transform: translateY(-6px) scale(1.03);
+            }
+            .game-title, .about-card h3 {
+                background: linear-gradient(90deg, #e0aaff 40%, #c77dff 60%, #9d4edd 100%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-fill-color: transparent;
+                font-weight: 700;
+                font-size: 1.5em;
+                margin-bottom: 0.5em;
+            }
+            /* Design: Custom Properties für Farben und Theme */
+            :root {
+                --color-bg: #0a0a0a;
+                --color-accent: #9d4edd;
+                --color-primary: #e0aaff;
+                --color-secondary: #c77dff;
+                --color-card-bg: rgba(26,26,26,0.8);
+            }
+            body {
+                background: var(--color-bg);
+                color: var(--color-primary);
+            }
+            .btn-primary {
+                background: var(--color-accent);
+                color: #fff;
+            }
+            /* Animation-Optimierung: Performance für animierte Elemente */
+            .hero-title, .game-card, .about-card {
+                will-change: transform;
+            }
+            /* Testing: Hinweise siehe Kommentar unten */
+        </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Lehrer Tools von Oberlinhaus - Gute Tools für Lehrer">
@@ -19,9 +150,71 @@
     <link rel="stylesheet" href="../stylesheets/main.css">
     <link rel="stylesheet" href="../stylesheets/animations.css">
     <link rel="stylesheet" href="../stylesheets/responsive.css">
+    <style>
+        :root {
+            --base-size: 1vh;
+        }
+        @media (orientation: portrait) {
+            :root {
+                --base-size: 1vw;
+            }
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            font-size: var(--base-size);
+        }
+        main.page-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+        .hero-section, .games-section, .tools-section, .about-section {
+            container-type: inline-size;
+            container-name: mainblock;
+        }
+        .hero-title, .section-title {
+            font-size: clamp(1.8em, 3vw, 2.8em);
+        }
+        .game-card, .about-card {
+            font-size: 1.08em;
+        }
+        .games-grid, .tools-section .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            align-items: stretch;
+        }
+        @media (max-width: 1100px) {
+            .games-grid, .tools-section .games-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+        @media (max-width: 700px) {
+            .games-grid, .tools-section .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .game-card, .about-card {
+            min-width: 0;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        /* Optional: Cards responsive padding */
+        .game-card, .about-card {
+            padding: min(2.5em, 5cqw);
+        }
+    </style>
 </head>
 <body>
+    <!-- Hauptinhalt: Enthält alle sichtbaren Bereiche der Seite, modular aufgebaut -->
+    <!-- ===================== HAUPT-INHALT ===================== -->
+    <main class="page-container">
+    <!-- ======= HEADER & NAVIGATION ======= -->
     <header class="main-header">
+                <!-- HEADER & NAVIGATION: Logo, Hauptnavigation, Login/Logout -->
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-brand">
@@ -42,7 +235,9 @@
             </div>
         </nav>
     </header>
+    <!-- ======= HERO SECTION: Begrüßung & Einstieg ======= -->
     <section id="home" class="hero-section">
+                <!-- HERO SECTION: Begrüßung, Slogan, Navigation zu Hauptbereichen -->
         <div class="hero-content">
             <h1 class="hero-title">Willkommen bei den Lehrer Tools von Oberlinhaus!</h1>
             <p class="hero-subtitle">Gute Tools für Lehrer</p>
@@ -53,7 +248,9 @@
             </div>
         </div>
     </section>
+    <!-- ======= SPIELE SECTION: Auswahl der Spiele ======= -->
     <section id="games" class="games-section">
+                <!-- SPIELE SECTION: Übersicht aller verfügbaren Lernspiele -->
         <div class="section-container">
             <h2 class="section-title">Verfügbare Spiele</h2>
             <p class="section-subtitle">Wähle ein Spiel und starte deine Lernreise!</p>
@@ -133,7 +330,9 @@
             </div>
         </div>
     </section>
+    <!-- ======= TOOLS SECTION: Lehrer Werkzeuge ======= -->
     <section id="tools" class="tools-section">
+                <!-- TOOLS SECTION: Digitale Werkzeuge für den Unterricht -->
         <div class="section-container">
             <h2 class="section-title">Lehrer Tools</h2>
             <p class="section-subtitle">Praktische Werkzeuge für den Unterricht!</p>
@@ -263,7 +462,9 @@
             </div>
         </div>
     </section>
+    <!-- ======= ABOUT SECTION: Projekt & Entwickler ======= -->
     <section id="about" class="about-section">
+                <!-- ABOUT SECTION: Projektinfos, Motivation, Entwickler-Boxen -->
         <div class="section-container">
             <h2 class="section-title">Über das Projekt</h2>
             <div class="about-content">
@@ -282,19 +483,18 @@
                     <h3>Die Zukunft</h3>
                     <p>Kontinuierliche Entwicklung neuer Spiele und Features für besseres Lernen.</p>
                 </div>
-            </div>
-            <div class="about-card" style="width:100%; margin:2.5rem 0 0 0;">
-                <div class="about-icon">&#128100;</div>
-                <h3>Über mich</h3>
-                <p>Erfahre mehr über den Entwickler und die Motivation hinter diesem Projekt.</p>
-                <a href="../portfolio/Portfolio.html" style="display:inline-block; margin-top:1rem; padding:0.9rem 2.2rem; background:var(--accent); color:#fff; border-radius:0.5rem; text-decoration:none; font-weight:bold; font-size:1.1rem; box-shadow:var(--shadow); border:none;">Mehr über mich</a>
-            </div>
-            </div>
-            </div>
+                <div class="about-card full-width">
+                    <div class="about-icon">&#128100;</div>
+                    <h3>Über mich</h3>
+                    <p>Erfahre mehr über den Entwickler und die Motivation hinter diesem Projekt.</p>
+                    <a href="../portfolio/Portfolio.html" class="btn btn-primary" style="margin-top:1.5rem;">Mehr über mich</a>
+                </div>
             </div>
         </div>
     </section>
+    <!-- ======= FOOTER: Kontakt & Links ======= -->
     <footer class="main-footer">
+                <!-- FOOTER: Kontakt, Links, rechtliche Hinweise -->
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Lehrer Tools</h4>
@@ -315,6 +515,7 @@
         </div>
     </footer>
     <div id="loginModal" class="modal hidden">
+                <!-- LOGIN MODAL: Popup für Login und Registrierung, inkl. Test-Accounts -->
         <div class="modal-content login-modal-content epic-login-modal">
             <div class="modal-header">
                 <div class="login-animation-container">
@@ -397,5 +598,6 @@
     <script src="../javascript/animations.js"></script>
     <script src="../javascript/responsive.js"></script>
     <script src="../javascript/main.js"></script>
+    </main>
 </body>
 </html>

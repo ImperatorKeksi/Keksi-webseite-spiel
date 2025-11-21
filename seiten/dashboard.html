@@ -1,6 +1,89 @@
+<!--
+    Datei: dashboard.html
+    Projekt: Lehrer Tools Web-App
+    Autor: Nico Kaschube
+    Jahr: 2025
+    Beschreibung: Dashboard-Übersicht für Lehrer mit schnellen Zugriffen und Statistiken.
+-->
 <!DOCTYPE html>
 <html lang="de">
 <head>
+        <!--
+            HEAD-Bereich: Einstellungen, Styles und Skripte für die Seite.
+            - Styles: Aussehen und Layout der Seite
+            - JavaScript: Dynamische Funktionen (z.B. Responsive-Design)
+        -->
+            <script>
+            function setBaseSizeVar() {
+                var vh = window.innerHeight * 0.01;
+                var vw = window.innerWidth * 0.01;
+                if (window.matchMedia('(orientation: portrait)').matches) {
+                    document.documentElement.style.setProperty('--base-size', vw + 'px');
+                } else {
+                    document.documentElement.style.setProperty('--base-size', vh + 'px');
+                }
+            }
+            window.addEventListener('resize', setBaseSizeVar);
+            window.addEventListener('orientationchange', setBaseSizeVar);
+            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
+            </script>
+        <style>
+            /* Fallback für ältere Browser: Sorgt für Lesbarkeit, wenn moderne CSS-Features nicht unterstützt werden */
+            @supports not (container-type: inline-size) {
+                    <!-- HEADER: Seitenkopf mit Titel, Navigation und Login/Logout -->
+                    <!--
+                        Hauptnavigation und Titel der Seite.
+                        - Links führen zurück zur Startseite
+                        - Login/Logout wird per JavaScript gesteuert
+                    -->
+                    <!--
+                        DASHBOARD: Übersicht und Schnellzugriffe für Lehrer
+                        - Karten zeigen Statistiken, Tools und wichtige Infos
+                    -->
+                    <!-- FOOTER: Entwickler-Credit und Jahr -->
+                .header-title, .welcome-title, .dashboard-section-title {
+                    font-size: clamp(1.8em, 3vw, 2.8em);
+                }
+                .dashboard-card, .dashboard-section {
+                    font-size: 1.08em;
+                }
+            }
+            .header-title, .welcome-title, .dashboard-section-title {
+                font-weight: 800;
+                background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-fill-color: transparent;
+                text-shadow: none;
+            }
+            .dashboard-card, .dashboard-section {
+                font-weight: 500;
+            }
+            :root {
+                --color-bg: #0a0a0a;
+                --color-accent: #9d4edd;
+                --color-primary: #e0aaff;
+                --color-secondary: #c77dff;
+                --color-card-bg: rgba(26,26,26,0.8);
+            }
+            body {
+                background: var(--color-bg);
+                color: var(--color-primary);
+            }
+            .btn-primary {
+                background: var(--color-accent);
+                color: #fff;
+            }
+            .header-title, .dashboard-card, .dashboard-section {
+                will-change: transform;
+            }
+        </style>
+        <!--
+        Testing-Hinweis:
+        Teste die Seite auf verschiedenen Geräten, Browsern und mit Screenreadern.
+        Prüfe Zoom, Kontrast und Layout bei extremen Größen.
+        -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Persönliches Lehrer-Dashboard mit Favoriten, Schnellzugriff und gespeicherten Konfigurationen">
@@ -16,6 +99,48 @@
     <link rel="stylesheet" href="../stylesheets/responsive.css">
     <link rel="stylesheet" href="../stylesheets/styles.css">
     <link rel="stylesheet" href="../stylesheets/dashboard.css">
+    <style>
+        :root {
+            --base-size: 1vh;
+        }
+        @media (orientation: portrait) {
+            :root {
+                --base-size: 1vw;
+            }
+        }
+        html, body {
+            font-size: var(--base-size);
+        }
+        main.page-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+        .dashboard-welcome, .container, .dashboard-section {
+            container-type: inline-size;
+            container-name: mainblock;
+        }
+        .header-title, .welcome-title, .dashboard-section-title {
+            font-size: clamp(1.8em, 3vw, 2.8em);
+        }
+        .dashboard-card, .dashboard-section {
+            font-size: 1.08em;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        @media (max-width: 700px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .dashboard-card {
+            padding: min(2.5em, 5cqw);
+        }
+    </style>
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="../pwa/manifest.json">

@@ -11,6 +11,56 @@
     ╚════════════════════════════════════════════════════════╝
 -->
 <head>
+        <!-- Verbesserungen: Fallbacks, Performance, Accessibility, Design, Animation, Testing -->
+            <script>
+            function setBaseSizeVar() {
+                var vh = window.innerHeight * 0.01;
+                var vw = window.innerWidth * 0.01;
+                if (window.matchMedia('(orientation: portrait)').matches) {
+                    document.documentElement.style.setProperty('--base-size', vw + 'px');
+                } else {
+                    document.documentElement.style.setProperty('--base-size', vh + 'px');
+                }
+            }
+            window.addEventListener('resize', setBaseSizeVar);
+            window.addEventListener('orientationchange', setBaseSizeVar);
+            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
+            </script>
+        <style>
+            @supports not (container-type: inline-size) {
+                h1, .leak-title, .leak-badge {
+                    font-size: clamp(2.5em, 6vw, 5em);
+                }
+                .feature, .container {
+                    font-size: clamp(1em, 3vw, 2em);
+                }
+            }
+            h1, .leak-title, .leak-badge {
+                font-weight: 800;
+                text-shadow: 0 2px 8px #222, 0 0 1px #fff;
+            }
+            .feature, .container {
+                font-weight: 500;
+            }
+            :root {
+                --color-bg: #0a0a0a;
+                --color-accent: #9d4edd;
+                --color-primary: #e0aaff;
+                --color-secondary: #c77dff;
+                --color-card-bg: rgba(26,26,26,0.8);
+            }
+            body {
+                background: var(--color-bg);
+                color: var(--color-primary);
+            }
+            .btn-primary {
+                background: var(--color-accent);
+                color: #fff;
+            }
+            h1, .feature, .container {
+                will-change: transform;
+            }
+        </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎓 Lehrer Tools - Start</title>
@@ -18,6 +68,46 @@
     <link rel="manifest" href="pwa/manifest.json">
     <link rel="stylesheet" href="stylesheets/animations.css">
     <style>
+        :root {
+            --base-size: 1vh;
+        }
+        @media (orientation: portrait) {
+            :root {
+                --base-size: 1vw;
+            }
+        }
+        html, body {
+            font-size: var(--base-size);
+        }
+        main.page-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            min-height: 100vh;
+        }
+        .container, .features, .footer {
+            container-type: inline-size;
+            container-name: mainblock;
+        }
+        h1, .leak-title, .leak-badge {
+            font-size: clamp(2.5em, 6cqw, 5em);
+        }
+        .feature, .container {
+            font-size: clamp(1em, 3cqw, 2em);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+        @media (max-width: 700px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        .feature {
+            padding: min(2.5em, 5cqw);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -343,6 +433,11 @@
     </style>
 </head>
 <body>
+        <!--
+        Testing-Hinweis:
+        Teste die Seite auf verschiedenen Geräten, Browsern und mit Screenreadern.
+        Prüfe Zoom, Kontrast und Layout bei extremen Größen.
+        -->
     <!-- Animierter Hintergrund -->
     <div class="background-animation">
         <div class="bubble"></div>
