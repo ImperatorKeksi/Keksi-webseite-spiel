@@ -39,7 +39,12 @@
             }
             .header-title, .timer-title, .timer-section-title {
                 font-weight: 800;
-                text-shadow: 0 2px 8px #222, 0 0 1px #fff;
+                background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+                text-shadow: none;
             }
             .timer-card, .timer-section {
                 font-weight: 500;
@@ -459,6 +464,7 @@
     <link rel="stylesheet" href="../stylesheets/animations.css">
 </head>
 <body>
+                <iframe src="background-bubbles-boxes.html" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;border:none;pointer-events:none;" aria-hidden="true" tabindex="-1"></iframe>
             <!-- HEADER: Seitenkopf mit Titel, Navigation und Login/Logout -->
             <!--
                 Hauptnavigation und Titel der Seite.
@@ -477,10 +483,10 @@
         -->
     <!-- Header: Struktur und Klassen wie Zufallsgenerator -->
     <header class="game-header">
-        <div class="header-title">
-            <span style="font-size: 2rem;">🕐</span>
-            <h1>Digitale Uhr & Timer</h1>
-        </div>
+            <div class="header-title">
+                <span class="emoji-icon" style="font-size: 2rem; display: inline-block; vertical-align: middle; margin-right: 0.5rem;">⏰</span>
+                <span style="display: inline-block; vertical-align: middle;"><h1>Digitale Uhr & Timer</h1></span>
+            </div>
         <div style="display: flex; gap: 1rem; align-items: center;">
             <a href="index.html" class="btn">← Zurück</a>
             <span id="userDisplayTimer" class="user-display" style="display: none;">👤 Gast</span>

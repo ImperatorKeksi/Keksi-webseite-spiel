@@ -39,10 +39,19 @@
             }
             .header-title h1, .noten-title, .noten-section-title {
                 font-weight: 800;
-                text-shadow: 0 2px 8px #222, 0 0 1px #fff;
+                background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                -webkit-text-fill-color: transparent;
+                text-shadow: none;
             }
             .game-card, .noten-section {
                 font-weight: 500;
+                background: var(--color-card-bg);
+                color: var(--color-primary);
+                border-radius: 18px;
+                box-shadow: 0 4px 32px #9d4edd44;
             }
             :root {
                 --color-bg: #0a0a0a;
@@ -130,9 +139,10 @@
         }
         
         .game-header {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            background: var(--color-card-bg, var(--glass-bg));
+            box-shadow: 0 4px 32px #9d4edd44;
+            border-radius: 18px;
+            border: 1px solid var(--border);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -152,6 +162,7 @@
             background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
             -webkit-background-clip: text;
             background-clip: text;
+            color: transparent;
             -webkit-text-fill-color: transparent;
         }
         
@@ -328,6 +339,7 @@
     <link rel="stylesheet" href="../stylesheets/animations.css">
 </head>
 <body>
+                <iframe src="background-bubbles-boxes.html" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;border:none;pointer-events:none;" aria-hidden="true" tabindex="-1"></iframe>
             <!-- HEADER: Seitenkopf mit Titel, Navigation und Login/Logout -->
             <!--
                 Hauptnavigation und Titel der Seite.
@@ -347,7 +359,7 @@
     <!-- Header -->
     <header class="game-header">
         <div class="header-title">
-            <span style="font-size: 2rem;">📊</span>
+              <span class="emoji-icon" style="font-size: 2rem; display: inline-block; vertical-align: middle; margin-right: 0.5rem;">📊</span>
             <h1>Noten-Rechner</h1>
         </div>
         <div style="display: flex; gap: 1rem; align-items: center;">

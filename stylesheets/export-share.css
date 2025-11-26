@@ -39,11 +39,9 @@
     .qr-modal-content {
         max-width: 98vw;
         border-radius: clamp(8px, 8vw, 24px);
+        box-shadow: 0 20px 60px var(--shadow-primary, rgba(157, 77, 221, 0.3));
+        animation: slideInUp 0.4s ease-out;
     }
-}
-    box-shadow: 0 20px 60px var(--shadow-primary, rgba(157, 77, 221, 0.3));
-    animation: slideInUp 0.4s ease-out;
-}
 
 .qr-modal-header {
     display: flex;
@@ -95,10 +93,8 @@
 @media (max-width: 600px) {
     .qr-modal-body {
         padding: clamp(8px, 8vw, 16px);
+        text-align: center;
     }
-}
-    text-align: center;
-}
 
 .qr-code-image {
     max-width: 100%;

@@ -163,6 +163,7 @@
     </script>
 </head>
 <body>
+                <iframe src="background-bubbles-boxes.html" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;border:none;pointer-events:none;" aria-hidden="true" tabindex="-1"></iframe>
             <!-- HEADER: Seitenkopf mit Titel, Navigation und Login/Logout -->
         <!--
         Testing-Hinweis:
@@ -180,7 +181,10 @@
                 SPIELBEREICH: Jeopardy Quiz mit verschiedenen Modi
                 - Karten und Sektionen zeigen Fragen, Punkte und Spielstatus
             -->
-        <h1>🎮 Jeopardy Quiz</h1>
+        <div class="header-title">
+            <span class="emoji-icon" style="font-size: 2rem; display: inline-block; vertical-align: middle; margin-right: 0.5rem;">🎮</span>
+            <h1>Jeopardy Quiz</h1>
+        </div>
         <div style="display: flex; gap: 1rem; align-items: center;">
             <a href="index.html" class="btn">← Zurück</a>
             <span id="userDisplayGame" class="user-display" style="display: none;">👤 Gast</span>

@@ -1,3 +1,4 @@
+    <iframe src="background-bubbles-boxes.html" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;border:none;pointer-events:none;" aria-hidden="true" tabindex="-1"></iframe>
 <!--
     Datei: dashboard.html
     Projekt: Lehrer Tools Web-App
@@ -30,17 +31,6 @@
         <style>
             /* Fallback für ältere Browser: Sorgt für Lesbarkeit, wenn moderne CSS-Features nicht unterstützt werden */
             @supports not (container-type: inline-size) {
-                    <!-- HEADER: Seitenkopf mit Titel, Navigation und Login/Logout -->
-                    <!--
-                        Hauptnavigation und Titel der Seite.
-                        - Links führen zurück zur Startseite
-                        - Login/Logout wird per JavaScript gesteuert
-                    -->
-                    <!--
-                        DASHBOARD: Übersicht und Schnellzugriffe für Lehrer
-                        - Karten zeigen Statistiken, Tools und wichtige Infos
-                    -->
-                    <!-- FOOTER: Entwickler-Credit und Jahr -->
                 .header-title, .welcome-title, .dashboard-section-title {
                     font-size: clamp(1.8em, 3vw, 2.8em);
                 }
@@ -53,12 +43,16 @@
                 background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
                 -webkit-background-clip: text;
                 background-clip: text;
+                color: transparent;
                 -webkit-text-fill-color: transparent;
-                text-fill-color: transparent;
                 text-shadow: none;
             }
             .dashboard-card, .dashboard-section {
                 font-weight: 500;
+                background: var(--color-card-bg);
+                color: var(--color-primary);
+                border-radius: 18px;
+                box-shadow: 0 4px 32px #9d4edd44;
             }
             :root {
                 --color-bg: #0a0a0a;

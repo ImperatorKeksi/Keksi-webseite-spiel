@@ -1038,6 +1038,12 @@ body {
 }
 
 /* Responsive */
+/* Fix: Emojis sollen Standardfarben und keine Filter/Hintergrund haben */
+.emoji, .emoji-icon {
+    color: inherit !important;
+    background: none !important;
+    filter: none !important;
+}
 @media (max-width: 600px) {
     .epic-login-modal {
         max-width: 98vw;
