@@ -1,605 +1,1214 @@
-﻿<!--
-    Datei: index.html
-    Projekt: Lehrer Tools Web-App
-    Autor: Wendy (Vorarbeit: Nico Kaschube)
-    Jahr: 2025
-    Beschreibung: Startseite der Lernplattform mit Navigation, Spiele- und Tool-Auswahl, Projektinfos und Footer.
--->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
-                    <!-- Head-Bereich: Meta-Angaben, globale Styles und spezielle Styles für die About-Section -->
-                <!-- ABOUT SECTION STYLES: Grid-Layout und Responsive-Design für die Info-Boxen im About-Bereich -->
-                        <style>
-                /* Grid-Layout für die About-Boxen: 3 Spalten oben, 1 breite Box unten */
-                            .about-section .about-content {
-                                display: grid;
-                                grid-template-columns: repeat(3, 1fr);
-                                grid-template-rows: auto auto;
-                                gap: 2.5rem 2.5rem;
-                                align-items: stretch;
-                            }
-
-            /* Standard-Box für die oberen Info-Karten */
-                            .about-section .about-card {
-                                min-width: 0;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: center;
-                                padding: 2.5rem 2rem 2rem 2rem;
-                                box-sizing: border-box;
-                            }
-                            .about-section .about-card h3 {
-                                margin-bottom: 0.7em;
-                            }
-                            .about-section .about-card p {
-                                margin-bottom: 0.7em;
-                                text-align: center;
-                            }
-
-            /* Die untere breite Box (Über mich) */
-                            .about-section .about-card.full-width {
-                                grid-column: 1 / 4;
-                                grid-row: 2;
-                                margin-top: 0;
-                            }
-
-            /* Responsive: Bei kleinen Bildschirmen werden alle Boxen untereinander angezeigt */
-                            @media (max-width: 1100px) {
-                                .about-section .about-content {
-                                    grid-template-columns: 1fr;
-                                    grid-template-rows: auto auto auto auto;
-                                }
-                                .about-section .about-card.full-width {
-                                    grid-column: auto;
-                                    grid-row: auto;
-                                }
-                            }
-                        </style>
-                }
-        <!-- Verbesserungen: Fallbacks, Performance, Accessibility, Design, Animation, Testing -->
-            <script>
-            // Performance: JS-Viewport-Fix für iOS Safari & Bugs
-            function setBaseSizeVar() {
-                var vh = window.innerHeight * 0.01;
-                var vw = window.innerWidth * 0.01;
-                if (window.matchMedia('(orientation: portrait)').matches) {
-                    document.documentElement.style.setProperty('--base-size', vw + 'px');
-                } else {
-                    document.documentElement.style.setProperty('--base-size', vh + 'px');
-                }
-            }
-            window.addEventListener('resize', setBaseSizeVar);
-            window.addEventListener('orientationchange', setBaseSizeVar);
-            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
-            </script>
-        <style>
-            /* Fallback für Container Queries: Sorgt für Lesbarkeit auf älteren Browsern */
-            @supports not (container-type: inline-size) {
-                .hero-title, .section-title {
-                    font-size: clamp(2.5em, 6vw, 5em);
-                }
-                .game-card, .about-card {
-                    font-size: clamp(1em, 3vw, 2em);
-                }
-            }
-            /* Accessibility: Kontrast und Lesbarkeit für Titel und Karten */
-            .hero-title, .section-title {
-                font-weight: 800;
-                background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-fill-color: transparent;
-                text-shadow: none;
-            }
-            .game-card, .about-card {
-                font-weight: 500;
-                color: #e0aaff;
-                background: linear-gradient(135deg, rgba(26,26,26,0.95) 80%, rgba(157,77,221,0.08) 100%);
-                box-shadow: 0 6px 32px rgba(157,77,221,0.12), 0 1.5px 8px rgba(0,0,0,0.18);
-                border-radius: 1.5rem;
-                border: 1.5px solid rgba(199,125,255,0.18);
-                transition: box-shadow 0.25s, transform 0.18s;
-                line-height: 1.6;
-                letter-spacing: 0.01em;
-            }
-            .game-card:hover, .about-card:hover {
-                box-shadow: 0 12px 48px rgba(157,77,221,0.22), 0 3px 16px rgba(0,0,0,0.22);
-                transform: translateY(-6px) scale(1.03);
-            }
-            .game-title, .about-card h3 {
-                background: linear-gradient(90deg, #e0aaff 40%, #c77dff 60%, #9d4edd 100%);
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-                text-fill-color: transparent;
-                font-weight: 700;
-                font-size: 1.5em;
-                margin-bottom: 0.5em;
-            }
-            /* Design: Custom Properties für Farben und Theme */
-            :root {
-                --color-bg: #0a0a0a;
-                --color-accent: #9d4edd;
-                --color-primary: #e0aaff;
-                --color-secondary: #c77dff;
-                --color-card-bg: rgba(26,26,26,0.8);
-            }
-            body {
-                background: var(--color-bg);
-                color: var(--color-primary);
-            }
-            .btn-primary {
-                background: var(--color-accent);
-                color: #fff;
-            }
-            /* Animation-Optimierung: Performance für animierte Elemente */
-            .hero-title, .game-card, .about-card {
-                will-change: transform;
-            }
-            /* Testing: Hinweise siehe Kommentar unten */
-        </style>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Lehrer Tools von Oberlinhaus - Gute Tools für Lehrer">
     <meta name="author" content="Nico Kaschube">
+    <meta name="theme-color" content="#9d4edd">
     <title>Lehrer Tools - Oberlinhaus</title>
     <link rel="icon" type="image/svg+xml" href="../icons/logo-simple.svg">
     <link rel="stylesheet" href="../stylesheets/main.css">
     <link rel="stylesheet" href="../stylesheets/animations.css">
     <link rel="stylesheet" href="../stylesheets/responsive.css">
+    
     <style>
+        /* ============================================================================
+           🎯 RESPONSIVE MASTER STYLES
+           ============================================================================ */
+        
+        /* CSS Variablen für konsistente Responsiveness */
         :root {
-            --base-size: 1vh;
+            /* Spacing */
+            --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+            --spacing-sm: clamp(0.5rem, 2vw, 1rem);
+            --spacing-md: clamp(1rem, 3vw, 1.5rem);
+            --spacing-lg: clamp(1.5rem, 4vw, 2.5rem);
+            --spacing-xl: clamp(2rem, 5vw, 3.5rem);
+            --spacing-xxl: clamp(2.5rem, 6vw, 4rem);
+            
+            /* Font Sizes */
+            --font-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+            --font-sm: clamp(0.875rem, 2vw, 1rem);
+            --font-md: clamp(1rem, 2.5vw, 1.125rem);
+            --font-lg: clamp(1.25rem, 3.5vw, 1.75rem);
+            --font-xl: clamp(1.75rem, 4.5vw, 2.5rem);
+            --font-xxl: clamp(2.5rem, 6vw, 4rem);
+            
+            /* Colors */
+            --color-bg: #0a0a0a;
+            --color-accent: #9d4edd;
+            --color-primary: #e0aaff;
+            --color-secondary: #c77dff;
+            --color-card-bg: rgba(26, 26, 26, 0.95);
+            
+            /* Layout */
+            --max-width: 1400px;
+            --border-radius: clamp(0.75rem, 2vw, 1.5rem);
+            --header-height: clamp(60px, 10vh, 80px);
         }
-        @media (orientation: portrait) {
-            :root {
-                --base-size: 1vw;
-            }
-        }
-        html, body {
-            height: 100%;
+
+        /* Base Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
             overflow-x: hidden;
-            font-size: var(--base-size);
         }
-        main.page-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto 1fr auto;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .hero-section, .games-section, .tools-section, .about-section {
-            container-type: inline-size;
-            container-name: mainblock;
+
+        /* Main Layout */
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
         }
-        .hero-title, .section-title {
-            font-size: clamp(1.8em, 3vw, 2.8em);
+
+        /* ============================================================================
+           📱 HEADER & NAVIGATION
+           ============================================================================ */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(157, 78, 221, 0.2);
         }
-        .game-card, .about-card {
-            font-size: 1.08em;
+
+        .navbar {
+            padding: var(--spacing-sm) var(--spacing-md);
         }
-        .games-grid, .tools-section .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2.5rem;
-            align-items: stretch;
+
+        .nav-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-md);
         }
-        @media (max-width: 1100px) {
-            .games-grid, .tools-section .games-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            text-decoration: none;
         }
-        @media (max-width: 700px) {
-            .games-grid, .tools-section .games-grid {
-                grid-template-columns: 1fr;
-            }
+
+        .nav-logo {
+            width: clamp(32px, 6vw, 48px);
+            height: clamp(32px, 6vw, 48px);
+            filter: drop-shadow(0 0 8px rgba(157, 78, 221, 0.5));
         }
-        .game-card, .about-card {
-            min-width: 0;
-            max-width: 480px;
+
+        .nav-title {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-md);
+        }
+
+        .nav-link {
+            padding: var(--spacing-sm) var(--spacing-md);
+            text-decoration: none;
+            color: var(--color-primary);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            font-size: var(--font-sm);
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(157, 78, 221, 0.2);
+            color: #fff;
+        }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .user-display {
+            font-size: var(--font-sm);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: rgba(157, 78, 221, 0.2);
+            border-radius: var(--border-radius);
+        }
+
+        .btn-login,
+        .btn-logout {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-accent);
+            color: #fff;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: var(--font-sm);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .btn-login:hover,
+        .btn-logout:hover {
+            background: #7209b7;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================================
+           🎭 HERO SECTION
+           ============================================================================ */
+        .hero-section {
+            padding: var(--spacing-xxl) var(--spacing-md);
+            text-align: center;
+            background: linear-gradient(180deg, rgba(157, 78, 221, 0.1) 0%, transparent 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
             margin: 0 auto;
         }
-        /* Optional: Cards responsive padding */
-        .game-card, .about-card {
-            padding: min(2.5em, 5cqw);
+
+        .hero-title {
+            font-size: var(--font-xxl);
+            font-weight: 800;
+            background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: var(--font-lg);
+            color: #c77dff;
+            margin-bottom: var(--spacing-xl);
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================================
+           🎮 SECTIONS (GAMES, TOOLS, ABOUT)
+           ============================================================================ */
+        .games-section,
+        .tools-section,
+        .about-section {
+            padding: var(--spacing-xxl) var(--spacing-md);
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: var(--font-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: var(--font-md);
+            color: #c77dff;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* ============================================================================
+           📦 GAME & TOOL CARDS
+           ============================================================================ */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .game-card {
+            background: var(--color-card-bg);
+            border: 1.5px solid rgba(199, 125, 255, 0.3);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .game-card:hover:not(.coming-soon) {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(157, 78, 221, 0.3);
+            border-color: rgba(199, 125, 255, 0.6);
+        }
+
+        .game-card.coming-soon {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .game-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .game-icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5));
+        }
+
+        .game-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: rgba(157, 78, 221, 0.3);
+            border-radius: 999px;
+            font-size: var(--font-xs);
+            font-weight: 600;
+        }
+
+        .coming-soon-badge {
+            background: rgba(255, 165, 0, 0.3);
+        }
+
+        .game-card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .game-title {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            background: linear-gradient(90deg, #e0aaff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .game-description {
+            font-size: var(--font-sm);
+            color: #c77dff;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .game-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin: var(--spacing-sm) 0;
+        }
+
+        .feature-tag {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: rgba(157, 78, 221, 0.2);
+            border-radius: 999px;
+            font-size: var(--font-xs);
+            color: #e0aaff;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: var(--font-xs);
+        }
+
+        .game-card-footer {
+            margin-top: var(--spacing-md);
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        /* ============================================================================
+           🔘 BUTTONS
+           ============================================================================ */
+        .btn,
+        .btn-play {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: var(--font-sm);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            min-width: 44px;
+            touch-action: manipulation;
+        }
+
+        .btn-primary,
+        .btn-play {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover,
+        .btn-play:hover {
+            background: #7209b7;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(157, 78, 221, 0.1);
+        }
+
+        .btn-play {
+            width: 100%;
+        }
+
+        button:disabled,
+        .btn-play:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ============================================================================
+           📋 ABOUT SECTION
+           ============================================================================ */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .about-card {
+            background: var(--color-card-bg);
+            border: 1.5px solid rgba(199, 125, 255, 0.3);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(157, 78, 221, 0.3);
+        }
+
+        .about-icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: var(--spacing-md);
+            filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5));
+        }
+
+        .about-card h3 {
+            font-size: var(--font-lg);
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(90deg, #e0aaff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-card p {
+            font-size: var(--font-sm);
+            color: #c77dff;
+            line-height: 1.6;
+        }
+
+        .about-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* ============================================================================
+           🦶 FOOTER
+           ============================================================================ */
+        .main-footer {
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+            padding: var(--spacing-xl) var(--spacing-md);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-section h4 {
+            font-size: var(--font-md);
+            margin-bottom: var(--spacing-sm);
+            color: #e0aaff;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .footer-links a {
+            color: #c77dff;
+            text-decoration: none;
+            font-size: var(--font-sm);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #e0aaff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+            font-size: var(--font-sm);
+            color: #c77dff;
+        }
+
+        /* ============================================================================
+           💬 MODAL
+           ============================================================================ */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: var(--spacing-md);
+        }
+
+        .modal.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: var(--color-card-bg);
+            border: 2px solid #c77dff;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #e0aaff;
+            font-size: var(--font-xl);
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .epic-login-title {
+            font-size: var(--font-xl);
+            background: linear-gradient(45deg, #e0aaff, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: var(--spacing-md);
+            background: transparent;
+            border: 1px solid rgba(199, 125, 255, 0.3);
+            color: #c77dff;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            font-size: var(--font-sm);
+        }
+
+        .auth-tab.active {
+            background: rgba(157, 78, 221, 0.3);
+            color: #e0aaff;
+            border-color: #c77dff;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-size: var(--font-sm);
+            color: #e0aaff;
+        }
+
+        .epic-input {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px solid rgba(199, 125, 255, 0.3);
+            border-radius: var(--border-radius);
+            color: #e0aaff;
+            font-size: max(16px, var(--font-sm));
+            min-height: 44px;
+        }
+
+        .epic-input:focus {
+            outline: none;
+            border-color: #c77dff;
+            box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.2);
+        }
+
+        .epic-password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: var(--font-md);
+        }
+
+        .auth-info {
+            padding: var(--spacing-md);
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            font-size: var(--font-xs);
+        }
+
+        .auth-error,
+        .auth-success {
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            font-size: var(--font-sm);
+        }
+
+        .auth-error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            color: #ff6b6b;
+        }
+
+        .auth-success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            color: #51cf66;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: var(--font-sm);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(199, 125, 255, 0.3);
+            color: #c77dff;
+        }
+
+        /* ============================================================================
+           📱 RESPONSIVE BREAKPOINTS
+           ============================================================================ */
+        
+        /* Large Desktop (> 1440px) */
+        @media (min-width: 1441px) {
+            .games-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .about-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Desktop (1024px - 1440px) */
+        @media (max-width: 1440px) and (min-width: 1025px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tablet (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);
+            }
+            
+            .about-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile (< 768px) */
+        @media (max-width: 768px) {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .nav-title {
+                font-size: var(--font-md);
+            }
+            
+            .game-card-footer {
+                flex-direction: column;
+            }
+            
+            .game-card-footer .btn-play {
+                width: 100%;
+            }
+        }
+
+        /* Small Mobile (< 480px) */
+        @media (max-width: 480px) {
+            :root {
+                --spacing-md: clamp(0.75rem, 2.5vw, 1rem);
+                --spacing-lg: clamp(1rem, 3.5vw, 1.5rem);
+            }
+            
+            .nav-logo {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .hero-section {
+                padding: var(--spacing-lg) var(--spacing-sm);
+            }
+            
+            .modal-content {
+                padding: var(--spacing-md);
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero-section {
+                padding: var(--spacing-md);
+            }
+            
+            .modal-content {
+                max-height: 85vh;
+            }
+        }
+
+        /* ============================================================================
+           ♿ ACCESSIBILITY
+           ============================================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            .game-card,
+            .about-card,
+            .modal-content {
+                border-width: 3px;
+            }
+        }
+
+        /* ============================================================================
+           🎨 UTILITY CLASSES
+           ============================================================================ */
+        .hidden {
+            display: none !important;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Safe Area für Notch-Geräte */
+        @supports (padding: max(0px)) {
+            .nav-container,
+            .section-container,
+            .hero-content {
+                padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+                padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+            }
         }
     </style>
 </head>
 <body>
     <!-- Bubble-Hintergrund -->
-    <iframe src="background-bubbles-boxes.html" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;border:none;pointer-events:none;" aria-hidden="true" tabindex="-1"></iframe>
-    <!-- Hauptinhalt: Enthält alle sichtbaren Bereiche der Seite, modular aufgebaut -->
-    <!-- ===================== HAUPT-INHALT ===================== -->
+    <iframe src="background-bubbles-boxes.html" 
+            style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;border:none;pointer-events:none;" 
+            aria-hidden="true" 
+            tabindex="-1"></iframe>
+    
+    <!-- Hauptinhalt -->
     <main class="page-container">
-    <!-- ======= HEADER & NAVIGATION ======= -->
-    <header class="main-header">
-                <!-- HEADER & NAVIGATION: Logo, Hauptnavigation, Login/Logout -->
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <img src="../icons/logo-simple.svg" alt="Logo" class="nav-logo">
-                    <span class="nav-title">Lehrer Tools</span>
+        <!-- Header & Navigation -->
+        <header class="main-header">
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-brand">
+                        <img src="../icons/logo-simple.svg" alt="Lehrer Tools Logo" class="nav-logo">
+                        <span class="nav-title">Lehrer Tools</span>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#games" class="nav-link">Spiele</a></li>
+                        <li><a href="#tools" class="nav-link">Tools</a></li>
+                        <li><a href="#about" class="nav-link">Über uns</a></li>
+                    </ul>
+                    <div class="nav-auth">
+                        <span id="userDisplayNav" class="user-display" style="display: none;">Gast</span>
+                        <button id="loginBtnNav" class="btn-login">Anmelden</button>
+                        <button id="logoutBtnNav" class="btn-logout" style="display: none;">Abmelden</button>
+                    </div>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#games" class="nav-link">Spiele</a></li>
-                    <li><a href="#tools" class="nav-link">Tools</a></li>
-                    <li><a href="#about" class="nav-link">Über uns</a></li>
-                </ul>
-                <div class="nav-auth">
-                    <span id="userDisplayNav" class="user-display" style="display: none;">Gast</span>
-                    <button id="loginBtnNav" class="btn-login">Anmelden</button>
-                    <button id="logoutBtnNav" class="btn-logout" style="display: none;">Abmelden</button>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Willkommen bei den Lehrer Tools von Oberlinhaus!</h1>
+                <p class="hero-subtitle">Gute Tools für Lehrer</p>
+                <div class="hero-buttons">
+                    <a href="#games" class="btn btn-primary">Zu den Spielen</a>
+                    <a href="#tools" class="btn btn-primary">Zu den Tools</a>
+                    <a href="#about" class="btn btn-secondary">Mehr erfahren</a>
                 </div>
             </div>
-        </nav>
-    </header>
-    <!-- ======= HERO SECTION: Begrüßung & Einstieg ======= -->
-    <section id="home" class="hero-section">
-                <!-- HERO SECTION: Begrüßung, Slogan, Navigation zu Hauptbereichen -->
-        <div class="hero-content">
-            <h1 class="hero-title">Willkommen bei den Lehrer Tools von Oberlinhaus!</h1>
-            <p class="hero-subtitle">Gute Tools für Lehrer</p>
-            <div class="hero-buttons">
-                <a href="#games" class="btn btn-primary">Zu den Spielen</a>
-                <a href="#tools" class="btn btn-primary">Zu den Tools</a>
-                <a href="#about" class="btn btn-secondary">Mehr erfahren</a>
+        </section>
+
+        <!-- Spiele Section -->
+        <section id="games" class="games-section">
+            <div class="section-container">
+                <h2 class="section-title">Verfügbare Spiele</h2>
+                <p class="section-subtitle">Wähle ein Spiel und starte deine Lernreise!</p>
+                <div class="games-grid">
+                    <!-- Jeopardy Quiz -->
+                    <div class="game-card">
+                        <div class="game-card-header">
+                            <div class="game-icon">🎯</div>
+                            <span class="game-badge">Verfügbar</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Jeopardy Quiz</h3>
+                            <p class="game-description">Teste dein Wissen in diesem spannenden Quiz-Spiel! Verschiedene Modi verfügbar.</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Mehrere Modi</span>
+                                <span class="feature-tag">25 Fragen</span>
+                                <span class="feature-tag">Multiplayer</span>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat"><span class="stat-icon">⏱️</span><span>10-20 Min</span></div>
+                                <div class="stat"><span class="stat-icon">👥</span><span>1-6 Spieler</span></div>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <a href="game.html" target="_blank" class="btn-play">Jetzt spielen</a>
+                        </div>
+                    </div>
+
+                    <!-- Stadt Land Fluss -->
+                    <div class="game-card">
+                        <div class="game-card-header">
+                            <div class="game-icon">🌍</div>
+                            <span class="game-badge">Neu</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Stadt Land Fluss</h3>
+                            <p class="game-description">Digitale Version mit Timer und automatischer Punkteberechnung.</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Timer-Funktion</span>
+                                <span class="feature-tag">Duplikat-Erkennung</span>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat"><span class="stat-icon">👥</span><span>Multiplayer</span></div>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <a href="stadt-land-fluss.html" target="_blank" class="btn-play">Spiel starten</a>
+                        </div>
+                    </div>
+
+                    <!-- Coming Soon -->
+                    <div class="game-card coming-soon">
+                        <div class="game-card-header">
+                            <div class="game-icon">🎮</div>
+                            <span class="game-badge coming-soon-badge">Bald</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Weitere Spiele</h3>
+                            <p class="game-description">Neue spannende Lernspiele sind bereits in Entwicklung!</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Mathe-Spiele</span>
+                                <span class="feature-tag">Vokabel-Quiz</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <button class="btn-play" disabled>In Entwicklung</button>
+                            <a href="preview.html" target="_blank" class="btn-play" style="opacity: 0.9;">🔓 Leaks ansehen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="tools-section">
+            <div class="section-container">
+                <h2 class="section-title">Lehrer Tools</h2>
+                <p class="section-subtitle">Praktische Werkzeuge für den Unterricht!</p>
+                <div class="games-grid">
+                    <!-- Timer Tool -->
+                    <div class="game-card">
+                        <div class="game-card-header">
+                            <div class="game-icon">⏰</div>
+                            <span class="game-badge">Verfügbar</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Digitale Uhr & Timer</h3>
+                            <p class="game-description">Professionelle Uhr mit Timer-Funktion für den Unterricht.</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Countdown</span>
+                                <span class="feature-tag">Alarm-Sounds</span>
+                                <span class="feature-tag">Vollbild</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <a href="timer.html" target="_blank" class="btn-play">Timer öffnen</a>
+                        </div>
+                    </div>
+
+                    <!-- Zufalls-Generator -->
+                    <div class="game-card">
+                        <div class="game-card-header">
+                            <div class="game-icon">🎲</div>
+                            <span class="game-badge">Neu</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Zufalls-Generator</h3>
+                            <p class="game-description">Schüler auswählen, Teams bilden, Würfeln & Glücksrad!</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Schülerauswahl</span>
+                                <span class="feature-tag">Teams</span>
+                                <span class="feature-tag">Glücksrad</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <a href="zufallsgenerator.html" target="_blank" class="btn-play">Generator öffnen</a>
+                        </div>
+                    </div>
+
+                    <!-- Noten-Rechner -->
+                    <div class="game-card">
+                        <div class="game-card-header">
+                            <div class="game-icon">📊</div>
+                            <span class="game-badge">Neu</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Noten-Rechner</h3>
+                            <p class="game-description">Notenschlüssel mit IHK, Linear oder Gauß-Verteilung generieren.</p>
+                            <div class="game-features">
+                                <span class="feature-tag">IHK Standard</span>
+                                <span class="feature-tag">3 Verteilungen</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <a href="notenrechner.html" target="_blank" class="btn-play">Rechner öffnen</a>
+                        </div>
+                    </div>
+
+                    <!-- Aufgaben-Roulette -->
+                    <div class="game-card">
+                        <div class="game-card-header">
+                            <div class="game-icon">🎯</div>
+                            <span class="game-badge">Neu</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Aufgaben-Roulette</h3>
+                            <p class="game-description">Faire Zufallsverteilung von Hausaufgaben und Referaten!</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Fair</span>
+                                <span class="feature-tag">Export</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <a href="aufgabenroulette.html" target="_blank" class="btn-play">Roulette öffnen</a>
+                        </div>
+                    </div>
+
+                    <!-- Coming Soon -->
+                    <div class="game-card coming-soon">
+                        <div class="game-card-header">
+                            <div class="game-icon">🔧</div>
+                            <span class="game-badge coming-soon-badge">Bald</span>
+                        </div>
+                        <div class="game-card-body">
+                            <h3 class="game-title">Weitere Tools</h3>
+                            <p class="game-description">Neue praktische Tools sind bereits in Planung!</p>
+                            <div class="game-features">
+                                <span class="feature-tag">Vokabeltrainer</span>
+                                <span class="feature-tag">Stundenplan</span>
+                            </div>
+                        </div>
+                        <div class="game-card-footer">
+                            <button class="btn-play" disabled>In Entwicklung</button>
+                            <a href="preview.html" target="_blank" class="btn-play" style="opacity: 0.9;">🔓 Leaks ansehen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <h2 class="section-title">Über das Projekt</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="about-icon">🏫</div>
+                        <h3>Oberlinhaus</h3>
+                        <p>Bildungseinrichtung mit innovativen digitalen Lernmethoden.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">🎯</div>
+                        <h3>Unser Ziel</h3>
+                        <p>Wissen spielerisch vermitteln und das Lernen unterhaltsam gestalten.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon">🚀</div>
+                        <h3>Die Zukunft</h3>
+                        <p>Kontinuierliche Entwicklung neuer Spiele und Features.</p>
+                    </div>
+                    <div class="about-card full-width">
+                        <div class="about-icon">👤</div>
+                        <h3>Über mich</h3>
+                        <p>Erfahre mehr über den Entwickler und die Motivation hinter diesem Projekt.</p>
+                        <a href="../portfolio/Portfolio.html" class="btn btn-primary" style="margin-top:1.5rem;">Mehr über mich</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Lehrer Tools</h4>
+                    <p>Von Oberlinhaus für Lehrer</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#games">Spiele</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#about">Über uns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Oberlinhaus - Lehrer Tools</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Entwickelt von Nico Kaschube</p>
+            </div>
+        </footer>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="login-animation-container">
+                        <img src="../icons/logo-simple.svg" alt="Logo" style="width:48px;height:48px;filter:drop-shadow(0 0 12px #9d4edd);">
+                    </div>
+                    <h3 class="epic-login-title">Anmelden</h3>
+                    <button class="modal-close-btn" id="closeLoginBtn" aria-label="Schließen">✖</button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-tab="login">Anmelden</button>
+                        <button class="auth-tab" data-tab="register">Registrieren</button>
+                    </div>
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginUsername">Benutzername:</label>
+                            <input type="text" id="loginUsername" class="epic-input" placeholder="Benutzername" required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Passwort:</label>
+                            <div class="epic-password-wrapper">
+                                <input type="password" id="loginPassword" class="epic-input" placeholder="Passwort" required autocomplete="current-password">
+                                <span class="toggle-password" id="toggleLoginPassword" title="Passwort anzeigen">👁️</span>
+                            </div>
+                        </div>
+                        <div class="auth-info">
+                            <p><strong>Test-Accounts:</strong></p>
+                            <div style="display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.5rem;">
+                                <span>🛡️ Administrator: <b>admin</b> / <b>admin123</b></span>
+                                <span>🧑‍🏫 Lehrer: <b>lehrer</b> / <b>lehrer123</b></span>
+                                <span>🎓 Schüler: <b>schueler</b> / <b>schueler123</b></span>
+                            </div>
+                        </div>
+                        <div id="loginError" class="auth-error" style="display: none;"></div>
+                        <div id="loginSuccess" class="auth-success" style="display: none;"></div>
+                    </form>
+                    <form id="registerForm" class="auth-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="registerUsername">Benutzername:</label>
+                            <input type="text" id="registerUsername" class="epic-input" placeholder="Min. 3 Zeichen" required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Passwort:</label>
+                            <div class="epic-password-wrapper">
+                                <input type="password" id="registerPassword" class="epic-input" placeholder="Min. 6 Zeichen" required autocomplete="new-password">
+                                <span class="toggle-password" id="toggleRegisterPassword" title="Passwort anzeigen">👁️</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPasswordConfirm">Passwort bestätigen:</label>
+                            <div class="epic-password-wrapper">
+                                <input type="password" id="registerPasswordConfirm" class="epic-input" placeholder="Wiederholen" required autocomplete="new-password">
+                                <span class="toggle-password" id="toggleRegisterPasswordConfirm" title="Passwort anzeigen">👁️</span>
+                            </div>
+                        </div>
+                        <div id="registerError" class="auth-error" style="display: none;"></div>
+                        <div id="registerSuccess" class="auth-success" style="display: none;"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="submitLoginBtn" class="modal-btn btn-primary">Anmelden</button>
+                    <button type="button" id="submitRegisterBtn" class="modal-btn btn-primary" style="display: none;">Registrieren</button>
+                    <button type="button" id="cancelLoginBtn" class="modal-btn-secondary">Abbrechen</button>
+                </div>
             </div>
         </div>
-    </section>
-    <!-- ======= SPIELE SECTION: Auswahl der Spiele ======= -->
-    <section id="games" class="games-section">
-                <!-- SPIELE SECTION: Übersicht aller verfügbaren Lernspiele -->
-        <div class="section-container">
-            <h2 class="section-title">Verfügbare Spiele</h2>
-            <p class="section-subtitle">Wähle ein Spiel und starte deine Lernreise!</p>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <div class="game-icon">&#127919;</div>
-                        <span class="game-badge">Verfügbar</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Jeopardy Quiz</h3>
-                        <p class="game-description">Teste dein Wissen in diesem spannenden Quiz-Spiel! Verschiedene Modi verfügbar: IT, Lagerlogistik und Custom.</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Mehrere Modi</span>
-                            <span class="feature-tag">25 Fragen</span>
-                            <span class="feature-tag">Multiplayer</span>
-                            <span class="feature-tag">Daily Double</span>
-                        </div>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <span class="stat-icon">&#9202;</span>
-                                <span class="stat-text">10-20 Min</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-icon">&#128100;</span>
-                                <span class="stat-text">1-6 Spieler</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <a href="game.html" target="_blank" class="btn-play"><span>Jetzt spielen</span></a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <div class="game-icon">🌍</div>
-                        <span class="game-badge">Neu</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Stadt Land Fluss</h3>
-                        <p class="game-description">Digitale Version mit Timer und automatischer Punkteberechnung. Kategorien anpassbar!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Timer-Funktion</span>
-                            <span class="feature-tag">Duplikat-Erkennung</span>
-                            <span class="feature-tag">Anpassbare Kategorien</span>
-                        </div>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <span class="stat-icon">👥</span>
-                                <span class="stat-text">Multiplayer</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <a href="stadt-land-fluss.html" target="_blank" class="btn-play"><span>Spiel starten</span></a>
-                    </div>
-                </div>
-                <div class="game-card coming-soon">
-                    <div class="game-card-header">
-                        <div class="game-icon">&#127922;</div>
-                        <span class="game-badge coming-soon-badge">Bald</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Weitere Spiele</h3>
-                        <p class="game-description">Neue spannende Lernspiele sind bereits in Entwicklung!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Mathe-Spiele</span>
-                            <span class="feature-tag">Vokabel-Quiz</span>
-                            <span class="feature-tag">Logik-Rätsel</span>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <button class="btn-play" disabled>In Entwicklung</button>
-                        <a href="preview.html" target="_blank" class="btn-play" style="margin-left: 10px; opacity: 0.9;"><span>🔓 Leaks ansehen</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ======= TOOLS SECTION: Lehrer Werkzeuge ======= -->
-    <section id="tools" class="tools-section">
-                <!-- TOOLS SECTION: Digitale Werkzeuge für den Unterricht -->
-        <div class="section-container">
-            <h2 class="section-title">Lehrer Tools</h2>
-            <p class="section-subtitle">Praktische Werkzeuge für den Unterricht!</p>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <div class="game-icon">&#128337;</div>
-                        <span class="game-badge">Verfügbar</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Digitale Uhr & Timer</h3>
-                        <p class="game-description">Professionelle Uhr mit Timer-Funktion für den Unterricht. Verschiedene Designs und Alarm-Sounds!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Countdown Timer</span>
-                            <span class="feature-tag">Alarm-Sounds</span>
-                            <span class="feature-tag">Verschiedene Designs</span>
-                            <span class="feature-tag">Vollbild-Modus</span>
-                        </div>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <span class="stat-icon">&#9202;</span>
-                                <span class="stat-text">Flexibel</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-icon">&#128226;</span>
-                                <span class="stat-text">Mit Sound</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <a href="timer.html" target="_blank" class="btn-play"><span>Timer öffnen</span></a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <div class="game-icon">🎲</div>
-                        <span class="game-badge">Neu</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Zufalls-Generator</h3>
-                        <p class="game-description">Schüler auswählen, Teams bilden, Würfeln, Münzwurf & Glücksrad - alles in einem Tool!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Schülerauswahl</span>
-                            <span class="feature-tag">Team-Generator</span>
-                            <span class="feature-tag">Würfel & Münze</span>
-                            <span class="feature-tag">Glücksrad</span>
-                        </div>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <span class="stat-icon">🎯</span>
-                                <span class="stat-text">Vielseitig</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <a href="zufallsgenerator.html" target="_blank" class="btn-play"><span>Generator öffnen</span></a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <div class="game-icon">📊</div>
-                        <span class="game-badge">Neu</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Noten-Rechner</h3>
-                        <p class="game-description">Notenschlüssel generieren mit IHK, Linear oder Gauß-Verteilung. Schnittberechnung inklusive!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">IHK Standard</span>
-                            <span class="feature-tag">3 Verteilungsarten</span>
-                            <span class="feature-tag">Schnittberechnung</span>
-                        </div>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <span class="stat-icon">🔢</span>
-                                <span class="stat-text">Präzise</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <a href="notenrechner.html" target="_blank" class="btn-play"><span>Rechner öffnen</span></a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <div class="game-card-header">
-                        <div class="game-icon">🎯</div>
-                        <span class="game-badge">Neu</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Aufgaben-Roulette</h3>
-                        <p class="game-description">Faire Zufallsverteilung von Hausaufgaben, Referaten und Präsentationen!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Faire Verteilung</span>
-                            <span class="feature-tag">Export-Funktion</span>
-                            <span class="feature-tag">Verlaufs-Historie</span>
-                        </div>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <span class="stat-icon">⚖️</span>
-                                <span class="stat-text">Fair</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <a href="aufgabenroulette.html" target="_blank" class="btn-play"><span>Roulette öffnen</span></a>
-                    </div>
-                </div>
-                <!-- Coming Soon Tools Card -->
-                <div class="game-card coming-soon">
-                    <div class="game-card-header">
-                        <div class="game-icon">🔧</div>
-                        <span class="game-badge coming-soon-badge">Bald</span>
-                    </div>
-                    <div class="game-card-body">
-                        <h3 class="game-title">Weitere Tools</h3>
-                        <p class="game-description">Neue praktische Tools für den Unterricht sind bereits in Planung!</p>
-                        <div class="game-features">
-                            <span class="feature-tag">Vokabeltrainer</span>
-                            <span class="feature-tag">Stundenplan</span>
-                            <span class="feature-tag">Hausaufgaben-Manager</span>
-                        </div>
-                    </div>
-                    <div class="game-card-footer">
-                        <button class="btn-play" disabled>In Entwicklung</button>
-                        <a href="preview.html" target="_blank" class="btn-play" style="margin-left: 10px; opacity: 0.9;"><span>🔓 Leaks ansehen</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ======= ABOUT SECTION: Projekt & Entwickler ======= -->
-    <section id="about" class="about-section">
-                <!-- ABOUT SECTION: Projektinfos, Motivation, Entwickler-Boxen -->
-        <div class="section-container">
-            <h2 class="section-title">Über das Projekt</h2>
-            <div class="about-content">
-                <div class="about-card">
-                    <div class="about-icon">&#127979;</div>
-                    <h3>Oberlinhaus</h3>
-                    <p>Bildungseinrichtung mit innovativen digitalen Lernmethoden.</p>
-                </div>
-                <div class="about-card">
-                    <div class="about-icon">&#127919;</div>
-                    <h3>Unser Ziel</h3>
-                    <p>Wissen spielerisch vermitteln und das Lernen unterhaltsam gestalten. Für Azubis und Studenten.</p>
-                </div>
-                <div class="about-card">
-                    <div class="about-icon">&#128640;</div>
-                    <h3>Die Zukunft</h3>
-                    <p>Kontinuierliche Entwicklung neuer Spiele und Features für besseres Lernen.</p>
-                </div>
-                <div class="about-card full-width">
-                    <div class="about-icon">&#128100;</div>
-                    <h3>Über mich</h3>
-                    <p>Erfahre mehr über den Entwickler und die Motivation hinter diesem Projekt.</p>
-                    <a href="../portfolio/Portfolio.html" class="btn btn-primary" style="margin-top:1.5rem;">Mehr über mich</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ======= FOOTER: Kontakt & Links ======= -->
-    <footer class="main-footer">
-                <!-- FOOTER: Kontakt, Links, rechtliche Hinweise -->
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Lehrer Tools</h4>
-                <p>Von Oberlinhaus für Lehrer</p>
-            </div>
-            <div class="footer-section">
-                <h4>Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#games">Spiele</a></li>
-                    <li><a href="#about">Über uns</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Oberlinhaus - Lehrer Tools</p>
-            <p style="margin-top: 10px; font-size: 0.9rem; color: #9d4edd;">Entwickelt von Nico Kaschube, Azubi zum Fachinformatiker für IT-Systemelektroniker</p>
-        </div>
-    </footer>
-    <div id="loginModal" class="modal hidden">
-                <!-- LOGIN MODAL: Popup für Login und Registrierung, inkl. Test-Accounts -->
-        <div class="modal-content login-modal-content epic-login-modal">
-            <div class="modal-header">
-                <div class="login-animation-container">
-                    <!-- Lottie/Animated SVG Icon (Platzhalter) -->
-                    <div class="login-lottie" id="loginLottie">
-                        <img src="../icons/logo-simple.svg" alt="Logo" style="width:60px;height:60px;filter:drop-shadow(0 0 12px #9d4edd);">
-                    </div>
-                </div>
-                <h3 class="epic-login-title">Anmelden</h3>
-                <button class="modal-close-btn" id="closeLoginBtn">✖</button>
-            </div>
-            <div class="modal-body epic-login-body">
-                <div class="epic-login-bg" id="epicLoginBg"></div>
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="login">Anmelden</button>
-                    <button class="auth-tab" data-tab="register">Registrieren</button>
-                </div>
-                <form id="loginForm" class="auth-form epic-auth-form">
-                    <div class="form-group epic-form-group">
-                        <label for="loginUsername">Benutzername:</label>
-                        <input type="text" id="loginUsername" class="epic-input" placeholder="Benutzername" required autocomplete="username">
-                    </div>
-                    <div class="form-group epic-form-group">
-                        <label for="loginPassword">Passwort:</label>
-                        <div class="epic-password-wrapper">
-                            <input type="password" id="loginPassword" class="epic-input" placeholder="Passwort" required autocomplete="current-password">
-                            <span class="toggle-password" id="toggleLoginPassword" title="Passwort anzeigen">👁️</span>
-                        </div>
-                    </div>
-                    <div class="auth-info epic-auth-info">
-                        <p><strong>Test-Accounts:</strong></p>
-                        <div class="epic-account-list" style="display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.3rem;">
-                            <span style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span style="font-size:1.2rem;">🛡️</span> <span>Administrator: <b>admin</b> / <b>admin123</b></span>
-                            </span>
-                            <span style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span style="font-size:1.2rem;">🧑‍🏫</span> <span>Lehrer: <b>lehrer</b> / <b>lehrer123</b></span>
-                            </span>
-                            <span style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span style="font-size:1.2rem;">🎓</span> <span>Schüler: <b>schueler</b> / <b>schueler123</b></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div id="loginError" class="auth-error epic-auth-error" style="display: none;"></div>
-                    <div id="loginSuccess" class="auth-success epic-auth-success" style="display: none;"></div>
-                </form>
-                <form id="registerForm" class="auth-form epic-auth-form" style="display: none;">
-                    <div class="form-group epic-form-group">
-                        <label for="registerUsername">Benutzername:</label>
-                        <input type="text" id="registerUsername" class="epic-input" placeholder="Min. 3 Zeichen" required autocomplete="username">
-                    </div>
-                    <div class="form-group epic-form-group">
-                        <label for="registerPassword">Passwort:</label>
-                        <div class="epic-password-wrapper">
-                            <input type="password" id="registerPassword" class="epic-input" placeholder="Min. 6 Zeichen" required autocomplete="new-password">
-                            <span class="toggle-password" id="toggleRegisterPassword" title="Passwort anzeigen">👁️</span>
-                        </div>
-                    </div>
-                    <div class="form-group epic-form-group">
-                        <label for="registerPasswordConfirm">Passwort bestätigen:</label>
-                        <div class="epic-password-wrapper">
-                            <input type="password" id="registerPasswordConfirm" class="epic-input" placeholder="Wiederholen" required autocomplete="new-password">
-                            <span class="toggle-password" id="toggleRegisterPasswordConfirm" title="Passwort anzeigen">👁️</span>
-                        </div>
-                    </div>
-                    <div id="registerError" class="auth-error epic-auth-error" style="display: none;"></div>
-                    <div id="registerSuccess" class="auth-success epic-auth-success" style="display: none;"></div>
-                </form>
-            </div>
-            <div class="modal-footer epic-modal-footer">
-                <button type="button" id="submitLoginBtn" class="modal-btn btn-primary epic-btn">Anmelden</button>
-                <button type="button" id="submitRegisterBtn" class="modal-btn btn-primary epic-btn" style="display: none;">Registrieren</button>
-                <button type="button" id="cancelLoginBtn" class="modal-btn-secondary epic-btn-secondary">Abbrechen</button>
-            </div>
-            <div id="epicLoginConfetti" class="epic-login-confetti"></div>
-        </div>
-    </div>
+    </main>
+
     <script src="../javascript/auth.js"></script>
     <script src="../javascript/auth-ui.js"></script>
     <script src="../javascript/animations.js"></script>
     <script src="../javascript/responsive.js"></script>
     <script src="../javascript/main.js"></script>
-    </main>
 </body>
-</html>
+</html

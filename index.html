@@ -4,130 +4,99 @@
     ╔════════════════════════════════════════════════════════╗
     ║  🎓 LEHRER TOOLS - STARTSEITE                         ║
     ║  Zentrale Landing Page mit animiertem Design          ║
+    ║  VOLLSTÄNDIG RESPONSIVE - Alle Geräte optimiert       ║
     ║                                                        ║
     ║  Entwickler: Nico Kaschube                            ║
     ║  Ausbildung: Fachinformatiker IT-Systemelektroniker   ║
-    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025                        ║
+    ║  Berufsbildungswerk im Oberlinhaus Potsdam | 2025    ║
     ╚════════════════════════════════════════════════════════╝
 -->
 <head>
-        <!-- Verbesserungen: Fallbacks, Performance, Accessibility, Design, Animation, Testing -->
-            <script>
-            function setBaseSizeVar() {
-                var vh = window.innerHeight * 0.01;
-                var vw = window.innerWidth * 0.01;
-                if (window.matchMedia('(orientation: portrait)').matches) {
-                    document.documentElement.style.setProperty('--base-size', vw + 'px');
-                } else {
-                    document.documentElement.style.setProperty('--base-size', vh + 'px');
-                }
-            }
-            window.addEventListener('resize', setBaseSizeVar);
-            window.addEventListener('orientationchange', setBaseSizeVar);
-            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
-            </script>
-        <style>
-            @supports not (container-type: inline-size) {
-                h1, .leak-title, .leak-badge {
-                    font-size: clamp(2.5em, 6vw, 5em);
-                }
-                .feature, .container {
-                    font-size: clamp(1em, 3vw, 2em);
-                }
-            }
-            h1, .leak-title, .leak-badge {
-                font-weight: 800;
-                text-shadow: 0 2px 8px #222, 0 0 1px #fff;
-            }
-            .feature, .container {
-                font-weight: 500;
-            }
-            :root {
-                --color-bg: #0a0a0a;
-                --color-accent: #9d4edd;
-                --color-primary: #e0aaff;
-                --color-secondary: #c77dff;
-                --color-card-bg: rgba(26,26,26,0.8);
-            }
-            body {
-                background: var(--color-bg);
-                color: var(--color-primary);
-            }
-            .btn-primary {
-                background: var(--color-accent);
-                color: #fff;
-            }
-            h1, .feature, .container {
-                will-change: transform;
-            }
-        </style>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Digitale Werkzeuge für modernen Unterricht - Quiz, Timer, Stadt-Land-Fluss und mehr">
     <title>🎓 Lehrer Tools - Start</title>
+    
+    <!-- PWA & Icons -->
     <link rel="icon" type="image/svg+xml" href="icons/logo-simple.svg">
     <link rel="manifest" href="pwa/manifest.json">
+    <meta name="theme-color" content="#9d4edd">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="responsive-master.css">
     <link rel="stylesheet" href="stylesheets/animations.css">
+    
     <style>
+        /* ============================================================================
+           🎨 CSS VARIABLEN - RESPONSIVE
+           ============================================================================ */
         :root {
-            --base-size: 1vh;
+            /* Colors */
+            --color-bg: #0a0a0a;
+            --color-accent: #9d4edd;
+            --color-primary: #e0aaff;
+            --color-secondary: #c77dff;
+            --color-card-bg: rgba(26, 26, 26, 0.8);
+            
+            /* Responsive Spacing */
+            --spacing-xs: clamp(0.5rem, 1vw, 0.75rem);
+            --spacing-sm: clamp(0.75rem, 2vw, 1rem);
+            --spacing-md: clamp(1rem, 2.5vw, 1.5rem);
+            --spacing-lg: clamp(1.5rem, 3vw, 2rem);
+            --spacing-xl: clamp(2rem, 4vw, 3rem);
+            --spacing-xxl: clamp(3rem, 6vw, 4rem);
+            
+            /* Responsive Font Sizes */
+            --font-xs: clamp(0.75rem, 2vw, 0.875rem);
+            --font-sm: clamp(0.875rem, 2.5vw, 1rem);
+            --font-md: clamp(1rem, 3vw, 1.25rem);
+            --font-lg: clamp(1.25rem, 4vw, 1.75rem);
+            --font-xl: clamp(1.5rem, 5vw, 2.5rem);
+            --font-xxl: clamp(2rem, 6vw, 3.5rem);
+            
+            /* Logo Size */
+            --logo-size: clamp(80px, 20vw, 150px);
+            
+            /* Animation Duration */
+            --anim-fast: 0.3s;
+            --anim-normal: 0.6s;
+            --anim-slow: 1s;
         }
-        @media (orientation: portrait) {
-            :root {
-                --base-size: 1vw;
-            }
-        }
-        html, body {
-            font-size: var(--base-size);
-        }
-        main.page-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto 1fr auto;
-            min-height: 100vh;
-        }
-        .container, .features, .footer {
-            container-type: inline-size;
-            container-name: mainblock;
-        }
-        h1, .leak-title, .leak-badge {
-            font-size: clamp(2.5em, 6cqw, 5em);
-        }
-        .feature, .container {
-            font-size: clamp(1em, 3cqw, 2em);
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-        }
-        @media (max-width: 700px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-        .feature {
-            padding: min(2.5em, 5cqw);
-        }
+
+        /* ============================================================================
+           🎯 BASE STYLES
+           ============================================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0a0a;
+            background: var(--color-bg);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #e0aaff;
-            overflow: hidden;
+            color: var(--color-primary);
+            overflow-x: hidden;
+            padding: var(--spacing-md);
         }
 
-        /* Animierte fliegende Boxen */
+        /* ============================================================================
+           ✨ ANIMIERTE FLIEGENDE BOXEN
+           ============================================================================ */
         .flying-boxes {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
@@ -136,81 +105,131 @@
             z-index: 0;
             pointer-events: none;
         }
+
         .flying-box {
             position: absolute;
             background: linear-gradient(135deg, #9d4edd 40%, #e0aaff 100%);
-            opacity: 0.18;
-            border-radius: 18px;
-            box-shadow: 0 4px 32px #9d4edd44;
+            opacity: 0.15;
+            border-radius: clamp(12px, 3vw, 18px);
+            box-shadow: 0 4px 32px rgba(157, 77, 221, 0.3);
             animation: flyBox 16s linear infinite;
+            will-change: transform, opacity;
         }
-        .flying-box:nth-child(1) {
-            width: 60px; height: 60px; left: 8vw; top: 80vh; animation-duration: 14s; animation-delay: 0s;
+
+        /* Responsive Box Sizes */
+        .flying-box:nth-child(1) { 
+            width: clamp(40px, 8vw, 60px); 
+            height: clamp(40px, 8vw, 60px); 
+            left: 8vw; 
+            top: 80vh; 
+            animation-duration: 14s; 
         }
-        .flying-box:nth-child(2) {
-            width: 40px; height: 40px; left: 22vw; top: 90vh; animation-duration: 16s; animation-delay: 2s;
+        .flying-box:nth-child(2) { 
+            width: clamp(30px, 6vw, 40px); 
+            height: clamp(30px, 6vw, 40px); 
+            left: 22vw; 
+            top: 90vh; 
+            animation-duration: 16s; 
+            animation-delay: 2s; 
         }
-        .flying-box:nth-child(3) {
-            width: 80px; height: 80px; left: 38vw; top: 85vh; animation-duration: 18s; animation-delay: 4s;
+        .flying-box:nth-child(3) { 
+            width: clamp(50px, 10vw, 80px); 
+            height: clamp(50px, 10vw, 80px); 
+            left: 38vw; 
+            top: 85vh; 
+            animation-duration: 18s; 
+            animation-delay: 4s; 
         }
-        .flying-box:nth-child(4) {
-            width: 50px; height: 50px; left: 55vw; top: 95vh; animation-duration: 15s; animation-delay: 1s;
+        .flying-box:nth-child(4) { 
+            width: clamp(35px, 7vw, 50px); 
+            height: clamp(35px, 7vw, 50px); 
+            left: 55vw; 
+            top: 95vh; 
+            animation-duration: 15s; 
+            animation-delay: 1s; 
         }
-        .flying-box:nth-child(5) {
-            width: 70px; height: 70px; left: 70vw; top: 88vh; animation-duration: 17s; animation-delay: 3s;
+        .flying-box:nth-child(5) { 
+            width: clamp(45px, 9vw, 70px); 
+            height: clamp(45px, 9vw, 70px); 
+            left: 70vw; 
+            top: 88vh; 
+            animation-duration: 17s; 
+            animation-delay: 3s; 
         }
-        .flying-box:nth-child(6) {
-            width: 30px; height: 30px; left: 80vw; top: 92vh; animation-duration: 13s; animation-delay: 5s;
+        .flying-box:nth-child(6) { 
+            width: clamp(25px, 5vw, 30px); 
+            height: clamp(25px, 5vw, 30px); 
+            left: 80vw; 
+            top: 92vh; 
+            animation-duration: 13s; 
+            animation-delay: 5s; 
         }
-        .flying-box:nth-child(7) {
-            width: 90px; height: 90px; left: 90vw; top: 86vh; animation-duration: 19s; animation-delay: 6s;
+        .flying-box:nth-child(7) { 
+            width: clamp(60px, 12vw, 90px); 
+            height: clamp(60px, 12vw, 90px); 
+            left: 90vw; 
+            top: 86vh; 
+            animation-duration: 19s; 
+            animation-delay: 6s; 
         }
-        .flying-box:nth-child(8) {
-            width: 45px; height: 45px; left: 15vw; top: 93vh; animation-duration: 15s; animation-delay: 2.5s;
+        .flying-box:nth-child(8) { 
+            width: clamp(32px, 6.5vw, 45px); 
+            height: clamp(32px, 6.5vw, 45px); 
+            left: 15vw; 
+            top: 93vh; 
+            animation-duration: 15s; 
+            animation-delay: 2.5s; 
         }
+
         @keyframes flyBox {
             0% {
                 transform: translateY(0) scale(1) rotate(0deg);
-                opacity: 0.18;
+                opacity: 0.15;
             }
             10% {
-                opacity: 0.32;
+                opacity: 0.25;
             }
             50% {
                 transform: translateY(-60vh) scale(1.1) rotate(180deg);
-                opacity: 0.22;
+                opacity: 0.2;
             }
             90% {
-                opacity: 0.32;
+                opacity: 0.25;
             }
             100% {
                 transform: translateY(-110vh) scale(0.95) rotate(360deg);
-                opacity: 0.10;
+                opacity: 0.08;
             }
         }
 
-        /* Main Container */
+        /* ============================================================================
+           📦 MAIN CONTAINER
+           ============================================================================ */
         .container {
             position: relative;
             z-index: 1;
             text-align: center;
-            padding: 40px;
-            max-width: 800px;
-            width: 90%;
+            padding: var(--spacing-xl);
+            max-width: min(800px, 95vw);
+            width: 100%;
+            margin: 0 auto;
         }
 
-        /* Logo */
+        /* ============================================================================
+           🎨 LOGO
+           ============================================================================ */
         .logo {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 30px;
-            background: rgba(26, 26, 26, 0.8);
+            width: var(--logo-size);
+            height: var(--logo-size);
+            margin: 0 auto var(--spacing-xl);
+            background: var(--color-card-bg);
             backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 20px;
+            border-radius: clamp(20px, 4vw, 30px);
+            padding: var(--spacing-lg);
             border: 1px solid rgba(199, 125, 255, 0.3);
             box-shadow: 0 10px 40px rgba(157, 77, 221, 0.4);
             animation: float 3s ease-in-out infinite;
+            will-change: transform;
         }
 
         .logo img {
@@ -220,25 +239,50 @@
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        /* Titel */
+        /* ============================================================================
+           📝 TYPOGRAPHY
+           ============================================================================ */
         h1 {
-            font-size: 3.5rem;
+            font-size: var(--font-xxl);
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: var(--spacing-md);
             background: linear-gradient(45deg, #e0aaff, #c77dff, #9d4edd);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: none;
-            animation: fadeInDown 1s ease-out;
+            animation: fadeInDown var(--anim-slow) ease-out;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: var(--font-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-secondary);
+            opacity: 0.95;
+            animation: fadeInUp var(--anim-slow) ease-out 0.2s both;
+            line-height: 1.4;
+        }
+
+        .description {
+            font-size: var(--font-sm);
+            margin-bottom: var(--spacing-xl);
+            color: var(--color-accent);
+            opacity: 0.9;
+            animation: fadeInUp var(--anim-slow) ease-out 0.4s both;
+            line-height: 1.6;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .description br {
+            display: block;
+            content: "";
+            margin-bottom: 0.5em;
         }
 
         @keyframes fadeInDown {
@@ -252,22 +296,6 @@
             }
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #c77dff;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            color: #9d4edd;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -279,23 +307,28 @@
             }
         }
 
-        /* Start Button */
+        /* ============================================================================
+           🚀 START BUTTON
+           ============================================================================ */
         .start-button {
             display: inline-block;
             background: linear-gradient(45deg, #e0aaff, #c77dff);
             color: #10002b;
-            font-size: 1.5rem;
+            font-size: var(--font-lg);
             font-weight: 600;
-            padding: 20px 60px;
+            padding: var(--spacing-lg) clamp(2rem, 8vw, 4rem);
             border: 2px solid #9d4edd;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             box-shadow: 0 10px 30px rgba(157, 77, 221, 0.4);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            transition: all var(--anim-fast) ease;
+            animation: fadeInUp var(--anim-slow) ease-out 0.6s both;
             position: relative;
             overflow: hidden;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 48px;
         }
 
         .start-button:hover {
@@ -305,7 +338,7 @@
         }
 
         .start-button:active {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(0.98);
         }
 
         .start-button::before {
@@ -331,36 +364,37 @@
             z-index: 1;
         }
 
-        /* Features */
+        /* ============================================================================
+           🎯 FEATURES GRID
+           ============================================================================ */
         .features {
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            animation: fadeIn 1s ease-out 0.8s both;
+            margin-top: var(--spacing-xxl);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 30vw, 200px), 1fr));
+            gap: var(--spacing-md);
+            animation: fadeIn var(--anim-slow) ease-out 0.8s both;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .feature {
-            background: rgba(26, 26, 26, 0.8);
+            background: var(--color-card-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(199, 125, 255, 0.3);
-            padding: 20px 30px;
-            border-radius: 15px;
-            font-size: 1rem;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: clamp(10px, 2vw, 15px);
+            font-size: var(--font-sm);
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            transition: all var(--anim-fast) ease;
+            flex-direction: column;
+            text-align: center;
+            min-height: clamp(70px, 15vw, 90px);
         }
 
         .feature:hover {
@@ -371,61 +405,232 @@
         }
 
         .feature-icon {
-            font-size: 1.5rem;
+            font-size: var(--font-lg);
         }
 
-        /* Footer */
+        /* ============================================================================
+           🦶 FOOTER
+           ============================================================================ */
         .footer {
-            margin-top: 60px;
-            font-size: 0.95rem;
+            margin-top: var(--spacing-xxl);
+            font-size: var(--font-xs);
             opacity: 0.8;
-            animation: fadeIn 1s ease-out 1s both;
+            animation: fadeIn var(--anim-slow) ease-out 1s both;
+        }
+
+        .footer p {
+            margin-bottom: var(--spacing-xs);
         }
 
         .developer {
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: var(--spacing-sm);
         }
 
-        /* Responsive */
+        /* ============================================================================
+           📱 MOBILE OPTIMIZATIONS (< 768px)
+           ============================================================================ */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            body {
+                padding: var(--spacing-sm);
             }
 
-            .subtitle {
-                font-size: 1.2rem;
+            .container {
+                padding: var(--spacing-md);
+            }
+
+            .description br {
+                display: none; /* Bessere mobile Lesbarkeit */
             }
 
             .description {
-                font-size: 1rem;
-            }
-
-            .start-button {
-                font-size: 1.2rem;
-                padding: 15px 40px;
+                max-width: 100%;
             }
 
             .features {
-                flex-direction: column;
-                align-items: center;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: var(--spacing-sm);
             }
 
             .feature {
+                padding: var(--spacing-sm);
+                font-size: var(--font-xs);
+                min-height: 60px;
+            }
+
+            .feature-icon {
+                font-size: var(--font-md);
+            }
+
+            /* Reduzierte Animation auf Mobile */
+            .flying-box {
+                animation-duration: 20s !important;
+            }
+        }
+
+        /* ============================================================================
+           📱 SMALL MOBILE (< 480px)
+           ============================================================================ */
+        @media (max-width: 480px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .start-button {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
+            }
+
+            h1 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+            }
+        }
+
+        /* ============================================================================
+           🖥️ LARGE SCREENS (> 1200px)
+           ============================================================================ */
+        @media (min-width: 1201px) {
+            .features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ============================================================================
+           📱 LANDSCAPE MODE
+           ============================================================================ */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .logo {
+                width: clamp(60px, 12vh, 100px);
+                height: clamp(60px, 12vh, 100px);
+                margin-bottom: var(--spacing-md);
+                padding: var(--spacing-md);
+            }
+
+            h1 {
+                font-size: clamp(1.5rem, 5vh, 2rem);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .subtitle {
+                font-size: clamp(1rem, 3vh, 1.25rem);
+            }
+
+            .description {
+                font-size: clamp(0.8rem, 2vh, 1rem);
+                margin-bottom: var(--spacing-md);
+            }
+
+            .start-button {
+                padding: var(--spacing-md) var(--spacing-xl);
+                font-size: clamp(1rem, 3vh, 1.25rem);
+            }
+
+            .features {
+                margin-top: var(--spacing-lg);
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: var(--spacing-sm);
+            }
+
+            .feature {
+                padding: var(--spacing-sm);
+                font-size: clamp(0.75rem, 2vh, 0.875rem);
+                min-height: 50px;
+            }
+
+            .footer {
+                margin-top: var(--spacing-lg);
+                font-size: clamp(0.7rem, 1.8vh, 0.85rem);
+            }
+
+            /* Weniger Boxen im Landscape */
+            .flying-box:nth-child(n+5) {
+                display: none;
+            }
+        }
+
+        /* ============================================================================
+           ♿ ACCESSIBILITY
+           ============================================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .flying-box {
+                opacity: 0.05 !important;
+                animation: none !important;
+            }
+
+            .logo {
+                animation: none !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+            .feature,
+            .logo {
+                border-width: 2px;
+            }
+
+            .start-button {
+                border-width: 3px;
+            }
+        }
+
+        /* ============================================================================
+           🖨️ PRINT STYLES
+           ============================================================================ */
+        @media print {
+            .flying-boxes,
+            .start-button {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .feature,
+            .logo {
+                border-color: black;
+            }
+        }
+
+        /* ============================================================================
+           🔧 SAFE AREA FOR NOTCH DEVICES
+           ============================================================================ */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(var(--spacing-md), env(safe-area-inset-left));
+                padding-right: max(var(--spacing-md), env(safe-area-inset-right));
+                padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+                padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ============================================================================
+           ⚡ PERFORMANCE OPTIMIZATIONS
+           ============================================================================ */
+        @media (hover: none) {
+            .start-button:hover,
+            .feature:hover {
+                transform: none;
+            }
+
+            .start-button:active {
+                transform: scale(0.95);
             }
         }
     </style>
 </head>
 <body>
-        <!--
-        Testing-Hinweis:
-        Teste die Seite auf verschiedenen Geräten, Browsern und mit Screenreadern.
-        Prüfe Zoom, Kontrast und Layout bei extremen Größen.
-        -->
     <!-- Animierte fliegende Boxen als Hintergrund -->
-    <div class="flying-boxes">
+    <div class="flying-boxes" role="presentation" aria-hidden="true">
         <div class="flying-box"></div>
         <div class="flying-box"></div>
         <div class="flying-box"></div>
@@ -437,10 +642,10 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container">
+    <main class="container">
         <!-- Logo -->
-        <div class="logo">
-            <img src="icons/logo.svg" alt="Lehrer Tools Logo">
+        <div class="logo" role="img" aria-label="Lehrer Tools Logo">
+            <img src="icons/logo.svg" alt="Lehrer Tools Logo" loading="eager">
         </div>
 
         <!-- Haupttitel -->
@@ -453,109 +658,127 @@
         </p>
 
         <!-- Start Button -->
-        <a href="seiten/start.html" class="start-button">
+        <a href="seiten/start.html" class="start-button" role="button">
             <span>🚀 Jetzt starten!</span>
         </a>
 
         <!-- Features -->
-        <div class="features">
-            <div class="feature">
-                <span class="feature-icon">🎮</span>
+        <div class="features" role="list">
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🎮</span>
                 <span>Jeopardy Quiz</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">🕐</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🕐</span>
                 <span>Timer & Uhr</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">🌍</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🌍</span>
                 <span>Stadt-Land-Fluss</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">🎲</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🎲</span>
                 <span>Zufallsgenerator</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">📊</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">📊</span>
                 <span>Notenrechner</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">🎯</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🎯</span>
                 <span>Aufgabenroulette</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">📱</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">📱</span>
                 <span>PWA-fähig</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">�</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🔌</span>
                 <span>Offline nutzbar</span>
             </div>
-            <div class="feature">
-                <span class="feature-icon">🎨</span>
+            <div class="feature" role="listitem">
+                <span class="feature-icon" aria-hidden="true">🎨</span>
                 <span>Modern & Intuitiv</span>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="footer">
+        <footer class="footer">
             <p>© 2025 Berufsbildungswerk im Oberlinhaus Potsdam</p>
             <p class="developer">
                 Entwickelt von <strong>Nico Kaschube</strong><br>
                 Auszubildender Fachinformatiker für IT-Systemelektroniker
             </p>
-        </div>
-    </div>
+        </footer>
+    </main>
 
-    <!-- 🎯 PRODUCTION CONFIG - MUSS ZUERST GELADEN WERDEN! (blocking) -->
+    <!-- Scripts -->
     <script src="javascript/production-config.js"></script>
-    
-    <!-- Error Handler - Global Error Catching (blocking) -->
     <script src="javascript/error-handler.js"></script>
 
     <!-- PWA Service Worker Registration -->
     <script>
-        // Service Worker für PWA registrieren
         if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
             window.addEventListener('load', async () => {
                 try {
-                    const registration = await navigator.serviceWorker.register('pwa/sw.js');
-                    console.log('✅ Service Worker registriert:', registration.scope);
+                    // Prüfe ob Service Worker existiert
+                    const response = await fetch('pwa/sw.js', { method: 'HEAD' });
+                    if (response.ok) {
+                        const registration = await navigator.serviceWorker.register('pwa/sw.js');
+                        console.log('✅ Service Worker registriert:', registration.scope);
+                    } else {
+                        console.log('ℹ️ Service Worker nicht verfügbar (Entwicklungsmodus)');
+                    }
                 } catch (error) {
-                    console.error('❌ Service Worker Fehler:', error);
+                    // Stiller Fehler in Entwicklungsumgebung
+                    if (window.location.hostname === 'localhost' || 
+                        window.location.hostname.includes('claudeusercontent')) {
+                        console.log('ℹ️ Service Worker übersprungen (Vorschau-Umgebung)');
+                    } else {
+                        console.error('❌ Service Worker Fehler:', error.message);
+                    }
                 }
             });
         }
-
-        // Button Animation beim Klick
-        document.querySelector('.start-button').addEventListener('click', function(e) {
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 100);
-        });
     </script>
-    
-    <!-- UI/UX Systems (defer) -->
+
+    <!-- UI/UX Systems -->
     <script defer src="javascript/toast.js"></script>
     <script defer src="javascript/loading-states.js"></script>
     <script defer src="javascript/micro-animations.js"></script>
     <script defer src="javascript/animations.js"></script>
 
-    <!-- Dynamik für fliegende Boxen -->
+    <!-- Dynamic Animations -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const boxes = document.querySelectorAll('.flying-box');
-        boxes.forEach((box, i) => {
-            // Zufällige Animationseigenschaften für mehr Dynamik
-            const delay = Math.random() * 8;
-            const duration = 12 + Math.random() * 8;
-            box.style.animationDelay = delay + 's';
-            box.style.animationDuration = duration + 's';
-            // Zufällige Rotation und Skalierung
-            box.style.transform = `rotate(${Math.random()*360}deg) scale(${0.8 + Math.random()*0.6})`;
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dynamische fliegende Boxen
+            const boxes = document.querySelectorAll('.flying-box');
+            boxes.forEach((box, i) => {
+                const delay = Math.random() * 8;
+                const duration = 12 + Math.random() * 8;
+                box.style.animationDelay = `${delay}s`;
+                box.style.animationDuration = `${duration}s`;
+                box.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.8 + Math.random() * 0.6})`;
+            });
+
+            // Button Click Animation
+            const startButton = document.querySelector('.start-button');
+            if (startButton) {
+                startButton.addEventListener('click', function(e) {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            }
+
+            // Passive Event Listeners für bessere Performance
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                lastScrollTop = st <= 0 ? 0 : st;
+            }, { passive: true });
         });
-    });
     </script>
 </body>
 </html>

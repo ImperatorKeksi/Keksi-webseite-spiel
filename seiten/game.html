@@ -13,20 +13,6 @@
             - Styles: Aussehen und Layout der Seite
             - JavaScript: Dynamische Funktionen (z.B. Responsive-Design)
         -->
-            <script>
-            function setBaseSizeVar() {
-                var vh = window.innerHeight * 0.01;
-                var vw = window.innerWidth * 0.01;
-                if (window.matchMedia('(orientation: portrait)').matches) {
-                    document.documentElement.style.setProperty('--base-size', vw + 'px');
-                } else {
-                    document.documentElement.style.setProperty('--base-size', vh + 'px');
-                }
-            }
-            window.addEventListener('resize', setBaseSizeVar);
-            window.addEventListener('orientationchange', setBaseSizeVar);
-            document.addEventListener('DOMContentLoaded', setBaseSizeVar);
-            </script>
         <style>
             /* Fallback für ältere Browser: Sorgt für Lesbarkeit, wenn moderne CSS-Features nicht unterstützt werden */
             @supports not (container-type: inline-size) {
@@ -102,6 +88,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../stylesheets/styles.css">
     <link rel="stylesheet" href="../stylesheets/animations.css">
+    <link rel="stylesheet" href="../stylesheets/responsive-optimized.css">
     <style>
         :root {
             --base-size: 1vh;
